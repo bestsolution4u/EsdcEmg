@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "455293497937",
+    "project_id": "emg-app-a8783",
+    "storage_bucket": "emg-app-a8783.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455293497937:android:316ec0e222de46b8373e70",
+        "android_client_info": {
+          "package_name": "com.example.esdc_emg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455293497937-h6mvcirv3jpb8h9oitl72h5h3f720c06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOuqdBPlNG9cidxJ8Izp784E2-hENhW4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455293497937-h6mvcirv3jpb8h9oitl72h5h3f720c06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
