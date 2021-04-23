@@ -7,7 +7,7 @@ class ESDCAppbar {
       backgroundColor: Colors.white,
       elevation: 0,
       centerTitle: false,
-      title: Text(title, style: TextStyle(color: Styles.textBlack, fontSize: 28, fontWeight: FontWeight.w800)),
+      title: Text(title, style: TextStyle(color: Styles.textBlack, fontSize: 24, fontWeight: FontWeight.w800)),
       actions: [
         action != null ? action : Container()
       ],

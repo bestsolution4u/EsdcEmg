@@ -25,7 +25,7 @@ class _MainTabItemState extends State<MainTabItem> {
               ? Styles.purple
               : Styles.textBlack,
           allowDrawingOutsideViewBox: true,
-          height: 22,
+          height: 20,
         ),
         child: Text(
           widget.title,
@@ -33,7 +33,7 @@ class _MainTabItemState extends State<MainTabItem> {
             color: widget.selected
                 ? Styles.purple
                 : Styles.textBlack,
-            fontSize: 14
+            fontSize: 12
           ),
         ),
       ),

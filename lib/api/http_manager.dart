@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:esdc_emg/config/global.dart';
 
 Map<String, dynamic> dioErrorHandle(DioError error) {
   print('DIO ERROR: $error');
@@ -16,11 +17,7 @@ Map<String, dynamic> dioErrorHandle(DioError error) {
 
 class HTTPManager {
   BaseOptions baseOptions = BaseOptions(
-    baseUrl: "https://emgapp.azurewebsites.net/",
-    connectTimeout: 30000,
-    receiveTimeout: 30000,
-    contentType: Headers.jsonContentType,
-    responseType: ResponseType.json,
+    baseUrl: Globals.BASE_URL,
   );
 
   ///Post method
