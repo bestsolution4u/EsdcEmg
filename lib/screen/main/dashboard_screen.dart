@@ -1,7 +1,9 @@
 import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/message_model.dart';
+import 'package:esdc_emg/screen/main/feedback_screen.dart';
 import 'package:esdc_emg/screen/main/message_detail_screen.dart';
+import 'package:esdc_emg/screen/main/wellness_screen.dart';
 import 'package:esdc_emg/util/message_util.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/dashboard_button.dart';
@@ -11,6 +13,8 @@ import 'package:esdc_emg/widget/row/vpn_status_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'learning_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -53,7 +57,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 allowDrawingOutsideViewBox: true,
                 height: 28,
               ),
-              onClick: () {},
+              onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),
             ),
             DashboardButton(
               title: 'Learning',
@@ -63,7 +67,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 allowDrawingOutsideViewBox: true,
                 height: 28,
               ),
-              onClick: () {},
+              onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),
             ),
             buildVPN(),
             DashboardButton(
@@ -74,7 +78,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 allowDrawingOutsideViewBox: true,
                 height: 28,
               ),
-              onClick: () {},
+              onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),
             )
           ],
         ),

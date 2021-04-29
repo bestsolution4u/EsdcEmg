@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/screen/main/message_detail_screen.dart';
@@ -17,6 +18,33 @@ class UrgentMessageRow extends StatefulWidget {
 }
 
 class _UrgentMessageRowState extends State<UrgentMessageRow> {
+
+  bool read = false;
+  final firestore = FirebaseFirestore.instance;
+  @override
+  void initState() {
+    super.initState();
+    firestore.collection("message").snapshots().listen((event) {
+      event.docChanges.forEach((res) {
+        if (res.doc.id == widget.message.id.toString()) {
+          if (res.type == DocumentChangeType.added) {
+            setState(() {
+              read = (res.doc.data())['read'];
+            });
+          } else if (res.type == DocumentChangeType.modified) {
+            setState(() {
+              read = (res.doc.data())['read'];
+            });
+          } else if (res.type == DocumentChangeType.removed) {
+            setState(() {
+              read = false;
+            });
+          }
+        }
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return RippleComponent(
@@ -40,16 +68,16 @@ class _UrgentMessageRowState extends State<UrgentMessageRow> {
             Expanded(child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Flexible(child: Text(widget.message.title, style: TextStyle(color: Styles.red, fontSize: 14, fontWeight: FontWeight.w700),)),
+                Flexible(child: Text(widget.message.title, style: TextStyle(color: read ? Colors.black : Styles.red, fontSize: 14, fontWeight: read ? FontWeight.w400 : FontWeight.w700),)),
                 SizedBox(width: 5,),
-                Container(
+                !read ? Container(
                   height: 10,
                   width: 10,
                   decoration: new BoxDecoration(
                     color: Styles.red,
                     borderRadius: BorderRadius.circular(30),
                   ),
-                ),
+                ) : Container(),
               ],
             )),
             SizedBox(width: 10,),

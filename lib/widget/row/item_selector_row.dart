@@ -21,9 +21,7 @@ class ItemSelectorRow extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: RippleComponent(
-            onClick: () {
-
-            },
+            onClick: onClick,
             child: Container(
               padding: const EdgeInsets.all(8.0),
               child: Row(

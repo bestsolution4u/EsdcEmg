@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/message_model.dart';
+import 'package:esdc_emg/util/FirebaseUtil.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/button/bordered_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
@@ -18,6 +20,16 @@ class MessageDetailScreen extends StatefulWidget {
 }
 
 class _MessageDetailScreenState extends State<MessageDetailScreen> {
+
+  final firestore = FirebaseFirestore.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    print(widget.message.id);
+    FirebaseUtil.changeMessageReadStatus(widget.message.id, true);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -103,9 +115,17 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                BorderedButton(title: 'Mark as unread', onClick: () {},),
-                BorderedButton(title: 'Share this page', onClick: () {},),
-                BorderedButton(title: 'Delete', color: Styles.red, onClick: () {},),
+                BorderedButton(title: 'Mark as unread', onClick: () {
+                  FirebaseUtil.changeMessageReadStatus(widget.message.id, false);
+                  Navigator.pop(context);
+                },),
+                BorderedButton(title: 'Share this page', onClick: () {
+                  Navigator.pop(context);
+                },),
+                BorderedButton(title: 'Delete', color: Styles.red, onClick: () {
+                  firestore.collection("message").doc(widget.message.id.toString()).delete();
+                  Navigator.pop(context);
+                },),
               ],
             ),
           )

@@ -1,13 +1,15 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:esdc_emg/config/global.dart';
 
 Map<String, dynamic> dioErrorHandle(DioError error) {
   print('DIO ERROR: $error');
   switch (error.type) {
-    case DioErrorType.RESPONSE:
+    case DioErrorType.response:
       return error.response?.data;
-    case DioErrorType.SEND_TIMEOUT:
-    case DioErrorType.RECEIVE_TIMEOUT:
+    case DioErrorType.sendTimeout:
+    case DioErrorType.receiveTimeout:
       return {"success": false, "code": "request_time_out"};
 
     default:
@@ -29,11 +31,12 @@ class HTTPManager {
     print('POST REQUEST: $url');
     print('PARAMS: $data');
     Dio dio = new Dio(baseOptions);
+
     try {
       final response = await dio.post(
         url,
         data: data,
-        options: options,
+        options: generateOptions(),
       );
       print('----------- API response -----------');
       print(response);
@@ -56,7 +59,7 @@ class HTTPManager {
       final response = await dio.get(
         url,
         queryParameters: params,
-        options: options,
+        options: generateOptions(),
       );
       print('----------- API response -----------');
       print(response);
@@ -64,6 +67,13 @@ class HTTPManager {
     } on DioError catch (error) {
       return dioErrorHandle(error);
     }
+  }
+
+  Options generateOptions() {
+    String username = 'apiadmin';
+    String password = 'apiadmin123';
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
+    return Options(headers: <String, String>{'authorization': basicAuth});
   }
 
   factory HTTPManager() {
