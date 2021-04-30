@@ -6,8 +6,9 @@ class MainTabItem extends StatefulWidget {
 
   final String title, image;
   final bool selected;
+  final Widget badge;
 
-  MainTabItem({this.title = "", this.image = "", this.selected = false});
+  MainTabItem({this.title = "", this.image = "", this.selected = false, this.badge});
 
   @override
   _MainTabItemState createState() => _MainTabItemState();
@@ -19,13 +20,18 @@ class _MainTabItemState extends State<MainTabItem> {
     return Container(
       height: 70,
       child: Tab(
-        icon: SvgPicture.asset(
-          widget.image,
-          color: widget.selected
-              ? Styles.purple
-              : Styles.textBlack,
-          allowDrawingOutsideViewBox: true,
-          height: 20,
+        icon: Stack(
+          children: [
+            SvgPicture.asset(
+              widget.image,
+              color: widget.selected
+                  ? Styles.purple
+                  : Styles.textBlack,
+              allowDrawingOutsideViewBox: true,
+              height: 20,
+            ),
+            widget.badge?? SizedBox(width: 0, height: 0,)
+          ],
         ),
         child: Text(
           widget.title,

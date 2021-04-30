@@ -1,11 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:esdc_emg/bloc/bloc.dart';
+import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/util/FirebaseUtil.dart';
+import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/button/bordered_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
@@ -22,11 +27,12 @@ class MessageDetailScreen extends StatefulWidget {
 class _MessageDetailScreenState extends State<MessageDetailScreen> {
 
   final firestore = FirebaseFirestore.instance;
+  MessageBloc _messageBloc;
 
   @override
   void initState() {
     super.initState();
-    print(widget.message.id);
+    _messageBloc = BlocProvider.of<MessageBloc>(context);
     FirebaseUtil.changeMessageReadStatus(widget.message.id, true);
   }
 
@@ -123,8 +129,31 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                   Navigator.pop(context);
                 },),
                 BorderedButton(title: 'Delete', color: Styles.red, onClick: () {
-                  firestore.collection("message").doc(widget.message.id.toString()).delete();
-                  Navigator.pop(context);
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) => CupertinoAlertDialog(
+                        title: new Text("Delete Message"),
+                        content: new Text("Are you sure to delete this message?"),
+                        actions: <Widget>[
+                          CupertinoDialogAction(
+                            isDefaultAction: true,
+                            child: Text('Delete'),
+                            onPressed: () {
+                              _messageBloc.add(MessageDeleteEvent(deletedID: widget.message.id));
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            },
+                          ),
+                          CupertinoDialogAction(
+                            child: Text("Cancel"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          )
+                        ],
+                      )
+                  );
                 },),
               ],
             ),

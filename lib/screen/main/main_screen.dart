@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/screen/main/dashboard_screen.dart';
 import 'package:esdc_emg/screen/main/employee_screen.dart';
@@ -8,6 +10,7 @@ import 'package:esdc_emg/widget/tabbar/main_tab_item.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -36,6 +39,9 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   TabController tabController;
   int currentTabIndex = 0;
   Stream<String> _tokenStream;
+  int readMessageCount = 0;
+  final firestore = FirebaseFirestore.instance;
+
   @override
   void initState() {
     super.initState();
@@ -45,6 +51,33 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       length: tabLength,
       vsync: this,
     )..addListener(handleTabController);
+
+    firestore.collection("message").snapshots().listen((event) {
+      event.docChanges.forEach((res) {
+        print(res.doc.id);
+        if (res.type == DocumentChangeType.added) {
+          if ((res.doc.data())['read']) {
+            setState(() {
+              readMessageCount++;
+            });
+          }
+        } else if (res.type == DocumentChangeType.modified) {
+          if ((res.doc.data())['read']) {
+            setState(() {
+              readMessageCount++;
+            });
+          } else {
+            setState(() {
+              readMessageCount--;
+            });
+          }
+        } else if (res.type == DocumentChangeType.removed) {
+          setState(() {
+            readMessageCount--;
+          });
+        }
+      });
+    });
   }
 
   void registerNotification() async {
@@ -85,17 +118,13 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                 channel.id,
                 channel.name,
                 channel.description,
-                // TODO add a proper drawable resource to android, for now using
-                //      one that already exists in example app.
                 icon: 'launch_background',
-
               ),
             ));
       }
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('===========A new onMessageOpenedApp event was published!');
       tabController.index = 2;
     });
   }
@@ -120,7 +149,9 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             controller: tabController,
             physics: NeverScrollableScrollPhysics(),
             children: [
-              DashboardScreen(),
+              DashboardScreen(onUrgentClick: () {
+                tabController.animateTo(1);
+              },),
               MessageScreen(),
               EmployeeScreen(),
               SocialMediaScreen()
@@ -147,7 +178,33 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               unselectedLabelColor: Styles.textBlack,
               tabs: [
                 MainTabItem(title: 'MyESDC', image: 'asset/image/star.svg', selected: currentTabIndex == 0,),
-                MainTabItem(title: 'Messages', image: 'asset/image/mail.svg', selected: currentTabIndex == 1,),
+                MainTabItem(title: 'Messages', image: 'asset/image/mail.svg', selected: currentTabIndex == 1, badge: BlocBuilder<MessageBloc, MessageState>(
+                  builder: (context, msgState) {
+                    if (msgState is MessageLoadingState || msgState is MessageLoadFailureState) {
+                      return Container(width: 0, height: 0,);
+                    } else {
+                      int unreadCount = (msgState as MessageLoadSuccessState).messages.length - readMessageCount;
+                      if (unreadCount == 0) return Container(width: 0, height: 0,);
+                      return Positioned(
+                        top: 0,
+                          right: 0,
+                          child: Transform.translate(
+                            offset: Offset(8.0, -8.0),
+                            child: Container(
+                              width: 16,
+                              height: 16,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(24),
+                                  color: Styles.red
+                              ),
+                              child: Center(
+                                child: Text(unreadCount.toString(), style: TextStyle(color: Colors.white, fontSize: 10),),
+                              ),
+                            ),
+                          ),);
+                    }
+                  },
+                ),),
                 MainTabItem(title: 'Employees', image: 'asset/image/user.svg', selected: currentTabIndex == 2,),
                 MainTabItem(title: 'Social media', image: 'asset/image/sound.svg', selected: currentTabIndex == 3,),
               ],

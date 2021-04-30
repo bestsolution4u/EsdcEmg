@@ -1,10 +1,13 @@
 import 'package:esdc_emg/bloc/bloc.dart';
+import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/message_model.dart';
+import 'package:esdc_emg/model/vpn_status_model.dart';
 import 'package:esdc_emg/screen/main/feedback_screen.dart';
 import 'package:esdc_emg/screen/main/message_detail_screen.dart';
 import 'package:esdc_emg/screen/main/wellness_screen.dart';
 import 'package:esdc_emg/util/message_util.dart';
+import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/dashboard_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
@@ -17,14 +20,25 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'learning_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
+
+  final VoidCallback onUrgentClick;
+
+  DashboardScreen({this.onUrgentClick});
+
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+
+  List<VPNStatusModel> vpnStatusList = [];
+
   @override
   void initState() {
     super.initState();
+    vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "KEC","status": "UP","usage": "78","description": "MODERATE"}));
+    vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MTL","status": "DOWN","usage": "100","description": "BAD"}));
+    vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MCT","status": "UP","usage": "24","description": "GOOD"}));
   }
 
   @override
@@ -160,11 +174,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
           return Container();
         } else {
           List<MessageModel> urgents = MessageUtils.filterUrgentMessages((state as MessageLoadSuccessState).messages);
-          if (urgents == null || urgents.isEmpty) {
+          int lastID = MessageUtils.getLastMessageId(urgents);
+          if (urgents == null || urgents.isEmpty || PreferenceHelper.getInt(PrefParams.LAST_URGENT_MESSAGE) >= MessageUtils.getLastMessageId(urgents)) {
             return Container();
           } else {
             return RippleComponent(
-                onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MessageDetailScreen(message: urgents[0],),)),
+                onClick: () {
+                  widget.onUrgentClick();
+                  PreferenceHelper.setInt(PrefParams.LAST_URGENT_MESSAGE, lastID);
+                },
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   color: Styles.red,
@@ -283,11 +301,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                VpnStatusRow(title: 'KEC', percent: 10, color: Styles.green,),
-                Divider(height: 10, thickness: 1,),
-                VpnStatusRow(title: 'MTL', percent: 88, color: Styles.red,),
-                Divider(height: 10, thickness: 1,),
-                VpnStatusRow(title: 'MCT', percent: 44, color: Styles.yellow,),
+                ListView.separated(
+                  primary: false,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) => VpnStatusRow(vpnStatus: vpnStatusList[index],),
+                    separatorBuilder: (context, index) => Divider(height: 10, thickness: 1,),
+                    itemCount: vpnStatusList.length)
               ],
             ),
           )),
