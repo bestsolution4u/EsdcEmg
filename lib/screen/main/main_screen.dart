@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/screen/main/dashboard_screen.dart';
 import 'package:esdc_emg/screen/main/employee_screen.dart';
 import 'package:esdc_emg/screen/main/message_screen.dart';
@@ -39,8 +40,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   TabController tabController;
   int currentTabIndex = 0;
   Stream<String> _tokenStream;
-  int readMessageCount = 0;
   final firestore = FirebaseFirestore.instance;
+  List<String> readMessages = [];
 
   @override
   void initState() {
@@ -57,23 +58,35 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
         print(res.doc.id);
         if (res.type == DocumentChangeType.added) {
           if ((res.doc.data())['read']) {
-            setState(() {
-              readMessageCount++;
-            });
+            if (!readMessages.contains(res.doc.id)) {
+              setState(() {
+                readMessages.add(res.doc.id);
+              });
+            }
+          } else {
+            if (readMessages.contains(res.doc.id)) {
+              setState(() {
+                readMessages.remove(res.doc.id);
+              });
+            }
           }
         } else if (res.type == DocumentChangeType.modified) {
           if ((res.doc.data())['read']) {
-            setState(() {
-              readMessageCount++;
-            });
+            if (!readMessages.contains(res.doc.id)) {
+              setState(() {
+                readMessages.add(res.doc.id);
+              });
+            }
           } else {
-            setState(() {
-              readMessageCount--;
-            });
+            if (readMessages.contains(res.doc.id)) {
+              setState(() {
+                readMessages.remove(res.doc.id);
+              });
+            }
           }
         } else if (res.type == DocumentChangeType.removed) {
           setState(() {
-            readMessageCount--;
+            readMessages.remove(res.doc.id);
           });
         }
       });
@@ -183,7 +196,13 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                     if (msgState is MessageLoadingState || msgState is MessageLoadFailureState) {
                       return Container(width: 0, height: 0,);
                     } else {
-                      int unreadCount = (msgState as MessageLoadSuccessState).messages.length - readMessageCount;
+                      int unreadCount = 0;
+                      List<MessageModel> messages = (msgState as MessageLoadSuccessState).messages;
+                      for (int i = 0; i < messages.length; i++) {
+                        if (!readMessages.contains(messages[i].id.toString())) {
+                          unreadCount++;
+                        }
+                      }
                       if (unreadCount == 0) return Container(width: 0, height: 0,);
                       return Positioned(
                         top: 0,
