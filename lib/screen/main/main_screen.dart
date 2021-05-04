@@ -35,18 +35,15 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
-  FirebaseMessaging _fcmMessaging;
   final int tabLength = 4;
   TabController tabController;
   int currentTabIndex = 0;
-  Stream<String> _tokenStream;
   final firestore = FirebaseFirestore.instance;
   List<String> readMessages = [];
 
   @override
   void initState() {
     super.initState();
-    registerNotification();
     tabController = TabController(
       initialIndex: 0,
       length: tabLength,
@@ -90,55 +87,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
           });
         }
       });
-    });
-  }
-
-  void registerNotification() async {
-    await Firebase.initializeApp();
-    _fcmMessaging = FirebaseMessaging.instance;
-    await _fcmMessaging.setForegroundNotificationPresentationOptions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(channel);
-
-    _fcmMessaging.getToken().then((token) => print("FCM Token 1: " + token));
-    _tokenStream = FirebaseMessaging.instance.onTokenRefresh;
-    _tokenStream.listen((token) => print("FCM Token 2: " + token));
-
-    _fcmMessaging.getInitialMessage().then((RemoteMessage message) {
-      if (message != null) {
-        print("Initial Messages: " + message.messageId);
-      }
-    });
-
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print("----------------- onMessage ----------------");
-      RemoteNotification notification = message.notification;
-      AndroidNotification android = message.notification?.android;
-      if (notification != null && android != null) {
-        flutterLocalNotificationsPlugin.show(
-            notification.hashCode,
-            notification.title,
-            notification.body,
-            NotificationDetails(
-              android: AndroidNotificationDetails(
-                channel.id,
-                channel.name,
-                channel.description,
-                icon: 'launch_background',
-              ),
-            ));
-      }
-    });
-
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      tabController.index = 2;
     });
   }
 

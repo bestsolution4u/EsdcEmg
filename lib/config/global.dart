@@ -17,4 +17,8 @@ class Globals {
     "Other Federal Department",
     "Member of the Public"
   ];
+
+  static final String FCM_TOPIC_MESSAGE_CREATED = "messageCreated";
+  static final String FCM_TOPIC_MESSAGE_UPDATED = "messageUpdated";
+  static final String FCM_TOPIC_MESSAGE_DELETED = "messageDeleted";
 }
