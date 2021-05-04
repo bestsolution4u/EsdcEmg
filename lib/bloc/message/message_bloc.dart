@@ -17,6 +17,8 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
       yield* _mapMessageLoadEventToState();
     } else if (event is MessageDeleteEvent) {
       yield* _mapMessageDeleteEventToState(event);
+    } else if (event is MessageRefreshEvent) {
+      yield* _mapMessageRefreshEventToState();
     }
   }
 
@@ -54,5 +56,25 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
       }
       yield MessageLoadSuccessState(messages: messages);
     } else yield state;
+  }
+
+  Stream<MessageState> _mapMessageRefreshEventToState() async* {
+    List<MessageModel> messages = new List<MessageModel>();
+    final response = await Api.getMessageList();
+    try {
+      List<dynamic> list = response;
+      List<String> deletedMessages = PreferenceHelper.getStringList(PrefParams.DELETED_MESSAGES) ?? [];
+      list.forEach((element) {
+        MessageModel message = MessageModel.fromJson(element);
+        if (!deletedMessages.contains(message.id.toString())) {
+          messages.add(message);
+        }
+      });
+      yield MessageLoadingState();
+      yield MessageLoadSuccessState(messages: messages);
+    } catch (e) {
+      yield MessageLoadingState();
+      yield MessageLoadFailureState();
+    }
   }
 }

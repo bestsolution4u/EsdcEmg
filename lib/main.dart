@@ -1,4 +1,6 @@
 import 'package:esdc_emg/app.dart';
+import 'package:esdc_emg/bloc/app_bloc.dart';
+import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/util/bloc_inspector.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -69,6 +71,7 @@ Future<void> setupFCM() async {
             ),
           ));
     }
+    AppBloc.messageBloc.add(MessageRefreshEvent());
   });
 }
 

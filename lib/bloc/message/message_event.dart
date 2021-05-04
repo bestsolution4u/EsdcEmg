@@ -10,3 +10,5 @@ class MessageDeleteEvent extends MessageEvent {
 
   MessageDeleteEvent({this.deletedID});
 }
+
+class MessageRefreshEvent extends MessageEvent {}
