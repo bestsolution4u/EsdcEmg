@@ -2,10 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/message_model.dart';
-import 'file:///D:/Projects/Flutter/EsdcEmg/esdc_emg/lib/screen/main/dashboard/dashboard_screen.dart';
-import 'file:///D:/Projects/Flutter/EsdcEmg/esdc_emg/lib/screen/main/employee/employee_screen.dart';
-import 'file:///D:/Projects/Flutter/EsdcEmg/esdc_emg/lib/screen/main/message/message_screen.dart';
-import 'file:///D:/Projects/Flutter/EsdcEmg/esdc_emg/lib/screen/main/socialmedia/social_media_screen.dart';
+import 'package:esdc_emg/screen/main/socialmedia/social_media_screen.dart';
 import 'package:esdc_emg/widget/tabbar/esdc_tabbar.dart';
 import 'package:esdc_emg/widget/tabbar/main_tab_item.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,6 +10,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+import 'dashboard/dashboard_screen.dart';
+import 'employee/employee_screen.dart';
+import 'message/message_screen.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();

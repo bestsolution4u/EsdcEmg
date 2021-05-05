@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/message_model.dart';
-import 'file:///D:/Projects/Flutter/EsdcEmg/esdc_emg/lib/screen/main/message/message_detail_screen.dart';
+import 'package:esdc_emg/screen/main/message/message_detail_screen.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
