@@ -40,16 +40,15 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.esdc_emg"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-        /*ndk {
+        ndk {
             abiFilters 'armeabi-v7a'
-        }*/
+        }
     }
 
     signingConfigs {

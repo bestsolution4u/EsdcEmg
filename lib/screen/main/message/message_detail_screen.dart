@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/util/FirebaseUtil.dart';
 import 'package:esdc_emg/util/preference_helper.dart';
@@ -80,7 +81,16 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
               style: TextStyle(color: Styles.textBlack, fontSize: 16),
               textAlign: TextAlign.start,
             ),
-          )
+          ),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(
+              AppLocalization.of(context).trans('note_expiration_date') + DateFormat('MMMM dd, yyyy').format(DateTime.parse(widget.message.expiredDate)),
+              style: TextStyle(color: Styles.darkGray, fontSize: 12),
+              textAlign: TextAlign.start,
+            ),
+          ),
         ],
       ),
     ));

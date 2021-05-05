@@ -29,12 +29,12 @@ class ItemSelectorRow extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(width: 10,),
-                  SvgPicture.asset(
+                  assetImage != null ? SvgPicture.asset(
                     assetImage,
                     color: Styles.textBlack,
                     allowDrawingOutsideViewBox: true,
                     height: 20,
-                  ),
+                  ) : Container(),
                   SizedBox(
                     width: 10,
                   ),

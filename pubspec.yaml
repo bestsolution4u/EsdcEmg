@@ -15,7 +15,7 @@ dependencies:
   webview_flutter: ^1.0.7
   google_fonts: ^2.0.0
   flutter_svg: ^0.21.0+1
-  intl: ^0.16.0
+  intl: ^0.17.0
   shared_preferences:
   synchronized:
   flutter_bloc: ^5.0.0
@@ -29,6 +29,8 @@ dependencies:
   flutter_pdfview: ^1.0.4
   flutter_local_notifications: ^5.0.0+1
   cloud_firestore: ^1.0.7
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +45,7 @@ flutter:
     - asset/font/
     - asset/image/
     - asset/pdf/
+    - asset/lang/
 
   fonts:
     - family: PopBlack

@@ -1,9 +1,12 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization_delegate.dart';
 import 'package:esdc_emg/screen/main/main_screen.dart';
 import 'package:esdc_emg/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'bloc/app_bloc.dart';
 import 'bloc/bloc.dart';
@@ -17,11 +20,20 @@ class EsdcEmgApp extends StatefulWidget {
 class _EsdcEmgAppState extends State<EsdcEmgApp> {
 
   final routes = Routes();
+  AppLocalizationsDelegate _localizationsDelegate;
 
   @override
   void initState() {
     super.initState();
     AppBloc.applicationBloc.add(ApplicationStartupEvent());
+    _localizationsDelegate = AppLocalizationsDelegate(locale: null);
+    Globals.onLocaleChanged = onLocaleChange;
+  }
+
+  void onLocaleChange(Locale locale) {
+    setState(() {
+      _localizationsDelegate = AppLocalizationsDelegate(locale: locale);
+    });
   }
 
   @override
@@ -45,6 +57,14 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           onGenerateRoute: routes.generateRoute,
+          localizationsDelegates: [
+            _localizationsDelegate,
+            //provides localised strings
+            GlobalMaterialLocalizations.delegate,
+            //provides RTL support
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: Globals.SupportedLanguageCodes.map<Locale>((language) => Locale(language, "")),
           theme: ThemeData(
             primaryColor: Colors.white,
             platform: TargetPlatform.iOS,

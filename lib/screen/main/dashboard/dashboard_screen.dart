@@ -1,11 +1,14 @@
 import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/model/vpn_status_model.dart';
-import 'package:esdc_emg/screen/main/feedback_screen.dart';
-import 'package:esdc_emg/screen/main/message_detail_screen.dart';
-import 'package:esdc_emg/screen/main/wellness_screen.dart';
+import 'package:esdc_emg/screen/main/webview_screen.dart';
+import 'file:///D:/Projects/Flutter/EsdcEmg/esdc_emg/lib/screen/main/dashboard/feedback_screen.dart';
+import 'file:///D:/Projects/Flutter/EsdcEmg/esdc_emg/lib/screen/main/message/message_detail_screen.dart';
+import 'file:///D:/Projects/Flutter/EsdcEmg/esdc_emg/lib/screen/main/dashboard/setting_screen.dart';
+import 'file:///D:/Projects/Flutter/EsdcEmg/esdc_emg/lib/screen/main/dashboard/wellness_screen.dart';
 import 'package:esdc_emg/util/message_util.dart';
 import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
@@ -53,16 +56,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
               allowDrawingOutsideViewBox: true,
               height: 24,
             ),
-            onClick: () {},
+            onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingScreen(),)),
             rippleRadius: 40,
             padding: 16,
           )),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            buildSearchbox(),
+            //buildSearchbox(),
             buildUrgentMessage(),
+            SizedBox(height: 20,),
             buildCovidTraining(),
+            SizedBox(height: 20,),
             DashboardButton(
               title: 'Employee wellness',
               icon: SvgPicture.asset(
@@ -83,7 +88,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),
             ),
+            SizedBox(height: 10,),
             buildVPN(),
+            SizedBox(height: 10,),
             DashboardButton(
               title: 'Send us feedback',
               icon: SvgPicture.asset(
@@ -221,41 +228,44 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget buildCovidTraining() {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
-      child: Card(
-        color: Styles.purple,
-        clipBehavior: Clip.antiAlias,
-        elevation: 0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Icon(
-                Icons.chat,
-                color: Colors.white,
-                size: 25,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                  child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'COVID-19 Active Screening \n',
-                      style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600, height: 1.5),
-                    ),
-                    TextSpan(
-                      text: 'DISCLAIMER: TBD about 3 categories of employees remote workers, working from office, and serving canadians.',
-                      style: TextStyle(color: Colors.white, fontSize: 12, height: 1.5),
-                    ),
-                  ],
+      child: RippleComponent(
+        onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(title: AppLocalization.of(context).trans('active_screening'), url: "https://www.canada.ca/en/employment-social-development/screening-tool.html",),)),
+        child: Card(
+          color: Styles.purple,
+          clipBehavior: Clip.antiAlias,
+          elevation: 0,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.chat,
+                  color: Colors.white,
+                  size: 25,
                 ),
-              ))
-            ],
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: AppLocalization.of(context).trans('active_screening'),
+                            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600, height: 1.5),
+                          ),
+                          TextSpan(
+                            text: AppLocalization.of(context).trans('disclaimer_text'),
+                            style: TextStyle(color: Colors.white, fontSize: 12, height: 1.5),
+                          ),
+                        ],
+                      ),
+                    ))
+              ],
+            ),
           ),
         ),
       ),
