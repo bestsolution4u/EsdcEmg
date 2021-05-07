@@ -1,12 +1,9 @@
-import 'dart:async';
-
 import 'package:esdc_emg/api/api.dart';
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
-import 'package:esdc_emg/util/toasts.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/input/app_commentbox.dart';
-import 'package:esdc_emg/widget/input/app_inputbox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,8 +23,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   @override
   void initState() {
     super.initState();
-    category = Globals.CATEGORIES[0];
-    from = Globals.WHICH_FROM[0];
     nameController = TextEditingController();
     feedbackController = TextEditingController();
   }
@@ -41,12 +36,14 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (category == null) category = AppLocalization.of(context).trans(Globals.CATEGORIES[0]);
+    if (from == null) from = AppLocalization.of(context).trans(Globals.WHICH_FROM[0]);
     return SafeArea(
         child: Scaffold(
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ChildAppbar(title: "Send us feedback",),
+              ChildAppbar(title: 'send_us_feedback',),
               Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -56,7 +53,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Text(
-                            'How are you liking MyESDC?',
+                            AppLocalization.of(context).trans('like_esdc'),
                             style: TextStyle(color: Styles.textBlack, fontSize: 17, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -64,7 +61,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Text(
-                            'We are constantly looking for improve the MyESDC app to serve you better. Let us know what you think and what features you\'d like to see in the future.',
+                            AppLocalization.of(context).trans('feed_back_description'),
                             style: TextStyle(color: Styles.textBlack, fontSize: 14),
                           ),
                         ),
@@ -86,7 +83,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Text(
-                            'Which are you from?',
+                            AppLocalization.of(context).trans('which_are_you_from'),
                             style: TextStyle(color: Styles.textBlack, fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -119,15 +116,15 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                 underline: Container(),
                                 selectedItemBuilder: (BuildContext context) {
                                   return Globals.WHICH_FROM.map<Widget>((String item) {
-                                    return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(item, style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),);
+                                    return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(AppLocalization.of(context).trans(item), style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),);
                                   }).toList();
                                 },
                                 items: Globals.WHICH_FROM.map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
-                                    value: value,
+                                    value: AppLocalization.of(context).trans(value),
                                     child: Container(
                                       padding: const EdgeInsets.symmetric(vertical: 16),
-                                      child: Text(value, style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),
+                                      child: Text(AppLocalization.of(context).trans(value), style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),
                                     ),
                                   );
                                 }).toList(),
@@ -139,7 +136,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Text(
-                            'Category',
+                            AppLocalization.of(context).trans('category'),
                             style: TextStyle(color: Styles.textBlack, fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -172,15 +169,15 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                 underline: Container(),
                                 selectedItemBuilder: (BuildContext context) {
                                   return Globals.CATEGORIES.map<Widget>((String item) {
-                                    return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(item, style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),);
+                                    return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(AppLocalization.of(context).trans(item), style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),);
                                   }).toList();
                                 },
                                 items: Globals.CATEGORIES.map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
-                                    value: value,
+                                    value: AppLocalization.of(context).trans(value),
                                     child: Container(
                                       padding: const EdgeInsets.symmetric(vertical: 16),
-                                      child: Text(value, style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),
+                                      child: Text(AppLocalization.of(context).trans(value), style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),
                                     ),
                                   );
                                 }).toList(),
@@ -192,7 +189,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Text(
-                            'Feedback',
+                            AppLocalization.of(context).trans('feed_back'),
                             style: TextStyle(color: Styles.textBlack, fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -209,7 +206,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                               text: TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: 'DISCLAIMER: ',
+                                    text: AppLocalization.of(context).trans('disclaimer'),
                                     style: TextStyle(
                                       color: Styles.textBlack,
                                       fontSize: 12,
@@ -217,8 +214,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     ),
                                   ),
                                   TextSpan(
-                                    text:
-                                    'In your responses, please do not include any personal information about yourself or anyone else; this includes name, mail or email addresses, or any other information by which you can or they could be identified by your comments or views.',
+                                    text: AppLocalization.of(context).trans('disclaimer_desc'),
                                     style: TextStyle(
                                       color: Styles.textBlack,
                                       fontSize: 12,
@@ -236,7 +232,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                             color: Styles.lightGray,
                             padding: const EdgeInsets.all(16.0),
                             onPressed: () => submitFeedback(),
-                            child: Text('Send feedback',
+                            child: Text(AppLocalization.of(context).trans('send_feedback'),
                                 style: TextStyle(color: Styles.textBlack)),
                             textColor: Styles.textBlack,
                             shape: RoundedRectangleBorder(
@@ -262,17 +258,17 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     showDialog(
         context: context,
         builder: (BuildContext context) => CupertinoAlertDialog(
-          title: new Text("Thank you!"),
-          content: new Text("We received your feedback."),
+          title: new Text(AppLocalization.of(context).trans('thank_you')),
+          content: new Text(AppLocalization.of(context).trans('we_received_feedback')),
           actions: <Widget>[
             CupertinoDialogAction(
               isDefaultAction: true,
-              child: Text('Close'),
+              child: Text(AppLocalization.of(context).trans('close')),
               onPressed: () {
                 setState(() {
                   nameController.text = "";
-                  category = Globals.CATEGORIES[0];
-                  from = Globals.WHICH_FROM[0];
+                  category = AppLocalization.of(context).trans(Globals.CATEGORIES[0]);
+                  from = AppLocalization.of(context).trans(Globals.WHICH_FROM[0]);
                   feedbackController.text = "";
                 });
                 Navigator.pop(context);

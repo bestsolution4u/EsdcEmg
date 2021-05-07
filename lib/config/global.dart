@@ -30,17 +30,17 @@ class Globals {
 
   /// Feedback categories
   static const List<String> CATEGORIES = [
-    "Technical Issue",
-    "Suggestion",
-    "General",
-    "Other"
+    "technical_issue",
+    "suggestion",
+    "general",
+    "other"
   ];
 
   /// Feedback source
   static const List<String> WHICH_FROM = [
-    "ESDC Employee",
-    "Other Federal Department",
-    "Member of the Public"
+    "esdc_employee",
+    "other_federal_department",
+    "member_of_the_public"
   ];
 
   /// Message categories
@@ -57,19 +57,19 @@ class Globals {
   ];
 
   static const List<String> MESSAGE_LOCATIONS = [
-    "Toronto",
-    "Montreal	QC",
-    "Ottawa",
-    "Halifax",
-    "Moncton Fredericton",
+    "National – Canada wide",
+    "Newfoundland and Labrador",
+    "Prince Edward Island",
+    "Nova Scotia",
+    "New Brunswick",
+    "Quebec",
+    "Ontario",
     "Winnipeg",
-    "Vancouver Victoria",
-    "Charlottetown",
-    "Saskatoon Regina",
-    "Calgary Edmonton",
-    "St. John\'s",
-    "Yellowknife",
-    "Whitehorse",
-    "Iqaluit"
+    "Saskatchewan",
+    "Alberta",
+    "British Columbia",
+    "Nunavut",
+    "Northwest Territories",
+    "Yukon"
   ];
 }

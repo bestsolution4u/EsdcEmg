@@ -1,4 +1,5 @@
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,8 +8,9 @@ class ItemSelectorRow extends StatelessWidget {
 
   final VoidCallback onClick;
   final String title, assetImage;
+  final bool translate;
 
-  ItemSelectorRow({this.onClick, this.title, this.assetImage});
+  ItemSelectorRow({this.onClick, this.title, this.assetImage, this.translate = true});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class ItemSelectorRow extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(width: 10,),
@@ -38,15 +40,14 @@ class ItemSelectorRow extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  Text(
-                    title,
-                    maxLines: 2,
+                  Expanded(child: Text(
+                    translate ? AppLocalization.of(context).trans(title) : title,
                     style: TextStyle(
                         color: Styles.textBlack,
                         fontSize: 14,
                         fontWeight: FontWeight.w500),
-                  ),
-                  Spacer(),
+                  )),
+                  SizedBox(width: 10,),
                   Icon(Icons.keyboard_arrow_right, size: 24, color: Styles.textBlack,),
                 ],
               ),

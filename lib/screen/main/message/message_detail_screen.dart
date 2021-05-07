@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
-import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/util/FirebaseUtil.dart';
-import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/button/bordered_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
@@ -45,7 +43,8 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ChildAppbar(
-            title: widget.message.title,
+            title: AppLocalization.currentLanguage == 'fr' ? widget.message.titleFr : widget.message.title,
+            isMessage: true,
             action: AppIconButton(
               icon: SvgPicture.asset(
                 'asset/image/more.svg',
@@ -112,7 +111,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'More actions',
+                  AppLocalization.of(context).trans('more_actions'),
                   style: TextStyle(
                       color: Styles.textBlack,
                       fontSize: 22,
@@ -122,7 +121,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                   height: 15,
                 ),
                 Text(
-                  'Customize actions for this message.',
+                  AppLocalization.of(context).trans('customize_actions_for_message'),
                   style: TextStyle(
                       color: Styles.textBlack,
                       fontSize: 14,
@@ -131,23 +130,23 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                BorderedButton(title: 'Mark as unread', onClick: () {
+                BorderedButton(title: AppLocalization.of(context).trans('mark_as_unread'), onClick: () {
                   FirebaseUtil.changeMessageReadStatus(widget.message.id, false);
                   Navigator.pop(context);
                 },),
-                BorderedButton(title: 'Share this page', onClick: () {
+                /*BorderedButton(title: 'Share this page', onClick: () {
                   Navigator.pop(context);
-                },),
-                BorderedButton(title: 'Delete', color: Styles.red, onClick: () {
+                },),*/
+                BorderedButton(title: AppLocalization.of(context).trans('delete'), color: Styles.red, onClick: () {
                   showDialog(
                       context: context,
                       builder: (BuildContext context) => CupertinoAlertDialog(
-                        title: new Text("Delete Message"),
-                        content: new Text("Are you sure to delete this message?"),
+                        title: new Text(AppLocalization.of(context).trans('delete_message')),
+                        content: new Text(AppLocalization.of(context).trans('confirm_delete_message')),
                         actions: <Widget>[
                           CupertinoDialogAction(
                             isDefaultAction: true,
-                            child: Text('Delete'),
+                            child: Text(AppLocalization.of(context).trans('delete')),
                             onPressed: () {
                               _messageBloc.add(MessageDeleteEvent(deletedID: widget.message.id));
                               Navigator.pop(context);
@@ -156,7 +155,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                             },
                           ),
                           CupertinoDialogAction(
-                            child: Text("Cancel"),
+                            child: Text(AppLocalization.of(context).trans('cancel')),
                             onPressed: () {
                               Navigator.pop(context);
                             },

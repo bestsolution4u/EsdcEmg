@@ -47,7 +47,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ESDCAppbar.generateMainAppbar(
-          title: "MyESDC",
+        context: context,
+          title: 'app_title_home',
           action: AppIconButton(
             icon: SvgPicture.asset(
               'asset/image/settings.svg',
@@ -68,7 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             buildCovidTraining(),
             SizedBox(height: 20,),
             DashboardButton(
-              title: 'Employee wellness',
+              title: AppLocalization.of(context).trans('employ_wellness'),
               icon: SvgPicture.asset(
                 'asset/image/employee_wellness.svg',
                 color: Styles.textBlack,
@@ -78,7 +79,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),
             ),
             DashboardButton(
-              title: 'Learning',
+              title: AppLocalization.of(context).trans('learning'),
               icon: SvgPicture.asset(
                 'asset/image/chat.svg',
                 color: Styles.textBlack,
@@ -91,7 +92,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             buildVPN(),
             SizedBox(height: 10,),
             DashboardButton(
-              title: 'Send us feedback',
+              title: AppLocalization.of(context).trans('send_us_feedback'),
               icon: SvgPicture.asset(
                 'asset/image/chat.svg',
                 color: Styles.textBlack,
@@ -206,7 +207,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         width: 10,
                       ),
                       Text(
-                        'Urgent Message',
+                        AppLocalization.of(context).trans('urgent_message'),
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       Spacer(),
@@ -228,7 +229,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
       child: RippleComponent(
-        onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(title: AppLocalization.of(context).trans('active_screening'), url: "https://www.canada.ca/en/employment-social-development/screening-tool.html",),)),
+        onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(title: 'active_screening', url: 'url_covid_active_screening',),)),
         child: Card(
           color: Styles.purple,
           clipBehavior: Clip.antiAlias,
@@ -256,10 +257,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             text: AppLocalization.of(context).trans('active_screening'),
                             style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600, height: 1.5),
                           ),
-                          TextSpan(
+                          /*TextSpan(
                             text: AppLocalization.of(context).trans('disclaimer_text'),
                             style: TextStyle(color: Colors.white, fontSize: 12, height: 1.5),
-                          ),
+                          ),*/
                         ],
                       ),
                     ))
@@ -298,7 +299,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       width: 10,
                     ),
                     Text(
-                      'VPN Status',
+                      AppLocalization.of(context).trans('vpn_status'),
                       maxLines: 2,
                       style: TextStyle(
                           color: Styles.textBlack,

@@ -17,38 +17,38 @@ class _LearningScreenState extends State<LearningScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ChildAppbar(
-                title: "Learning",
+                title: "learning",
               ),
               SizedBox(height: 20,),
               ItemSelectorRow(
-                title: 'Canada School of Public Service',
+                title: 'canada_school_service',
                 assetImage: 'asset/image/chat.svg',
                 onClick: () => gotoWebviewScreen(
-                    title: "Canada School of Public Service",
-                    url: "https://www.csps-efpc.gc.ca/index-eng.aspx"),
+                    title: "canada_school_service",
+                    url: 'url_canada_school_service'),
               ),
               ItemSelectorRow(
-                title: 'GC Campus',
+                title: 'gc_campus',
                 assetImage: 'asset/image/chat.svg',
                 onClick: () => gotoWebviewScreen(
-                    title: "GC Campus",
-                    url: "https://www.csps-efpc.gc.ca/gccampus/index-eng.aspx"
+                    title: "gc_campus",
+                    url: 'url_gc_campus'
                 ),
               ),
               ItemSelectorRow(
-                title: 'ESDC - SABA Cloud',
+                title: 'saba_cloud',
                 assetImage: 'asset/image/chat.svg',
                 onClick: () => gotoWebviewScreen(
-                    title: "ESDC - SABA Cloud",
-                    url: "https://esdc.sabacloud.com/Saba/Web_wdk/CA1PRD0006/index/prelogin.rdf"
+                    title: "saba_cloud",
+                    url: "url_saba_cloud"
                 ),
               ),
               ItemSelectorRow(
-                title: 'GC Infobase',
+                title: 'gc_infobase',
                 assetImage: 'asset/image/chat.svg',
                 onClick: () => gotoWebviewScreen(
-                    title: "GC Infobase",
-                    url: "https://www.tbs-sct.gc.ca/ems-sgd/edb-bdd/index-eng.html"
+                    title: "gc_infobase",
+                    url: "url_gc_infobase"
                 ),
               ),
             ],

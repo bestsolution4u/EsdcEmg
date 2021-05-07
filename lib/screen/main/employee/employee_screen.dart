@@ -22,23 +22,23 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Styles.lightGray,
-      appBar: ESDCAppbar.generateMainAppbar(title: "Employees"),
+      appBar: ESDCAppbar.generateMainAppbar(title: "title_emply", context: context),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CategoryLabel(label: 'HEALTH AND WELLNESS'),
-            ItemSelectorRow(title: 'COVID-19', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CovidScreen(),)),),
-            ItemSelectorRow(title: 'Wellness', assetImage: 'asset/image/employee_wellness.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),),
-            CategoryLabel(label: 'REMUNERATION'),
-            ItemSelectorRow(title: 'Pay, benefit, leave', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PayBenefitScreen(),)),),
-            ItemSelectorRow(title: 'Holidays and pay dates', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PdfViewerScreen(title: 'Holidays and pay dates', pdfPath: 'asset/pdf/calendar.pdf',),)),),
-            CategoryLabel(label: 'CAREER'),
-            ItemSelectorRow(title: 'Learning', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),),
-            ItemSelectorRow(title: 'GC Jobs', assetImage: 'asset/image/chat.svg', onClick: () => gotoWebviewScreen(title: 'GC Jobs', url: 'https://www.canada.ca/en/services/jobs/opportunities/government.html'),),
-            ItemSelectorRow(title: 'Awards and recognition', assetImage: 'asset/image/chat.svg', onClick: () => gotoWebviewScreen(title: 'Awards and recognition', url: 'https://www.canada.ca/en/treasury-board-secretariat/services/innovation/awards-recognition-special-events.html'),),
-            CategoryLabel(label: 'GC NETWORK'),
-            ItemSelectorRow(title: 'ESDC website', assetImage: 'asset/image/chat.svg', onClick: () => gotoWebviewScreen(title: 'ESDC Website', url: 'https://www.canada.ca/en/employment-social-development.html'),),
-            ItemSelectorRow(title: 'GC contacts', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => GCContactScreen(),)),),
+            CategoryLabel(label: 'heath_and_wellness'),
+            ItemSelectorRow(title: 'title_covid', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CovidScreen(),)),),
+            ItemSelectorRow(title: 'wellness', assetImage: 'asset/image/employee_wellness.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),),
+            CategoryLabel(label: 'remuneration'),
+            ItemSelectorRow(title: 'pay_benefit_leave', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PayBenefitScreen(),)),),
+            ItemSelectorRow(title: 'holiday_pay_dates', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PdfViewerScreen(title: 'Holidays and pay dates', pdfPath: 'asset/pdf/calendar.pdf',),)),),
+            CategoryLabel(label: 'career'),
+            ItemSelectorRow(title: 'learning', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),),
+            ItemSelectorRow(title: 'gc_jobs', assetImage: 'asset/image/chat.svg', onClick: () => gotoWebviewScreen(title: 'gc_jobs', url: 'url_gc_jobs'),),
+            ItemSelectorRow(title: 'award_recognition', assetImage: 'asset/image/chat.svg', onClick: () => gotoWebviewScreen(title: 'award_recognition', url: 'url_award_recognition'),),
+            CategoryLabel(label: 'gc_network'),
+            ItemSelectorRow(title: 'esdc_web', assetImage: 'asset/image/chat.svg', onClick: () => gotoWebviewScreen(title: 'esdc_web', url: 'url_esdc_web'),),
+            ItemSelectorRow(title: 'gc_contacts', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => GCContactScreen(),)),),
             SizedBox(height: 20,)
           ],
         ),

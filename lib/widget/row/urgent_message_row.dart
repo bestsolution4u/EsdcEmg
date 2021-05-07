@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/screen/main/message/message_detail_screen.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
@@ -68,7 +69,7 @@ class _UrgentMessageRowState extends State<UrgentMessageRow> {
             Expanded(child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Flexible(child: Text(widget.message.title, style: TextStyle(color: read ? Colors.black : Styles.red, fontSize: 14, fontWeight: read ? FontWeight.w400 : FontWeight.w700),)),
+                Flexible(child: Text(AppLocalization.currentLanguage == 'fr' ? widget.message.titleFr : widget.message.title, style: TextStyle(color: read ? Colors.black : Styles.red, fontSize: 14, fontWeight: read ? FontWeight.w400 : FontWeight.w700),)),
                 SizedBox(width: 5,),
                 !read ? Container(
                   height: 10,

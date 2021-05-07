@@ -1,4 +1,5 @@
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/vpn_status_model.dart';
 import 'package:flutter/material.dart';
 
@@ -9,11 +10,14 @@ class VpnStatusRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String status = "bad";
     Color color = Styles.red;
     if (vpnStatus.description == 'GOOD') {
       color = Styles.green;
+      status = "good";
     } else if (vpnStatus.description == 'MODERATE') {
       color = Styles.yellow;
+      status = "moderate";
     }
 
     return Row(
@@ -35,7 +39,7 @@ class VpnStatusRow extends StatelessWidget {
           width: 10,
         ),
         Text(
-          '${vpnStatus.description}',
+          '${AppLocalization.of(context).trans(status).toUpperCase()}',
           style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ],

@@ -18,7 +18,7 @@ class _FilterTopicScreenState extends State<FilterTopicScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ChildAppbar(
-                title: AppLocalization.of(context).trans('filter_topic'),
+                title: 'filter_topic',
               ),
               Expanded(
                   child: SingleChildScrollView(
@@ -26,7 +26,7 @@ class _FilterTopicScreenState extends State<FilterTopicScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 30,),
-                        ItemSelectorRow(title: AppLocalization.of(context).trans('all_topics'), onClick: () => Navigator.pop(context, 'all_topics'),),
+                        ItemSelectorRow(title: 'all_topics', onClick: () => Navigator.pop(context, 'all_topics'),),
                         ListView.separated(
                           primary: false,
                             shrinkWrap: true,

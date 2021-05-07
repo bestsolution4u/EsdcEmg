@@ -1,4 +1,5 @@
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:flutter/material.dart';
 
 class CategoryLabel extends StatelessWidget {
@@ -13,7 +14,7 @@ class CategoryLabel extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: marginTop, left: 12, right: 12, bottom: 3),
       width: double.infinity,
-      child: Text(label, style: TextStyle(color: Styles.darkGray, fontSize: 14, fontWeight: FontWeight.w400),),
+      child: Text(AppLocalization.of(context).trans(label), style: TextStyle(color: Styles.darkGray, fontSize: 14, fontWeight: FontWeight.w400),),
     );
   }
 }

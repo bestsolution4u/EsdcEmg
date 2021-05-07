@@ -29,7 +29,8 @@ class _MessageScreenState extends State<MessageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ESDCAppbar.generateMainAppbar(
-          title: "Messages",
+        context: context,
+          title: "title_msg",
           action: AppIconButton(
             icon: SvgPicture.asset(
               'asset/image/setting.svg',
@@ -59,9 +60,9 @@ class _MessageScreenState extends State<MessageScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  urgents == null || urgents.isEmpty ? Container() : CategoryLabel(label: 'PRIORITY\'s MESSAGE'),
+                  urgents == null || urgents.isEmpty ? Container() : CategoryLabel(label: 'priority_msg'),
                   urgents == null || urgents.isEmpty ? Container() : buildUrgentMessages(urgents),
-                  nonUrgents == null || nonUrgents.isEmpty ? Container() : CategoryLabel(label: 'MESSAGE TO EMPLOYEES'),
+                  nonUrgents == null || nonUrgents.isEmpty ? Container() : CategoryLabel(label: 'msg_employ'),
                   nonUrgents == null || nonUrgents.isEmpty ? Container() : buildNonUrgentMessages(nonUrgents),
                 ],
               ),
@@ -178,6 +179,6 @@ class _MessageScreenState extends State<MessageScreen> {
   }
 
   List<MessageModel> filterMessages(List<MessageModel> messages) {
-    return messages.where((element) => (filterTopic == 'all_topics' || element.category.toLowerCase().contains(filterTopic)) && (filterLocation == 'all_locations' || element.location == filterLocation)).toList();
+    return messages.where((element) => (filterTopic == 'all_topics' || element.category.toLowerCase().contains(filterTopic)) && (filterLocation == 'all_locations' || element.location.contains(filterLocation))).toList();
   }
 }

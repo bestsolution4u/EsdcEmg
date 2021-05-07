@@ -17,22 +17,22 @@ class _WellnessScreenState extends State<WellnessScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ChildAppbar(
-            title: "Wellness",
+            title: "wellness",
           ),
           SizedBox(height: 20,),
           ItemSelectorRow(
-            title: 'Employee Assistance Program',
+            title: 'employ_assistance_program',
             assetImage: 'asset/image/chat.svg',
             onClick: () => gotoWebviewScreen(
-                title: "Employee Assistance Program",
-                url: "https://www.canada.ca/en/government/publicservice/wellness-inclusion-diversity-public-service/employee-assistance-program.html#E"),
+                title: "employ_assistance_program",
+                url: 'url_employ_assistance_program'),
           ),
           ItemSelectorRow(
-            title: 'Life Speak',
+            title: 'life_speak',
             assetImage: 'asset/image/chat.svg',
             onClick: () => gotoWebviewScreen(
-              title: "Life Speak",
-              url: "https://www.canada.ca/en/department-national-defence/maple-leaf/defence/2020/03/lifespeak-your-virtual-library-for-total-well-being.html"
+              title: "life_speak",
+              url: "url_life_speak"
             ),
           ),
         ],

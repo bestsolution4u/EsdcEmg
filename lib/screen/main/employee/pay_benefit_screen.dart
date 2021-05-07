@@ -21,50 +21,50 @@ class _PayBenefitScreenState extends State<PayBenefitScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ChildAppbar(
-                title: translate('pay_benefit_leave'),
+                title: 'pay_benefit_leave',
               ),
-              CategoryLabel(label: translate('collective_agreement_and_pay')),
+              CategoryLabel(label: 'collective_agreement_and_pay'),
               ItemSelectorRow(
-                title: translate('collective_agreement'),
+                title: 'collective_agreement',
                 assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(title: translate('collective_agreement'), url: "https://www.canada.ca/en/government/publicservice/pay.html"),
-              ),
-              ItemSelectorRow(
-                title: translate('public_service_pay_center'),
-                assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(title: translate('public_service_pay_center'), url: "https://www.canada.ca/en/treasury-board-secretariat/topics/pay.html"),
+                onClick: () => gotoWebviewScreen(title: 'collective_agreement', url: "url_collective_agreement"),
               ),
               ItemSelectorRow(
-                title: translate('how_your_pay'),
+                title: 'public_service_pay_center',
                 assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(title: translate('how_your_pay'), url: "https://www.tpsgc-pwgsc.gc.ca/remuneration-compensation/services-paye-pay-services/paye-information-pay/paye-talon-stub-pay-eng.html"),
+                onClick: () => gotoWebviewScreen(title: 'public_service_pay_center', url: "url_public_service_pay_center"),
               ),
               ItemSelectorRow(
-                title: translate('occupational_group'),
+                title: 'how_your_pay',
                 assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(title: translate('occupational_group'), url: "https://www.canada.ca/en/treasury-board-secretariat/services/collective-agreements/occupational-groups.html"),
-              ),
-              CategoryLabel(label: translate('benefits_and_pension').toUpperCase()),
-              ItemSelectorRow(
-                title: translate('sun_life_web'),
-                assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(title: translate('sun_life_web'), url: "https://www.sunlife.ca/en/"),
+                onClick: () => gotoWebviewScreen(title: 'how_your_pay', url: "url_how_your_pay"),
               ),
               ItemSelectorRow(
-                title: translate('psimp'),
+                title: 'occupational_group',
                 assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(title: translate('psimp'), url: "https://www.canada.ca/en/treasury-board-secretariat/topics/benefit-plans/plans/management-insurance-plan.html"),
+                onClick: () => gotoWebviewScreen(title: 'occupational_group', url: "url_occupational_group"),
+              ),
+              CategoryLabel(label: 'benefits_and_pension'),
+              ItemSelectorRow(
+                title: 'sun_life_web',
+                assetImage: 'asset/image/chat.svg',
+                onClick: () => gotoWebviewScreen(title: 'sun_life_web', url: "url_sun_life_web"),
               ),
               ItemSelectorRow(
-                title: translate('public_pensions'),
+                title: 'psimp',
                 assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(title: translate('public_pensions'), url: "https://www.tpsgc-pwgsc.gc.ca/comm/index-eng.html"),
+                onClick: () => gotoWebviewScreen(title: 'psimp', url: "url_psimp"),
               ),
-              CategoryLabel(label: translate('leave_and_vacation').toUpperCase()),
               ItemSelectorRow(
-                title: translate('occupational_group'),
+                title: 'public_pensions',
                 assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(title: translate('leave_requirement'), url: "https://www.tpsgc-pwgsc.gc.ca/remuneration-compensation/services-paye-pay-services/paye-information-pay/vie-life/vie-conge-life-leave/index-eng.html"),
+                onClick: () => gotoWebviewScreen(title: 'public_pensions', url: "url_public_pensions"),
+              ),
+              CategoryLabel(label: 'leave_and_vacation'),
+              ItemSelectorRow(
+                title: 'leave_requirement',
+                assetImage: 'asset/image/chat.svg',
+                onClick: () => gotoWebviewScreen(title: 'leave_requirement', url: "url_leave_requirement"),
               ),
               SizedBox(
                 height: 20,
@@ -72,10 +72,6 @@ class _PayBenefitScreenState extends State<PayBenefitScreen> {
             ],
           ),
         ));
-  }
-
-  String translate(String key) {
-    return AppLocalization.of(context).trans(key);
   }
 
   void gotoWebviewScreen({String title, String url}) {

@@ -30,11 +30,14 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
       List<dynamic> list = response;
       List<String> deletedMessages = PreferenceHelper.getStringList(PrefParams.DELETED_MESSAGES) ?? [];
       list.forEach((element) {
+        print("--------------- Message Item ------------");
+        print(element);
         MessageModel message = MessageModel.fromJson(element);
         if (!deletedMessages.contains(message.id.toString())) {
           messages.add(message);
         }
       });
+
       yield MessageLoadSuccessState(messages: messages);
     } catch (e) {
       yield MessageLoadFailureState();

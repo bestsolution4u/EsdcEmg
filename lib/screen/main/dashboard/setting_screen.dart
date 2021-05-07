@@ -25,29 +25,29 @@ class _SettingScreenState extends State<SettingScreen> {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ChildAppbar(title: "Settings",),
+              ChildAppbar(title: "title_settings",),
               Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 10,),
-                        CategoryLabel(label: 'INBOX SETTINGS'),
+                        CategoryLabel(label: 'inbox_setting'),
                         SettingItemRow(label: 'filtered_inbox', value: 'by_location', onClick: () {},),
                         SettingItemRow(label: 'notifications', value: 'only_urgent_msg', onClick: () {},),
                         SizedBox(height: 10,),
-                        CategoryLabel(label: 'FEEDBACK'),
+                        CategoryLabel(label: 'feed_back'),
                         SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
                         SettingSwitchRow(label: 'share_app_analytics', value: shareAnalytics, onChange: (val) {
                           setState(() {
                             shareAnalytics = val;
                           });
                         },),
-                        CategoryLabel(label: AppLocalization.of(context).trans('app_dev_purpose'), marginTop: 8,),
+                        CategoryLabel(label: 'app_dev_purpose', marginTop: 8,),
                         SizedBox(height: 10,),
-                        CategoryLabel(label: 'LANGUAGE'),
+                        CategoryLabel(label: 'lang'),
                         SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
-                        CategoryLabel(label: AppLocalization.of(context).trans('update_phone_settings'), marginTop: 8,),
+                        CategoryLabel(label: 'update_phone_settings', marginTop: 8,),
                       ],
                     ),
                   )

@@ -1,4 +1,5 @@
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,9 @@ import 'package:flutter/material.dart';
 class ChildAppbar extends StatelessWidget {
   final String title;
   final Widget action;
+  final bool isMessage;
 
-  ChildAppbar({this.title, this.action});
+  ChildAppbar({this.title, this.action, this.isMessage = false});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class ChildAppbar extends StatelessWidget {
               ),
               RippleComponent(
                 child: Text(
-                  'Back',
+                  AppLocalization.of(context).trans('navigation_back'),
                   style: TextStyle(color: Styles.darkGray, fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onClick: () => Navigator.pop(context),
@@ -43,7 +45,7 @@ class ChildAppbar extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 15, bottom: 4),
           child: Text(
-            title,
+            isMessage ? title : AppLocalization.of(context).trans(title),
             style: TextStyle(color: Styles.textBlack, fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),

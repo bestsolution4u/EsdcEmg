@@ -2,6 +2,7 @@ class MessageModel {
   int id;
   String urgentInd;
   String title;
+  String titleFr;
   String modifier;
   String message;
   String location;
@@ -16,6 +17,7 @@ class MessageModel {
       {this.id,
         this.urgentInd,
         this.title,
+        this.titleFr,
         this.modifier,
         this.message,
         this.location,
@@ -30,6 +32,7 @@ class MessageModel {
     id = json['id'];
     urgentInd = json['urgent_ind'];
     title = json['title'];
+    titleFr = json['title_fr'];
     modifier = json['modifier'];
     message = json['message'];
     location = json['location'];
@@ -46,6 +49,7 @@ class MessageModel {
     data['id'] = this.id;
     data['urgent_ind'] = this.urgentInd;
     data['title'] = this.title;
+    data['title_fr'] = this.titleFr;
     data['modifier'] = this.modifier;
     data['message'] = this.message;
     data['location'] = this.location;

@@ -1,4 +1,5 @@
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -34,7 +35,7 @@ class _MainTabItemState extends State<MainTabItem> {
           ],
         ),
         child: Text(
-          widget.title,
+          AppLocalization.of(context).trans(widget.title),
           style: TextStyle(
             color: widget.selected
                 ? Styles.purple
