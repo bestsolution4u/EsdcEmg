@@ -1,4 +1,5 @@
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/screen/main/dashboard/learning_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/wellness_screen.dart';
 import 'package:esdc_emg/screen/main/employee/covid_screen.dart';
@@ -31,7 +32,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
             ItemSelectorRow(title: 'wellness', assetImage: 'asset/image/employee_wellness.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),),
             CategoryLabel(label: 'remuneration'),
             ItemSelectorRow(title: 'pay_benefit_leave', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PayBenefitScreen(),)),),
-            ItemSelectorRow(title: 'holiday_pay_dates', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PdfViewerScreen(title: 'Holidays and pay dates', pdfPath: 'asset/pdf/calendar.pdf',),)),),
+            ItemSelectorRow(title: 'holiday_pay_dates', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PdfViewerScreen(title: AppLocalization.of(context).trans('holiday_pay_dates'), pdfPath: 'asset/pdf/calendar.pdf',),)),),
             CategoryLabel(label: 'career'),
             ItemSelectorRow(title: 'learning', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),),
             ItemSelectorRow(title: 'gc_jobs', assetImage: 'asset/image/chat.svg', onClick: () => gotoWebviewScreen(title: 'gc_jobs', url: 'url_gc_jobs'),),

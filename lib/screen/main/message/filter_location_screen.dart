@@ -26,7 +26,6 @@ class _FilterLocationScreenState extends State<FilterLocationScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 30,),
-                        ItemSelectorRow(title: 'all_locations', onClick: () => Navigator.pop(context, 'all_locations'),),
                         ListView.separated(
                             primary: false,
                             shrinkWrap: true,

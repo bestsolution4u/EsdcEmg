@@ -1,4 +1,5 @@
 import 'package:esdc_emg/bloc/bloc.dart';
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
@@ -23,7 +24,7 @@ class MessageScreen extends StatefulWidget {
 class _MessageScreenState extends State<MessageScreen> {
 
   String filterTopic = "all_topics";
-  String filterLocation = "all_locations";
+  String filterLocation = Globals.MESSAGE_LOCATIONS[0];
 
   @override
   Widget build(BuildContext context) {
@@ -180,6 +181,6 @@ class _MessageScreenState extends State<MessageScreen> {
   }
 
   List<MessageModel> filterMessages(List<MessageModel> messages) {
-    return messages.where((element) => (filterTopic == 'all_topics' || element.category.toLowerCase().contains(filterTopic)) && (filterLocation == 'all_locations' || element.audience == "All" || element.audience.contains(filterLocation))).toList();
+    return messages.where((element) => (filterTopic == 'all_topics' || element.category.toLowerCase().contains(filterTopic)) && (filterLocation == Globals.MESSAGE_LOCATIONS[0] || element.audience == "All" || element.audience.contains(filterLocation))).toList();
   }
 }

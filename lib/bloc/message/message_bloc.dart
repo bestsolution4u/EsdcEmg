@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/api/api.dart';
 import 'package:esdc_emg/bloc/message/bloc.dart';
