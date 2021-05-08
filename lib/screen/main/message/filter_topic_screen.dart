@@ -1,5 +1,4 @@
 import 'package:esdc_emg/config/global.dart';
-import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/row/item_selector_row.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +29,7 @@ class _FilterTopicScreenState extends State<FilterTopicScreen> {
                         ListView.separated(
                           primary: false,
                             shrinkWrap: true,
-                            itemBuilder: (context, index) => ItemSelectorRow(title: AppLocalization.of(context).trans(Globals.MESSAGE_CATEGORIES[index]), onClick: () => Navigator.pop(context, Globals.MESSAGE_CATEGORIES[index]),),
+                            itemBuilder: (context, index) => ItemSelectorRow(title: Globals.MESSAGE_CATEGORIES[index], onClick: () => Navigator.pop(context, Globals.MESSAGE_CATEGORIES[index]),),
                             separatorBuilder: (context, index) => SizedBox(height: 5,),
                             itemCount: Globals.MESSAGE_CATEGORIES.length)
                       ],

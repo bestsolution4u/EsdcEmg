@@ -203,7 +203,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     firestore = FirebaseFirestore.instance;
     firestore.collection("message").snapshots().listen((event) {
       event.docChanges.forEach((res) {
-        print(res.doc.id);
         if (res.type == DocumentChangeType.added) {
           if ((res.doc.data())['read']) {
             if (!readMessages.contains(res.doc.id)) {

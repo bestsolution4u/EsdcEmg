@@ -127,6 +127,7 @@ class _MessageScreenState extends State<MessageScreen> {
               SettingItemRow(
                 label: 'location_specific',
                 value: filterLocation,
+                isValueTranslated: false,
                 onClick: () async {
                   String location = await Navigator.push(context, MaterialPageRoute(builder: (context) => FilterLocationScreen(),));
                   if (location != null) {
@@ -179,6 +180,6 @@ class _MessageScreenState extends State<MessageScreen> {
   }
 
   List<MessageModel> filterMessages(List<MessageModel> messages) {
-    return messages.where((element) => (filterTopic == 'all_topics' || element.category.toLowerCase().contains(filterTopic)) && (filterLocation == 'all_locations' || element.location.contains(filterLocation))).toList();
+    return messages.where((element) => (filterTopic == 'all_topics' || element.category.toLowerCase().contains(filterTopic)) && (filterLocation == 'all_locations' || element.audience == "All" || element.audience.contains(filterLocation))).toList();
   }
 }

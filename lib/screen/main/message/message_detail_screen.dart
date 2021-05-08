@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
@@ -37,6 +38,16 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String category = "";
+    for (int i = 0; i < Globals.MESSAGE_CATEGORIES.length; i++) {
+      if (widget.message.category.toLowerCase().contains(Globals.MESSAGE_CATEGORIES[i])) {
+        category = Globals.MESSAGE_CATEGORIES[i];
+      }
+    }
+    String categoryLine = "";
+    if (category.isNotEmpty) {
+      categoryLine = AppLocalization.of(context).trans('category') + ": " + AppLocalization.of(context).trans(category);
+    }
     return SafeArea(
         child: Scaffold(
       body: Column(
@@ -58,25 +69,25 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
             child: Text(
               DateFormat('MMMM dd, yyyy').format(DateTime.parse(widget.message.effectiveDate)),
               style: TextStyle(color: Styles.textBlack, fontSize: 14),
               textAlign: TextAlign.start,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
+          categoryLine.isNotEmpty ? Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
-              widget.message.category != null ? widget.message.category : '',
-              style: TextStyle(color: Styles.textBlack, fontSize: 22, fontWeight: FontWeight.bold),
+              categoryLine,
+              style: TextStyle(color: Styles.textBlack, fontSize: 14),
               textAlign: TextAlign.start,
             ),
-          ),
+          ) : Container(),
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20),
             child: Text(
-              widget.message.message,
+              AppLocalization.currentLanguage == 'fr' ? widget.message.messageFr : widget.message.message,
               style: TextStyle(color: Styles.textBlack, fontSize: 16),
               textAlign: TextAlign.start,
             ),

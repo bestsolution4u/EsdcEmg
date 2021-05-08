@@ -12,8 +12,9 @@ class SettingItemRow extends StatefulWidget {
   final Color backgroundColor;
   final double borderPadding;
   final double paddingHorizontal;
+  final bool isValueTranslated;
 
-  SettingItemRow({this.label, this.value, this.onClick, this.backgroundColor = Colors.white, this.borderPadding = 12, this.paddingHorizontal = 20});
+  SettingItemRow({this.label, this.value, this.onClick, this.backgroundColor = Colors.white, this.borderPadding = 12, this.paddingHorizontal = 20, this.isValueTranslated = true});
 
   @override
   _SettingItemRowState createState() => _SettingItemRowState();
@@ -33,7 +34,7 @@ class _SettingItemRowState extends State<SettingItemRow> {
                 children: [
                   Expanded(child: Text(AppLocalization.of(context).trans(widget.label), style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500), maxLines: 2, overflow: TextOverflow.ellipsis,)),
                   SizedBox(width: 10,),
-                  widget.value == null ? Container() : Text(AppLocalization.of(context).trans(widget.value), style: TextStyle(color: Styles.purple, fontSize: 14, fontWeight: FontWeight.w500),),
+                  widget.value == null ? Container() : Text(widget.isValueTranslated ? AppLocalization.of(context).trans(widget.value) : widget.value, style: TextStyle(color: Styles.purple, fontSize: 14, fontWeight: FontWeight.w500),),
                   SizedBox(width: 5,),
                   Icon(Icons.keyboard_arrow_right, size: 28, color: Colors.grey),
                 ],

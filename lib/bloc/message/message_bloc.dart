@@ -37,7 +37,11 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
           messages.add(message);
         }
       });
-
+      messages.sort((a, b) {
+        DateTime dateA = DateTime.parse(a.effectiveDate);
+        DateTime dateB = DateTime.parse(b.effectiveDate);
+        return dateB.compareTo(dateA);
+      });
       yield MessageLoadSuccessState(messages: messages);
     } catch (e) {
       yield MessageLoadFailureState();
@@ -57,6 +61,11 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
           messages.removeAt(i);
         }
       }
+      messages.sort((a, b) {
+        DateTime dateA = DateTime.parse(a.effectiveDate);
+        DateTime dateB = DateTime.parse(b.effectiveDate);
+        return dateB.compareTo(dateA);
+      });
       yield MessageLoadSuccessState(messages: messages);
     } else yield state;
   }
@@ -72,6 +81,11 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
         if (!deletedMessages.contains(message.id.toString())) {
           messages.add(message);
         }
+      });
+      messages.sort((a, b) {
+        DateTime dateA = DateTime.parse(a.effectiveDate);
+        DateTime dateB = DateTime.parse(b.effectiveDate);
+        return dateB.compareTo(dateA);
       });
       yield MessageLoadingState();
       yield MessageLoadSuccessState(messages: messages);

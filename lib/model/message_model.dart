@@ -5,6 +5,7 @@ class MessageModel {
   String titleFr;
   String modifier;
   String message;
+  String messageFr;
   String location;
   String audience;
   String branch;
@@ -20,6 +21,7 @@ class MessageModel {
         this.titleFr,
         this.modifier,
         this.message,
+        this.messageFr,
         this.location,
         this.audience,
         this.branch,
@@ -35,6 +37,7 @@ class MessageModel {
     titleFr = json['title_fr'];
     modifier = json['modifier'];
     message = json['message'];
+    messageFr = json['message_fr'];
     location = json['location'];
     audience = json['audience'];
     branch = json['branch'];
@@ -52,6 +55,7 @@ class MessageModel {
     data['title_fr'] = this.titleFr;
     data['modifier'] = this.modifier;
     data['message'] = this.message;
+    data['message_fr'] = this.messageFr;
     data['location'] = this.location;
     data['audience'] = this.audience;
     data['branch'] = this.branch;
