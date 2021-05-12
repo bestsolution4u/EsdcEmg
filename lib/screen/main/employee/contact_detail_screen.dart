@@ -105,18 +105,15 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  AppLocalization.of(context).trans('website'),
-                  style: TextStyle(color: Colors.black, fontSize: 12),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
                 RippleComponent(
                   onClick: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(title: widget.title, url: widget.website,)));
+                    if (widget.website == 'site_contact_sunlife_health_care_plan') {
+                      launch(AppLocalization.of(context).trans(widget.website));
+                    } else {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(title: widget.title, url: widget.website,)));
+                    }
                   },
-                  child: Text(AppLocalization.of(context).trans(widget.website), style: TextStyle(color: Styles.blue, fontSize: 16)),
+                  child: Text(AppLocalization.of(context).trans('website'), style: TextStyle(color: Styles.blue, fontSize: 16)),
                 )
               ],
             ),
