@@ -3,15 +3,15 @@ import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
+import 'package:esdc_emg/model/setting_model.dart';
 import 'package:esdc_emg/screen/main/message/filter_location_screen.dart';
 import 'package:esdc_emg/screen/main/message/filter_topic_screen.dart';
 import 'package:esdc_emg/util/message_util.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
 import 'package:esdc_emg/widget/row/category_label.dart';
-import 'package:esdc_emg/widget/row/nonurgent_message_row.dart';
+import 'package:esdc_emg/widget/row/message_row.dart';
 import 'package:esdc_emg/widget/row/setting_item_row.dart';
-import 'package:esdc_emg/widget/row/urgent_message_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,9 +22,6 @@ class MessageScreen extends StatefulWidget {
 }
 
 class _MessageScreenState extends State<MessageScreen> {
-
-  String filterTopic = "all_topics";
-  String filterLocation = Globals.MESSAGE_LOCATIONS[0];
 
   @override
   Widget build(BuildContext context) {
@@ -84,103 +81,117 @@ class _MessageScreenState extends State<MessageScreen> {
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       builder: (context) => Wrap(children: [
-        Container(
-          height: 350,
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 20,),
-              Text(
-                AppLocalization.of(context).trans("filter_inbox"),
-                style: TextStyle(
-                    color: Styles.textBlack,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                AppLocalization.of(context).trans("customize_inbox_looks"),
-                style: TextStyle(
-                    color: Styles.textBlack,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400),
-              ),
-              SizedBox(height: 20,),
-              SettingItemRow(
-                label: 'topic',
-                value: filterTopic,
-                onClick: () async {
-                  String topic = await Navigator.push(context, MaterialPageRoute(builder: (context) => FilterTopicScreen(),));
-                  if (topic != null) {
-                    setState(() {
-                      filterTopic = topic;
-                    });
-                    Navigator.pop(context);
-                  }
-                },
-                backgroundColor: Colors.transparent,
-                borderPadding: 0,
-                paddingHorizontal: 0,
-              ),
-              SettingItemRow(
-                label: 'location_specific',
-                value: filterLocation,
-                isValueTranslated: false,
-                onClick: () async {
-                  String location = await Navigator.push(context, MaterialPageRoute(builder: (context) => FilterLocationScreen(),));
-                  if (location != null) {
-                    setState(() {
-                      filterLocation = location;
-                    });
-                    Navigator.pop(context);
-                  }
-                },
-                backgroundColor: Colors.transparent,
-                borderPadding: 0,
-                paddingHorizontal: 0,
-              ),
-              SettingItemRow(
-                label: 'sorting',
-                value: 'new_old',
-                onClick: () {
+        BlocBuilder<SettingBloc, SettingState>(
+            builder: (context, state) {
+              if (state is !SettingLoadSuccessState) return Container();
+              SettingModel settingModel = (state as SettingLoadSuccessState).settings;
+              return Container(
+                height: 350,
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20,),
+                    Text(
+                      AppLocalization.of(context).trans("filter_inbox"),
+                      style: TextStyle(
+                          color: Styles.textBlack,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      AppLocalization.of(context).trans("customize_inbox_looks"),
+                      style: TextStyle(
+                          color: Styles.textBlack,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(height: 20,),
+                    SettingItemRow(
+                      label: 'topic',
+                      value: settingModel.messageCategory,
+                      onClick: () {
+                        Navigator.pop(context);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => FilterTopicScreen(),));
+                      },
+                      backgroundColor: Colors.transparent,
+                      borderPadding: 0,
+                      paddingHorizontal: 0,
+                    ),
+                    SettingItemRow(
+                      label: 'location_specific',
+                      value: settingModel.messageLocation,
+                      onClick: () {
+                        Navigator.pop(context);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => FilterLocationScreen(),));
+                      },
+                      backgroundColor: Colors.transparent,
+                      borderPadding: 0,
+                      paddingHorizontal: 0,
+                    ),
+                    SettingItemRow(
+                      label: 'sorting',
+                      value: 'new_old',
+                      onClick: () {
 
-                },
-                backgroundColor: Colors.transparent,
-                borderPadding: 0,
-                paddingHorizontal: 0,
-              ),
-            ],
-          ),
-        )
+                      },
+                      backgroundColor: Colors.transparent,
+                      borderPadding: 0,
+                      paddingHorizontal: 0,
+                    ),
+                  ],
+                ),
+              );
+            },
+        ),
       ],),);
   }
 
   Widget buildUrgentMessages(List<MessageModel> allMessages) {
-    List<MessageModel> messages = filterMessages(allMessages);
-    return ListView.builder(
-      itemCount: messages.length,
-        physics: BouncingScrollPhysics(),
-        primary: false,
-        shrinkWrap: true,
-        itemBuilder: (context, index) => UrgentMessageRow(message: messages[index]),
-    );
+    return BlocBuilder<SettingBloc, SettingState>(
+        builder: (context, state) {
+          List<MessageModel> messages = [];
+          if (state is !SettingLoadSuccessState) {
+            messages = allMessages;
+          } else {
+            SettingModel settings = (state as SettingLoadSuccessState).settings;
+            messages = filterMessages(allMessages, settings.messageCategory, settings.messageLocation);
+          }
+          return ListView.builder(
+            itemCount: messages.length,
+            physics: BouncingScrollPhysics(),
+            primary: false,
+            shrinkWrap: true,
+            itemBuilder: (context, index) => MessageRow(message: messages[index]),
+          );
+        },);
   }
 
   Widget buildNonUrgentMessages(List<MessageModel> allMessages) {
-    List<MessageModel> messages = filterMessages(allMessages);
-    return ListView.builder(
-      itemCount: messages.length,
-      physics: BouncingScrollPhysics(),
-      primary: false,
-      shrinkWrap: true,
-      itemBuilder: (context, index) => NonUrgentMessageRow(message: messages[index]),
+    return BlocBuilder<SettingBloc, SettingState>(
+        builder: (context, state) {
+          List<MessageModel> messages = [];
+          if (state is !SettingLoadSuccessState) {
+            messages = allMessages;
+          } else {
+            SettingModel settings = (state as SettingLoadSuccessState).settings;
+            messages = filterMessages(allMessages, settings.messageCategory, settings.messageLocation);
+          }
+          return ListView.builder(
+            itemCount: messages.length,
+            physics: BouncingScrollPhysics(),
+            primary: false,
+            shrinkWrap: true,
+            itemBuilder: (context, index) => MessageRow(message: messages[index], isUrgent: false),
+          );
+        },
     );
   }
 
-  List<MessageModel> filterMessages(List<MessageModel> messages) {
-    return messages.where((element) => (filterTopic == 'all_topics' || element.category.toLowerCase().contains(filterTopic)) && (filterLocation == Globals.MESSAGE_LOCATIONS[0] || element.audience == "All" || element.audience.contains(filterLocation))).toList();
+  List<MessageModel> filterMessages(List<MessageModel> messages, String filterTopic, String filterLocation) {
+    return messages.where((element) => (filterTopic == Globals.DEFAULT_MESSAGE_CATEGORY || element.category.toLowerCase().contains(filterTopic)) && (filterLocation == Globals.MESSAGE_LOCATIONS[0] || element.audience.contains(filterLocation))).toList();
   }
 }

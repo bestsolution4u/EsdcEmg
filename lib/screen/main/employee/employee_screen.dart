@@ -10,6 +10,7 @@ import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/row/category_label.dart';
 import 'package:esdc_emg/widget/row/item_selector_row.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../webview_screen.dart';
 
@@ -28,7 +29,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
         child: Column(
           children: [
             CategoryLabel(label: 'heath_and_wellness'),
-            ItemSelectorRow(title: 'title_covid', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CovidScreen(),)),),
+            ItemSelectorRow(title: 'title_covid', assetImage: 'asset/image/chat.svg', onClick: () => launch(AppLocalization.of(context).trans('url_covid_active_screening'))),
             ItemSelectorRow(title: 'wellness', assetImage: 'asset/image/employee_wellness.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),),
             CategoryLabel(label: 'remuneration'),
             ItemSelectorRow(title: 'pay_benefit_leave', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PayBenefitScreen(),)),),

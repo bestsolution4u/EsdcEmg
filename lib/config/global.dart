@@ -43,13 +43,16 @@ class Globals {
     "member_of_the_public"
   ];
 
+  static const String DEFAULT_MESSAGE_CATEGORY = "all_topics";
   /// Message categories
   static const List<String> MESSAGE_CATEGORIES = [
     "hr",
     "it",
     "security",
     "communication",
+    "learning",
     "health",
+    "wellness",
     "career related",
     "achievements",
     "event",
@@ -57,18 +60,19 @@ class Globals {
   ];
 
   static const List<String> MESSAGE_LOCATIONS = [
-    "National – Canada wide",
+    "All",
+    "National-Canada Wide",
     "Newfoundland and Labrador",
     "Prince Edward Island",
     "Nova Scotia",
     "New Brunswick",
     "Quebec",
     "Ontario",
-    "Winnipeg",
     "Saskatchewan",
     "Alberta",
     "British Columbia",
     "Nunavut",
+    "Manitoba",
     "Northwest Territories",
     "Yukon"
   ];

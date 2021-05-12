@@ -4,7 +4,6 @@ import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
-import 'package:esdc_emg/util/FirebaseUtil.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/button/bordered_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
@@ -33,11 +32,12 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
   void initState() {
     super.initState();
     _messageBloc = BlocProvider.of<MessageBloc>(context);
-    FirebaseUtil.changeMessageReadStatus(widget.message.id, true);
+    _messageBloc.add(MessageStatusUpdateEvent(messageID: widget.message.id, read: true));
   }
 
   @override
   Widget build(BuildContext context) {
+    print(widget.message.category);
     String category = "";
     for (int i = 0; i < Globals.MESSAGE_CATEGORIES.length; i++) {
       if (widget.message.category.toLowerCase().contains(Globals.MESSAGE_CATEGORIES[i])) {
@@ -47,6 +47,15 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
     String categoryLine = "";
     if (category.isNotEmpty) {
       categoryLine = AppLocalization.of(context).trans('category') + ": " + AppLocalization.of(context).trans(category);
+    }
+
+    String audience = "";
+    final split = widget.message.audience.split(',');
+    for (int i = 0; i < split.length; i++) {
+      String val = split[i];
+      if (val == null || val.isEmpty) continue;
+      if (!audience.isEmpty) audience += ", ";
+      audience += AppLocalization.of(context).trans(val);
     }
     return SafeArea(
         child: Scaffold(
@@ -84,6 +93,15 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
               textAlign: TextAlign.start,
             ),
           ) : Container(),
+          SizedBox(height: 10,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Text(
+              AppLocalization.of(context).trans('audience') + ": " + audience,
+              style: TextStyle(color: Styles.textBlack, fontSize: 14),
+              textAlign: TextAlign.start,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Text(
@@ -142,7 +160,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                   height: 10,
                 ),
                 BorderedButton(title: AppLocalization.of(context).trans('mark_as_unread'), onClick: () {
-                  FirebaseUtil.changeMessageReadStatus(widget.message.id, false);
+                  _messageBloc.add(MessageStatusUpdateEvent(messageID: widget.message.id, read: false));
                   Navigator.pop(context);
                 },),
                 /*BorderedButton(title: 'Share this page', onClick: () {
@@ -159,7 +177,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                             isDefaultAction: true,
                             child: Text(AppLocalization.of(context).trans('delete')),
                             onPressed: () {
-                              _messageBloc.add(MessageDeleteEvent(deletedID: widget.message.id));
+                              _messageBloc.add(MessageDeleteEvent(messageID: widget.message.id));
                               Navigator.pop(context);
                               Navigator.pop(context);
                               Navigator.pop(context);

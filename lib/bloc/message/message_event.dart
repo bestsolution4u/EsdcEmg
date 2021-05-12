@@ -5,10 +5,23 @@ abstract class MessageEvent {}
 
 class MessageLoadEvent extends MessageEvent {}
 
-class MessageDeleteEvent extends MessageEvent {
-  final deletedID;
+class MessageStatusUpdateEvent extends MessageEvent {
+  final int messageID;
+  final bool read;
 
-  MessageDeleteEvent({this.deletedID});
+  MessageStatusUpdateEvent({this.messageID, this.read});
+}
+
+class MessageDeleteEvent extends MessageEvent {
+  final messageID;
+
+  MessageDeleteEvent({this.messageID});
+}
+
+class MessageLastUrgentEvent extends MessageEvent {
+  final int messageID;
+
+  MessageLastUrgentEvent({this.messageID});
 }
 
 class MessageRefreshEvent extends MessageEvent {}

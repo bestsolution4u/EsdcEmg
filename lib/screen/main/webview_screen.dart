@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,7 @@ class WebviewScreen extends StatefulWidget {
 
 class _WebviewScreenState extends State<WebviewScreen> {
   bool isLoading = true;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,15 +38,16 @@ class _WebviewScreenState extends State<WebviewScreen> {
                           });
                         },
                         navigationDelegate: (NavigationRequest request) {
-                          if(request.url.contains("mailto:")) {
+                          print("-------------- Url Request -----------");
+                          print(request.url);
+                          /*if(request.url.contains("mailto:")) {
                             launch(request.url);
                             return NavigationDecision.prevent;
                           } else if (request.url.contains("tel:")) {
                             launch(request.url);
                             return NavigationDecision.prevent;
-                          } else {
-                            return NavigationDecision.navigate;
-                          }
+                          }*/
+                          return NavigationDecision.navigate;
                         },
                       ),
                       isLoading ? Center(child: CircularProgressIndicator(),) : Container()

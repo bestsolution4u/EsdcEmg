@@ -2,9 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/bloc/app_bloc.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/global.dart';
+import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/message_model.dart';
+import 'package:esdc_emg/model/setting_model.dart';
 import 'package:esdc_emg/screen/main/socialmedia/social_media_screen.dart';
+import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:esdc_emg/widget/tabbar/esdc_tabbar.dart';
 import 'package:esdc_emg/widget/tabbar/main_tab_item.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -37,12 +40,10 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
-
   final int tabLength = 4;
   TabController tabController;
   int currentTabIndex = 0;
   FirebaseFirestore firestore;
-  List<String> readMessages = [];
 
   @override
   void initState() {
@@ -75,9 +76,11 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             controller: tabController,
             physics: NeverScrollableScrollPhysics(),
             children: [
-              DashboardScreen(onUrgentClick: () {
-                tabController.animateTo(1);
-              },),
+              DashboardScreen(
+                onUrgentClick: () {
+                  tabController.animateTo(1);
+                },
+              ),
               MessageScreen(),
               EmployeeScreen(),
               SocialMediaScreen()
@@ -103,51 +106,80 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               labelColor: Styles.purple,
               unselectedLabelColor: Styles.textBlack,
               tabs: [
-                MainTabItem(title: 'app_title_home', image: 'asset/image/star.svg', selected: currentTabIndex == 0,),
-                MainTabItem(title: 'title_msg', image: 'asset/image/mail.svg', selected: currentTabIndex == 1, badge: BlocBuilder<MessageBloc, MessageState>(
-                  builder: (context, msgState) {
-                    if (msgState is MessageLoadingState || msgState is MessageLoadFailureState) {
-                      return Container(width: 0, height: 0,);
-                    } else {
-                      int unreadCount = 0;
-                      List<MessageModel> messages = (msgState as MessageLoadSuccessState).messages;
-                      for (int i = 0; i < messages.length; i++) {
-                        if (!readMessages.contains(messages[i].id.toString())) {
-                          unreadCount++;
-                        }
+                MainTabItem(
+                  title: 'app_title_home',
+                  image: 'asset/image/star.svg',
+                  selected: currentTabIndex == 0,
+                ),
+                MainTabItem(
+                  title: 'title_msg',
+                  image: 'asset/image/mail.svg',
+                  selected: currentTabIndex == 1,
+                  badge: BlocBuilder<MessageBloc, MessageState>(
+                    builder: (context, msgState) {
+                      if (msgState is! MessageLoadSuccessState) {
+                        return Container(
+                          width: 0,
+                          height: 0,
+                        );
+                      } else {
+                        return BlocBuilder<SettingBloc, SettingState>(
+                          builder: (context, settingState) {
+                            if (settingState is! SettingLoadSuccessState)
+                              return Container(
+                                width: 0,
+                                height: 0,
+                              );
+                            List<MessageModel> messages = (msgState as MessageLoadSuccessState).messages;
+                            SettingModel settings = (settingState as SettingLoadSuccessState).settings;
+                            List<int> readMessages = (msgState as MessageLoadSuccessState).readMessages;
+                            List<MessageModel> unreadMessages = messages.where((element) => (!readMessages.contains(element.id) && (settings.messageCategory == Globals.DEFAULT_MESSAGE_CATEGORY || element.category.toLowerCase().contains(settings.messageCategory)) && (settings.messageLocation == Globals.MESSAGE_LOCATIONS[0] || element.audience.contains(settings.messageLocation)))).toList();
+                            if (unreadMessages.length == 0)
+                              return Container(
+                                width: 0,
+                                height: 0,
+                              );
+                            return Positioned(
+                              top: 0,
+                              right: 0,
+                              child: Transform.translate(
+                                offset: Offset(8.0, -8.0),
+                                child: Container(
+                                  width: 16,
+                                  height: 16,
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(24), color: Styles.red),
+                                  child: Center(
+                                    child: Text(
+                                      unreadMessages.length.toString(),
+                                      style: TextStyle(color: Colors.white, fontSize: 10),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        );
                       }
-                      if (unreadCount == 0) return Container(width: 0, height: 0,);
-                      return Positioned(
-                        top: 0,
-                          right: 0,
-                          child: Transform.translate(
-                            offset: Offset(8.0, -8.0),
-                            child: Container(
-                              width: 16,
-                              height: 16,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(24),
-                                  color: Styles.red
-                              ),
-                              child: Center(
-                                child: Text(unreadCount.toString(), style: TextStyle(color: Colors.white, fontSize: 10),),
-                              ),
-                            ),
-                          ),);
-                    }
-                  },
-                ),),
-                MainTabItem(title: 'title_emply', image: 'asset/image/user.svg', selected: currentTabIndex == 2,),
-                MainTabItem(title: 'title_soci_medi', image: 'asset/image/sound.svg', selected: currentTabIndex == 3,),
+                    },
+                  ),
+                ),
+                MainTabItem(
+                  title: 'title_emply',
+                  image: 'asset/image/user.svg',
+                  selected: currentTabIndex == 2,
+                ),
+                MainTabItem(
+                  title: 'title_soci_medi',
+                  image: 'asset/image/sound.svg',
+                  selected: currentTabIndex == 3,
+                ),
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 
   Future<void> setupFCM() async {
-    await Firebase.initializeApp();
     FirebaseMessaging fcmMessaging = FirebaseMessaging.instance;
     fcmMessaging.getToken().then((token) => print("FCM Token: " + token));
     await fcmMessaging.setForegroundNotificationPresentationOptions(
@@ -173,10 +205,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       importance: Importance.high,
     );
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(channel);
+    await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print("----------------- onMessage ----------------");
@@ -198,45 +227,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             ));
       }
       AppBloc.messageBloc.add(MessageRefreshEvent());
-    });
-
-    firestore = FirebaseFirestore.instance;
-    firestore.collection("message").snapshots().listen((event) {
-      event.docChanges.forEach((res) {
-        if (res.type == DocumentChangeType.added) {
-          if ((res.doc.data())['read']) {
-            if (!readMessages.contains(res.doc.id)) {
-              setState(() {
-                readMessages.add(res.doc.id);
-              });
-            }
-          } else {
-            if (readMessages.contains(res.doc.id)) {
-              setState(() {
-                readMessages.remove(res.doc.id);
-              });
-            }
-          }
-        } else if (res.type == DocumentChangeType.modified) {
-          if ((res.doc.data())['read']) {
-            if (!readMessages.contains(res.doc.id)) {
-              setState(() {
-                readMessages.add(res.doc.id);
-              });
-            }
-          } else {
-            if (readMessages.contains(res.doc.id)) {
-              setState(() {
-                readMessages.remove(res.doc.id);
-              });
-            }
-          }
-        } else if (res.type == DocumentChangeType.removed) {
-          setState(() {
-            readMessages.remove(res.doc.id);
-          });
-        }
-      });
     });
   }
 

@@ -1,6 +1,7 @@
 # This is a generated file; do not edit or check into version control.
 cloud_firestore=D:\\Tools\\SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\cloud_firestore-1.0.7\\
 cloud_firestore_web=D:\\Tools\\SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\cloud_firestore_web-1.0.7\\
+device_info=D:\\Tools\\SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\device_info-2.0.0\\
 firebase_core=D:\\Tools\\SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-1.1.0\\
 firebase_core_web=D:\\Tools\\SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core_web-1.0.2\\
 firebase_messaging=D:\\Tools\\SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_messaging-9.1.3\\

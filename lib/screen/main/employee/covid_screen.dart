@@ -1,4 +1,3 @@
-import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/screen/main/webview_screen.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/row/item_selector_row.dart';

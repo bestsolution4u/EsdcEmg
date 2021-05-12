@@ -18,7 +18,6 @@ class EsdcEmgApp extends StatefulWidget {
 }
 
 class _EsdcEmgAppState extends State<EsdcEmgApp> {
-
   final routes = Routes();
   AppLocalizationsDelegate _localizationsDelegate;
 
@@ -68,16 +67,23 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
           theme: ThemeData(
             primaryColor: Colors.white,
             platform: TargetPlatform.iOS,
-              appBarTheme: AppBarTheme(color: Colors.white),
+            appBarTheme: AppBarTheme(color: Colors.white),
             fontFamily: 'PopBlack',
           ),
           home: BlocBuilder<ApplicationBloc, ApplicationState>(
             builder: (context, state) {
-              if (state is ApplicationSetupState) return MainScreen();
+              if (state is ApplicationSetupState)
+                return BlocListener<SettingBloc, SettingState>(
+                  listener: (context, settingState) {
+                    if (settingState is SettingLoadSuccessState) {
+                      Globals.onLocaleChanged(Locale(settingState.settings.language));
+                    }
+                  },
+                  child: MainScreen(),
+                );
               return SplashScreen();
             },
           ),
-        )
-    );
+        ));
   }
 }

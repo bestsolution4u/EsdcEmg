@@ -1,5 +1,4 @@
 import 'package:esdc_emg/bloc/bloc.dart';
-import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
@@ -9,7 +8,6 @@ import 'package:esdc_emg/screen/main/dashboard/setting_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/wellness_screen.dart';
 import 'package:esdc_emg/screen/main/webview_screen.dart';
 import 'package:esdc_emg/util/message_util.dart';
-import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/dashboard_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
@@ -18,6 +16,7 @@ import 'package:esdc_emg/widget/row/vpn_status_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'learning_screen.dart';
 
@@ -34,10 +33,12 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
 
   List<VPNStatusModel> vpnStatusList = [];
+  MessageBloc _messageBloc;
 
   @override
   void initState() {
     super.initState();
+    _messageBloc = BlocProvider.of<MessageBloc>(context);
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "KEC","status": "UP","usage": "78","description": "MODERATE"}));
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MTL","status": "DOWN","usage": "100","description": "BAD"}));
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MCT","status": "UP","usage": "24","description": "GOOD"}));
@@ -181,14 +182,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
           return Container();
         } else {
           List<MessageModel> urgents = MessageUtils.filterUrgentMessages((state as MessageLoadSuccessState).messages);
+          int lastUrgent = (state as MessageLoadSuccessState).lastUrgent;
           int lastID = MessageUtils.getLastMessageId(urgents);
-          if (urgents == null || urgents.isEmpty || PreferenceHelper.getInt(PrefParams.LAST_URGENT_MESSAGE) >= MessageUtils.getLastMessageId(urgents)) {
+          if (urgents == null || urgents.isEmpty || lastUrgent >= lastID) {
             return Container();
           } else {
             return RippleComponent(
                 onClick: () {
                   widget.onUrgentClick();
-                  PreferenceHelper.setInt(PrefParams.LAST_URGENT_MESSAGE, lastID);
+                  _messageBloc.add(MessageLastUrgentEvent(messageID: lastID));
                 },
                 child: Container(
                   padding: const EdgeInsets.all(8),
@@ -229,7 +231,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
       child: RippleComponent(
-        onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(title: 'active_screening', url: 'url_covid_active_screening',),)),
+        onClick: () => launch(AppLocalization.of(context).trans('url_covid_active_screening')),
         child: Card(
           color: Styles.purple,
           clipBehavior: Clip.antiAlias,

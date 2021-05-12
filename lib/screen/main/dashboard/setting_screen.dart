@@ -1,3 +1,4 @@
+import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
@@ -8,6 +9,7 @@ import 'package:esdc_emg/widget/row/category_label.dart';
 import 'package:esdc_emg/widget/row/setting_item_row.dart';
 import 'package:esdc_emg/widget/row/setting_switch_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -17,6 +19,14 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
 
   bool shareAnalytics = false;
+
+  SettingBloc _settingBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _settingBloc = BlocProvider.of<SettingBloc>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +42,17 @@ class _SettingScreenState extends State<SettingScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 10,),
-                        CategoryLabel(label: 'inbox_setting'),
-                        SettingItemRow(label: 'filtered_inbox', value: 'by_location', onClick: () {},),
-                        SettingItemRow(label: 'notifications', value: 'only_urgent_msg', onClick: () {},),
+                        CategoryLabel(label: 'message_setting'),
+                        /*SettingItemRow(label: 'filtered_inbox', value: 'by_location', onClick: () {},),*/
+                        SettingItemRow(label: 'notifications', value: 'all_messages', onClick: () {},),
                         SizedBox(height: 10,),
                         CategoryLabel(label: 'feed_back'),
                         SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
-                        SettingSwitchRow(label: 'share_app_analytics', value: shareAnalytics, onChange: (val) {
+                        /*SettingSwitchRow(label: 'share_app_analytics', value: shareAnalytics, onChange: (val) {
                           setState(() {
                             shareAnalytics = val;
                           });
-                        },),
-                        CategoryLabel(label: 'app_dev_purpose', marginTop: 8,),
+                        },),*/
                         SizedBox(height: 10,),
                         CategoryLabel(label: 'lang'),
                         SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
@@ -87,7 +96,7 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
               RippleComponent(
                 onClick: () async {
-                  Globals.onLocaleChanged(Locale('en'));
+                  _settingBloc.add(SettingUpdateLanguageEvent(language: Globals.SupportedLanguageCodes[0]));
                   Navigator.pop(context);
                 },
                 child: Container(
@@ -96,7 +105,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       SizedBox(height: 10,),
                       Row(
                         children: [
-                          Expanded(child: Text(AppLocalization.of(context).trans('en'), style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),)),
+                          Expanded(child: Text(AppLocalization.of(context).trans(Globals.SupportedLanguageCodes[0]), style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),)),
                           Icon(Icons.keyboard_arrow_right, size: 28, color: Colors.grey),
                         ],
                       ),
@@ -109,7 +118,7 @@ class _SettingScreenState extends State<SettingScreen> {
               SizedBox(height: 10,),
               RippleComponent(
                 onClick: () async {
-                  Globals.onLocaleChanged(Locale('fr'));
+                  _settingBloc.add(SettingUpdateLanguageEvent(language: Globals.SupportedLanguageCodes[1]));
                   Navigator.pop(context);
                 },
                 child: Container(
@@ -118,7 +127,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       SizedBox(height: 10,),
                       Row(
                         children: [
-                          Expanded(child: Text(AppLocalization.of(context).trans('fr'), style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),)),
+                          Expanded(child: Text(AppLocalization.of(context).trans(Globals.SupportedLanguageCodes[1]), style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),)),
                           Icon(Icons.keyboard_arrow_right, size: 28, color: Colors.grey),
                         ],
                       ),

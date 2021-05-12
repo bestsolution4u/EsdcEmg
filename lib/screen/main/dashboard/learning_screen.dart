@@ -21,6 +21,14 @@ class _LearningScreenState extends State<LearningScreen> {
               ),
               SizedBox(height: 20,),
               ItemSelectorRow(
+                title: 'saba_cloud',
+                assetImage: 'asset/image/chat.svg',
+                onClick: () => gotoWebviewScreen(
+                    title: "saba_cloud",
+                    url: "url_saba_cloud"
+                ),
+              ),
+              ItemSelectorRow(
                 title: 'canada_school_service',
                 assetImage: 'asset/image/chat.svg',
                 onClick: () => gotoWebviewScreen(
@@ -36,11 +44,11 @@ class _LearningScreenState extends State<LearningScreen> {
                 ),
               ),
               ItemSelectorRow(
-                title: 'saba_cloud',
+                title: 'open_learning',
                 assetImage: 'asset/image/chat.svg',
                 onClick: () => gotoWebviewScreen(
-                    title: "saba_cloud",
-                    url: "url_saba_cloud"
+                    title: "open_learning",
+                    url: 'url_open_learning'
                 ),
               ),
               ItemSelectorRow(
