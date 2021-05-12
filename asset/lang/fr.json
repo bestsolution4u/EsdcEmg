@@ -207,5 +207,7 @@
   "site_contact_general_inquiries": "https://www.canada.ca/fr/contact/communiquez-avec-1-800-o-canada.html",
   "contact_nscc": "Centre national d'appels de service (CNAS)",
   "phone_contact_nscc": "1-800-463-1850",
-  "site_contact_nscc": "https://www.tpsgc-pwgsc.gc.ca/comm/cnas-nscc-fra.html"
+  "site_contact_nscc": "https://www.tpsgc-pwgsc.gc.ca/comm/cnas-nscc-fra.html",
+  "last_updated": "Dernière mise à jour",
+  "used": "utilisé"
 }

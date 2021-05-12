@@ -90,7 +90,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
               onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),
             ),
             SizedBox(height: 10,),
+            Divider(height: 1,),
+            SizedBox(height: 10,),
             buildVPN(),
+            SizedBox(height: 10,),
+            Divider(height: 1,),
             SizedBox(height: 10,),
             DashboardButton(
               title: AppLocalization.of(context).trans('send_us_feedback'),
@@ -277,51 +281,54 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget buildVPN() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Card(
-          clipBehavior: Clip.antiAlias,
-          elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: new BorderSide(color: Styles.darkGray, width: 1.0)),
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SvgPicture.asset(
+                'asset/image/wifi.svg',
+                color: Styles.primaryColor,
+                allowDrawingOutsideViewBox: true,
+                height: 28,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                AppLocalization.of(context).trans('vpn_status'),
+                maxLines: 2,
+                style: TextStyle(
+                    color: Styles.primaryColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset(
-                      'asset/image/wifi.svg',
-                      color: Styles.textBlack,
-                      allowDrawingOutsideViewBox: true,
-                      height: 28,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      AppLocalization.of(context).trans('vpn_status'),
-                      maxLines: 2,
-                      style: TextStyle(
-                          color: Styles.textBlack,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
+                Text(AppLocalization.of(context).trans('last_updated') + " May 8, 2021, 10:36 am EST", style: TextStyle(color: Styles.primaryColor, fontSize: 12),),
+                SizedBox(height: 10,),
                 ListView.separated(
-                  primary: false,
+                    primary: false,
                     shrinkWrap: true,
                     itemBuilder: (context, index) => VpnStatusRow(vpnStatus: vpnStatusList[index],),
-                    separatorBuilder: (context, index) => Divider(height: 10, thickness: 1,),
+                    separatorBuilder: (context, index) => Divider(height: 16, thickness: 1,),
                     itemCount: vpnStatusList.length)
               ],
             ),
-          )),
+          ),
+        ],
+      ),
     );
   }
 }
