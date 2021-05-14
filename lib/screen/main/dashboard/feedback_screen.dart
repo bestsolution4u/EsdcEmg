@@ -298,6 +298,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   feedbackController.text = "";
                 });
                 Navigator.pop(context);
+                Navigator.pop(context);
               },
             ),
           ],

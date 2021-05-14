@@ -68,11 +68,11 @@ class Globals {
     "New Brunswick",
     "Quebec",
     "Ontario",
+    "Manitoba",
     "Saskatchewan",
     "Alberta",
     "British Columbia",
     "Nunavut",
-    "Manitoba",
     "Northwest Territories",
     "Yukon"
   ];

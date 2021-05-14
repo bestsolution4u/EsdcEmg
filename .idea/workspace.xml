@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="de040a4d-ce5b-445c-af48-5b5d85361f55" name="Default Changelist" comment="Phase 1 complete">
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/lang/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/asset/lang/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/asset/lang/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/config/global.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config/global.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/dashboard/feedback_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/dashboard/feedback_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/message/message_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/message/message_detail_screen.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
+        <option value="valueResourceFile" />
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1rUfSGgIVcUFKvJgjUnL4jNl7CF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="flutter.settings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\Flutter\EsdcEmg\esdc_emg\android\app\src\main\res\drawable" />
+      <recent name="D:\Projects\Flutter\EsdcEmg\esdc_emg\lib\screen\main\dashboard" />
+      <recent name="D:\Projects\Flutter\EsdcEmg\esdc_emg\lib\screen\main\socialmedia" />
+      <recent name="D:\Projects\Flutter\EsdcEmg\esdc_emg\lib\screen\main\employee" />
+      <recent name="D:\Projects\Flutter\EsdcEmg\esdc_emg\lib\screen\main\message" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\Flutter\EsdcEmg\esdc_emg\android\app\src\main\res" />
+      <recent name="D:\Projects\Flutter\EsdcEmg\esdc_emg\asset" />
+      <recent name="D:\Projects\Flutter\EsdcEmg\esdc_emg\ios\Runner" />
+      <recent name="D:\Projects\Flutter\EsdcEmg\esdc_emg\android\app" />
+      <recent name="D:\Projects\Flutter\EsdcEmg\esdc_emg\lib\api" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de040a4d-ce5b-445c-af48-5b5d85361f55" name="Default Changelist" comment="" />
+      <created>1619035586162</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619035586162</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial">
+      <created>1619105785954</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619105785954</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Initial">
+      <created>1619200137328</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619200137328</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Initial">
+      <created>1619200359510</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619200359510</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Initial">
+      <created>1619660975499</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619660975499</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Initial">
+      <created>1619801641322</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619801641322</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Unread message count issue fixed">
+      <created>1620055688865</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1620055688865</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Push notification fixed">
+      <created>1620152635534</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1620152635534</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Push notification fixed">
+      <created>1620155754322</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1620155754322</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Phase 1 complete">
+      <created>1620238494984</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1620238494984</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Phase 1 complete">
+      <created>1620240756197</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1620240756197</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Phase 1 complete">
+      <created>1620406734874</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1620406734876</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Phase 1 complete">
+      <created>1620485231466</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1620485231466</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Phase 1 complete">
+      <created>1620491350656</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1620491350656</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Phase 1 complete">
+      <created>1620830349037</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1620830349037</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Phase 1 complete">
+      <created>1620833363349</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1620833363349</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Phase 1 complete">
+      <created>1620838642196</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1620838642196</updated>
+    </task>
+    <task id="LOCAL-00017" summary="IOS config">
+      <created>1620851397839</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1620851397839</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Updates">
+      <created>1621002704936</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1621002704936</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial" />
+    <MESSAGE value="Unread message count issue fixed" />
+    <MESSAGE value="Push notification fixed" />
+    <MESSAGE value="Phase 1 complete" />
+    <MESSAGE value="IOS config" />
+    <MESSAGE value="Updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="489" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1620407825836">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="489" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1620407825836" />
+    <state x="757" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1619477940905">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="757" y="322" key="#com.intellij.fileTypes.FileTypeChooser/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1619477940905" />
+    <state x="840" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1621004708497">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="840" y="236" key="#com.intellij.ide.util.MemberChooser/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621004708497" />
+    <state x="2453" y="160" key="#com.intellij.ide.util.MemberChooser/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1620173203539" />
+    <state x="765" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1620999127498">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="765" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1620999127498" />
+    <state x="2395" y="187" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1619531252297" />
+    <state x="244" y="233" width="1224" height="600" key="AVDManager" timestamp="1620998914807">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="244" y="233" width="1224" height="600" key="AVDManager/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1620998914807" />
+    <state x="1991" y="64" width="1224" height="600" key="AVDManager/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1620194187779" />
+    <state x="615" y="275" key="AndroidCreateResourceDirectoryDialog" timestamp="1620652875978">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="615" y="275" key="AndroidCreateResourceDirectoryDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1620652875978" />
+    <state x="615" y="275" key="AndroidCreateResourceFileDialog" timestamp="1620652812360">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="615" y="275" key="AndroidCreateResourceFileDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1620652812360" />
+    <state x="2422" y="110" key="AndroidProcessChooserDialog" timestamp="1620195923799">
+      <screen x="1920" y="0" width="1366" height="728" />
+    </state>
+    <state x="2422" y="110" key="AndroidProcessChooserDialog/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1620195923799" />
+    <state x="242" y="92" width="1586" height="856" key="DiffContextDialog" timestamp="1619661305268">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="242" y="92" width="1586" height="856" key="DiffContextDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1619661305268" />
+    <state x="815" y="275" key="FileChooserDialogImpl" timestamp="1620751516160">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="815" y="275" key="FileChooserDialogImpl/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1620751516160" />
+    <state x="2433" y="193" key="FileChooserDialogImpl/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1619595472895" />
+    <state width="1727" height="333" key="GridCell.Tab.0.bottom" timestamp="1621007302374">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state width="1878" height="617" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767026" />
+    <state width="1727" height="333" key="GridCell.Tab.0.bottom/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621007302374" />
+    <state width="1323" height="342" key="GridCell.Tab.0.bottom/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1620200687776" />
+    <state width="1727" height="333" key="GridCell.Tab.0.center" timestamp="1621007302374">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state width="1878" height="617" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767024" />
+    <state width="1727" height="333" key="GridCell.Tab.0.center/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621007302374" />
+    <state width="1323" height="342" key="GridCell.Tab.0.center/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1620200687776" />
+    <state width="1727" height="333" key="GridCell.Tab.0.left" timestamp="1621007302373">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state width="1878" height="617" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767023" />
+    <state width="1727" height="333" key="GridCell.Tab.0.left/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621007302373" />
+    <state width="1323" height="342" key="GridCell.Tab.0.left/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1620200687775" />
+    <state width="1727" height="333" key="GridCell.Tab.0.right" timestamp="1621007302374">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state width="1878" height="617" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767025" />
+    <state width="1727" height="333" key="GridCell.Tab.0.right/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621007302374" />
+    <state width="1323" height="342" key="GridCell.Tab.0.right/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1620200687776" />
+    <state x="673" y="281" key="MultipleFileMergeDialog" timestamp="1619661110725">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="673" y="281" key="MultipleFileMergeDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1619661110725" />
+    <state x="575" y="172" key="SettingsEditor" timestamp="1621003097519">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="461" y="179" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1620840753710" />
+    <state x="575" y="172" key="SettingsEditor/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621003097519" />
+    <state x="627" y="253" key="Vcs.Push.Dialog.v2" timestamp="1621002732289">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="627" y="253" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621002732289" />
+    <state x="2288" y="177" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1619801654198" />
+    <state x="242" y="92" width="1586" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1620835664692">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="242" y="92" width="1586" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1620835664692" />
+    <state x="1991" y="64" width="1224" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1619506354426" />
+    <state x="630" y="372" key="com.intellij.ide.util.TipDialog" timestamp="1620847982537">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="630" y="372" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1620847982537" />
+    <state x="1920" y="0" width="1382" height="815" key="dock-window-1" timestamp="1621005417090">
+      <screen x="1920" y="0" width="1366" height="728" />
+    </state>
+    <state x="1920" y="0" width="1382" height="815" key="dock-window-1/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621005417090" />
+    <state x="1920" y="0" width="1382" height="815" key="dock-window-2" timestamp="1620757114942">
+      <screen x="1920" y="0" width="1366" height="728" />
+    </state>
+    <state x="1920" y="0" width="1382" height="815" key="dock-window-2/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1620757114942" />
+    <state x="1920" y="0" width="1382" height="815" key="dock-window-3" timestamp="1620766450257">
+      <screen x="1920" y="0" width="1366" height="728" />
+    </state>
+    <state x="1920" y="0" width="1382" height="815" key="dock-window-3/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1620766450257" />
+    <state x="742" y="253" width="585" height="596" key="find.popup" timestamp="1621004925400">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="742" y="253" width="585" height="596" key="find.popup/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621004925400" />
+    <state x="755" y="308" key="git4idea.merge.GitPullDialog" timestamp="1621002759597">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="755" y="308" key="git4idea.merge.GitPullDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621002759597" />
+    <state x="691" y="240" key="run.anything.popup" timestamp="1619183140946">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="691" y="240" key="run.anything.popup/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1619183140946" />
+    <state x="698" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1621005826955">
+      <screen x="150" y="0" width="1770" height="1040" />
+    </state>
+    <state x="698" y="225" width="672" height="678" key="search.everywhere.popup/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621005826955" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/api/http_manager.dart</url>
+          <line>7</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$USER_HOME$/Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-1.0.7/lib/webview_flutter.dart</url>
+          <line>537</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

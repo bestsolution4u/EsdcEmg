@@ -5,6 +5,7 @@ import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
+import 'package:esdc_emg/widget/appbar/message_appbar.dart';
 import 'package:esdc_emg/widget/button/bordered_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,34 +38,14 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.message.category);
-    String category = "";
-    for (int i = 0; i < Globals.MESSAGE_CATEGORIES.length; i++) {
-      if (widget.message.category.toLowerCase().contains(Globals.MESSAGE_CATEGORIES[i])) {
-        category = Globals.MESSAGE_CATEGORIES[i];
-      }
-    }
-    String categoryLine = "";
-    if (category.isNotEmpty) {
-      categoryLine = AppLocalization.of(context).trans('category') + ": " + AppLocalization.of(context).trans(category);
-    }
 
-    String audience = "";
-    final split = widget.message.audience.split(',');
-    for (int i = 0; i < split.length; i++) {
-      String val = split[i];
-      if (val == null || val.isEmpty) continue;
-      if (!audience.isEmpty) audience += ", ";
-      audience += AppLocalization.of(context).trans(val);
-    }
     return SafeArea(
         child: Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ChildAppbar(
-            title: AppLocalization.currentLanguage == 'fr' ? widget.message.titleFr : widget.message.title,
-            isMessage: true,
+          MessageAppBar(
+            message: widget.message,
             action: AppIconButton(
               icon: SvgPicture.asset(
                 'asset/image/more.svg',
@@ -77,48 +58,30 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
               onClick: () => openMore(),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
-            child: Text(
-              DateFormat('MMMM dd, yyyy').format(DateTime.parse(widget.message.effectiveDate)),
-              style: TextStyle(color: Styles.textBlack, fontSize: 14),
-              textAlign: TextAlign.start,
+          Expanded(child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text(
+                    AppLocalization.currentLanguage == 'fr' ? widget.message.messageFr : widget.message.message,
+                    style: TextStyle(color: Styles.textBlack, fontSize: 16),
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    AppLocalization.of(context).trans('note_expiration_date') + DateFormat('MMMM dd, yyyy').format(DateTime.parse(widget.message.expiredDate)),
+                    style: TextStyle(color: Styles.darkGray, fontSize: 12),
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+              ],
             ),
-          ),
-          categoryLine.isNotEmpty ? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(
-              categoryLine,
-              style: TextStyle(color: Styles.textBlack, fontSize: 14),
-              textAlign: TextAlign.start,
-            ),
-          ) : Container(),
-          SizedBox(height: 10,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(
-              AppLocalization.of(context).trans('audience') + ": " + audience,
-              style: TextStyle(color: Styles.textBlack, fontSize: 14),
-              textAlign: TextAlign.start,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Text(
-              AppLocalization.currentLanguage == 'fr' ? widget.message.messageFr : widget.message.message,
-              style: TextStyle(color: Styles.textBlack, fontSize: 16),
-              textAlign: TextAlign.start,
-            ),
-          ),
-          Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Text(
-              AppLocalization.of(context).trans('note_expiration_date') + DateFormat('MMMM dd, yyyy').format(DateTime.parse(widget.message.expiredDate)),
-              style: TextStyle(color: Styles.darkGray, fontSize: 12),
-              textAlign: TextAlign.start,
-            ),
-          ),
+          )),
+
         ],
       ),
     ));
