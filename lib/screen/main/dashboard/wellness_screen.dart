@@ -1,6 +1,7 @@
+import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/screen/main/webview_screen.dart';
-import 'package:esdc_emg/widget/appbar/child_appbar.dart';
-import 'package:esdc_emg/widget/row/item_selector_row.dart';
+import 'package:esdc_emg/widget/appbar/child_image_appbar.dart';
+import 'package:esdc_emg/widget/button/border_item_selector.dart';
 import 'package:flutter/material.dart';
 
 class WellnessScreen extends StatefulWidget {
@@ -11,33 +12,42 @@ class WellnessScreen extends StatefulWidget {
 class _WellnessScreenState extends State<WellnessScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ChildAppbar(
-            title: "wellness",
-          ),
-          SizedBox(height: 20,),
-          ItemSelectorRow(
-            title: 'employ_assistance_program',
-            assetImage: 'asset/image/chat.svg',
-            onClick: () => gotoWebviewScreen(
-                title: "employ_assistance_program",
-                url: 'url_employ_assistance_program'),
-          ),
-          ItemSelectorRow(
-            title: 'life_speak',
-            assetImage: 'asset/image/chat.svg',
-            onClick: () => gotoWebviewScreen(
-              title: "life_speak",
-              url: "url_life_speak"
+    return Scaffold(
+      backgroundColor: Styles.blue,
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ChildImageAppbar(
+              title: "wellness",
+              icon: 'asset/image/icon-wellness.svg',
             ),
-          ),
-        ],
+            SizedBox(height: 40,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: BorderItemSelector(
+                title: 'employ_assistance_program_2',
+                icon: 'asset/image/icon-nav-eap.svg',
+                onClick: () => gotoWebviewScreen(
+                    title: "employ_assistance_program",
+                    url: 'url_employ_assistance_program'),
+              ),
+            ),
+            SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: BorderItemSelector(
+                title: 'life_speak',
+                icon: 'asset/image/icon-nav-lifespeak.svg',
+                onClick: () => gotoWebviewScreen(
+                    title: "employ_assistance_program",
+                    url: 'url_employ_assistance_program'),
+              ),
+            ),
+          ],
+        ),
       ),
-    ));
+    );
   }
 
   void gotoWebviewScreen({String title, String url}) {

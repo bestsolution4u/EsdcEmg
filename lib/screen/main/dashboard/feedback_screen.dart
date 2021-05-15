@@ -41,9 +41,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   Widget build(BuildContext context) {
     if (category == null) category = AppLocalization.of(context).trans(Globals.CATEGORIES[0]);
     if (from == null) from = AppLocalization.of(context).trans(Globals.WHICH_FROM[0]);
-    return SafeArea(
-        child: Scaffold(
-          body: Stack(
+    return Scaffold(
+      backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Stack(
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -264,7 +265,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 child: Center(child: CircularProgressIndicator(),),
               ) : Container()
             ],
-          )
+          ),
         )
     );
   }

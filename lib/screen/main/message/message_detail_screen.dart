@@ -39,52 +39,52 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
   @override
   Widget build(BuildContext context) {
 
-    return SafeArea(
-        child: Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MessageAppBar(
-            message: widget.message,
-            action: AppIconButton(
-              icon: SvgPicture.asset(
-                'asset/image/more.svg',
-                color: Styles.darkGray,
-                allowDrawingOutsideViewBox: true,
-                height: 24,
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            MessageAppBar(
+              message: widget.message,
+              action: AppIconButton(
+                icon: SvgPicture.asset(
+                  'asset/image/more.svg',
+                  color: Styles.darkGray,
+                  allowDrawingOutsideViewBox: true,
+                  height: 24,
+                ),
+                padding: 12,
+                rippleRadius: 24,
+                onClick: () => openMore(),
               ),
-              padding: 12,
-              rippleRadius: 24,
-              onClick: () => openMore(),
             ),
-          ),
-          Expanded(child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Text(
-                    AppLocalization.currentLanguage == 'fr' ? widget.message.messageFr : widget.message.message,
-                    style: TextStyle(color: Styles.textBlack, fontSize: 16),
-                    textAlign: TextAlign.start,
+            Expanded(child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Text(
+                      AppLocalization.currentLanguage == 'fr' ? widget.message.messageFr : widget.message.message,
+                      style: TextStyle(color: Styles.textBlack, fontSize: 16),
+                      textAlign: TextAlign.start,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    AppLocalization.of(context).trans('note_expiration_date') + DateFormat('MMMM dd, yyyy').format(DateTime.parse(widget.message.expiredDate)),
-                    style: TextStyle(color: Styles.darkGray, fontSize: 12),
-                    textAlign: TextAlign.start,
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      AppLocalization.of(context).trans('note_expiration_date') + DateFormat('MMMM dd, yyyy').format(DateTime.parse(widget.message.expiredDate)),
+                      style: TextStyle(color: Styles.darkGray, fontSize: 12),
+                      textAlign: TextAlign.start,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          )),
-
-        ],
+                ],
+              ),
+            )),
+          ],
+        ),
       ),
-    ));
+    );
   }
 
   void openMore() {

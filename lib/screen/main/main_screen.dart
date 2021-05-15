@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/bloc/app_bloc.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
@@ -72,6 +74,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     return DefaultTabController(
         length: 4,
         child: Scaffold(
+          backgroundColor: Colors.white,
           body: AppMainTabBarView(
             controller: tabController,
             physics: NeverScrollableScrollPhysics(),
@@ -87,7 +90,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             ],
           ),
           bottomNavigationBar: Container(
-            height: 70,
+            height: Platform.isIOS ? 70 : 60,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -103,17 +106,17 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               activeBackgroundColor: Colors.white,
               inactiveBackgroundColor: Colors.white,
               indicatorWeight: 0.1,
-              labelColor: Styles.purple,
-              unselectedLabelColor: Styles.textBlack,
               tabs: [
                 MainTabItem(
                   title: 'app_title_home',
-                  image: 'asset/image/star.svg',
+                  image: 'asset/image/nav-icon-home.svg',
+                  imageInactive: 'asset/image/tab-home.svg',
                   selected: currentTabIndex == 0,
                 ),
                 MainTabItem(
                   title: 'title_msg',
-                  image: 'asset/image/mail.svg',
+                  image: 'asset/image/tab-messages-active.svg',
+                  imageInactive: 'asset/image/tab-messages.svg',
                   selected: currentTabIndex == 1,
                   badge: BlocBuilder<MessageBloc, MessageState>(
                     builder: (context, msgState) {
@@ -143,7 +146,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                               top: 0,
                               right: 0,
                               child: Transform.translate(
-                                offset: Offset(8.0, -8.0),
+                                offset: Offset(2.0, -3.0),
                                 child: Container(
                                   width: 16,
                                   height: 16,
@@ -165,12 +168,14 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                 ),
                 MainTabItem(
                   title: 'title_emply',
-                  image: 'asset/image/user.svg',
+                  image: 'asset/image/tab-employees-active.svg',
+                  imageInactive: 'asset/image/tab-employees.svg',
                   selected: currentTabIndex == 2,
                 ),
                 MainTabItem(
                   title: 'title_soci_medi',
-                  image: 'asset/image/sound.svg',
+                  image: 'asset/image/tab-social-active.svg',
+                  imageInactive: 'asset/image/tab-social.svg',
                   selected: currentTabIndex == 3,
                 ),
               ],

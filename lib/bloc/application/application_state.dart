@@ -7,4 +7,6 @@ class ApplicationInitialState extends ApplicationState {}
 
 class ApplicationLoadingState extends ApplicationState {}
 
+class ApplicationIntroState extends ApplicationState {}
+
 class ApplicationSetupState extends ApplicationState {}

@@ -11,57 +11,59 @@ class LearningScreen extends StatefulWidget {
 class _LearningScreenState extends State<LearningScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ChildAppbar(
-                title: "learning",
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ChildAppbar(
+              title: "learning",
+            ),
+            SizedBox(height: 20,),
+            ItemSelectorRow(
+              title: 'saba_cloud',
+              assetImage: 'asset/image/chat.svg',
+              onClick: () => gotoWebviewScreen(
+                  title: "saba_cloud",
+                  url: "url_saba_cloud"
               ),
-              SizedBox(height: 20,),
-              ItemSelectorRow(
-                title: 'saba_cloud',
-                assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(
-                    title: "saba_cloud",
-                    url: "url_saba_cloud"
-                ),
+            ),
+            ItemSelectorRow(
+              title: 'canada_school_service',
+              assetImage: 'asset/image/chat.svg',
+              onClick: () => gotoWebviewScreen(
+                  title: "canada_school_service",
+                  url: 'url_canada_school_service'),
+            ),
+            ItemSelectorRow(
+              title: 'gc_campus',
+              assetImage: 'asset/image/chat.svg',
+              onClick: () => gotoWebviewScreen(
+                  title: "gc_campus",
+                  url: 'url_gc_campus'
               ),
-              ItemSelectorRow(
-                title: 'canada_school_service',
-                assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(
-                    title: "canada_school_service",
-                    url: 'url_canada_school_service'),
+            ),
+            ItemSelectorRow(
+              title: 'open_learning',
+              assetImage: 'asset/image/chat.svg',
+              onClick: () => gotoWebviewScreen(
+                  title: "open_learning",
+                  url: 'url_open_learning'
               ),
-              ItemSelectorRow(
-                title: 'gc_campus',
-                assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(
-                    title: "gc_campus",
-                    url: 'url_gc_campus'
-                ),
+            ),
+            ItemSelectorRow(
+              title: 'gc_infobase',
+              assetImage: 'asset/image/chat.svg',
+              onClick: () => gotoWebviewScreen(
+                  title: "gc_infobase",
+                  url: "url_gc_infobase"
               ),
-              ItemSelectorRow(
-                title: 'open_learning',
-                assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(
-                    title: "open_learning",
-                    url: 'url_open_learning'
-                ),
-              ),
-              ItemSelectorRow(
-                title: 'gc_infobase',
-                assetImage: 'asset/image/chat.svg',
-                onClick: () => gotoWebviewScreen(
-                    title: "gc_infobase",
-                    url: "url_gc_infobase"
-                ),
-              ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   void gotoWebviewScreen({String title, String url}) {

@@ -1,8 +1,11 @@
 import 'package:esdc_emg/config/global.dart';
+import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization_delegate.dart';
+import 'package:esdc_emg/screen/intro_screen.dart';
 import 'package:esdc_emg/screen/main/main_screen.dart';
 import 'package:esdc_emg/screen/splash_screen.dart';
+import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,8 +47,8 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Styles.lightGray,
-      statusBarIconBrightness: Brightness.dark,
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
       statusBarBrightness: Brightness.light,
       systemNavigationBarColor: Colors.black,
       systemNavigationBarDividerColor: Colors.grey,
@@ -58,9 +61,7 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
           onGenerateRoute: routes.generateRoute,
           localizationsDelegates: [
             _localizationsDelegate,
-            //provides localised strings
             GlobalMaterialLocalizations.delegate,
-            //provides RTL support
             GlobalWidgetsLocalizations.delegate,
           ],
           supportedLocales: Globals.SupportedLanguageCodes.map<Locale>((language) => Locale(language, "")),
@@ -72,7 +73,7 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
           ),
           home: BlocBuilder<ApplicationBloc, ApplicationState>(
             builder: (context, state) {
-              if (state is ApplicationSetupState)
+              if (state is ApplicationSetupState) {
                 return BlocListener<SettingBloc, SettingState>(
                   listener: (context, settingState) {
                     if (settingState is SettingLoadSuccessState) {
@@ -81,7 +82,11 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
                   },
                   child: MainScreen(),
                 );
-              return SplashScreen();
+              } else if (state is ApplicationIntroState) {
+                return IntroScreen();
+              } else {
+                return SplashScreen();
+              }
             },
           ),
         ));

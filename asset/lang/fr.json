@@ -16,6 +16,7 @@
   "urgent_message": "MESSAGES URGENTS",
   "urgent": "Urgent",
   "active_screening": "Outil de dépistage actif de la COVID-19 pour les employés",
+  "active_screening_2": "Outil de dépistage actif\nde la COVID-19 pour les employés",
   "disclaimer_text": "AVIS DE NON-RESPONSABILITÉ:  À déterminer environ 3 catégories d'employés, les travailleurs à distance, travaillant à partir du bureau et au service des Canadiens.",
   "employ_wellness": "Bien-être des employés",
   "learning": "Apprentissage",
@@ -62,6 +63,7 @@
   "share_page": "Partager cette page",
   "delete": "Effacer",
   "employ_assistance_program": "Programme d'aide aux employés",
+  "employ_assistance_program_2": "Programme\nd'aide aux employés",
   "life_speak": "Life Speak",
   "like_esdc": "Comment aimez-vous MonEDSC?",
   "feed_back_description": "Nous cherchons constamment à améliorer l'application MonEDSC pour mieux vous servir. Dites-nous ce que vous en pensez et les fonctionnalités que vous aimeriez voir à l’avenir.",
@@ -99,6 +101,7 @@
   "update_phone_settings": "Veuillez mettre à jour la langue de votre téléphone en utilisant la fonction paramètres de votre appareil.",
   "note_expiration_date": "NOTE: This message will expire on FR",
   "info_about_covid": "Info about COVID-19",
+  "info_about_covid_2": "Info about\nCOVID-19",
   "title_covid": "COVID-19",
   "collective_agreement_and_pay": "Convention collective et rémunération",
   "collective_agreement": "Conventions collectives",
@@ -210,5 +213,12 @@
   "phone_contact_nscc": "1-800-463-1850",
   "site_contact_nscc": "https://www.tpsgc-pwgsc.gc.ca/comm/cnas-nscc-fra.html",
   "last_updated": "Dernière mise à jour",
-  "used": "utilisé"
+  "used": "utilisé",
+  "made_for_esdc": "Made for ESDC",
+  "by_people_in_esdc": "By people in ESDC",
+  "intro_text_1": "ESDC’s app to connect to employees off-network.",
+  "intro_text_2": "Gateway to ESDC employee resources and tools.",
+  "intro_text_3": "Receive messages based on  individual preferences.",
+  "got_it": "Got it",
+  "donot_show_intro": "Don't show this screen again"
 }

@@ -4,3 +4,5 @@ import 'package:meta/meta.dart';
 abstract class ApplicationEvent {}
 
 class ApplicationStartupEvent extends ApplicationEvent {}
+
+class ApplicationIntroFinishEvent extends ApplicationEvent {}

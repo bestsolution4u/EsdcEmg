@@ -30,40 +30,41 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ChildAppbar(title: "title_settings",),
-              Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 10,),
-                        CategoryLabel(label: 'message_setting'),
-                        /*SettingItemRow(label: 'filtered_inbox', value: 'by_location', onClick: () {},),*/
-                        SettingItemRow(label: 'notifications', value: 'all_messages', onClick: () {},),
-                        SizedBox(height: 10,),
-                        CategoryLabel(label: 'feed_back'),
-                        SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
-                        /*SettingSwitchRow(label: 'share_app_analytics', value: shareAnalytics, onChange: (val) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ChildAppbar(title: "title_settings",),
+            Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10,),
+                      CategoryLabel(label: 'message_setting'),
+                      /*SettingItemRow(label: 'filtered_inbox', value: 'by_location', onClick: () {},),*/
+                      SettingItemRow(label: 'notifications', value: 'all_messages', onClick: () {},),
+                      SizedBox(height: 10,),
+                      CategoryLabel(label: 'feed_back'),
+                      SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
+                      /*SettingSwitchRow(label: 'share_app_analytics', value: shareAnalytics, onChange: (val) {
                           setState(() {
                             shareAnalytics = val;
                           });
                         },),*/
-                        SizedBox(height: 10,),
-                        CategoryLabel(label: 'lang'),
-                        SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
-                        CategoryLabel(label: 'update_phone_settings', marginTop: 8,),
-                      ],
-                    ),
-                  )
-              )
-            ],
-          ),
-        )
+                      SizedBox(height: 10,),
+                      CategoryLabel(label: 'lang'),
+                      SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
+                      CategoryLabel(label: 'update_phone_settings', marginTop: 8,),
+                    ],
+                  ),
+                )
+            )
+          ],
+        ),
+      ),
     );
   }
 

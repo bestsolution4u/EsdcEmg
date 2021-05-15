@@ -45,7 +45,7 @@ class VpnStatusRow extends StatelessWidget {
           width: 110,
           child: Text(
             '${vpnStatus.usage}% ' + AppLocalization.of(context).trans('used'),
-            style: TextStyle(color: Styles.primaryColor, fontSize: 14),
+            style: TextStyle(color: Styles.primaryColor, fontSize: 16),
           ),
         ),
         SizedBox(

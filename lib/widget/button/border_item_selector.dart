@@ -1,0 +1,44 @@
+import 'package:esdc_emg/localization/app_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+class BorderItemSelector extends StatelessWidget {
+
+  final String title, icon;
+  final double iconSize;
+  final Color color;
+  final VoidCallback onClick;
+
+  BorderItemSelector({this.title, this.icon, this.iconSize = 50, this.color = Colors.white, this.onClick});
+
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(
+      minWidth: MediaQuery.of(context).size.width,
+      height: 160,
+      onPressed: onClick,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            icon,
+            allowDrawingOutsideViewBox: true,
+            height: iconSize,
+          ),
+          SizedBox(height: 10,),
+          Flexible(child: Text(AppLocalization.of(context).trans(title), style: TextStyle(color: color, fontSize: 16), textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis,))
+        ],
+      ),
+      textColor: color,
+      shape: RoundedRectangleBorder(
+          side: BorderSide(
+              color: color,
+              width: 1,
+              style: BorderStyle.solid),
+          borderRadius:
+          BorderRadius.circular(15)),
+    );
+  }
+}

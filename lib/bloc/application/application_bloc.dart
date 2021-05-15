@@ -16,13 +16,20 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
   Stream<ApplicationState> mapEventToState(ApplicationEvent event) async* {
     if (event is ApplicationStartupEvent) {
       yield* _mapApplicationStartupEventToState();
+    } else if (event is ApplicationIntroFinishEvent) {
+      yield* _mapApplicationIntroFinishEventToState();
     }
   }
 
   Stream<ApplicationState> _mapApplicationStartupEventToState() async* {
+
     /// Start Application Setup
     yield ApplicationLoadingState();
-
+    print("-----------------------");
+    print(DateTime.now().second);
+    await Future.delayed(const Duration(seconds: 3));
+    print(DateTime.now().second);
+    print("-----------------------");
     /// init firebase
     await Firebase.initializeApp();
 
@@ -34,10 +41,15 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
     AppBloc.settingBloc.add(SettingLoadEvent());
     AppBloc.messageBloc.add(MessageLoadEvent());
 
-    /// Application Setup Completed
-    yield ApplicationSetupState();
+    if (PreferenceHelper.getBool(PrefParams.DONOT_SHOW_INTRO)) {
+      /// Application Setup Completed
+      yield ApplicationSetupState();
+    } else {
+      yield ApplicationIntroState();
+    }
   }
 
-
-
+  Stream<ApplicationState> _mapApplicationIntroFinishEventToState() async* {
+    yield ApplicationSetupState();
+  }
 }

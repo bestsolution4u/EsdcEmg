@@ -96,7 +96,7 @@ class MessageAppBar extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
           child: Text(
             categoryLine,
-            style: TextStyle(color: Styles.textBlack, fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Styles.textBlack, fontSize: 16),
             textAlign: TextAlign.start,
           )
         ),

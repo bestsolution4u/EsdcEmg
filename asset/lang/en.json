@@ -16,6 +16,7 @@
   "urgent_message": "URGENT MESSAGES",
   "urgent": "Urgent",
   "active_screening": "COVID-19 Employee Active Screening Tool",
+  "active_screening_2": "COVID-19\nEmployee Active Screening Tool",
   "disclaimer_text": "\nDISCLAIMER: TBD about 3 categories of employees remote workers, working from office, and serving canadians.",
   "employ_wellness": "Employee wellness",
   "learning": "Learning",
@@ -62,6 +63,7 @@
   "share_page": "Share this page",
   "delete": "Delete",
   "employ_assistance_program": "Employee Assistance Program",
+  "employ_assistance_program_2": "Employee\nAssistance Program",
   "life_speak": "Life Speak",
   "like_esdc": "How are you liking MyESDC?",
   "feed_back_description": "We are constantly looking for improve the MyESDC app to serve you better. Let us know what you think and what features you'd like to see in the future.",
@@ -99,6 +101,7 @@
   "update_phone_settings": "Please update your iPhone language in your device's settings to change language.",
   "note_expiration_date": "NOTE: This message will expire on ",
   "info_about_covid": "Info about COVID-19",
+  "info_about_covid_2": "Info about\nCOVID-19",
   "title_covid": "COVID-19",
   "collective_agreement_and_pay": "Collective agreements and pay",
   "collective_agreement": "Collective agreements",
@@ -210,5 +213,12 @@
   "phone_contact_nscc": "1-800-463-1850",
   "site_contact_nscc": "https://www.tpsgc-pwgsc.gc.ca/comm/cnas-nscc-eng.html",
   "last_updated": "Last updated",
-  "used": "used"
+  "used": "used",
+  "made_for_esdc": "Made for ESDC",
+  "by_people_in_esdc": "By people in ESDC",
+  "intro_text_1": "ESDC’s app to connect to employees off-network.",
+  "intro_text_2": "Gateway to ESDC employee resources and tools.",
+  "intro_text_3": "Receive messages based on  individual preferences.",
+  "got_it": "Got it",
+  "donot_show_intro": "Don't show this screen again"
 }

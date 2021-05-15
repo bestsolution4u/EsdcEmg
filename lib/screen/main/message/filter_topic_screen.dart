@@ -22,39 +22,39 @@ class _FilterTopicScreenState extends State<FilterTopicScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ChildAppbar(
-                title: 'filter_topic',
-              ),
-              Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 30,),
-                        ItemSelectorRow(title: Globals.DEFAULT_MESSAGE_CATEGORY, onClick: () {
-                          _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: Globals.DEFAULT_MESSAGE_CATEGORY));
-                          Navigator.pop(context);
-                        },),
-                        ListView.separated(
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ChildAppbar(
+              title: 'filter_topic',
+            ),
+            Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 30,),
+                      ItemSelectorRow(title: Globals.DEFAULT_MESSAGE_CATEGORY, onClick: () {
+                        _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: Globals.DEFAULT_MESSAGE_CATEGORY));
+                        Navigator.pop(context);
+                      },),
+                      ListView.separated(
                           primary: false,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) => ItemSelectorRow(title: Globals.MESSAGE_CATEGORIES[index], onClick: () {
-                              _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: Globals.MESSAGE_CATEGORIES[index]));
-                              Navigator.pop(context);
-                            }),
-                            separatorBuilder: (context, index) => SizedBox(height: 5,),
-                            itemCount: Globals.MESSAGE_CATEGORIES.length)
-                      ],
-                    ),
-                  ))
-            ],
-          ),
-        )
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) => ItemSelectorRow(title: Globals.MESSAGE_CATEGORIES[index], onClick: () {
+                            _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: Globals.MESSAGE_CATEGORIES[index]));
+                            Navigator.pop(context);
+                          }),
+                          separatorBuilder: (context, index) => SizedBox(height: 5,),
+                          itemCount: Globals.MESSAGE_CATEGORIES.length)
+                    ],
+                  ),
+                ))
+          ],
+        ),
+      ),
     );
   }
 }

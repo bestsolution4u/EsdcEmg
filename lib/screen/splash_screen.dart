@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -10,9 +11,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Text("ESDC", style: TextStyle(color: Colors.white, fontSize: 48, fontWeight: FontWeight.bold),),
-      ),
+      body: Image.asset('asset/image/bg-splash.png', width: double.infinity, height: double.infinity, fit: BoxFit.fill,),
     );
   }
 }

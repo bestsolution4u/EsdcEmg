@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebviewScreen extends StatefulWidget {
@@ -20,43 +17,43 @@ class _WebviewScreenState extends State<WebviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ChildAppbar(title: widget.title),
-              Expanded(
-                  child: Stack(
-                    children: [
-                      WebView(
-                        initialUrl: AppLocalization.of(context).trans(widget.url),
-                        javascriptMode: JavascriptMode.unrestricted,
-                        onPageFinished: (url) {
-                          setState(() {
-                            isLoading = false;
-                          });
-                        },
-                        navigationDelegate: (NavigationRequest request) {
-                          print("-------------- Url Request -----------");
-                          print(request.url);
-                          /*if(request.url.contains("mailto:")) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ChildAppbar(title: widget.title),
+            Expanded(
+                child: Stack(
+                  children: [
+                    WebView(
+                      initialUrl: AppLocalization.of(context).trans(widget.url),
+                      javascriptMode: JavascriptMode.unrestricted,
+                      onPageFinished: (url) {
+                        setState(() {
+                          isLoading = false;
+                        });
+                      },
+                      navigationDelegate: (NavigationRequest request) {
+                        print("-------------- Url Request -----------");
+                        print(request.url);
+                        /*if(request.url.contains("mailto:")) {
                             launch(request.url);
                             return NavigationDecision.prevent;
                           } else if (request.url.contains("tel:")) {
                             launch(request.url);
                             return NavigationDecision.prevent;
                           }*/
-                          return NavigationDecision.navigate;
-                        },
-                      ),
-                      isLoading ? Center(child: CircularProgressIndicator(),) : Container()
-                    ],
-                  )
-              )
-            ],
-          ),
-        )
+                        return NavigationDecision.navigate;
+                      },
+                    ),
+                    isLoading ? Center(child: CircularProgressIndicator(),) : Container()
+                  ],
+                )
+            )
+          ],
+        ),
+      ),
     );
   }
 }
