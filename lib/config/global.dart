@@ -61,7 +61,7 @@ class Globals {
 
   static const List<String> MESSAGE_LOCATIONS = [
     "All",
-    "National-Canada Wide",
+    "National – Canada wide",
     "Newfoundland and Labrador",
     "Prince Edward Island",
     "Nova Scotia",

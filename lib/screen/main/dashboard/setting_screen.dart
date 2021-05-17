@@ -10,6 +10,7 @@ import 'package:esdc_emg/widget/row/setting_item_row.dart';
 import 'package:esdc_emg/widget/row/setting_switch_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:io' show Platform;
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -57,7 +58,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       SizedBox(height: 10,),
                       CategoryLabel(label: 'lang'),
                       SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
-                      CategoryLabel(label: 'update_phone_settings', marginTop: 8,),
+                      Platform.isIOS ? CategoryLabel(label: 'update_phone_settings', fontSize: 12, color: Colors.grey, marginTop: 8, fontWeight: FontWeight.w400,) : Container(),
                     ],
                   ),
                 )

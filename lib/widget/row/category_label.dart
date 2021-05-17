@@ -6,15 +6,18 @@ class CategoryLabel extends StatelessWidget {
 
   final String label;
   final double marginTop;
+  final double fontSize;
+  final Color color;
+  final FontWeight fontWeight;
 
-  CategoryLabel({this.label, this.marginTop = 24});
+  CategoryLabel({this.label, this.color = Styles.darkerBlue, this.fontWeight = FontWeight.bold, this.fontSize = 20, this.marginTop = 24});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: marginTop, left: 15, right: 12),
       width: double.infinity,
-      child: Text(AppLocalization.of(context).trans(label), style: TextStyle(color: Styles.darkerBlue, fontSize: 20, fontWeight: FontWeight.bold),),
+      child: Text(AppLocalization.of(context).trans(label), style: TextStyle(color: color, fontSize: fontSize, fontWeight: fontWeight),),
     );
   }
 }

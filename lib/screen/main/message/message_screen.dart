@@ -6,11 +6,10 @@ import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/model/setting_model.dart';
 import 'package:esdc_emg/screen/main/message/filter_location_screen.dart';
 import 'package:esdc_emg/screen/main/message/filter_topic_screen.dart';
-import 'package:esdc_emg/util/message_util.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
-import 'package:esdc_emg/widget/row/category_label.dart';
-import 'package:esdc_emg/widget/row/message_row.dart';
+import 'package:esdc_emg/widget/row/item_divider.dart';
+import 'package:esdc_emg/widget/row/message_item_row.dart';
 import 'package:esdc_emg/widget/row/setting_item_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,20 +25,25 @@ class _MessageScreenState extends State<MessageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ESDCAppbar.generateMainAppbar(
-        context: context,
-          title: "title_msg",
-          action: AppIconButton(
-            icon: SvgPicture.asset(
-              'asset/image/setting.svg',
-              color: Styles.textBlack,
-              allowDrawingOutsideViewBox: true,
-              height: 24,
+      appBar: ESDCAppbar.renderMainAppbar(
+          title: 'title_msg',
+          icon: 'asset/image/tab-messages-active.svg',
+          context: context,
+          action: Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: AppIconButton(
+              icon: SvgPicture.asset(
+                'asset/image/setting.svg',
+                color: Styles.darkerBlue,
+                allowDrawingOutsideViewBox: true,
+                height: 24,
+              ),
+              onClick: () => openFilter(),
+              rippleRadius: 36,
+              padding: 12,
             ),
-            onClick: () => openFilter(),
-            rippleRadius: 36,
-            padding: 12,
-          )),
+          )
+      ),
       body: BlocBuilder<MessageBloc, MessageState>(
         builder: (context, state) {
           if (state is MessageLoadingState) {
@@ -52,16 +56,12 @@ class _MessageScreenState extends State<MessageScreen> {
             );
           } else {
             List<MessageModel> messages = (state as MessageLoadSuccessState).messages;
-            List<MessageModel> urgents = MessageUtils.filterUrgentMessages(messages);
-            List<MessageModel> nonUrgents = MessageUtils.filterNonUrgentMessages(messages);
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  urgents == null || urgents.isEmpty ? Container() : CategoryLabel(label: 'priority_msg'),
-                  urgents == null || urgents.isEmpty ? Container() : buildUrgentMessages(urgents),
-                  nonUrgents == null || nonUrgents.isEmpty ? Container() : CategoryLabel(label: 'msg_employ'),
-                  nonUrgents == null || nonUrgents.isEmpty ? Container() : buildNonUrgentMessages(nonUrgents),
+                  Divider(height: 1, color: Styles.bgGrey,),
+                  buildMessages(messages),
                 ],
               ),
             );
@@ -150,7 +150,7 @@ class _MessageScreenState extends State<MessageScreen> {
       ],),);
   }
 
-  Widget buildUrgentMessages(List<MessageModel> allMessages) {
+  Widget buildMessages(List<MessageModel> allMessages) {
     return BlocBuilder<SettingBloc, SettingState>(
         builder: (context, state) {
           List<MessageModel> messages = [];
@@ -160,35 +160,15 @@ class _MessageScreenState extends State<MessageScreen> {
             SettingModel settings = (state as SettingLoadSuccessState).settings;
             messages = filterMessages(allMessages, settings.messageCategory, settings.messageLocation);
           }
-          return ListView.builder(
+          return ListView.separated(
             itemCount: messages.length,
             physics: BouncingScrollPhysics(),
             primary: false,
             shrinkWrap: true,
-            itemBuilder: (context, index) => MessageRow(message: messages[index]),
+            itemBuilder: (context, index) => MessageItemRow(message: messages[index]),
+            separatorBuilder: (context, index) => ItemDivider(),
           );
         },);
-  }
-
-  Widget buildNonUrgentMessages(List<MessageModel> allMessages) {
-    return BlocBuilder<SettingBloc, SettingState>(
-        builder: (context, state) {
-          List<MessageModel> messages = [];
-          if (state is !SettingLoadSuccessState) {
-            messages = allMessages;
-          } else {
-            SettingModel settings = (state as SettingLoadSuccessState).settings;
-            messages = filterMessages(allMessages, settings.messageCategory, settings.messageLocation);
-          }
-          return ListView.builder(
-            itemCount: messages.length,
-            physics: BouncingScrollPhysics(),
-            primary: false,
-            shrinkWrap: true,
-            itemBuilder: (context, index) => MessageRow(message: messages[index], isUrgent: false),
-          );
-        },
-    );
   }
 
   List<MessageModel> filterMessages(List<MessageModel> messages, String filterTopic, String filterLocation) {
