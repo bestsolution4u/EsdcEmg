@@ -257,7 +257,7 @@
         <entry key="google_fonts">
           <value>
             <list>
-              <option value="$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/google_fonts-2.0.0/lib" />
+              <option value="$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/google_fonts-2.1.0/lib" />
             </list>
           </value>
         </entry>
@@ -646,7 +646,7 @@
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_pdfview-1.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.21.0+1/lib" />
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-6.0.1/lib" />
-      <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/google_fonts-2.0.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/google_fonts-2.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.3/lib" />
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib" />

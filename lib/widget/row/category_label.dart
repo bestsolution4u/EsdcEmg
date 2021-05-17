@@ -12,9 +12,9 @@ class CategoryLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: marginTop, left: 12, right: 12, bottom: 3),
+      padding: EdgeInsets.only(top: marginTop, left: 15, right: 12),
       width: double.infinity,
-      child: Text(AppLocalization.of(context).trans(label), style: TextStyle(color: Styles.darkGray, fontSize: 14, fontWeight: FontWeight.w400),),
+      child: Text(AppLocalization.of(context).trans(label), style: TextStyle(color: Styles.darkerBlue, fontSize: 20, fontWeight: FontWeight.bold),),
     );
   }
 }

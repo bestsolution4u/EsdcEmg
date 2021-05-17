@@ -6,6 +6,8 @@ import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../util/message_util.dart';
+
 class MessageBloc extends Bloc<MessageEvent, MessageState> {
   MessageBloc() : super(MessageLoadingState());
 
@@ -43,12 +45,7 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
           messages.add(message);
         }
       });
-      messages.sort((a, b) {
-        DateTime dateA = DateTime.parse(a.effectiveDate);
-        DateTime dateB = DateTime.parse(b.effectiveDate);
-        return dateB.compareTo(dateA);
-      });
-      yield MessageLoadSuccessState(messages: messages, readMessages: readMessages, deletedMessages: deletedMessages, lastUrgent: lastUrgent);
+      yield MessageLoadSuccessState(messages: MessageUtils.sortMessageFromNewToOld(messages), readMessages: readMessages, deletedMessages: deletedMessages, lastUrgent: lastUrgent);
     } catch (e) {
       yield MessageLoadFailureState();
     }
@@ -81,7 +78,7 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
       await firestore.collection("message").doc("${PreferenceHelper.getString(PrefParams.DEVICE_ID)}").set(value);
     } finally {
       yield MessageLoadingState();
-      yield MessageLoadSuccessState(messages: messages, readMessages: readMessages, deletedMessages: deletedMessages, lastUrgent: lastUrgent);
+      yield MessageLoadSuccessState(messages: MessageUtils.sortMessageFromNewToOld(messages), readMessages: readMessages, deletedMessages: deletedMessages, lastUrgent: lastUrgent);
     }
   }
 
@@ -106,7 +103,7 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
     } finally {
       messages.removeWhere((element) => element.id == messageID);
       yield MessageLoadingState();
-      yield MessageLoadSuccessState(messages: messages, readMessages: readMessages, deletedMessages: deletedMessages, lastUrgent: lastUrgent);
+      yield MessageLoadSuccessState(messages: MessageUtils.sortMessageFromNewToOld(messages), readMessages: readMessages, deletedMessages: deletedMessages, lastUrgent: lastUrgent);
     }
   }
 
@@ -127,7 +124,7 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
       await firestore.collection("message").doc("${PreferenceHelper.getString(PrefParams.DEVICE_ID)}").set(value);
     } finally {
       yield MessageLoadingState();
-      yield MessageLoadSuccessState(messages: messages, readMessages: readMessages, deletedMessages: deletedMessages, lastUrgent: lastUrgent);
+      yield MessageLoadSuccessState(messages: MessageUtils.sortMessageFromNewToOld(messages), readMessages: readMessages, deletedMessages: deletedMessages, lastUrgent: lastUrgent);
     }
   }
 
@@ -149,13 +146,8 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
           messages.add(message);
         }
       });
-      messages.sort((a, b) {
-        DateTime dateA = DateTime.parse(a.effectiveDate);
-        DateTime dateB = DateTime.parse(b.effectiveDate);
-        return dateB.compareTo(dateA);
-      });
       yield MessageLoadingState();
-      yield MessageLoadSuccessState(messages: messages, readMessages: readMessages, deletedMessages: deletedMessages, lastUrgent: lastUrgent);
+      yield MessageLoadSuccessState(messages: MessageUtils.sortMessageFromNewToOld(messages), readMessages: readMessages, deletedMessages: deletedMessages, lastUrgent: lastUrgent);
     } catch (e) {
       yield MessageLoadingState();
       yield MessageLoadFailureState();

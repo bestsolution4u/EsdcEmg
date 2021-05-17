@@ -220,5 +220,7 @@
   "intro_text_2": "Gateway to ESDC employee resources and tools.",
   "intro_text_3": "Receive messages based on  individual preferences.",
   "got_it": "Got it",
-  "donot_show_intro": "Don't show this screen again"
+  "donot_show_intro": "Don't show this screen again",
+  "resources": "Resources",
+  "contacts": "Contacts"
 }

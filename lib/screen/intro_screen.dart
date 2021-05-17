@@ -82,8 +82,8 @@ class _IntroScreenState extends State<IntroScreen> {
                       SizedBox(
                         height: 30,
                       ),
-                      Text(AppLocalization.of(context).trans('made_for_esdc'), style: TextStyle(fontSize: 32, color: Styles.darkerBlue, fontWeight: FontWeight.w800, height: 1)),
-                      Text(AppLocalization.of(context).trans('by_people_in_esdc'), style: TextStyle(fontSize: 32, color: Styles.darkerBlue, fontWeight: FontWeight.w800)),
+                      Text(AppLocalization.of(context).trans('made_for_esdc'), style: TextStyle(fontSize: 28, color: Styles.darkerBlue, fontWeight: FontWeight.w800, height: 1)),
+                      Text(AppLocalization.of(context).trans('by_people_in_esdc'), style: TextStyle(fontSize: 28, color: Styles.darkerBlue, fontWeight: FontWeight.w800)),
                       SizedBox(
                         height: 20,
                       ),
@@ -121,7 +121,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           child: Center(
                             child: Text(
                               AppLocalization.of(context).trans('got_it'),
-                              style: TextStyle(color: Colors.white, fontSize: 20),
+                              style: TextStyle(color: Colors.white, fontSize: 18),
                             ),
                           ),
                         ),

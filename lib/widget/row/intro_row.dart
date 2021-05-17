@@ -21,7 +21,7 @@ class IntroRow extends StatelessWidget {
           width: iconSize,
         ),
         SizedBox(width: 20,),
-        Flexible(child: Text(AppLocalization.of(context).trans(title), style: TextStyle(color: Styles.darkerBlue, fontSize: 16), maxLines: 2, overflow: TextOverflow.ellipsis,))
+        Flexible(child: Text(AppLocalization.of(context).trans(title), style: TextStyle(color: Styles.darkerBlue, fontSize: 14), maxLines: 2, overflow: TextOverflow.ellipsis,))
       ],
     );
   }

@@ -40,8 +40,8 @@ class _WellnessScreenState extends State<WellnessScreen> {
                 title: 'life_speak',
                 icon: 'asset/image/icon-nav-lifespeak.svg',
                 onClick: () => gotoWebviewScreen(
-                    title: "employ_assistance_program",
-                    url: 'url_employ_assistance_program'),
+                    title: "life_speak",
+                    url: 'url_life_speak'),
               ),
             ),
           ],

@@ -9,6 +9,7 @@ import 'package:esdc_emg/screen/main/pdfviewer_screen.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/row/category_label.dart';
 import 'package:esdc_emg/widget/row/item_selector_row.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -20,14 +21,37 @@ class EmployeeScreen extends StatefulWidget {
 }
 
 class _EmployeeScreenState extends State<EmployeeScreen> {
+
+  int _sliding = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Styles.lightGray,
-      appBar: ESDCAppbar.generateMainAppbar(title: "title_emply", context: context),
+      appBar: ESDCAppbar.renderMainAppbar(
+          title: 'title_emply',
+          icon: 'asset/image/tab-employees-active.svg',
+          context: context
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Container(
+              width: double.infinity,
+              color: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              child: CupertinoSlidingSegmentedControl(
+                  children: {
+                    0: Text(AppLocalization.of(context).trans('resources'), style: TextStyle(color: Styles.darkerBlue, fontSize: 15),),
+                    1: Text(AppLocalization.of(context).trans('contacts'), style: TextStyle(color: Styles.darkerBlue, fontSize: 15),),
+                  },
+                  groupValue: _sliding,
+                  onValueChanged: (newValue) {
+                    setState(() {
+                      _sliding = newValue;
+                    });
+                  }),
+            ),
             CategoryLabel(label: 'heath_and_wellness'),
             ItemSelectorRow(title: 'title_covid', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CovidScreen(),))),
             ItemSelectorRow(title: 'wellness', assetImage: 'asset/image/employee_wellness.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),),
