@@ -7,7 +7,6 @@ import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:esdc_emg/widget/row/category_label.dart';
 import 'package:esdc_emg/widget/row/setting_item_row.dart';
-import 'package:esdc_emg/widget/row/setting_switch_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:io' show Platform;
@@ -39,27 +38,29 @@ class _SettingScreenState extends State<SettingScreen> {
           children: [
             ChildAppbar(title: "title_settings",),
             Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 10,),
-                      CategoryLabel(label: 'message_setting'),
-                      /*SettingItemRow(label: 'filtered_inbox', value: 'by_location', onClick: () {},),*/
-                      SettingItemRow(label: 'notifications', value: 'all_messages', onClick: () {},),
-                      SizedBox(height: 10,),
-                      CategoryLabel(label: 'feed_back'),
-                      SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
-                      /*SettingSwitchRow(label: 'share_app_analytics', value: shareAnalytics, onChange: (val) {
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: Styles.lightGray,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CategoryLabel(label: 'message_setting'),
+                        /*SettingItemRow(label: 'filtered_inbox', value: 'by_location', onClick: () {},),*/
+                        SettingItemRow(label: 'notifications', value: 'all_messages', onClick: () {},),
+                        CategoryLabel(label: 'feed_back'),
+                        SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
+                        /*SettingSwitchRow(label: 'share_app_analytics', value: shareAnalytics, onChange: (val) {
                           setState(() {
                             shareAnalytics = val;
                           });
                         },),*/
-                      SizedBox(height: 10,),
-                      CategoryLabel(label: 'lang'),
-                      SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
-                      Platform.isIOS ? CategoryLabel(label: 'update_phone_settings', fontSize: 12, color: Colors.grey, marginTop: 8, fontWeight: FontWeight.w400,) : Container(),
-                    ],
+                        CategoryLabel(label: 'lang'),
+                        SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
+                        Platform.isIOS ? CategoryLabel(label: 'update_phone_settings', fontSize: 12, color: Colors.grey, marginTop: 8, fontWeight: FontWeight.w400,) : Container(),
+                      ],
+                    ),
                   ),
                 )
             )

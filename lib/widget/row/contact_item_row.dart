@@ -19,9 +19,7 @@ class ContactItemRow extends StatelessWidget {
         width: double.infinity,
           color: Colors.white,
         padding: const EdgeInsets.all(20),
-        child: Flexible(
-          child: Text(AppLocalization.of(context).trans(title), style: TextStyle(color: Styles.darkBlue, fontSize: 16), maxLines: 1, overflow: TextOverflow.ellipsis,),
-        ),
+        child: Text(AppLocalization.of(context).trans(title), style: TextStyle(color: Styles.darkBlue, fontSize: 16), maxLines: 1, overflow: TextOverflow.ellipsis,),
       ),
     );
   }

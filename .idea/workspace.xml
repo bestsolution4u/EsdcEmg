@@ -30,17 +30,27 @@
   <component name="ChangeListManager">
     <list default="true" id="de040a4d-ce5b-445c-af48-5b5d85361f55" name="Default Changelist" comment="New UI design">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/asset/lang/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/asset/lang/en.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/asset/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/asset/lang/fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/config/global.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config/global.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/dashboard/feedback_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/dashboard/feedback_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/dashboard/learning_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/dashboard/learning_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screen/main/dashboard/setting_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/dashboard/setting_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/employee/contact_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/employee/contact_detail_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screen/main/employee/employee_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/employee/employee_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/employee/pay_benefit_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/employee/pay_benefit_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/message/message_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/message/message_detail_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screen/main/message/message_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/message/message_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/socialmedia/social_media_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/socialmedia/social_media_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/webview_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/webview_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/appbar/child_appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/appbar/child_appbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/appbar/message_appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/appbar/message_appbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/button/bordered_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/button/bordered_button.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widget/row/category_label.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/category_label.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widget/row/message_row.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/contact_item_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/contact_item_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/item_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/item_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/setting_item_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/setting_item_row.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621262801779</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="New UI design">
+      <created>1621276189932</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1621276189932</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -295,10 +312,10 @@
     </state>
     <state x="765" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621265977982" />
     <state x="2395" y="187" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1619531252297" />
-    <state x="244" y="233" width="1224" height="600" key="AVDManager" timestamp="1621088581269">
+    <state x="244" y="233" width="1224" height="600" key="AVDManager" timestamp="1621339545469">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
-    <state x="244" y="233" width="1224" height="600" key="AVDManager/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621088581269" />
+    <state x="244" y="233" width="1224" height="600" key="AVDManager/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621339545469" />
     <state x="1991" y="64" width="1224" height="600" key="AVDManager/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1620194187779" />
     <state x="615" y="275" key="AndroidCreateResourceDirectoryDialog" timestamp="1620652875978">
       <screen x="150" y="0" width="1770" height="1040" />
@@ -321,29 +338,29 @@
     </state>
     <state x="815" y="275" key="FileChooserDialogImpl/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621104940432" />
     <state x="2433" y="193" key="FileChooserDialogImpl/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1619595472895" />
-    <state width="1727" height="363" key="GridCell.Tab.0.bottom" timestamp="1621274032431">
+    <state width="1247" height="360" key="GridCell.Tab.0.bottom" timestamp="1621360630666">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
     <state width="1878" height="617" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767026" />
-    <state width="1727" height="363" key="GridCell.Tab.0.bottom/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621274032431" />
+    <state width="1247" height="360" key="GridCell.Tab.0.bottom/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621360630666" />
     <state width="1727" height="333" key="GridCell.Tab.0.bottom/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621028392017" />
-    <state width="1727" height="363" key="GridCell.Tab.0.center" timestamp="1621274032431">
+    <state width="1247" height="360" key="GridCell.Tab.0.center" timestamp="1621360630666">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
     <state width="1878" height="617" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767024" />
-    <state width="1727" height="363" key="GridCell.Tab.0.center/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621274032431" />
+    <state width="1247" height="360" key="GridCell.Tab.0.center/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621360630666" />
     <state width="1727" height="333" key="GridCell.Tab.0.center/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621028392017" />
-    <state width="1727" height="363" key="GridCell.Tab.0.left" timestamp="1621274032431">
+    <state width="1247" height="360" key="GridCell.Tab.0.left" timestamp="1621360630665">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
     <state width="1878" height="617" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767023" />
-    <state width="1727" height="363" key="GridCell.Tab.0.left/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621274032431" />
+    <state width="1247" height="360" key="GridCell.Tab.0.left/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621360630665" />
     <state width="1727" height="333" key="GridCell.Tab.0.left/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621028392017" />
-    <state width="1727" height="363" key="GridCell.Tab.0.right" timestamp="1621274032431">
+    <state width="1247" height="360" key="GridCell.Tab.0.right" timestamp="1621360630666">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
     <state width="1878" height="617" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767025" />
-    <state width="1727" height="363" key="GridCell.Tab.0.right/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621274032431" />
+    <state width="1247" height="360" key="GridCell.Tab.0.right/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621360630666" />
     <state width="1727" height="333" key="GridCell.Tab.0.right/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621028392017" />
     <state x="673" y="281" key="MultipleFileMergeDialog" timestamp="1619661110725">
       <screen x="150" y="0" width="1770" height="1040" />
@@ -354,10 +371,10 @@
     </state>
     <state x="461" y="179" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1620840753710" />
     <state x="575" y="172" key="SettingsEditor/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621003097519" />
-    <state x="627" y="253" key="Vcs.Push.Dialog.v2" timestamp="1621262802894">
+    <state x="627" y="253" key="Vcs.Push.Dialog.v2" timestamp="1621277064844">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
-    <state x="627" y="253" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621262802894" />
+    <state x="627" y="253" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621277064844" />
     <state x="2288" y="177" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1619801654198" />
     <state x="242" y="92" width="1586" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1621265852657">
       <screen x="150" y="0" width="1770" height="1040" />
@@ -368,10 +385,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="630" y="372" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1620847982537" />
-    <state x="2426" y="3" width="869" height="736" key="dock-window-1" timestamp="1621259418025">
+    <state x="2359" y="0" width="935" height="735" key="dock-window-1" timestamp="1621351101164">
       <screen x="1920" y="0" width="1366" height="728" />
     </state>
-    <state x="2426" y="3" width="869" height="736" key="dock-window-1/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621259418025" />
+    <state x="2359" y="0" width="935" height="735" key="dock-window-1/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621351101164" />
     <state x="1920" y="0" width="1382" height="815" key="dock-window-2" timestamp="1621264528707">
       <screen x="1920" y="0" width="1366" height="728" />
     </state>
@@ -380,10 +397,10 @@
       <screen x="1920" y="0" width="1366" height="728" />
     </state>
     <state x="1920" y="0" width="1382" height="635" maximized="true" key="dock-window-3/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621264004193" />
-    <state x="1084" y="203" width="703" height="596" key="find.popup" timestamp="1621273301595">
+    <state x="1084" y="203" width="703" height="596" key="find.popup" timestamp="1621360211090">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
-    <state x="1084" y="203" width="703" height="596" key="find.popup/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621273301595" />
+    <state x="1084" y="203" width="703" height="596" key="find.popup/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621360211090" />
     <state x="2377" y="177" width="555" height="534" key="find.popup/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621027643264" />
     <state x="755" y="308" key="git4idea.merge.GitPullDialog" timestamp="1621002759597">
       <screen x="150" y="0" width="1770" height="1040" />

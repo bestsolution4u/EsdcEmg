@@ -81,14 +81,28 @@ class _LearningScreenState extends State<LearningScreen> {
                 ],
               ),
             ),
-            /*ItemSelectorRow(
-              title: 'open_learning',
-              assetImage: 'asset/image/chat.svg',
-              onClick: () => gotoWebviewScreen(
-                  title: "open_learning",
-                  url: 'url_open_learning'
+            SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                      flex: 1,
+                      child: BorderItemSelector(
+                        title: 'open_learning',
+                        icon: 'asset/image/icon-nav-online-learning-platform.svg',
+                        onClick: () => gotoWebviewScreen(
+                            title: "open_learning",
+                            url: 'url_open_learning'),
+                      )),
+                  SizedBox(width: 20,),
+                  Expanded(
+                      flex: 1,
+                      child: Container()),
+                ],
               ),
-            ),*/
+            ),
           ],
         ),
       ),

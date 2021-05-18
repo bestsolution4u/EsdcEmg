@@ -70,6 +70,7 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
             platform: TargetPlatform.iOS,
             appBarTheme: AppBarTheme(color: Colors.white),
             fontFamily: 'PopBlack',
+              bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.white)
           ),
           home: BlocBuilder<ApplicationBloc, ApplicationState>(
             builder: (context, state) {

@@ -7,7 +7,6 @@ import '../../localization/app_localization.dart';
 import '../button/ripple_component.dart';
 
 class ItemRow extends StatelessWidget {
-
   final String title, icon;
   final bool isFirst, isLast;
   final VoidCallback onClick;
@@ -21,32 +20,42 @@ class ItemRow extends StatelessWidget {
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(isFirst ? 8 : 0), topRight: Radius.circular(isFirst ? 8 : 0), bottomLeft: Radius.circular(isLast ? 8 : 0), bottomRight: Radius.circular(isLast ? 8 : 0)),
-          color: Colors.white
-        ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(isFirst ? 8 : 0), topRight: Radius.circular(isFirst ? 8 : 0), bottomLeft: Radius.circular(isLast ? 8 : 0), bottomRight: Radius.circular(isLast ? 8 : 0)), color: Colors.white),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            SvgPicture.asset(
-              icon,
-              height: 20,
-              width: 20,
-            ),
-            SizedBox(width: 15,),
+            icon != null
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: SvgPicture.asset(
+                      icon,
+                      height: 20,
+                      width: 20,
+                    ),
+                  )
+                : Container(),
             Expanded(
               child: Column(
-              mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
-                    child: Text(AppLocalization.of(context).trans(title), style: TextStyle(color: Styles.darkBlue, fontSize: 16), maxLines: 1, overflow: TextOverflow.ellipsis,),
+                    child: Text(
+                      AppLocalization.of(context).trans(title),
+                      style: TextStyle(color: Styles.darkBlue, fontSize: 16),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ],
               ),
             ),
-            Icon(Icons.keyboard_arrow_right, color: Colors.grey, size: 24,)
+            Icon(
+              Icons.keyboard_arrow_right,
+              color: Colors.grey,
+              size: 24,
+            )
           ],
         ),
       ),

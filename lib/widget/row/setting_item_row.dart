@@ -32,9 +32,9 @@ class _SettingItemRowState extends State<SettingItemRow> {
               padding: EdgeInsets.symmetric(horizontal: widget.paddingHorizontal, vertical: 10),
               child: Row(
                 children: [
-                  Expanded(child: Text(AppLocalization.of(context).trans(widget.label), style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500), maxLines: 2, overflow: TextOverflow.ellipsis,)),
+                  Expanded(child: Text(AppLocalization.of(context).trans(widget.label), style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500), maxLines: 2, overflow: TextOverflow.ellipsis,)),
                   SizedBox(width: 10,),
-                  widget.value == null ? Container() : Text(widget.isValueTranslated ? AppLocalization.of(context).trans(widget.value) : widget.value, style: TextStyle(color: Styles.purple, fontSize: 14, fontWeight: FontWeight.w500),),
+                  widget.value == null ? Container() : Text(widget.isValueTranslated ? AppLocalization.of(context).trans(widget.value) : widget.value, style: TextStyle(color: Styles.blue, fontSize: 14, fontWeight: FontWeight.w500),),
                   SizedBox(width: 5,),
                   Icon(Icons.keyboard_arrow_right, size: 28, color: Colors.grey),
                 ],

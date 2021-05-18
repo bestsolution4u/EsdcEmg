@@ -23,8 +23,8 @@ class ChildAppbar extends StatelessWidget {
               AppIconButton(
                 icon: Icon(
                   Icons.keyboard_arrow_left,
-                  size: 36,
-                  color: Styles.darkGray,
+                  size: 28,
+                  color: Styles.darkerBlue,
                 ),
                 rippleRadius: 36,
                 padding: 4,
@@ -33,7 +33,7 @@ class ChildAppbar extends StatelessWidget {
               RippleComponent(
                 child: Text(
                   AppLocalization.of(context).trans('navigation_back'),
-                  style: TextStyle(color: Styles.darkGray, fontSize: 20, fontWeight: FontWeight.w500),
+                  style: TextStyle(color: Styles.darkerBlue, fontSize: 18, fontWeight: FontWeight.w500),
                 ),
                 onClick: () => Navigator.pop(context),
               ),
@@ -46,12 +46,13 @@ class ChildAppbar extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20, right: 15, bottom: 4),
           child: Text(
             isMessage ? title : AppLocalization.of(context).trans(title),
-            style: TextStyle(color: Styles.textBlack, fontSize: 24, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Styles.darkerBlue, fontSize: 26, fontWeight: FontWeight.bold),
           ),
         ),
+        SizedBox(height: 10,),
         Divider(
           height: 1,
-          color: Styles.darkGray,
+          color: Styles.lightGray,
         )
       ],
     );

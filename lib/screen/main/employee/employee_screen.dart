@@ -3,7 +3,6 @@ import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/screen/main/dashboard/learning_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/wellness_screen.dart';
 import 'package:esdc_emg/screen/main/employee/covid_screen.dart';
-import 'package:esdc_emg/screen/main/employee/gc_contact_screen.dart';
 import 'package:esdc_emg/screen/main/employee/pay_benefit_screen.dart';
 import 'package:esdc_emg/screen/main/pdfviewer_screen.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
@@ -11,10 +10,8 @@ import 'package:esdc_emg/widget/row/category_label.dart';
 import 'package:esdc_emg/widget/row/contact_item_row.dart';
 import 'package:esdc_emg/widget/row/item_divider.dart';
 import 'package:esdc_emg/widget/row/item_row.dart';
-import 'package:esdc_emg/widget/row/item_selector_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../webview_screen.dart';
 import 'contact_detail_screen.dart';

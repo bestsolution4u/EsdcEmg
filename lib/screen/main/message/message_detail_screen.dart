@@ -4,7 +4,6 @@ import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
-import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/appbar/message_appbar.dart';
 import 'package:esdc_emg/widget/button/bordered_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
@@ -40,6 +39,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +49,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
               action: AppIconButton(
                 icon: SvgPicture.asset(
                   'asset/image/more.svg',
-                  color: Styles.darkGray,
+                  color: Styles.darkerBlue,
                   allowDrawingOutsideViewBox: true,
                   height: 24,
                 ),
@@ -100,22 +100,22 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
           Container(
             padding: const EdgeInsets.all(20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   AppLocalization.of(context).trans('more_actions'),
                   style: TextStyle(
-                      color: Styles.textBlack,
+                      color: Styles.darkerBlue,
                       fontSize: 22,
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
                 Text(
                   AppLocalization.of(context).trans('customize_actions_for_message'),
                   style: TextStyle(
-                      color: Styles.textBlack,
+                      color: Styles.darkerBlue,
                       fontSize: 14,
                       fontWeight: FontWeight.w500),
                 ),
@@ -129,7 +129,12 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                 /*BorderedButton(title: 'Share this page', onClick: () {
                   Navigator.pop(context);
                 },),*/
-                BorderedButton(title: AppLocalization.of(context).trans('delete'), color: Styles.red, onClick: () {
+                BorderedButton(
+                  title: AppLocalization.of(context).trans('delete'),
+                  buttonColor: Styles.pink,
+                  borderColor: Styles.pink,
+                  color: Styles.red,
+                  onClick: () {
                   showDialog(
                       context: context,
                       builder: (BuildContext context) => CupertinoAlertDialog(

@@ -91,21 +91,21 @@ class _MessageScreenState extends State<MessageScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 20,),
+                    SizedBox(height: 10,),
                     Text(
                       AppLocalization.of(context).trans("filter_inbox"),
                       style: TextStyle(
-                          color: Styles.textBlack,
+                          color: Styles.darkerBlue,
                           fontSize: 22,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Text(
                       AppLocalization.of(context).trans("customize_inbox_looks"),
                       style: TextStyle(
-                          color: Styles.textBlack,
+                          color: Styles.darkerBlue,
                           fontSize: 14,
                           fontWeight: FontWeight.w400),
                     ),
