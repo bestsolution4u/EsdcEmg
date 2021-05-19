@@ -32,13 +32,8 @@
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/asset/lang/fr.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bloc/setting/setting_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/setting/setting_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screen/main/main_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/main_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screen/main/message/filter_location_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/message/filter_location_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screen/main/message/message_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/message/message_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widget/row/setting_item_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/setting_item_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/application/application_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/application/application_bloc.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621445348012</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="New UI design">
+      <created>1621460209228</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1621460209228</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -340,29 +342,29 @@
     </state>
     <state x="815" y="275" key="FileChooserDialogImpl/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621104940432" />
     <state x="2433" y="193" key="FileChooserDialogImpl/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1619595472895" />
-    <state width="1727" height="260" key="GridCell.Tab.0.bottom" timestamp="1621458986249">
+    <state width="1727" height="469" key="GridCell.Tab.0.bottom" timestamp="1621461049881">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
     <state width="1878" height="617" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767026" />
-    <state width="1727" height="260" key="GridCell.Tab.0.bottom/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621458986249" />
+    <state width="1727" height="469" key="GridCell.Tab.0.bottom/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621461049881" />
     <state width="1727" height="333" key="GridCell.Tab.0.bottom/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621028392017" />
-    <state width="1727" height="260" key="GridCell.Tab.0.center" timestamp="1621458986249">
+    <state width="1727" height="469" key="GridCell.Tab.0.center" timestamp="1621461049881">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
     <state width="1878" height="617" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767024" />
-    <state width="1727" height="260" key="GridCell.Tab.0.center/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621458986249" />
+    <state width="1727" height="469" key="GridCell.Tab.0.center/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621461049881" />
     <state width="1727" height="333" key="GridCell.Tab.0.center/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621028392017" />
-    <state width="1727" height="260" key="GridCell.Tab.0.left" timestamp="1621458986249">
+    <state width="1727" height="469" key="GridCell.Tab.0.left" timestamp="1621461049881">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
     <state width="1878" height="617" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767023" />
-    <state width="1727" height="260" key="GridCell.Tab.0.left/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621458986249" />
+    <state width="1727" height="469" key="GridCell.Tab.0.left/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621461049881" />
     <state width="1727" height="333" key="GridCell.Tab.0.left/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621028392017" />
-    <state width="1727" height="260" key="GridCell.Tab.0.right" timestamp="1621458986249">
+    <state width="1727" height="469" key="GridCell.Tab.0.right" timestamp="1621461049881">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
     <state width="1878" height="617" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1620849767025" />
-    <state width="1727" height="260" key="GridCell.Tab.0.right/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621458986249" />
+    <state width="1727" height="469" key="GridCell.Tab.0.right/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621461049881" />
     <state width="1727" height="333" key="GridCell.Tab.0.right/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621028392017" />
     <state x="673" y="281" key="MultipleFileMergeDialog" timestamp="1619661110725">
       <screen x="150" y="0" width="1770" height="1040" />
@@ -373,10 +375,10 @@
     </state>
     <state x="461" y="179" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1620840753710" />
     <state x="575" y="172" key="SettingsEditor/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621003097519" />
-    <state x="627" y="253" key="Vcs.Push.Dialog.v2" timestamp="1621445353306">
+    <state x="627" y="253" key="Vcs.Push.Dialog.v2" timestamp="1621460212450">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
-    <state x="627" y="253" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621445353306" />
+    <state x="627" y="253" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621460212450" />
     <state x="2288" y="177" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1619801654198" />
     <state x="242" y="92" width="1586" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1621265852657">
       <screen x="150" y="0" width="1770" height="1040" />
@@ -404,10 +406,10 @@
     </state>
     <state x="1084" y="203" width="703" height="596" key="find.popup/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621459117655" />
     <state x="2377" y="177" width="555" height="534" key="find.popup/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621027643264" />
-    <state x="755" y="308" key="git4idea.merge.GitPullDialog" timestamp="1621002759597">
+    <state x="755" y="308" key="git4idea.merge.GitPullDialog" timestamp="1621460193157">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
-    <state x="755" y="308" key="git4idea.merge.GitPullDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621002759597" />
+    <state x="755" y="308" key="git4idea.merge.GitPullDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621460193157" />
     <state x="691" y="240" key="run.anything.popup" timestamp="1621426820750">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>

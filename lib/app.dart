@@ -75,22 +75,16 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
           ),
           home: BlocBuilder<ApplicationBloc, ApplicationState>(
             builder: (context, state) {
-              if (state is ApplicationSetupState) {
-                return BlocListener<SettingBloc, SettingState>(
-                  listener: (context, settingState) {
-                    if (settingState is SettingLoadSuccessState) {
-                      if (AppLocalization.currentLanguage != settingState.settings.language) {
-                        Globals.onLocaleChanged(Locale(settingState.settings.language));
-                      }
+              return BlocListener<SettingBloc, SettingState>(
+                listener: (context, settingState) {
+                  if (settingState is SettingLoadSuccessState) {
+                    if (AppLocalization.currentLanguage != settingState.settings.language) {
+                      Globals.onLocaleChanged(Locale(settingState.settings.language));
                     }
-                  },
-                  child: MainScreen(),
-                );
-              } else if (state is ApplicationIntroState) {
-                return IntroScreen();
-              } else {
-                return SplashScreen();
-              }
+                  }
+                },
+                child: state is ApplicationSetupState ? MainScreen() : state is ApplicationIntroState ? IntroScreen() : SplashScreen(),
+              );
             },
           ),
         ));
