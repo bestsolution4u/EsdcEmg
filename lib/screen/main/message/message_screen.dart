@@ -113,6 +113,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     SettingItemRow(
                       label: 'topic',
                       value: settingModel.messageCategory,
+                      isTopic: true,
                       onClick: () {
                         Navigator.pop(context);
                         Navigator.push(context, MaterialPageRoute(builder: (context) => FilterTopicScreen(),));
@@ -172,6 +173,21 @@ class _MessageScreenState extends State<MessageScreen> {
   }
 
   List<MessageModel> filterMessages(List<MessageModel> messages, String filterTopic, String filterLocation) {
-    return messages.where((element) => (filterTopic == Globals.DEFAULT_MESSAGE_CATEGORY || element.category.toLowerCase().contains(filterTopic)) && (filterLocation == Globals.MESSAGE_LOCATIONS[0] || element.audience.contains(filterLocation))).toList();
+    return messages.where((element) {
+      List<String> catElement = element.category.split(",");
+      List<String> catFilter = filterTopic.split(",");
+      bool matched = false;
+      catElement.forEach((elementCat) {
+        catFilter.forEach((elementFilterCat) {
+          if (elementCat.toLowerCase().contains(elementFilterCat)) matched = true;
+        });
+      });
+      print("=============");
+      print(element.category);
+      print(filterTopic);
+      print(matched);
+
+      return (filterTopic == Globals.DEFAULT_MESSAGE_CATEGORY || matched) && (filterLocation == Globals.MESSAGE_LOCATIONS[0] || element.audience.contains(filterLocation));
+    }).toList();
   }
 }

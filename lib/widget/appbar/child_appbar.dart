@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 class ChildAppbar extends StatelessWidget {
   final String title;
   final Widget action;
-  final bool isMessage;
+  final bool isMessage, showDivider;
 
-  ChildAppbar({this.title, this.action, this.isMessage = false});
+  ChildAppbar({this.title, this.action, this.isMessage = false, this.showDivider = true});
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +50,10 @@ class ChildAppbar extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10,),
-        Divider(
+        showDivider ? Divider(
           height: 1,
           color: Styles.lightGray,
-        )
+        ) : Container()
       ],
     );
   }

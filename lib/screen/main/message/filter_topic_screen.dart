@@ -1,9 +1,10 @@
-import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/global.dart';
+import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
-import 'package:esdc_emg/widget/row/item_selector_row.dart';
+import 'package:esdc_emg/widget/row/item_divider.dart';
+import 'package:esdc_emg/widget/row/message_filter_topic_row.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FilterTopicScreen extends StatefulWidget {
   @override
@@ -12,43 +13,40 @@ class FilterTopicScreen extends StatefulWidget {
 
 class _FilterTopicScreenState extends State<FilterTopicScreen> {
 
-  SettingBloc _settingBloc;
-
   @override
   void initState() {
     super.initState();
-    _settingBloc = BlocProvider.of<SettingBloc>(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ChildAppbar(
               title: 'filter_topic',
+              showDivider: false,
             ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+              child: Text(AppLocalization.of(context).trans('filter_message_desc'), style: TextStyle(color: Styles.darkerBlue, fontSize: 16),),),
+            ItemDivider(paddingLeft: 0,),
             Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 30,),
-                      ItemSelectorRow(title: Globals.DEFAULT_MESSAGE_CATEGORY, onClick: () {
-                        _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: Globals.DEFAULT_MESSAGE_CATEGORY));
-                        Navigator.pop(context);
-                      },),
+                      MessageFilterTopicRow(topic: Globals.DEFAULT_MESSAGE_CATEGORY),
                       ListView.separated(
                           primary: false,
                           shrinkWrap: true,
-                          itemBuilder: (context, index) => ItemSelectorRow(title: Globals.MESSAGE_CATEGORIES[index], onClick: () {
-                            _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: Globals.MESSAGE_CATEGORIES[index]));
-                            Navigator.pop(context);
-                          }),
-                          separatorBuilder: (context, index) => SizedBox(height: 5,),
-                          itemCount: Globals.MESSAGE_CATEGORIES.length)
+                          itemBuilder: (context, index) => MessageFilterTopicRow(topic: Globals.MESSAGE_CATEGORIES[index]),
+                          separatorBuilder: (context, index) => ItemDivider(paddingLeft: 20),
+                          itemCount: Globals.MESSAGE_CATEGORIES.length),
+                      ItemDivider(paddingLeft: 0,),
                     ],
                   ),
                 ))

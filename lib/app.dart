@@ -78,7 +78,7 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
                 return BlocListener<SettingBloc, SettingState>(
                   listener: (context, settingState) {
                     if (settingState is SettingLoadSuccessState) {
-                      Globals.onLocaleChanged(Locale(settingState.settings.language));
+                      //Globals.onLocaleChanged(Locale(settingState.settings.language));
                     }
                   },
                   child: MainScreen(),

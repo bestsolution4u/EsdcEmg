@@ -222,5 +222,9 @@
   "got_it": "Got it",
   "donot_show_intro": "Don't show this screen again",
   "resources": "Resources",
-  "contacts": "Contacts"
+  "contacts": "Contacts",
+  "filter_message_desc": "Customize the messages you receive based on your interests.",
+  "none": "None",
+  "categories_selected": "categories selected",
+  "locations_selected": "locations selected"
 }
