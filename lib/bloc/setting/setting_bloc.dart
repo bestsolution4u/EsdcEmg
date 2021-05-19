@@ -97,12 +97,36 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     SettingModel settingModel = (state as SettingLoadSuccessState).settings;
     String location = event.messageLocation;
     bool enabled = event.enabled;
-
-
-
-
-
-    settingModel.messageLocation = event.messageLocation;
+    List<String> oldLocations = settingModel.messageLocation.split(",");
+    List<String> newLocations = [];
+    if (enabled) {
+      if (location == Globals.MESSAGE_LOCATIONS[0]) {
+        newLocations.add(location);
+      } else {
+        if (!oldLocations.contains(location)) {
+          oldLocations.add(location);
+        }
+        if (oldLocations.length == Globals.MESSAGE_LOCATIONS.length - 1) {
+          newLocations.add(Globals.MESSAGE_LOCATIONS[0]);
+        } else {
+          newLocations.addAll(oldLocations);
+        }
+      }
+    } else {
+      if (location != Globals.MESSAGE_LOCATIONS[0]) {
+        if (oldLocations.contains(Globals.MESSAGE_LOCATIONS[0])) {
+          Globals.MESSAGE_LOCATIONS.forEach((element) {
+            if (element != location && element != Globals.MESSAGE_LOCATIONS[0]) newLocations.add(element);
+          });
+        } else {
+          if (oldLocations.contains(location)) oldLocations.remove(location);
+          if (oldLocations.length > 0) newLocations.addAll(oldLocations);
+        }
+      }
+    }
+    String locations = newLocations.join(",");
+    if (locations.startsWith(",")) locations = locations.substring(1);
+    settingModel.messageLocation = locations;
     yield SettingLoadingState();
     yield SettingLoadSuccessState(settings: settingModel);
     var firestore = FirebaseFirestore.instance;

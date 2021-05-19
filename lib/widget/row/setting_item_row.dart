@@ -26,6 +26,7 @@ class _SettingItemRowState extends State<SettingItemRow> {
     String value = "";
     if (widget.isTopic) {
       List<String> topics = widget.value.split(",");
+      topics.removeWhere((element) => element.isEmpty);
       if (topics.isEmpty) {
         value = widget.isValueTranslated ? AppLocalization.of(context).trans("none") : "none";
       } else if (topics.length == 1) {
@@ -35,6 +36,9 @@ class _SettingItemRowState extends State<SettingItemRow> {
       }
     } else if (widget.isLocation) {
       List<String> locations = widget.value.split(",");
+      locations.removeWhere((element) => element.isEmpty);
+      print("-----------------");
+      print(locations);
       if (locations.isEmpty) {
         value = widget.isValueTranslated ? AppLocalization.of(context).trans("none") : "none";
       } else if (locations.length == 1) {
@@ -42,7 +46,7 @@ class _SettingItemRowState extends State<SettingItemRow> {
       } else {
         value = locations.length.toString() + " " + (widget.isValueTranslated ? AppLocalization.of(context).trans("locations_selected") : "locations_selected");
       }
-    } else if (widget.isSorting) {
+    } else {
       value = widget.isValueTranslated ? AppLocalization.of(context).trans(widget.value) : widget.value;
     }
     return RippleComponent(
