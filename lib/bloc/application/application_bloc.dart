@@ -25,11 +25,7 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
 
     /// Start Application Setup
     yield ApplicationLoadingState();
-    print("-----------------------");
-    print(DateTime.now().second);
-    await Future.delayed(const Duration(seconds: 3));
-    print(DateTime.now().second);
-    print("-----------------------");
+
     /// init firebase
     await Firebase.initializeApp();
 
@@ -40,6 +36,8 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
 
     AppBloc.settingBloc.add(SettingLoadEvent());
     AppBloc.messageBloc.add(MessageLoadEvent());
+
+    await Future.delayed(const Duration(seconds: 3));
 
     if (PreferenceHelper.getBool(PrefParams.DONOT_SHOW_INTRO)) {
       /// Application Setup Completed

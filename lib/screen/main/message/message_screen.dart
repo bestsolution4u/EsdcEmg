@@ -125,6 +125,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     SettingItemRow(
                       label: 'location_specific',
                       value: settingModel.messageLocation,
+                      isLocation: true,
                       onClick: () {
                         Navigator.pop(context);
                         Navigator.push(context, MaterialPageRoute(builder: (context) => FilterLocationScreen(),));
@@ -136,6 +137,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     SettingItemRow(
                       label: 'sorting',
                       value: 'new_old',
+                      isSorting: true,
                       onClick: () {
 
                       },
@@ -176,18 +178,31 @@ class _MessageScreenState extends State<MessageScreen> {
     return messages.where((element) {
       List<String> catElement = element.category.split(",");
       List<String> catFilter = filterTopic.split(",");
-      bool matched = false;
-      catElement.forEach((elementCat) {
-        catFilter.forEach((elementFilterCat) {
-          if (elementCat.toLowerCase().contains(elementFilterCat)) matched = true;
+      bool matchedTopic = false;
+      if (filterTopic == Globals.DEFAULT_MESSAGE_CATEGORY) {
+        matchedTopic = true;
+      } else {
+        catElement.forEach((elementCat) {
+          catFilter.forEach((elementFilterCat) {
+            if (elementCat.toLowerCase().contains(elementFilterCat)) matchedTopic = true;
+          });
         });
-      });
-      print("=============");
-      print(element.category);
-      print(filterTopic);
-      print(matched);
+      }
 
-      return (filterTopic == Globals.DEFAULT_MESSAGE_CATEGORY || matched) && (filterLocation == Globals.MESSAGE_LOCATIONS[0] || element.audience.contains(filterLocation));
+      List<String> locationElement = element.audience.split(",");
+      List<String> locationFilter = filterLocation.split(",");
+      bool matchedLocation = false;
+      if (locationFilter.contains(Globals.MESSAGE_LOCATIONS[0]) || locationElement.contains(Globals.MESSAGE_LOCATIONS[0])) {
+        matchedLocation = true;
+      } else {
+        locationElement.forEach((elementLoc) {
+          locationFilter.forEach((elementFilterLoc) {
+            if (elementLoc == elementFilterLoc) matchedLocation = true;
+          });
+        });
+      }
+
+      return matchedTopic && matchedLocation;
     }).toList();
   }
 }

@@ -136,7 +136,37 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                             List<MessageModel> messages = (msgState as MessageLoadSuccessState).messages;
                             SettingModel settings = (settingState as SettingLoadSuccessState).settings;
                             List<int> readMessages = (msgState as MessageLoadSuccessState).readMessages;
-                            List<MessageModel> unreadMessages = messages.where((element) => (!readMessages.contains(element.id) && (settings.messageCategory == Globals.DEFAULT_MESSAGE_CATEGORY || element.category.toLowerCase().contains(settings.messageCategory)) && (settings.messageLocation == Globals.MESSAGE_LOCATIONS[0] || element.audience.contains(settings.messageLocation)))).toList();
+                            List<MessageModel> unreadMessages = messages.where((element) {
+                              String filterTopic = settings.messageCategory;
+                              String filterLocation = settings.messageLocation;
+                              List<String> catElement = element.category.split(",");
+                              List<String> catFilter = filterTopic.split(",");
+                              bool matchedTopic = false;
+                              if (filterTopic == Globals.DEFAULT_MESSAGE_CATEGORY) {
+                                matchedTopic = true;
+                              } else {
+                                catElement.forEach((elementCat) {
+                                  catFilter.forEach((elementFilterCat) {
+                                    if (elementCat.toLowerCase().contains(elementFilterCat)) matchedTopic = true;
+                                  });
+                                });
+                              }
+
+                              List<String> locationElement = element.audience.split(",");
+                              List<String> locationFilter = filterLocation.split(",");
+                              bool matchedLocation = false;
+                              if (locationFilter.contains(Globals.MESSAGE_LOCATIONS[0]) || locationElement.contains(Globals.MESSAGE_LOCATIONS[0])) {
+                                matchedLocation = true;
+                              } else {
+                                locationElement.forEach((elementLoc) {
+                                  locationFilter.forEach((elementFilterLoc) {
+                                    if (elementLoc == elementFilterLoc) matchedLocation = true;
+                                  });
+                                });
+                              }
+
+                              return !readMessages.contains(element.id) && matchedTopic && matchedLocation;
+                            }).toList();
                             if (unreadMessages.length == 0)
                               return Container(
                                 width: 0,

@@ -1,6 +1,7 @@
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/localization/app_localization_delegate.dart';
 import 'package:esdc_emg/screen/intro_screen.dart';
 import 'package:esdc_emg/screen/main/main_screen.dart';
@@ -74,20 +75,16 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
           ),
           home: BlocBuilder<ApplicationBloc, ApplicationState>(
             builder: (context, state) {
-              if (state is ApplicationSetupState) {
-                return BlocListener<SettingBloc, SettingState>(
-                  listener: (context, settingState) {
-                    if (settingState is SettingLoadSuccessState) {
-                      //Globals.onLocaleChanged(Locale(settingState.settings.language));
+              return BlocListener<SettingBloc, SettingState>(
+                listener: (context, settingState) {
+                  if (settingState is SettingLoadSuccessState) {
+                    if (AppLocalization.currentLanguage != settingState.settings.language) {
+                      Globals.onLocaleChanged(Locale(settingState.settings.language));
                     }
-                  },
-                  child: MainScreen(),
-                );
-              } else if (state is ApplicationIntroState) {
-                return IntroScreen();
-              } else {
-                return SplashScreen();
-              }
+                  }
+                },
+                child: state is ApplicationSetupState ? MainScreen() : state is ApplicationIntroState ? IntroScreen() : SplashScreen(),
+              );
             },
           ),
         ));

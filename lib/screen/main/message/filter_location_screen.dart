@@ -1,8 +1,11 @@
 import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/global.dart';
+import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
+import 'package:esdc_emg/widget/row/item_divider.dart';
 import 'package:esdc_emg/widget/row/item_selector_row.dart';
+import 'package:esdc_emg/widget/row/message_filter_location_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,40 +16,34 @@ class FilterLocationScreen extends StatefulWidget {
 
 class _FilterLocationScreenState extends State<FilterLocationScreen> {
 
-  SettingBloc _settingBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _settingBloc = BlocProvider.of<SettingBloc>(context);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ChildAppbar(
               title: 'filter_location',
+              showDivider: false,
             ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+              child: Text(AppLocalization.of(context).trans('filter_message_desc'), style: TextStyle(color: Styles.darkerBlue, fontSize: 16),),),
+            ItemDivider(paddingLeft: 0,),
             Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 30,),
                       ListView.separated(
                           primary: false,
                           shrinkWrap: true,
-                          itemBuilder: (context, index) => ItemSelectorRow(title: AppLocalization.of(context).trans(Globals.MESSAGE_LOCATIONS[index]), translate: false, onClick: () {
-                            _settingBloc.add(SettingUpdateMessageLocationEvent(messageLocation: Globals.MESSAGE_LOCATIONS[index]));
-                            Navigator.pop(context);
-                          }),
-                          separatorBuilder: (context, index) => SizedBox(height: 5,),
+                          itemBuilder: (context, index) => MessageFilterLocationRow(location: Globals.MESSAGE_LOCATIONS[index],),
+                          separatorBuilder: (context, index) => ItemDivider(paddingLeft: 20),
                           itemCount: Globals.MESSAGE_LOCATIONS.length),
-                      SizedBox(height: 30,)
+                      ItemDivider(paddingLeft: 0,),
                     ],
                   ),
                 ))
