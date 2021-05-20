@@ -247,18 +247,22 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       print("topic: " + message.from);
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
-      if (notification != null && android != null) {
+      if (notification != null) {
         flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,
             notification.body,
             NotificationDetails(
-              android: AndroidNotificationDetails(
-                channel.id,
-                channel.name,
-                channel.description,
-                icon: 'launch_background',
-              ),
+                android: AndroidNotificationDetails(
+                  channel.id,
+                  channel.name,
+                  channel.description,
+                  icon: 'notification_icon',
+                ),
+                iOS: IOSNotificationDetails(
+                  presentAlert: true,
+                  presentSound: true,
+                )
             ));
       }
       AppBloc.messageBloc.add(MessageRefreshEvent());
