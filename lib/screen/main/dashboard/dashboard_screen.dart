@@ -17,8 +17,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:instant/instant.dart';
 import 'learning_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -212,7 +213,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(AppLocalization.of(context).trans('last_updated') + " May 8, 2021, 10:36 am EST", style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
+                Text(AppLocalization.of(context).trans('last_updated') + " " + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(curDateTimeByZone(zone: "EST")) + " EST", style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
                 SizedBox(height: 10,),
                 ListView.separated(
                     primary: false,

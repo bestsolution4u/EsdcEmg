@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 class MessageDetailScreen extends StatefulWidget {
@@ -33,11 +34,13 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
     super.initState();
     _messageBloc = BlocProvider.of<MessageBloc>(context);
     _messageBloc.add(MessageStatusUpdateEvent(messageID: widget.message.id, read: true));
+    initializeDateFormatting();
   }
 
   @override
   Widget build(BuildContext context) {
-
+    print('--------------');
+    print(widget.message.expiredDate);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -73,7 +76,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
-                      AppLocalization.of(context).trans('note_expiration_date') + DateFormat('MMMM dd, yyyy').format(DateTime.parse(widget.message.expiredDate)),
+                      AppLocalization.of(context).trans('note_expiration_date') + DateFormat('MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(widget.message.expiredDate)),
                       style: TextStyle(color: Styles.darkGray, fontSize: 12),
                       textAlign: TextAlign.start,
                     ),
