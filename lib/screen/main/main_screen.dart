@@ -4,12 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/bloc/app_bloc.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/global.dart';
-import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/model/setting_model.dart';
 import 'package:esdc_emg/screen/main/socialmedia/social_media_screen.dart';
-import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:esdc_emg/widget/tabbar/esdc_tabbar.dart';
 import 'package:esdc_emg/widget/tabbar/main_tab_item.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,19 +20,12 @@ import 'dashboard/dashboard_screen.dart';
 import 'employee/employee_screen.dart';
 import 'message/message_screen.dart';
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  print('Handling a background message ${message.messageId}');
-}
-
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'esdc_fcm_channel', // id
   'High Importance Notifications', // title
   'This channel is used for important notifications.', // description
   importance: Importance.high,
 );
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 class MainScreen extends StatefulWidget {
   @override
@@ -46,6 +37,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   TabController tabController;
   int currentTabIndex = 0;
   FirebaseFirestore firestore;
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   @override
   void initState() {
@@ -239,16 +231,18 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       'This channel is used for important notifications.', // description
       importance: Importance.high,
     );
-    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    var initializationSettingsAndroid = AndroidInitializationSettings('notification_icon');
+    var initializationSettingsIOs = IOSInitializationSettings();
+    var initSetttings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOs);
+    flutterLocalNotificationsPlugin.initialize(initSetttings);
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       print("----------------- onMessage ----------------");
       print("topic: " + message.toString());
       RemoteNotification notification = message.notification;
-      AndroidNotification android = message.notification?.android;
       if (notification != null) {
-        flutterLocalNotificationsPlugin.show(
+        await flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,
             notification.body,
