@@ -244,7 +244,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print("----------------- onMessage ----------------");
-      print("topic: " + message.from);
+      print("topic: " + message.toString());
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
       if (notification != null) {
