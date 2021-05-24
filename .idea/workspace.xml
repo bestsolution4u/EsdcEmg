@@ -31,10 +31,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de040a4d-ce5b-445c-af48-5b5d85361f55" name="Default Changelist" comment="New UI design">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screen/main/main_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/main_screen.dart" afterDir="false" />
-    </list>
+    <list default="true" id="de040a4d-ce5b-445c-af48-5b5d85361f55" name="Default Changelist" comment="New UI design" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
