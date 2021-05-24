@@ -34,6 +34,8 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
   importance: Importance.high,
 );
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -44,7 +46,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   TabController tabController;
   int currentTabIndex = 0;
   FirebaseFirestore firestore;
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   @override
   void initState() {
@@ -238,21 +239,16 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       'This channel is used for important notifications.', // description
       importance: Importance.high,
     );
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    var initializationSettingsAndroid = AndroidInitializationSettings('notification_icon');
-    var initializationSettingsIOs = IOSInitializationSettings();
-    var initSetttings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOs);
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
 
-    flutterLocalNotificationsPlugin.initialize(initSetttings);
-    //await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
-
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print("----------------- onMessage ----------------");
       print("topic: " + message.from);
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
       if (notification != null) {
-        await flutterLocalNotificationsPlugin.show(
+        flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,
             notification.body,
