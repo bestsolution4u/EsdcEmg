@@ -59,5 +59,16 @@
 	<false/>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
+	<key>CFBundleURLSchemes</key>
+    <array>
+        <string>fb22724568071</string>
+        <string>fb247990812241506</string>
+        <string>fb502566449790031</string>
+        <string>fb1471831713076413</string>
+        <string>fb17294463927</string>
+        <string>fb730097607131117</string>
+        <string>fb312292485564363</string>
+        <string>fb108043010671716</string>
+    </array>
 </dict>
 </plist>

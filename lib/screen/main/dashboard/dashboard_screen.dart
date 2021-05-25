@@ -20,6 +20,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:instant/instant.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'learning_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -36,6 +37,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   List<VPNStatusModel> vpnStatusList = [];
   MessageBloc _messageBloc;
+  YoutubePlayerController _controller;
 
   @override
   void initState() {
@@ -44,6 +46,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "KEC","status": "UP","usage": "78","description": "MODERATE"}));
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MTL","status": "DOWN","usage": "100","description": "BAD"}));
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MCT","status": "UP","usage": "24","description": "GOOD"}));
+    _controller = YoutubePlayerController(
+      initialVideoId: 'UCCccXdsqVOHjUym8m19FBig',
+      flags: YoutubePlayerFlags(
+        mute: true,
+        autoPlay: true,
+        disableDragSeek: false,
+        loop: true,
+        isLive: false,
+        forceHD: true,
+        enableCaption: false,
+      ),
+    )..addListener(listener);
+  }
+
+  void listener() {
   }
 
   @override
@@ -70,6 +87,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: Column(
           children: [
             buildUrgentMessage(),
+            YoutubePlayer(
+              controller: _controller,
+              showVideoProgressIndicator: true,
+              progressColors: ProgressBarColors(
+                playedColor: Colors.white,
+                handleColor: Styles.bgGrey,
+              ),),
             SizedBox(height: 20,),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

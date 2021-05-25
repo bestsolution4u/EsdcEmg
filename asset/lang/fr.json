@@ -159,9 +159,13 @@
   "url_public_pensions": "https://www.canada.ca/fr/secretariat-conseil-tresor/sujets/regime-retraite.html",
   "url_leave_requirement": "https://www.tpsgc-pwgsc.gc.ca/remuneration-compensation/services-paye-pay-services/paye-information-pay/vie-life/vie-conge-life-leave/index-fra.html",
   "url_esdc_facebook": "https://www.facebook.com/EDSC.GC/",
+  "facebook_page_id_url_esdc_facebook": "17294463927",
   "url_access_canada": "https://fr-ca.facebook.com/GCAccessible/",
+  "facebook_page_id_url_access_canada": "730097607131117",
   "url_leader_today": "https://www.facebook.com/leadersdaujourdhui/",
+  "facebook_page_id_url_leader_today": "312292485564363",
   "url_senior_canada": "https://www.facebook.com/AinesauCanada",
+  "facebook_page_id_url_senior_canada": "108043010671716",
   "url_esdc_twitter": "https://twitter.com/EDSC_GC",
   "url_service_canada": "https://twitter.com/ServiceCanada_F",
   "url_access_canada_twitter": "https://mobile.twitter.com/GCaccessible",
@@ -226,5 +230,6 @@
   "filter_message_desc": "Personnalisez les messages que vous recevez en fonction de vos intérêts.",
   "none": "Rien",
   "categories_selected": "catégories sélectionnées",
-  "locations_selected": "emplacements sélectionnés"
+  "locations_selected": "emplacements sélectionnés",
+  "video_hub": "Hub vidéo"
 }

@@ -9,6 +9,7 @@ import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/model/setting_model.dart';
 import 'package:esdc_emg/screen/main/socialmedia/social_media_screen.dart';
+import 'package:esdc_emg/screen/main/video/video_hub_screen.dart';
 import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:esdc_emg/widget/tabbar/esdc_tabbar.dart';
 import 'package:esdc_emg/widget/tabbar/main_tab_item.dart';
@@ -42,7 +43,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
-  final int tabLength = 4;
+  final int tabLength = 5;
   TabController tabController;
   int currentTabIndex = 0;
   FirebaseFirestore firestore;
@@ -72,7 +73,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 4,
+        length: 5,
         child: Scaffold(
           backgroundColor: Colors.white,
           body: AppMainTabBarView(
@@ -86,7 +87,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               ),
               MessageScreen(),
               EmployeeScreen(),
-              SocialMediaScreen()
+              SocialMediaScreen(),
+              VideoHubScreen()
             ],
           ),
           bottomNavigationBar: Container(
@@ -207,6 +209,12 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                   image: 'asset/image/tab-social-active.svg',
                   imageInactive: 'asset/image/tab-social.svg',
                   selected: currentTabIndex == 3,
+                ),
+                MainTabItem(
+                  title: 'video_hub',
+                  image: 'asset/image/youtube-selected.svg',
+                  imageInactive: 'asset/image/youtube-unselected.svg',
+                  selected: currentTabIndex == 4,
                 ),
               ],
             ),

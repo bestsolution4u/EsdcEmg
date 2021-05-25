@@ -14,10 +14,11 @@ class WebviewScreen extends StatefulWidget {
 
 class _WebviewScreenState extends State<WebviewScreen> {
   bool isLoading = true;
+  WebViewController webViewController;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(child: Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
@@ -29,6 +30,9 @@ class _WebviewScreenState extends State<WebviewScreen> {
                   children: [
                     WebView(
                       initialUrl: AppLocalization.of(context).trans(widget.url),
+                      onWebViewCreated: (controller) {
+                        webViewController = controller;
+                      },
                       javascriptMode: JavascriptMode.unrestricted,
                       onPageFinished: (url) {
                         setState(() {
@@ -55,6 +59,20 @@ class _WebviewScreenState extends State<WebviewScreen> {
           ],
         ),
       ),
-    );
+    ), onWillPop: onBack);
+  }
+
+  Future<bool> onBack() async {
+    if (webViewController != null) {
+      bool canBack = await webViewController.canGoBack();
+      if (canBack) {
+        webViewController.goBack();
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
   }
 }

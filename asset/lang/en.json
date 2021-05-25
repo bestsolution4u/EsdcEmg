@@ -159,9 +159,13 @@
   "url_public_pensions": "https://www.canada.ca/en/treasury-board-secretariat/topics/pension-plan.html",
   "url_leave_requirement": "https://www.tpsgc-pwgsc.gc.ca/remuneration-compensation/services-paye-pay-services/paye-information-pay/vie-life/vie-conge-life-leave/index-eng.html",
   "url_esdc_facebook": "https://www.facebook.com/ESDC.GC/",
+  "facebook_page_id_url_esdc_facebook": "22724568071",
   "url_access_canada": "https://facebook.com/AccessibleGC/",
+  "facebook_page_id_url_access_canada": "247990812241506",
   "url_leader_today": "https://www.facebook.com/LeadersToday/",
+  "facebook_page_id_url_leader_today": "502566449790031",
   "url_senior_canada": "https://www.facebook.com/pages/Seniors-in-Canada-A%C3%AEn%C3%A9s-au-Canada/1471831713076413?ref=hl",
+  "facebook_page_id_url_senior_canada": "1471831713076413",
   "url_esdc_twitter": "https://twitter.com/ESDC_GC",
   "url_service_canada": "https://twitter.com/ServiceCanada_E",
   "url_access_canada_twitter": "https://twitter.com/AccessibleGC",
@@ -226,5 +230,6 @@
   "filter_message_desc": "Customize the messages you receive based on your interests.",
   "none": "None",
   "categories_selected": "categories selected",
-  "locations_selected": "locations selected"
+  "locations_selected": "locations selected",
+  "video_hub": "Video hub"
 }
