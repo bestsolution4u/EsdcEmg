@@ -1,4 +1,6 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/model/video_model.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,7 @@ class _VideoHubScreenState extends State<VideoHubScreen> {
                 primary: false,
                 itemBuilder: (context, index) => buildVideoItem(index),
                 separatorBuilder: (context, index) => SizedBox(height: 20,),
-                itemCount: 10,
+                itemCount: Globals.VIDEOS.length,
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             )
           ],
@@ -38,6 +40,7 @@ class _VideoHubScreenState extends State<VideoHubScreen> {
   }
 
   Widget buildVideoItem(int index) {
+    VideoModel video = Globals.VIDEOS[index];
     return RippleComponent(
       onClick: () {
 
@@ -56,7 +59,7 @@ class _VideoHubScreenState extends State<VideoHubScreen> {
                   width: double.infinity,
                   height: 200,
                   child: Center(
-                    child: Image.network('https://img.youtube.com/vi/6cwnBBAVIwE/0.jpg', width: double.infinity, height: double.infinity),
+                    child: Image.network(video.thumbnail, width: double.infinity, height: double.infinity, fit: BoxFit.cover,),
                   ),
                 ),
                 Positioned(
@@ -90,15 +93,15 @@ class _VideoHubScreenState extends State<VideoHubScreen> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(Icons.image, size: 32, color: Colors.grey,),
+              Image.network(video.pubLogo, width: 32, height: 32, fit: BoxFit.cover),
               SizedBox(width: 10,),
               Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('Video Title', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold), maxLines: 2, overflow: TextOverflow.ellipsis,),
-                      Text('Canadian Armed Forces. 3 days ago', style: TextStyle(color: Colors.grey, fontSize: 12),)
+                      Text(video.title, style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold), maxLines: 2, overflow: TextOverflow.ellipsis,),
+                      Text(video.publisher + ", " + video.time, style: TextStyle(color: Colors.grey, fontSize: 12),)
                     ],
                   )
               ),

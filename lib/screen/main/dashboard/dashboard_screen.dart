@@ -9,7 +9,6 @@ import 'package:esdc_emg/screen/main/dashboard/wellness_screen.dart';
 import 'package:esdc_emg/util/message_util.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/category_button.dart';
-import 'package:esdc_emg/widget/button/dashboard_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:esdc_emg/widget/row/vpn_status_row.dart';
@@ -47,9 +46,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MTL","status": "DOWN","usage": "100","description": "BAD"}));
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MCT","status": "UP","usage": "24","description": "GOOD"}));
     _controller = YoutubePlayerController(
-      initialVideoId: 'UCCccXdsqVOHjUym8m19FBig',
+      initialVideoId: 'KY_01FX06dw',
       flags: YoutubePlayerFlags(
-        mute: true,
+        mute: false,
         autoPlay: true,
         disableDragSeek: false,
         loop: true,
