@@ -49,9 +49,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
       initialVideoId: 'KY_01FX06dw',
       flags: YoutubePlayerFlags(
         mute: false,
-        autoPlay: true,
+        autoPlay: false,
         disableDragSeek: false,
-        loop: true,
+        loop: false,
         isLive: false,
         forceHD: true,
         enableCaption: false,

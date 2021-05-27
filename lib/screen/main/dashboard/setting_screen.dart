@@ -46,9 +46,9 @@ class _SettingScreenState extends State<SettingScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CategoryLabel(label: 'message_setting'),
+                        /*CategoryLabel(label: 'message_setting'),*/
                         /*SettingItemRow(label: 'filtered_inbox', value: 'by_location', onClick: () {},),*/
-                        SettingItemRow(label: 'notifications', value: 'all_messages', onClick: () {},),
+                        /*SettingItemRow(label: 'notifications', value: 'all_messages', onClick: () {},),*/
                         CategoryLabel(label: 'feed_back'),
                         SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
                         /*SettingSwitchRow(label: 'share_app_analytics', value: shareAnalytics, onChange: (val) {

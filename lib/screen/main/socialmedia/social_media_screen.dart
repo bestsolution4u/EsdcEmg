@@ -49,11 +49,11 @@ class _SocialMediaScreenState extends State<SocialMediaScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
-                  ItemRow(title: 'esdc', isFirst: true, onClick: () => gotoWebviewScreen(title: 'esdc_twitter', url: 'url_esdc_twitter')),
+                  ItemRow(title: 'esdc', isFirst: true, onClick: () => openTwitterLink(title: 'esdc_twitter', url: 'url_esdc_twitter')),
                   ItemDivider(paddingLeft: 15),
-                  ItemRow(title: 'service_canada', onClick: () => gotoWebviewScreen(title: 'service_canada', url: 'url_service_canada')),
+                  ItemRow(title: 'service_canada', onClick: () => openTwitterLink(title: 'service_canada', url: 'url_service_canada')),
                   ItemDivider(paddingLeft: 15),
-                  ItemRow(title: 'access_canada', isLast: true, onClick: () => gotoWebviewScreen(title: 'access_canada', url: 'url_access_canada_twitter')),
+                  ItemRow(title: 'access_canada', isLast: true, onClick: () => openTwitterLink(title: 'access_canada', url: 'url_access_canada_twitter')),
                 ],
               ),
             ),
@@ -99,26 +99,26 @@ class _SocialMediaScreenState extends State<SocialMediaScreen> {
     }
   }
 
+  Future<void> openTwitterLink({String title, String url}) async {
+    if (await canLaunch(AppLocalization.of(context).trans(url))) {
+      await launch(AppLocalization.of(context).trans(url));
+    } else {
+      gotoWebviewScreen(title: title, url: url);
+    }
+  }
+
   Future<void> openYoutubeLink({String title, String url}) async {
-    try {
-      bool launched = await launch('youtube://www.youtube.com/channel/UCwXdFgeE9KYzlDdR7TG9cMw', forceWebView: false, forceSafariVC: false, universalLinksOnly: true);
-      print('----------- launch youtube --------');
-      print(launched);
-      if (!launched) gotoWebviewScreen(title: title, url: url);
-    } catch (e) {
-      print('----------- launch youtube exception --------');
-      print(e.toString());
+    if (await canLaunch(AppLocalization.of(context).trans(url))) {
+      await launch(AppLocalization.of(context).trans(url));
+    } else {
       gotoWebviewScreen(title: title, url: url);
     }
   }
 
   Future<void> openInstagramLink({String title, String url}) async {
-    try {
-      bool launched = await launch(AppLocalization.of(context).trans(url), universalLinksOnly: false);
-      print('----------- launch instagram --------');
-      print(launched);
-      if (!launched) gotoWebviewScreen(title: title, url: url);
-    } catch (e) {
+    if (await canLaunch(AppLocalization.of(context).trans(url))) {
+      await launch(AppLocalization.of(context).trans(url));
+    } else {
       gotoWebviewScreen(title: title, url: url);
     }
   }

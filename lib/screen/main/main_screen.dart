@@ -11,6 +11,7 @@ import 'package:esdc_emg/model/setting_model.dart';
 import 'package:esdc_emg/screen/main/socialmedia/social_media_screen.dart';
 import 'package:esdc_emg/screen/main/video/video_hub_screen.dart';
 import 'package:esdc_emg/util/preference_helper.dart';
+import 'package:esdc_emg/util/toasts.dart';
 import 'package:esdc_emg/widget/tabbar/esdc_tabbar.dart';
 import 'package:esdc_emg/widget/tabbar/main_tab_item.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -278,6 +279,11 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             ));
       }
     });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      tabController.animateTo(1);
+      ToastUtils.showSuccessToast(context, "OnMessageOpenedApp");
+    });
   }
 
   Future<dynamic> onSelectNotification(String notification) async {
@@ -289,5 +295,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
   Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     print("Handling a background message");
+    ToastUtils.showSuccessToast(context, "Notification received in background");
+    tabController.animateTo(1);
   }
 }
