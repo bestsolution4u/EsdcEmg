@@ -231,5 +231,19 @@
   "none": "Rien",
   "categories_selected": "catégories sélectionnées",
   "locations_selected": "emplacements sélectionnés",
-  "video_hub": "Hub vidéo"
+  "video_hub": "Hub vidéo",
+  "top_banner_1" : "National Strategy for the 2030 Agenda",
+  "top_banner_1_img": "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/esdc-pub-050-2030agenda-banner-750x222.jpg",
+  "top_banner_1_url": "https://www.canada.ca/fr/emploi-developpement-social/nouvelles/2021/02/le-canada-lance-la-strategie-nationale-pour-le-programme2030.html",
+  "top_banner_2": "Get Government of Canada updates on COVID-19",
+  "top_banner_2_img": "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/covid-goc-branding-750x222.jpg",
+  "top_banner_2_url": "https://www.canada.ca/fr/sante-publique/services/maladies/maladie-coronavirus-covid-19.html",
+  "top_banner_3": "Find out more about the Emergency Fund for Community Support.",
+  "top_banner_3_img": "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/covid19-banner-emergency-community-support-fund.jpg",
+  "top_banner_3_url": "https://pm.gc.ca/fr/nouvelles/communiques/2020/04/21/premier-ministre-annonce-plus-grand-soutien-les-canadiens-les-plus",
+  "top_banner_4": "Apply for Canada Summer Jobs funds!",
+  "top_banner_4_img": "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/CSJ-Sharables-WEBbanner.jpg",
+  "top_banner_4_url": "https://www.canada.ca/fr/emploi-developpement-social/nouvelles/2021/04/nr-0000331--csj-youth-application---national-announcement.html",
+  "latest_news": "Dernières Nouvelles",
+  "special_message": "Message Spécial"
 }

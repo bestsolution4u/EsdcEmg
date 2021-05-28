@@ -13,6 +13,7 @@ import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/category_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
+import 'package:esdc_emg/widget/row/banner_item.dart';
 import 'package:esdc_emg/widget/row/vpn_status_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -89,9 +90,59 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: Column(
           children: [
             buildUrgentMessage(),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(width: 20,),
+                SvgPicture.asset(
+                  'asset/image/news.svg',
+                  color: Styles.primaryColor,
+                  allowDrawingOutsideViewBox: true,
+                  height: 28,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  AppLocalization.of(context).trans('latest_news'),
+                  maxLines: 2,
+                  style: TextStyle(
+                      color: Styles.primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600),
+                )
+              ],
+            ),
+            SizedBox(height: 5,),
             buildToBannerSlider(),
             buildTopBannerIndicator(),
-            SizedBox(height: 10,),
+            SizedBox(height: 20,),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(width: 20,),
+                SvgPicture.asset(
+                  'asset/image/wifi.svg',
+                  color: Styles.primaryColor,
+                  allowDrawingOutsideViewBox: true,
+                  height: 28,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  AppLocalization.of(context).trans('special_message'),
+                  maxLines: 2,
+                  style: TextStyle(
+                      color: Styles.primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600),
+                )
+              ],
+            ),
+            SizedBox(height: 5,),
             YoutubePlayer(
               controller: _controller,
               showVideoProgressIndicator: true,
@@ -154,49 +205,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget buildToBannerSlider() {
     return CarouselSlider(
-        items: Globals.TOP_BANNER_IMAGES.asMap().map((index, imageItem) {
-          return MapEntry(index, Container(
-            child: Container(
-              margin: EdgeInsets.all(5.0),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                  child: Stack(
-                    children: <Widget>[
-                      Image.network(imageItem, fit: BoxFit.cover, width: double.infinity, height: double.infinity,),
-                      Positioned(
-                        bottom: 0.0,
-                        left: 0.0,
-                        right: 0.0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromARGB(200, 0, 0, 0),
-                                Color.fromARGB(0, 0, 0, 0)
-                              ],
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                            ),
-                          ),
-                          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-                          child: Text(
-                            Globals.TOP_BANNER_TEXTS[index],
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                                height: 1
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-              ),
-            ),
-          ));
-        }).values.toList(),
+        items: Globals.TOP_BANNERS.map((banner) => BannerItem(banner: banner,)).toList(),
         options: CarouselOptions(
           height: 200,
           aspectRatio: 16/9,
@@ -222,8 +231,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget buildTopBannerIndicator() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: Globals.TOP_BANNER_IMAGES.map((url) {
-        int index = Globals.TOP_BANNER_IMAGES.indexOf(url);
+      children: Globals.TOP_BANNERS.map((text) {
+        int index = Globals.TOP_BANNERS.indexOf(text);
         return Container(
           width: 8.0,
           height: 8.0,
@@ -252,7 +261,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             return Container();
           } else {
             return Padding(
-                padding: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(bottom: 20),
               child: RippleComponent(
                   onClick: () {
                     widget.onUrgentClick();

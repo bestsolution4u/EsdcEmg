@@ -103,17 +103,10 @@ class Globals {
     VideoModel(id: 'PX2Uv0-_Vmg', title: 'Bell Let\'s Talk 2021- Minister Tassi ', thumbnail: 'https://img.youtube.com/vi/PX2Uv0-_Vmg/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
   ];
 
-  static final List<String> TOP_BANNER_IMAGES = [
-    "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/esdc-pub-050-2030agenda-banner-750x222.jpg",
-    "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/covid-goc-branding-750x222.jpg",
-    "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/covid19-banner-emergency-community-support-fund.jpg",
-    "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/CSJ-Sharables-WEBbanner.jpg"
-  ];
-
-  static final List<String> TOP_BANNER_TEXTS = [
-    "2030 Agenda National Strategy",
-    "Get the latest COVID-19 updates from the Government of Canada",
-    "Learn more about the Emergency Community Support Fund",
-    "Search & apply for Canada Summer Jobs today!"
+  static final List<String> TOP_BANNERS = [
+    "top_banner_1",
+    "top_banner_2",
+    "top_banner_3",
+    "top_banner_4",
   ];
 }

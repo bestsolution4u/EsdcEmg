@@ -231,5 +231,19 @@
   "none": "None",
   "categories_selected": "categories selected",
   "locations_selected": "locations selected",
-  "video_hub": "Video hub"
+  "video_hub": "Video hub",
+  "top_banner_1" : "2030 Agenda National Strategy",
+  "top_banner_1_img": "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/esdc-pub-050-2030agenda-banner-750x222.jpg",
+  "top_banner_1_url": "https://www.canada.ca/en/employment-social-development/news/2021/02/canada-launches-its-2030-agenda-national-strategy.html",
+  "top_banner_2": "Get the latest COVID-19 updates from the Government of Canada",
+  "top_banner_2_img": "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/covid-goc-branding-750x222.jpg",
+  "top_banner_2_url": "https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_covid-19",
+  "top_banner_3": "Learn more about the Emergency Community Support Fund.",
+  "top_banner_3_img": "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/covid19-banner-emergency-community-support-fund.jpg",
+  "top_banner_3_url": "https://pm.gc.ca/en/news/news-releases/2020/04/21/prime-minister-announces-further-support-help-canadians-need",
+  "top_banner_4": "Search & apply for Canada Summer Jobs today!",
+  "top_banner_4_img": "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/CSJ-Sharables-WEBbanner.jpg",
+  "top_banner_4_url": "https://www.canada.ca/en/employment-social-development/news/2021/04/nr-0000331--csj-youth-application---national-announcement.html",
+  "latest_news": "Latest News",
+  "special_message": "Special Message"
 }

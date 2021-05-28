@@ -24,7 +24,13 @@ class _WebviewScreenState extends State<WebviewScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ChildAppbar(title: widget.title),
+            ChildAppbar(
+              title: widget.title,
+              showTitle: false,
+              onBack: () async {
+                bool result = await onBack();
+                if (result) Navigator.pop(context);
+              },),
             Expanded(
                 child: Stack(
                   children: [
@@ -40,15 +46,6 @@ class _WebviewScreenState extends State<WebviewScreen> {
                         });
                       },
                       navigationDelegate: (NavigationRequest request) {
-                        print("-------------- Url Request -----------");
-                        print(request.url);
-                        /*if(request.url.contains("mailto:")) {
-                            launch(request.url);
-                            return NavigationDecision.prevent;
-                          } else if (request.url.contains("tel:")) {
-                            launch(request.url);
-                            return NavigationDecision.prevent;
-                          }*/
                         return NavigationDecision.navigate;
                       },
                     ),

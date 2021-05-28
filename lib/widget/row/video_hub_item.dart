@@ -1,8 +1,9 @@
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/video_model.dart';
+import 'package:esdc_emg/screen/main/video/video_player_screen.dart';
+import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoHubItem extends StatefulWidget {
 
@@ -15,53 +16,55 @@ class VideoHubItem extends StatefulWidget {
 }
 
 class _VideoHubItemState extends State<VideoHubItem> {
-
-  YoutubePlayerController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = YoutubePlayerController(
-      initialVideoId: widget.video.id,
-      flags: YoutubePlayerFlags(
-        mute: false,
-        autoPlay: false,
-        disableDragSeek: false,
-        loop: false,
-        isLive: false,
-        forceHD: true,
-        enableCaption: false,
-      ),
-    )..addListener(listener);
-  }
-
-  void listener() {
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Card(
-          color: Colors.transparent,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
-          child: Stack(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 200,
-                child: Center(
-                  child: YoutubePlayer(
-                    controller: _controller,
-                    showVideoProgressIndicator: true,
-                    progressColors: ProgressBarColors(
-                      playedColor: Colors.white,
-                      handleColor: Styles.bgGrey,
-                    ),),
+        RippleComponent(
+          onClick: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPlayerScreen(video: widget.video,),));
+          },
+          child: Card(
+            color: Styles.bgGrey,
+            elevation: 2,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            clipBehavior: Clip.hardEdge,
+            child: Stack(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 200,
+                  child: Center(
+                    child: Image.network(widget.video.thumbnail, width: double.infinity, height: double.infinity, fit: BoxFit.cover,),
+                  ),
                 ),
-              ),
-            ],
+                /*Positioned(
+                    bottom: 0,
+                    left: 10,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: Colors.black.withOpacity(0.8)
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.remove_red_eye, color: Colors.white, size: 14,),
+                          SizedBox(width: 4,),
+                          Text('385', style: TextStyle(fontSize: 12, color: Colors.white),),
+                          SizedBox(width: 6,),
+                          Icon(Icons.chat_bubble, color: Colors.white, size: 12,),
+                          SizedBox(width: 4,),
+                          Text('13', style: TextStyle(fontSize: 12, color: Colors.white),),
+                        ],
+                      ),
+                    )
+                )*/
+              ],
+            ),
           ),
         ),
         SizedBox(height: 4,),
