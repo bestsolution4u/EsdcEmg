@@ -32,6 +32,7 @@ dependencies:
   url_launcher: ^6.0.3
   device_info: ^2.0.0
   instant: ^0.4.1
+  carousel_slider: ^3.0.0
   youtube_player_flutter: ^8.0.0
   flutter_localizations:
     sdk: flutter

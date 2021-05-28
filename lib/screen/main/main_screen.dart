@@ -92,13 +92,13 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             ],
           ),
           bottomNavigationBar: Container(
-            height: Platform.isIOS ? 70 : 60,
+            height: Platform.isIOS ? 81 : 60,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.8),
-                  spreadRadius: 3,
-                  blurRadius: 5,
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 1,
+                  blurRadius: 1,
                 ),
               ],
             ),

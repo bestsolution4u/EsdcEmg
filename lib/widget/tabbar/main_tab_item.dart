@@ -22,7 +22,7 @@ class _MainTabItemState extends State<MainTabItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Platform.isIOS ? 70 : 60,
+      height: Platform.isIOS ? 80 : 60,
       child: Column(
         children: [
           Expanded(child: Center(
@@ -54,7 +54,7 @@ class _MainTabItemState extends State<MainTabItem> {
               ],
             ),
           )),
-          SizedBox(height: Platform.isIOS ? 10 : 0,)
+          SizedBox(height: Platform.isIOS ? 20 : 0,)
         ],
       )
     );

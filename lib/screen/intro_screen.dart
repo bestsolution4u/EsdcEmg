@@ -134,18 +134,22 @@ class _IntroScreenState extends State<IntroScreen> {
                         child: RippleComponent(
                           onClick: () {
                             PreferenceHelper.setBool(PrefParams.DONOT_SHOW_INTRO, true);
+                            _applicationBloc.add(ApplicationIntroFinishEvent());
                           },
                           child: Container(
                             width: double.infinity,
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             decoration: BoxDecoration(
-                              color: Styles.bgGrey,
+                              color: Styles.darkBlue,
                               borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 1, blurRadius: 2, offset: Offset(3, 3)),
+                                ]
                             ),
                             child: Center(
                               child: Text(
                                 AppLocalization.of(context).trans('donot_show_intro'),
-                                style: TextStyle(color: Styles.darkerBlue, fontSize: 12),
+                                style: TextStyle(color: Colors.white, fontSize: 12),
                               ),
                             ),
                           ),

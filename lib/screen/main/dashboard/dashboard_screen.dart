@@ -1,4 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
@@ -37,6 +39,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   List<VPNStatusModel> vpnStatusList = [];
   MessageBloc _messageBloc;
   YoutubePlayerController _controller;
+  int _bannerIndex = 0;
 
   @override
   void initState() {
@@ -46,7 +49,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MTL","status": "DOWN","usage": "100","description": "BAD"}));
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MCT","status": "UP","usage": "24","description": "GOOD"}));
     _controller = YoutubePlayerController(
-      initialVideoId: 'KY_01FX06dw',
+      initialVideoId: 'rqH3pqi2kf8',
       flags: YoutubePlayerFlags(
         mute: false,
         autoPlay: false,
@@ -86,6 +89,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: Column(
           children: [
             buildUrgentMessage(),
+            buildToBannerSlider(),
+            buildTopBannerIndicator(),
+            SizedBox(height: 10,),
             YoutubePlayer(
               controller: _controller,
               showVideoProgressIndicator: true,
@@ -146,6 +152,93 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
+  Widget buildToBannerSlider() {
+    return CarouselSlider(
+        items: Globals.TOP_BANNER_IMAGES.asMap().map((index, imageItem) {
+          return MapEntry(index, Container(
+            child: Container(
+              margin: EdgeInsets.all(5.0),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  child: Stack(
+                    children: <Widget>[
+                      Image.network(imageItem, fit: BoxFit.cover, width: double.infinity, height: double.infinity,),
+                      Positioned(
+                        bottom: 0.0,
+                        left: 0.0,
+                        right: 0.0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color.fromARGB(200, 0, 0, 0),
+                                Color.fromARGB(0, 0, 0, 0)
+                              ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                            ),
+                          ),
+                          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                          child: Text(
+                            Globals.TOP_BANNER_TEXTS[index],
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.0,
+                                height: 1
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+              ),
+            ),
+          ));
+        }).values.toList(),
+        options: CarouselOptions(
+          height: 200,
+          aspectRatio: 16/9,
+          viewportFraction: 0.8,
+          initialPage: 0,
+          enableInfiniteScroll: true,
+          reverse: false,
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 5),
+          autoPlayAnimationDuration: Duration(milliseconds: 800),
+          autoPlayCurve: Curves.fastOutSlowIn,
+          enlargeCenterPage: true,
+          onPageChanged: (index, reason) {
+            setState(() {
+              _bannerIndex = index;
+            });
+          },
+          scrollDirection: Axis.horizontal,
+        )
+    );
+  }
+
+  Widget buildTopBannerIndicator() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: Globals.TOP_BANNER_IMAGES.map((url) {
+        int index = Globals.TOP_BANNER_IMAGES.indexOf(url);
+        return Container(
+          width: 8.0,
+          height: 8.0,
+          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _bannerIndex == index
+                ? Styles.darkerBlue
+                : Styles.blue,
+          ),
+        );
+      }).toList(),
+    );
+  }
+
   Widget buildUrgentMessage() {
     return BlocBuilder<MessageBloc, MessageState>(
       builder: (context, state) {
@@ -158,40 +251,43 @@ class _DashboardScreenState extends State<DashboardScreen> {
           if (urgents == null || urgents.isEmpty || lastUrgent >= lastID) {
             return Container();
           } else {
-            return RippleComponent(
-                onClick: () {
-                  widget.onUrgentClick();
-                  _messageBloc.add(MessageLastUrgentEvent(messageID: lastID));
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  color: Styles.pink,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Icon(
-                        Icons.warning_outlined,
-                        color: Styles.red,
-                        size: 28,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        AppLocalization.of(context).trans('urgent_message'),
-                        style: TextStyle(color: Styles.red, fontSize: 18, fontWeight: FontWeight.w500),
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.chevron_right,
-                        size: 36,
-                        color: Styles.red,
-                      )
-                    ],
-                  ),
-                ));
+            return Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+              child: RippleComponent(
+                  onClick: () {
+                    widget.onUrgentClick();
+                    _messageBloc.add(MessageLastUrgentEvent(messageID: lastID));
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    color: Styles.pink,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Icon(
+                          Icons.warning_outlined,
+                          color: Styles.red,
+                          size: 28,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          AppLocalization.of(context).trans('urgent_message'),
+                          style: TextStyle(color: Styles.red, fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                        Spacer(),
+                        Icon(
+                          Icons.chevron_right,
+                          size: 36,
+                          color: Styles.red,
+                        )
+                      ],
+                    ),
+                  )),
+            );
           }
         }
       },

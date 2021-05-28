@@ -22,7 +22,7 @@ class Globals {
   static LocaleChangeCallback onLocaleChanged;
 
   /// API base url
-  static const String BASE_URL = "https://emgapp.azurewebsites.net/api/";
+  static const String BASE_URL = "https://emgadmin.azurewebsites.net/api/";
 
   /// Push Notification Topics
   static const String FCM_TOPIC_MESSAGE_CREATED = "messageCreated";
@@ -80,26 +80,40 @@ class Globals {
 
   static final List<VideoModel> VIDEOS = [
     // https://youtu.be/KY_01FX06dw
-    VideoModel(id: 'KY_01FX06dw', title: 'COVID-19 | Update | Measures to support Canadians during the COVID-19 crisis', thumbnail: 'http://img.youtube.com/vi/KY_01FX06dw/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+    VideoModel(id: 'KY_01FX06dw', title: 'COVID-19 | Update | Measures to support Canadians during the COVID-19 crisis', thumbnail: 'https://img.youtube.com/vi/KY_01FX06dw/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
     // https://youtu.be/LXHMwNWMGkM?list=PLSUro1UBralqmBPO4aWZlLhGMib3nBS0j
-    VideoModel(id: 'LXHMwNWMGkM', title: 'Future Skills - Priority 1', thumbnail: 'http://img.youtube.com/vi/LXHMwNWMGkM/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+    VideoModel(id: 'LXHMwNWMGkM', title: 'Future Skills - Priority 1', thumbnail: 'https://img.youtube.com/vi/LXHMwNWMGkM/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
     // https://youtu.be/Fdp-eASnlBQ
-    VideoModel(id: 'Fdp-eASnlBQ', title: 'Canada Child Benefit young child supplement', thumbnail: 'http://img.youtube.com/vi/Fdp-eASnlBQ/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+    VideoModel(id: 'Fdp-eASnlBQ', title: 'Canada Child Benefit young child supplement', thumbnail: 'https://img.youtube.com/vi/Fdp-eASnlBQ/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
     // https://youtu.be/03lqp_FKH6g
-    VideoModel(id: '03lqp_FKH6g', title: 'Budget 2021 and Reaching Home: Canada\'s Homelessness Strategy', thumbnail: 'http://img.youtube.com/vi/03lqp_FKH6g/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+    VideoModel(id: '03lqp_FKH6g', title: 'Budget 2021 and Reaching Home: Canada\'s Homelessness Strategy', thumbnail: 'https://img.youtube.com/vi/03lqp_FKH6g/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
     // https://youtu.be/iwiTTg840KM
-    VideoModel(id: 'iwiTTg840KM', title: 'We Asked Seniors About Their COVID Experience | Suzanne\'s Interview', thumbnail: 'http://img.youtube.com/vi/iwiTTg840KM/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+    VideoModel(id: 'iwiTTg840KM', title: 'We Asked Seniors About Their COVID Experience | Suzanne\'s Interview', thumbnail: 'https://img.youtube.com/vi/iwiTTg840KM/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
     // https://youtu.be/4koAcfA9umQ
-    VideoModel(id: '4koAcfA9umQ', title: 'Budget 2021 - Canada-wide early learning and child care system ', thumbnail: 'http://img.youtube.com/vi/4koAcfA9umQ/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+    VideoModel(id: '4koAcfA9umQ', title: 'Budget 2021 - Canada-wide early learning and child care system ', thumbnail: 'https://img.youtube.com/vi/4koAcfA9umQ/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
     // https://youtu.be/HeWk2v8Rpqw
-    VideoModel(id: 'HeWk2v8Rpqw', title: 'Future Skills 2021', thumbnail: 'http://img.youtube.com/vi/HeWk2v8Rpqw/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+    VideoModel(id: 'HeWk2v8Rpqw', title: 'Future Skills 2021', thumbnail: 'https://img.youtube.com/vi/HeWk2v8Rpqw/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
     // https://youtu.be/OVJ12inEO8E
-    VideoModel(id: 'OVJ12inEO8E', title: 'Minister Tassi - National Day of Mourning 2021', thumbnail: 'http://img.youtube.com/vi/OVJ12inEO8E/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+    VideoModel(id: 'OVJ12inEO8E', title: 'Minister Tassi - National Day of Mourning 2021', thumbnail: 'https://img.youtube.com/vi/OVJ12inEO8E/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
     // https://youtu.be/Dh5vKILLWes
-    VideoModel(id: 'Dh5vKILLWes', title: 'Support for Canadian families at each stage of their children\'s lives', thumbnail: 'http://img.youtube.com/vi/Dh5vKILLWes/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+    VideoModel(id: 'Dh5vKILLWes', title: 'Support for Canadian families at each stage of their children\'s lives', thumbnail: 'https://img.youtube.com/vi/Dh5vKILLWes/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
     // https://youtu.be/hqiEtg19lIc
-    VideoModel(id: 'hqiEtg19lIc', title: 'Health and Safety | Workplace inspections', thumbnail: 'http://img.youtube.com/vi/hqiEtg19lIc/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+    VideoModel(id: 'hqiEtg19lIc', title: 'Health and Safety | Workplace inspections', thumbnail: 'https://img.youtube.com/vi/hqiEtg19lIc/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
     // https://youtu.be/PX2Uv0-_Vmg
-    VideoModel(id: 'PX2Uv0-_Vmg', title: 'Bell Let\'s Talk 2021- Minister Tassi ', thumbnail: 'http://img.youtube.com/vi/PX2Uv0-_Vmg/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+    VideoModel(id: 'PX2Uv0-_Vmg', title: 'Bell Let\'s Talk 2021- Minister Tassi ', thumbnail: 'https://img.youtube.com/vi/PX2Uv0-_Vmg/hqdefault.jpg', time: '3 days ago', publisher: 'Social Development Canada', pubLogo: 'https://yt3.ggpht.com/ytc/AAUvwnjdlYSyFlpZtZsnBIgl7-YnZPrUzzgJlHne5UVVWw=s900-c-k-c0x00ffffff-no-rj'),
+  ];
+
+  static final List<String> TOP_BANNER_IMAGES = [
+    "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/esdc-pub-050-2030agenda-banner-750x222.jpg",
+    "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/covid-goc-branding-750x222.jpg",
+    "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/covid19-banner-emergency-community-support-fund.jpg",
+    "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/CSJ-Sharables-WEBbanner.jpg"
+  ];
+
+  static final List<String> TOP_BANNER_TEXTS = [
+    "2030 Agenda National Strategy",
+    "Get the latest COVID-19 updates from the Government of Canada",
+    "Learn more about the Emergency Community Support Fund",
+    "Search & apply for Canada Summer Jobs today!"
   ];
 }

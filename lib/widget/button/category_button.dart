@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CategoryButton extends StatelessWidget {
-
   final Color backgroundColor;
   final String icon, title;
   final double iconSize;
@@ -18,38 +17,47 @@ class CategoryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: RippleComponent(
-          onClick: onClick,
-          child: Container(
-            width: double.infinity,
-            height: 165,
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: backgroundColor
+      onClick: onClick,
+      child: Container(
+        width: double.infinity,
+        height: 165,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: backgroundColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.6),
+              offset: Offset(1, 1),
+              spreadRadius: 2,
+              blurRadius: 2,
             ),
-            child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    icon,
-                    allowDrawingOutsideViewBox: true,
-                    height: iconSize,
-                  ),
-                  SizedBox(height: 10,),
-                  Text(
-                    AppLocalization.of(context).trans(title),
-                    style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500, height: 1.3),
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                  )
-                ],
+          ],
+        ),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                icon,
+                allowDrawingOutsideViewBox: true,
+                height: iconSize,
               ),
-            ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                AppLocalization.of(context).trans(title),
+                style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500, height: 1.3),
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
+              )
+            ],
           ),
-        )
-    );
+        ),
+      ),
+    ));
   }
 }

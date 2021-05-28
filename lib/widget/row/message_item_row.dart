@@ -39,7 +39,7 @@ class MessageItemRow extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 6),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: !read ? Styles.darkerBlue : Colors.white
+                  color: !read ? Styles.blue : Colors.white
                 ),
               );
             },),
