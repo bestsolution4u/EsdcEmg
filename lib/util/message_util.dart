@@ -40,4 +40,37 @@ class MessageUtils {
     });
     return messages;
   }
+
+  static String parseISO8601(String value) {
+    String result = '';
+    value = value.replaceAll('PT', '');
+    List<String> mins = value.split('M');
+    print('----------- mins -----------');
+    print(mins);
+    if (mins.length > 1) {
+      if (mins[0].length == 1) {
+        result += '0';
+      }
+      result += mins[0];
+      result += ':';
+      List<String> secs = mins[1].split('S');
+      print('----------- secs -----------');
+      print(secs);
+      if (secs[0].length == 1) {
+        result += '0';
+      }
+      result += secs[0];
+    } else {
+      result += '00:';
+      List<String> secs = mins[0].split('S');
+      print('----------- secs -----------');
+      print(secs);
+      if (secs[0].length == 1) {
+        result += '0';
+      }
+      result += secs[0];
+    }
+
+    return result;
+  }
 }

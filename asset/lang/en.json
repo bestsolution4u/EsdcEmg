@@ -216,7 +216,7 @@
   "contact_nscc": "National Service Call Centre (NSCC)",
   "phone_contact_nscc": "1-800-463-1850",
   "site_contact_nscc": "https://www.tpsgc-pwgsc.gc.ca/comm/cnas-nscc-eng.html",
-  "last_updated": "Last updated",
+  "last_updated": "VPN status updated 2 minutes ago",
   "used": "used",
   "made_for_esdc": "Made for ESDC",
   "by_people_in_esdc": "By people in ESDC",
@@ -245,5 +245,7 @@
   "top_banner_4_img": "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/CSJ-Sharables-WEBbanner.jpg",
   "top_banner_4_url": "https://www.canada.ca/en/employment-social-development/news/2021/04/nr-0000331--csj-youth-application---national-announcement.html",
   "latest_news": "Latest News",
-  "special_message": "Special Message"
+  "special_message": "Special Message",
+  "esdc_watch": "ESDC Watch",
+  "videos_sourced_from_esdc_channel": "Videos sourced from the ESDC YouTube channel"
 }

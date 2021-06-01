@@ -26,10 +26,10 @@ class ESDCAppbar {
           SvgPicture.asset(
             icon,
             allowDrawingOutsideViewBox: true,
-            height: 40,
+            height: 30,
           ),
           SizedBox(width: 10,),
-          Text(AppLocalization.of(context).trans(title), style: TextStyle(color: Styles.darkBlue, fontSize: 26, fontWeight: FontWeight.w700))
+          Text(AppLocalization.of(context).trans(title), style: TextStyle(color: Styles.darkBlue, fontSize: 22, fontWeight: FontWeight.w700))
         ],
       ),
       actions: [

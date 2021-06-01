@@ -23,7 +23,7 @@ class _VideoHubItemState extends State<VideoHubItem> {
       children: [
         RippleComponent(
           onClick: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPlayerScreen(video: widget.video,),));
+            /*Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPlayerScreen(video: widget.video,),));*/
           },
           child: Card(
             color: Styles.bgGrey,

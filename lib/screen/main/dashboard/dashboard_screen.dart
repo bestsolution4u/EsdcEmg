@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:esdc_emg/api/api.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/model/vpn_status_model.dart';
+import 'package:esdc_emg/model/youtube_video_model.dart';
 import 'package:esdc_emg/screen/main/dashboard/feedback_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/setting_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/wellness_screen.dart';
@@ -41,29 +43,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
   MessageBloc _messageBloc;
   YoutubePlayerController _controller;
   int _bannerIndex = 0;
+  List<YoutubeVideoModel> youtubeVideos;
 
   @override
   void initState() {
     super.initState();
+    fetchYoutubeVideos();
     _messageBloc = BlocProvider.of<MessageBloc>(context);
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "KEC","status": "UP","usage": "78","description": "MODERATE"}));
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MTL","status": "DOWN","usage": "100","description": "BAD"}));
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MCT","status": "UP","usage": "24","description": "GOOD"}));
-    _controller = YoutubePlayerController(
-      initialVideoId: 'rqH3pqi2kf8',
-      flags: YoutubePlayerFlags(
-        mute: false,
-        autoPlay: false,
-        disableDragSeek: false,
-        loop: false,
-        isLive: false,
-        forceHD: true,
-        enableCaption: false,
-      ),
-    )..addListener(listener);
   }
 
-  void listener() {
+  void fetchYoutubeVideos() {
+    Api.fetchYoutubeVideos().then((videos) {
+      setState(() {
+        youtubeVideos = videos;
+      });
+    });
   }
 
   @override
@@ -90,67 +87,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: Column(
           children: [
             buildUrgentMessage(),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(width: 20,),
-                SvgPicture.asset(
-                  'asset/image/news.svg',
-                  color: Styles.primaryColor,
-                  allowDrawingOutsideViewBox: true,
-                  height: 28,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  AppLocalization.of(context).trans('latest_news'),
-                  maxLines: 2,
-                  style: TextStyle(
-                      color: Styles.primaryColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600),
-                )
-              ],
-            ),
-            SizedBox(height: 5,),
-            buildToBannerSlider(),
-            buildTopBannerIndicator(),
-            SizedBox(height: 20,),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(width: 20,),
-                SvgPicture.asset(
-                  'asset/image/wifi.svg',
-                  color: Styles.primaryColor,
-                  allowDrawingOutsideViewBox: true,
-                  height: 28,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  AppLocalization.of(context).trans('special_message'),
-                  maxLines: 2,
-                  style: TextStyle(
-                      color: Styles.primaryColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600),
-                )
-              ],
-            ),
-            SizedBox(height: 5,),
-            YoutubePlayer(
-              controller: _controller,
-              showVideoProgressIndicator: true,
-              progressColors: ProgressBarColors(
-                playedColor: Colors.white,
-                handleColor: Styles.bgGrey,
-              ),),
-            SizedBox(height: 20,),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -196,55 +132,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Divider(height: 1,),
             SizedBox(height: 10,),
             buildVPN(),
-            SizedBox(height: 20,)
+            Divider(height: 40,),
+            buildYoutubeVideos(),
+            SizedBox(height: 20,),
           ],
         ),
       ),
-    );
-  }
-
-  Widget buildToBannerSlider() {
-    return CarouselSlider(
-        items: Globals.TOP_BANNERS.map((banner) => BannerItem(banner: banner,)).toList(),
-        options: CarouselOptions(
-          height: 200,
-          aspectRatio: 16/9,
-          viewportFraction: 0.8,
-          initialPage: 0,
-          enableInfiniteScroll: true,
-          reverse: false,
-          autoPlay: true,
-          autoPlayInterval: Duration(seconds: 5),
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
-          autoPlayCurve: Curves.fastOutSlowIn,
-          enlargeCenterPage: true,
-          onPageChanged: (index, reason) {
-            setState(() {
-              _bannerIndex = index;
-            });
-          },
-          scrollDirection: Axis.horizontal,
-        )
-    );
-  }
-
-  Widget buildTopBannerIndicator() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: Globals.TOP_BANNERS.map((text) {
-        int index = Globals.TOP_BANNERS.indexOf(text);
-        return Container(
-          width: 8.0,
-          height: 8.0,
-          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: _bannerIndex == index
-                ? Styles.darkerBlue
-                : Styles.blue,
-          ),
-        );
-      }).toList(),
     );
   }
 
@@ -328,20 +221,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 maxLines: 2,
                 style: TextStyle(
                     color: Styles.primaryColor,
-                    fontSize: 18,
+                    fontSize: 22,
                     fontWeight: FontWeight.w600),
               )
             ],
           ),
           SizedBox(
-            height: 10,
+            height: 2,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(AppLocalization.of(context).trans('last_updated') + " " + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(curDateTimeByZone(zone: "EST")) + " EST", style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
+                Text(AppLocalization.of(context).trans('last_updated')/* + " " + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(curDateTimeByZone(zone: "EST")) + " EST"*/, style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
                 SizedBox(height: 10,),
                 ListView.separated(
                     primary: false,
@@ -354,6 +247,83 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget buildYoutubeVideos() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          children: [
+            SizedBox(width: 20,),
+            Icon(CupertinoIcons.play_circle, size: 28, color: Styles.primaryColor,),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              AppLocalization.of(context).trans('esdc_watch'),
+              maxLines: 2,
+              style: TextStyle(
+                  color: Styles.primaryColor,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600),
+            )
+          ],
+        ),
+        SizedBox(
+          height: 2,
+        ),
+        Padding(
+            padding: const EdgeInsets.only(left: 40),
+          child: Text(AppLocalization.of(context).trans('videos_sourced_from_esdc_channel'), style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
+        ),
+        SizedBox(height: 8,),
+        youtubeVideos == null
+            ? SizedBox(height: 200, width: double.infinity, child: Center(child: CircularProgressIndicator(),),)
+            : CarouselSlider(
+            items: youtubeVideos.map((video) => BannerItem(video: video,)).toList(),
+            options: CarouselOptions(
+              height: 235,
+              aspectRatio: 16/9,
+              viewportFraction: 0.8,
+              initialPage: 0,
+              enableInfiniteScroll: true,
+              reverse: false,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 10),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enlargeCenterPage: false,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _bannerIndex = index;
+                });
+              },
+              scrollDirection: Axis.horizontal,
+            )
+        ),
+        SizedBox(height: 8,),
+        youtubeVideos != null && youtubeVideos.isNotEmpty
+        ? Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: youtubeVideos.map((video) {
+            int index = youtubeVideos.indexOf(video);
+            return Container(
+              width: 20.0,
+              height: 4.0,
+              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+              decoration: BoxDecoration(
+                color: _bannerIndex == index
+                    ? Styles.blue
+                    : Colors.grey,
+              ),
+            );
+          }).toList(),
+        ) : Container(),
+      ],
     );
   }
 }

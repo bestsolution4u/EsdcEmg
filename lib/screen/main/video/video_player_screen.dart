@@ -1,12 +1,11 @@
 import 'package:esdc_emg/config/style.dart';
-import 'package:esdc_emg/model/video_model.dart';
-import 'package:esdc_emg/widget/appbar/child_appbar.dart';
+import 'package:esdc_emg/model/youtube_video_model.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
 
-  final VideoModel video;
+  final YoutubeVideoModel video;
 
   VideoPlayerScreen({this.video});
 
@@ -41,28 +40,28 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            ChildAppbar(
-              title: widget.video.title,
-              titleSize: 18,
-              isMessage: true,
-            ),
-            Expanded(
-                child: Center(
-                  child: YoutubePlayer(
-                    controller: _controller,
-                    showVideoProgressIndicator: true,
-                    progressColors: ProgressBarColors(
-                      playedColor: Colors.white,
-                      handleColor: Styles.bgGrey,
-                    ),),
-                )
-            )
-          ],
-        ),
+      backgroundColor: Colors.black,
+      body: Stack(
+        children: [
+          Center(
+            child: YoutubePlayer(
+              controller: _controller,
+              showVideoProgressIndicator: true,
+              progressColors: ProgressBarColors(
+                playedColor: Colors.white,
+                handleColor: Styles.bgGrey,
+              ),),
+          ),
+          Positioned(
+            right: 10,
+              top: 50,
+              child: IconButton(
+                icon: Icon(Icons.close, size: 24, color: Colors.white,),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ))
+        ],
       ),
     );
   }

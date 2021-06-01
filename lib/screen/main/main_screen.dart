@@ -42,7 +42,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
-  final int tabLength = 5;
+  final int tabLength = 4;
   TabController tabController;
   int currentTabIndex = 0;
   FirebaseFirestore firestore;
@@ -73,7 +73,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 5,
+        length: tabLength,
         child: Scaffold(
           backgroundColor: Colors.white,
           body: AppMainTabBarView(
@@ -88,7 +88,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               MessageScreen(),
               EmployeeScreen(),
               SocialMediaScreen(),
-              VideoHubScreen()
+              /*VideoHubScreen()*/
             ],
           ),
           bottomNavigationBar: Container(
@@ -210,12 +210,12 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                   imageInactive: 'asset/image/tab-social.svg',
                   selected: currentTabIndex == 3,
                 ),
-                MainTabItem(
+                /*MainTabItem(
                   title: 'video_hub',
                   image: 'asset/image/youtube-selected.svg',
                   imageInactive: 'asset/image/youtube-unselected.svg',
                   selected: currentTabIndex == 4,
-                ),
+                ),*/
               ],
             ),
           ),

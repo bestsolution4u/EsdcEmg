@@ -216,7 +216,7 @@
   "contact_nscc": "Centre national d'appels de service (CNAS)",
   "phone_contact_nscc": "1-800-463-1850",
   "site_contact_nscc": "https://www.tpsgc-pwgsc.gc.ca/comm/cnas-nscc-fra.html",
-  "last_updated": "Dernière mise à jour",
+  "last_updated": "Statut VPN mis à jour il y a 2 minutes",
   "used": "utilisé",
   "made_for_esdc": "Conçu pour EDSC",
   "by_people_in_esdc": "Par des gens d'EDSC",
@@ -245,5 +245,7 @@
   "top_banner_4_img": "https://www.canada.ca/content/dam/esdc-edsc/images/corporate/carousel/CSJ-Sharables-WEBbanner.jpg",
   "top_banner_4_url": "https://www.canada.ca/fr/emploi-developpement-social/nouvelles/2021/04/nr-0000331--csj-youth-application---national-announcement.html",
   "latest_news": "Dernières Nouvelles",
-  "special_message": "Message Spécial"
+  "special_message": "Message Spécial",
+  "esdc_watch": "Veille d'EDSC",
+  "videos_sourced_from_esdc_channel": "Vidéos provenant de la chaîne YouTube d'EDSC"
 }
