@@ -48,15 +48,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    fetchYoutubeVideos();
+    fetchYoutubeVideos(channelID: AppLocalization.currentLanguage == 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
     _messageBloc = BlocProvider.of<MessageBloc>(context);
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "KEC","status": "UP","usage": "78","description": "MODERATE"}));
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MTL","status": "DOWN","usage": "100","description": "BAD"}));
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MCT","status": "UP","usage": "24","description": "GOOD"}));
   }
 
-  void fetchYoutubeVideos() {
-    Api.fetchYoutubeVideos().then((videos) {
+  void fetchYoutubeVideos({channelID}) {
+    youtubeVideos = null;
+    Api.fetchYoutubeVideos(channelID != null ? channelID : AppLocalization.of(context).trans('youtube_channel_id')).then((videos) {
       setState(() {
         youtubeVideos = videos;
       });
@@ -65,77 +66,84 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: ESDCAppbar.renderMainAppbar(
-        title: 'app_title_home',
-        icon: 'asset/image/nav-icon-home.svg',
-          action: AppIconButton(
-            icon: SvgPicture.asset(
-              'asset/image/settings.svg',
-              color: Styles.darkerBlue,
-              allowDrawingOutsideViewBox: true,
-              height: 24,
+    return BlocListener<SettingBloc, SettingState>(
+        listener: (context, state) {
+          if (state is SettingLoadSuccessState && AppLocalization.currentLanguage != state.settings.language) {
+            fetchYoutubeVideos();
+          }
+        },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: ESDCAppbar.renderMainAppbar(
+            title: 'app_title_home',
+            icon: 'asset/image/nav-icon-home.svg',
+            action: AppIconButton(
+              icon: SvgPicture.asset(
+                'asset/image/settings.svg',
+                color: Styles.darkerBlue,
+                allowDrawingOutsideViewBox: true,
+                height: 24,
+              ),
+              onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingScreen(),)),
+              rippleRadius: 40,
+              padding: 16,
             ),
-            onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingScreen(),)),
-            rippleRadius: 40,
-            padding: 16,
-          ),
-        context: context
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            buildUrgentMessage(),
-            Padding(
+            context: context
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              buildUrgentMessage(),
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  CategoryButton(
-                    title: 'active_screening',
-                    icon: 'asset/image/icon-covid.svg',
-                    iconSize: 54,
-                    backgroundColor: Styles.darkerBlue,
-                    onClick: () => launch(AppLocalization.of(context).trans('url_covid_active_screening')),
-                  ),
-                  SizedBox(width: 20,),
-                  CategoryButton(
-                    title: 'employ_wellness',
-                    icon: 'asset/image/icon-wellness.svg',
-                    backgroundColor: Styles.blue,
-                    onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),
-                  ),
-                ],
+                child: Row(
+                  children: [
+                    CategoryButton(
+                      title: 'active_screening',
+                      icon: 'asset/image/icon-covid.svg',
+                      iconSize: 54,
+                      backgroundColor: Styles.darkerBlue,
+                      onClick: () => launch(AppLocalization.of(context).trans('url_covid_active_screening')),
+                    ),
+                    SizedBox(width: 20,),
+                    CategoryButton(
+                      title: 'employ_wellness',
+                      icon: 'asset/image/icon-wellness.svg',
+                      backgroundColor: Styles.blue,
+                      onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 20,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  CategoryButton(
-                    title: 'learning',
-                    icon: 'asset/image/icon-learning.svg',
-                    iconSize: 80,
-                    onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),
-                  ),
-                  SizedBox(width: 20,),
-                  CategoryButton(
-                    title: 'feed_back',
-                    icon: 'asset/image/icon-feedback.svg',
-                    onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),
-                  ),
-                ],
+              SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    CategoryButton(
+                      title: 'learning',
+                      icon: 'asset/image/icon-learning.svg',
+                      iconSize: 80,
+                      onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),
+                    ),
+                    SizedBox(width: 20,),
+                    CategoryButton(
+                      title: 'feed_back',
+                      icon: 'asset/image/icon-feedback.svg',
+                      onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 20,),
-            Divider(height: 1,),
-            SizedBox(height: 10,),
-            buildVPN(),
-            Divider(height: 40,),
-            buildYoutubeVideos(),
-            SizedBox(height: 20,),
-          ],
+              SizedBox(height: 20,),
+              Divider(height: 1,),
+              SizedBox(height: 10,),
+              buildVPN(),
+              Divider(height: 40,),
+              buildYoutubeVideos(),
+              SizedBox(height: 20,),
+            ],
+          ),
         ),
       ),
     );
