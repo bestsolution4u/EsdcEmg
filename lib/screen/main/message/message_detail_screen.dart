@@ -39,7 +39,15 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('--------------');
+    Duration duration = DateTime.parse(widget.message.expiredDate).difference(DateTime.now());
+    String strExpDuration = "";
+    if (duration.inDays > 0) {
+      strExpDuration = duration.inDays.toString() + " " + AppLocalization.of(context).trans("days");
+    } else if (duration.inHours > 0) {
+      strExpDuration = duration.inHours.toString() + " " + AppLocalization.of(context).trans("hours");
+    } else {
+      strExpDuration = duration.inMinutes.toString() + " " + AppLocalization.of(context).trans("minutes");
+    }
     print(widget.message.expiredDate);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -76,7 +84,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
-                      AppLocalization.of(context).trans('note_expiration_date') + DateFormat('MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(widget.message.expiredDate)),
+                      AppLocalization.of(context).trans('note_expiration_date') + strExpDuration,
                       style: TextStyle(color: Styles.darkGray, fontSize: 12),
                       textAlign: TextAlign.start,
                     ),

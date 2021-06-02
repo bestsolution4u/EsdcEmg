@@ -3,7 +3,6 @@ import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/util/toasts.dart';
-import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/appbar/child_image_appbar.dart';
 import 'package:esdc_emg/widget/input/app_commentbox.dart';
 import 'package:flutter/cupertino.dart';
@@ -71,35 +70,22 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     padding: const EdgeInsets.symmetric(horizontal: 20),
                                     child: Text(
                                       AppLocalization.of(context).trans('feed_back_description'),
-                                      style: TextStyle(color: Styles.darkBlue, fontSize: 14, fontWeight: FontWeight.w500),
+                                      style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),
                                     ),
                                   ),
-                                  /*Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(
-                            'Name (Optional)',
-                            style: TextStyle(color: Styles.textBlack, fontSize: 15, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: AppInputbox(
-                            controller: nameController,
-                          ),
-                        ),*/
-                                  SizedBox(height: 20,),
+                                  SizedBox(height: 5,),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 20),
                                     child: Text(
                                       AppLocalization.of(context).trans('which_are_you_from'),
-                                      style: TextStyle(color: Styles.darkBlue, fontSize: 15, fontWeight: FontWeight.bold),
+                                      style: TextStyle(color: Styles.darkerBlue, fontSize: 15, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 15),
                                     child: Card(
                                       clipBehavior: Clip.antiAlias,
-                                      elevation: 4,
+                                      elevation: 0,
                                       color: Colors.white,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
@@ -140,19 +126,19 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 20,),
+                                  SizedBox(height: 10,),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 20),
                                     child: Text(
                                       AppLocalization.of(context).trans('category'),
-                                      style: TextStyle(color: Styles.darkBlue, fontSize: 15, fontWeight: FontWeight.bold),
+                                      style: TextStyle(color: Styles.darkerBlue, fontSize: 15, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 15),
                                     child: Card(
                                       clipBehavior: Clip.antiAlias,
-                                      elevation: 4,
+                                      elevation: 0,
                                       color: Colors.white,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
@@ -193,12 +179,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 20,),
+                                  SizedBox(height: 10,),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 20),
                                     child: Text(
                                       AppLocalization.of(context).trans('feed_back'),
-                                      style: TextStyle(color: Styles.darkBlue, fontSize: 15, fontWeight: FontWeight.bold),
+                                      style: TextStyle(color: Styles.darkerBlue, fontSize: 15, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Padding(
@@ -224,7 +210,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                             TextSpan(
                                               text: AppLocalization.of(context).trans('disclaimer_desc'),
                                               style: TextStyle(
-                                                color: Styles.darkBlue,
+                                                color: Styles.darkerBlue,
                                                 fontSize: 12,
                                               ),
                                             ),
@@ -241,7 +227,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       padding: const EdgeInsets.all(16.0),
                                       onPressed: () => submitFeedback(),
                                       child: Text(AppLocalization.of(context).trans('send_feedback'),
-                                          style: TextStyle(color: Colors.white, fontSize: 16)),
+                                          style: TextStyle(color: Colors.white, fontSize: 16), maxLines: 2, textAlign: TextAlign.center,),
                                       textColor: Styles.textBlack,
                                       shape: RoundedRectangleBorder(
                                           side: BorderSide(

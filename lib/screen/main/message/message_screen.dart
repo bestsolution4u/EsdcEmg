@@ -8,6 +8,7 @@ import 'package:esdc_emg/screen/main/message/filter_location_screen.dart';
 import 'package:esdc_emg/screen/main/message/filter_topic_screen.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
+import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:esdc_emg/widget/row/item_divider.dart';
 import 'package:esdc_emg/widget/row/message_item_row.dart';
 import 'package:esdc_emg/widget/row/setting_item_row.dart';
@@ -31,16 +32,40 @@ class _MessageScreenState extends State<MessageScreen> {
           context: context,
           action: Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: AppIconButton(
-              icon: SvgPicture.asset(
-                'asset/image/setting.svg',
-                color: Styles.darkerBlue,
-                allowDrawingOutsideViewBox: true,
-                height: 24,
-              ),
-              onClick: () => openFilter(),
-              rippleRadius: 36,
-              padding: 12,
+            child: Stack(
+              children: [
+                AppIconButton(
+                  icon: SvgPicture.asset(
+                    'asset/image/setting.svg',
+                    color: Styles.darkerBlue,
+                    allowDrawingOutsideViewBox: true,
+                    height: 24,
+                  ),
+                  onClick: () => openFilter(),
+                  rippleRadius: 36,
+                  padding: 12,
+                ),
+                Positioned(
+                  top: 0,
+                    right: 8,
+                    child: BlocBuilder<SettingBloc, SettingState>(
+                      builder: (context, state) {
+                        if (state is !SettingLoadSuccessState) return Container();
+                        SettingModel settingModel = (state as SettingLoadSuccessState).settings;
+                        List<String> topicFilters = settingModel.messageCategory.split(",").where((element) => element != null && element.isNotEmpty && element != Globals.DEFAULT_MESSAGE_CATEGORY).toList();
+                        List<String> locationFilters = settingModel.messageLocation.split(",").where((element) => element != null && element.isNotEmpty && element != Globals.MESSAGE_LOCATIONS[0]).toList();
+                        if (topicFilters.length + locationFilters.length > 0) return Container(
+                            width: 12,
+                            height: 12,
+                            margin: const EdgeInsets.only(top: 6),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: Styles.blue
+                            ));
+                        return Container();
+                      },
+                    ),)
+              ],
             ),
           )
       ),
@@ -61,6 +86,7 @@ class _MessageScreenState extends State<MessageScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Divider(height: 1, color: Styles.bgGrey,),
+                  buildFilterCount(),
                   buildMessages(messages),
                 ],
               ),
@@ -68,6 +94,35 @@ class _MessageScreenState extends State<MessageScreen> {
           }
         },
       ),
+    );
+  }
+
+  Widget buildFilterCount() {
+    return BlocBuilder<SettingBloc, SettingState>(
+        builder: (context, state) {
+          if (state is !SettingLoadSuccessState) return Container();
+          SettingModel settingModel = (state as SettingLoadSuccessState).settings;
+          List<String> topicFilters = settingModel.messageCategory.split(",").where((element) => element != null && element.isNotEmpty && element != Globals.DEFAULT_MESSAGE_CATEGORY).toList();
+          List<String> locationFilters = settingModel.messageLocation.split(",").where((element) => element != null && element.isNotEmpty && element != Globals.MESSAGE_LOCATIONS[0]).toList();
+          int count = topicFilters.length + locationFilters.length;
+          if (count > 0) return RippleComponent(
+            onClick: () => openFilter(),
+            child: Container(
+              color: Colors.white,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10,),
+                  Text(AppLocalization.of(context).trans('you_have') + count.toString() + AppLocalization.of(context).trans('message_filters_applied'), style: TextStyle(fontSize: 12, color: Styles.blue),),
+                  SizedBox(height: 10,),
+                  Divider(height: 1, color: Styles.bgGrey,),
+                ],
+              ),
+            ),
+          );
+          return Container();
+        },
     );
   }
 
@@ -93,7 +148,7 @@ class _MessageScreenState extends State<MessageScreen> {
                   children: [
                     SizedBox(height: 10,),
                     Text(
-                      AppLocalization.of(context).trans("filter_inbox"),
+                      AppLocalization.of(context).trans("my_preferences"),
                       style: TextStyle(
                           color: Styles.darkerBlue,
                           fontSize: 22,

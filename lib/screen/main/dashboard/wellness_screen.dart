@@ -39,6 +39,7 @@ class _WellnessScreenState extends State<WellnessScreen> {
               child: BorderItemSelector(
                 title: 'life_speak',
                 icon: 'asset/image/icon-nav-lifespeak.svg',
+                description: 'life_speak_desc',
                 onClick: () => gotoWebviewScreen(
                     title: "life_speak",
                     url: 'url_life_speak'),

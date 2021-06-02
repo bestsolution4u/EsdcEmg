@@ -47,6 +47,8 @@ class _PayBenefitScreenState extends State<PayBenefitScreen> {
                               ItemDivider(paddingLeft: 15),
                               ItemRow(title: 'how_your_pay', icon: 'asset/image/icon-row-how-pay.svg', onClick: () => gotoWebviewScreen(title: 'how_your_pay', url: "url_how_your_pay")),
                               ItemDivider(paddingLeft: 15),
+                              ItemRow(title: 'tbs_pay', icon: 'asset/image/icon-row-tbs-pay-rates.svg', onClick: () => gotoWebviewScreen(title: 'tbs_pay', url: "url_tbs_pay")),
+                              ItemDivider(paddingLeft: 15),
                               ItemRow(title: 'occupational_group', icon: 'asset/image/icon-row-occupational.svg', isLast: true, onClick: () => gotoWebviewScreen(title: 'occupational_group', url: "url_occupational_group")),
                             ],
                           ),

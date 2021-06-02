@@ -48,7 +48,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    fetchYoutubeVideos(channelID: AppLocalization.currentLanguage == 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
+    fetchYoutubeVideos(channelID: AppLocalization.currentLanguage != 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
     _messageBloc = BlocProvider.of<MessageBloc>(context);
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "KEC","status": "UP","usage": "78","description": "MODERATE"}));
     vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MTL","status": "DOWN","usage": "100","description": "BAD"}));
@@ -58,9 +58,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void fetchYoutubeVideos({channelID}) {
     youtubeVideos = null;
     Api.fetchYoutubeVideos(channelID != null ? channelID : AppLocalization.of(context).trans('youtube_channel_id')).then((videos) {
-      setState(() {
-        youtubeVideos = videos;
-      });
+      if (mounted) {
+        setState(() {
+          youtubeVideos = videos;
+        });
+      }
     });
   }
 
@@ -68,8 +70,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return BlocListener<SettingBloc, SettingState>(
         listener: (context, state) {
-          if (state is SettingLoadSuccessState && AppLocalization.currentLanguage != state.settings.language) {
-            fetchYoutubeVideos();
+          if (state is SettingLoadSuccessState) {
+            if (AppLocalization.currentLanguage != state.settings.language) {
+              fetchYoutubeVideos(channelID: state.settings.language != 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
+            }
           }
         },
       child: Scaffold(

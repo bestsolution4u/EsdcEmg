@@ -12,6 +12,7 @@ import 'package:esdc_emg/widget/row/item_divider.dart';
 import 'package:esdc_emg/widget/row/item_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../webview_screen.dart';
 import 'contact_detail_screen.dart';
@@ -85,7 +86,10 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                       children: [
                         ItemRow(title: 'learning', icon: 'asset/image/icon-row-learning.svg', isFirst: true, onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),))),
                         ItemDivider(paddingLeft: 15),
-                        ItemRow(title: 'gc_jobs', icon: 'asset/image/icon-row-gcjobs.svg', onClick: () => gotoWebviewScreen(title: 'gc_jobs', url: 'url_gc_jobs')),
+                        ItemRow(title: 'gc_jobs', icon: 'asset/image/icon-row-gcjobs.svg', onClick: () {
+                          /*gotoWebviewScreen(title: 'gc_jobs', url: 'url_gc_jobs');*/
+                          launch(AppLocalization.of(context).trans('url_gc_jobs'));
+                        }),
                         ItemDivider(paddingLeft: 15),
                         ItemRow(title: 'award_recognition', icon: 'asset/image/icon-row-awards.svg', isLast: true, onClick: () => gotoWebviewScreen(title: 'award_recognition', url: 'url_award_recognition')),
                       ],
@@ -96,7 +100,10 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Column(
                       children: [
-                        ItemRow(title: 'gc_directory', icon: 'asset/image/icon-row-gcdirectory.svg', isFirst: true, onClick: () => gotoWebviewScreen(title: 'gc_directory', url: 'url_gc_directory')),
+                        ItemRow(title: 'gc_directory', icon: 'asset/image/icon-row-gcdirectory.svg', isFirst: true, onClick: () {
+                          /*gotoWebviewScreen(title: 'gc_directory', url: 'url_gc_directory');*/
+                          launch(AppLocalization.of(context).trans('url_gc_directory'));
+                        }),
                         ItemDivider(paddingLeft: 15),
                         ItemRow(title: 'esdc_web', icon: 'asset/image/icon-row-esdcwebsite.svg', isLast: true, onClick: () => gotoWebviewScreen(title: 'esdc_web', url: 'url_esdc_web')),
                       ],
@@ -133,6 +140,19 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                             title: 'contact_employee_assistance_program',
                             phone1: 'phone_contact_employee_assistance_program',
                             website: 'site_contact_employee_assistance_program',
+                          ),
+                        )),
+                  ),
+                  ItemDivider(paddingLeft: 20),
+                  ContactItemRow(
+                    title: 'contact_sun_life',
+                    onClick: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ContactDetailScreen(
+                            title: 'contact_sun_life',
+                            phone1: 'phone_contact_sun_life',
+                            website: 'site_contact_sun_life',
                           ),
                         )),
                   ),
@@ -188,6 +208,19 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                             title: 'contact_nscc',
                             phone1: 'phone_contact_nscc',
                             website: 'site_contact_nscc',
+                          ),
+                        )),
+                  ),
+                  ItemDivider(paddingLeft: 20),
+                  ContactItemRow(
+                    title: 'contact_psmip',
+                    onClick: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ContactDetailScreen(
+                            title: 'contact_psmip',
+                            phone1: 'phone_contact_psmip',
+                            website: 'site_contact_psmip',
                           ),
                         )),
                   ),
