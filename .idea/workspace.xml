@@ -31,19 +31,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de040a4d-ce5b-445c-af48-5b5d85361f55" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/esdc_emg.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/esdc_emg.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/config/global.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config/global.dart" afterDir="false" />
-    </list>
+    <list default="true" id="de040a4d-ce5b-445c-af48-5b5d85361f55" name="Default Changelist" comment="New UI design" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -356,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622559968121</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="New UI design">
+      <created>1622581101839</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1622581101839</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -467,9 +462,10 @@
     <state width="1727" height="429" key="GridCell.Tab.0.right/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1622226642493" />
     <state width="1323" height="506" key="GridCell.Tab.0.right/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1622052210617" />
     <state width="1727" height="450" key="GridCell.Tab.0.right/2070.0.1216.728/150.0.1770.1040@150.0.1770.1040" timestamp="1622565677439" />
-    <state x="673" y="281" key="MultipleFileMergeDialog" timestamp="1619661110725">
-      <screen x="150" y="0" width="1770" height="1040" />
+    <state x="425" y="246" key="MultipleFileMergeDialog" timestamp="1622581284498">
+      <screen x="0" y="25" width="1440" height="818" />
     </state>
+    <state x="425" y="246" key="MultipleFileMergeDialog/0.25.1440.818@0.25.1440.818" timestamp="1622581284498" />
     <state x="673" y="281" key="MultipleFileMergeDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1619661110725" />
     <state x="150" y="24" key="SettingsEditor" timestamp="1622464773131">
       <screen x="150" y="0" width="1770" height="1040" />
@@ -478,9 +474,11 @@
     <state x="575" y="172" key="SettingsEditor/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621887648772" />
     <state x="150" y="17" key="SettingsEditor/150.0.874.728@150.0.874.728" timestamp="1622451492426" />
     <state x="150" y="24" key="SettingsEditor/2070.0.1216.728/150.0.1770.1040@150.0.1770.1040" timestamp="1622464773131" />
-    <state x="267" y="253" key="Vcs.Push.Dialog.v2" timestamp="1622560351574">
-      <screen x="150" y="0" width="1770" height="1040" />
+    <state x="95" y="224" key="Vcs.Push.Dialog.v2" timestamp="1622581301752">
+      <screen x="0" y="25" width="1440" height="818" />
     </state>
+    <state x="95" y="224" key="Vcs.Push.Dialog.v2/0.25.1440.818@0.25.1440.818" timestamp="1622581301752" />
+    <state x="95" y="224" key="Vcs.Push.Dialog.v2/0.25.1440.819@0.25.1440.819" timestamp="1622581110478" />
     <state x="627" y="253" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1622226514931" />
     <state x="2288" y="177" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621975592085" />
     <state x="208" y="177" key="Vcs.Push.Dialog.v2/150.0.874.728@150.0.874.728" timestamp="1622451359424" />
