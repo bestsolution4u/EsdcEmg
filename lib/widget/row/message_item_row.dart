@@ -57,7 +57,7 @@ class MessageItemRow extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     )),
-                Text(DateFormat('MMMM dd, yyyy').format(DateTime.parse(message.effectiveDate)), style: TextStyle(color: Styles.darkerBlue, fontSize: 12, fontWeight: FontWeight.w400),),
+                Text(DateFormat('MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(message.effectiveDate)), style: TextStyle(color: Styles.darkerBlue, fontSize: 12, fontWeight: FontWeight.w400),),
               ],
             )),
             message.urgentInd == 'Urgent' ? Container(

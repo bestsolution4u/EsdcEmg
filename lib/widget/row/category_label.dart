@@ -26,7 +26,7 @@ class CategoryLabel extends StatelessWidget {
             height: 20,
             width: 20,
           ),) : Container(),
-          Text(AppLocalization.of(context).trans(label), style: TextStyle(color: color, fontSize: fontSize, fontWeight: fontWeight),)
+          Flexible(child: Text(AppLocalization.of(context).trans(label), style: TextStyle(color: color, fontSize: fontSize, fontWeight: fontWeight),))
         ],
       ),
     );

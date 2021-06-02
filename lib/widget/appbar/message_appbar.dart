@@ -85,7 +85,7 @@ class MessageAppBar extends StatelessWidget {
                 ),
               ) : Container(),
               Text(
-                DateFormat('MMMM dd, yyyy').format(DateTime.parse(message.effectiveDate)),
+                DateFormat('MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(message.effectiveDate)),
                 style: TextStyle(color: Styles.textBlack, fontSize: 14),
                 textAlign: TextAlign.start,
               )

@@ -58,9 +58,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void fetchYoutubeVideos({channelID}) {
     youtubeVideos = null;
     Api.fetchYoutubeVideos(channelID != null ? channelID : AppLocalization.of(context).trans('youtube_channel_id')).then((videos) {
-      setState(() {
-        youtubeVideos = videos;
-      });
+      if (mounted) {
+        setState(() {
+          youtubeVideos = videos;
+        });
+      }
     });
   }
 
@@ -68,10 +70,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return BlocListener<SettingBloc, SettingState>(
         listener: (context, state) {
-          print('--------------- Bloc Listening -----');
           if (state is SettingLoadSuccessState) {
             if (AppLocalization.currentLanguage != state.settings.language) {
-              print('---------- fetch Video ----------');
               fetchYoutubeVideos(channelID: state.settings.language != 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
             }
           }

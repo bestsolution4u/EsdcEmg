@@ -5,12 +5,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class BorderItemSelector extends StatelessWidget {
 
-  final String title, icon;
+  final String title, icon, description;
   final double iconSize;
   final Color color;
   final VoidCallback onClick;
 
-  BorderItemSelector({this.title, this.icon, this.iconSize = 50, this.color = Colors.white, this.onClick});
+  BorderItemSelector({this.title, this.icon, this.description = "", this.iconSize = 50, this.color = Colors.white, this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,9 @@ class BorderItemSelector extends StatelessWidget {
             height: iconSize,
           ),
           SizedBox(height: 10,),
-          Flexible(child: Text(AppLocalization.of(context).trans(title), style: TextStyle(color: color, fontSize: 16), textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis,))
+          Flexible(child: Text(AppLocalization.of(context).trans(title), style: TextStyle(color: color, fontSize: 16), textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis,)),
+          description.isNotEmpty ? SizedBox(height: 5,) : Container(),
+          description.isNotEmpty ? Flexible(child: Text(AppLocalization.of(context).trans(description), style: TextStyle(color: color, fontSize: 12), textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis,)) : Container()
         ],
       ),
       textColor: color,
