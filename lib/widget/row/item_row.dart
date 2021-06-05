@@ -10,8 +10,9 @@ class ItemRow extends StatelessWidget {
   final String title, icon;
   final bool isFirst, isLast;
   final VoidCallback onClick;
+  final double iconSize;
 
-  ItemRow({this.title, this.icon, this.onClick, this.isFirst = false, this.isLast = false});
+  ItemRow({this.title, this.icon, this.iconSize = 20, this.onClick, this.isFirst = false, this.isLast = false});
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +26,14 @@ class ItemRow extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
+            SizedBox(width: 8,),
             icon != null
                 ? Padding(
-                    padding: const EdgeInsets.only(right: 15),
+                    padding: const EdgeInsets.only(right: 20),
                     child: SvgPicture.asset(
                       icon,
-                      height: 20,
-                      width: 20,
+                      height: iconSize,
+                      width: iconSize,
                     ),
                   )
                 : Container(),
@@ -43,7 +45,7 @@ class ItemRow extends StatelessWidget {
                   Flexible(
                     child: Text(
                       AppLocalization.of(context).trans(title),
-                      style: TextStyle(color: Styles.darkBlue, fontSize: 16),
+                      style: TextStyle(color: Styles.darkBlue, fontSize: 16, fontWeight: FontWeight.w600),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

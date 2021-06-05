@@ -112,7 +112,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                           underline: Container(),
                                           selectedItemBuilder: (BuildContext context) {
                                             return Globals.WHICH_FROM.map<Widget>((String item) {
-                                              return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(AppLocalization.of(context).trans(item), style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),);
+                                              return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(AppLocalization.of(context).trans(item), style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),),);
                                             }).toList();
                                           },
                                           items: Globals.WHICH_FROM.map<DropdownMenuItem<String>>((String value) {
@@ -165,7 +165,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                           underline: Container(),
                                           selectedItemBuilder: (BuildContext context) {
                                             return Globals.CATEGORIES.map<Widget>((String item) {
-                                              return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(AppLocalization.of(context).trans(item), style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),);
+                                              return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(AppLocalization.of(context).trans(item), style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),),);
                                             }).toList();
                                           },
                                           items: Globals.CATEGORIES.map<DropdownMenuItem<String>>((String value) {

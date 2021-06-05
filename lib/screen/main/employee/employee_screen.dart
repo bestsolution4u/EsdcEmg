@@ -84,10 +84,9 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Column(
                       children: [
-                        ItemRow(title: 'learning', icon: 'asset/image/icon-row-learning.svg', isFirst: true, onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),))),
+                        ItemRow(title: 'learning', icon: 'asset/image/icon-row-learning.svg', iconSize: 14, isFirst: true, onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),))),
                         ItemDivider(paddingLeft: 15),
                         ItemRow(title: 'gc_jobs', icon: 'asset/image/icon-row-gcjobs.svg', onClick: () {
-                          /*gotoWebviewScreen(title: 'gc_jobs', url: 'url_gc_jobs');*/
                           launch(AppLocalization.of(context).trans('url_gc_jobs'));
                         }),
                         ItemDivider(paddingLeft: 15),
@@ -101,7 +100,6 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                     child: Column(
                       children: [
                         ItemRow(title: 'gc_directory', icon: 'asset/image/icon-row-gcdirectory.svg', isFirst: true, onClick: () {
-                          /*gotoWebviewScreen(title: 'gc_directory', url: 'url_gc_directory');*/
                           launch(AppLocalization.of(context).trans('url_gc_directory'));
                         }),
                         ItemDivider(paddingLeft: 15),
@@ -109,7 +107,6 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                       ],
                     ),
                   ),
-                  /*ItemSelectorRow(title: 'gc_contacts', assetImage: 'asset/image/chat.svg', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => GCContactScreen(),)),),*/
                   SizedBox(height: 20,)
                 ],
               ),

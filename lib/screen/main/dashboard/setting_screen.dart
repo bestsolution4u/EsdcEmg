@@ -49,20 +49,11 @@ class _SettingScreenState extends State<SettingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      /*CategoryLabel(label: 'message_setting'),*/
-                      /*SettingItemRow(label: 'filtered_inbox', value: 'by_location', onClick: () {},),*/
-                      /*SettingItemRow(label: 'notifications', value: 'all_messages', onClick: () {},),*/
                       CategoryLabel(label: 'feed_back'),
                       SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
-                      /*SettingSwitchRow(label: 'share_app_analytics', value: shareAnalytics, onChange: (val) {
-                          setState(() {
-                            shareAnalytics = val;
-                          });
-                        },),*/
                       CategoryLabel(label: 'lang'),
                       SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
-                      Platform.isIOS ? CategoryLabel(label: 'update_phone_settings', fontSize: 12, color: Colors.grey, marginTop: 8, fontWeight: FontWeight.w400,) : Container(),
-                      CategoryLabel(label: 'about_us'),
+                      CategoryLabel(label: 'terms_conditions'),
                       SettingItemRow(label: 'end_user_agreement', onClick: () => Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -86,7 +77,6 @@ class _SettingScreenState extends State<SettingScreen> {
                                 var yaml = loadYaml(snapshot.data);
                                 version = yaml["version"];
                               }
-
                               return Container(
                                 child: Text(
                                     'Version: $version'
