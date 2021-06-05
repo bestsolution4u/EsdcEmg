@@ -19,10 +19,10 @@ class VpnStatusRow extends StatelessWidget {
     String status = "bad";
     Color color = Styles.red;
     if (vpnStatus.description == 'GOOD') {
-      color = Styles.green;
+      color = Color(0xFF1FAB10);
       status = "good";
     } else if (vpnStatus.description == 'MODERATE') {
-      color = Styles.yellow;
+      color = Color(0xFFAC920E);
       status = "moderate";
     }
 

@@ -64,7 +64,7 @@ class _SocialMediaScreenState extends State<SocialMediaScreen> {
                 children: [
                   ItemRow(title: 'esdc', isFirst: true, onClick: () => openYoutubeLink(title: 'esdc_youtube', url: 'url_esdc_youtube')),
                   ItemDivider(paddingLeft: 15),
-                  ItemRow(title: 'service_canada', isLast: true, onClick: () => gotoWebviewScreen(title: 'service_canada', url: 'url_service_canada_youtube')),
+                  ItemRow(title: 'service_canada', isLast: true, onClick: () => openYoutubeLink(title: 'service_canada', url: 'url_service_canada_youtube')),
                 ],
               ),
             ),

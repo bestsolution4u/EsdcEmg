@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:esdc_emg/api/api.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
@@ -44,15 +46,32 @@ class _DashboardScreenState extends State<DashboardScreen> {
   YoutubePlayerController _controller;
   int _bannerIndex = 0;
   List<YoutubeVideoModel> youtubeVideos;
+  Timer timer;
 
   @override
   void initState() {
     super.initState();
+    getVPNStatus();
     fetchYoutubeVideos(channelID: AppLocalization.currentLanguage != 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
     _messageBloc = BlocProvider.of<MessageBloc>(context);
-    vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "KEC","status": "UP","usage": "78","description": "MODERATE"}));
-    vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MTL","status": "DOWN","usage": "100","description": "BAD"}));
-    vpnStatusList.add(VPNStatusModel.fromJson({"sitename": "MCT","status": "UP","usage": "24","description": "GOOD"}));
+    timer = Timer.periodic(Duration(minutes: 2), (Timer t) => getVPNStatus());
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+  void getVPNStatus() async {
+    Api.getVPNStatus().then((value) {
+      if (mounted) {
+        print('======== Updating VPN Status ======');
+        setState(() {
+          vpnStatusList = value;
+        });
+      }
+    });
   }
 
   void fetchYoutubeVideos({channelID}) {
@@ -246,7 +265,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(AppLocalization.of(context).trans('last_updated')/* + " " + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(curDateTimeByZone(zone: "EST")) + " EST"*/, style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
+                vpnStatusList.isEmpty ? Container() : Text(AppLocalization.of(context).trans('last_updated')/* + " " + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(curDateTimeByZone(zone: "EST")) + " EST"*/, style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
                 SizedBox(height: 10,),
                 ListView.separated(
                     primary: false,
@@ -298,7 +317,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             : CarouselSlider(
             items: youtubeVideos.map((video) => BannerItem(video: video,)).toList(),
             options: CarouselOptions(
-              height: 235,
+              height: 250,
               aspectRatio: 16/9,
               viewportFraction: 0.8,
               initialPage: 0,

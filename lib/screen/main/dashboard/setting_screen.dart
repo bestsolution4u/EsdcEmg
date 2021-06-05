@@ -8,8 +8,12 @@ import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:esdc_emg/widget/row/category_label.dart';
 import 'package:esdc_emg/widget/row/setting_item_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:io' show Platform;
+import 'package:yaml/yaml.dart';
+
+import '../webview_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -42,25 +46,56 @@ class _SettingScreenState extends State<SettingScreen> {
                   width: double.infinity,
                   height: double.infinity,
                   color: Styles.lightGray,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        /*CategoryLabel(label: 'message_setting'),*/
-                        /*SettingItemRow(label: 'filtered_inbox', value: 'by_location', onClick: () {},),*/
-                        /*SettingItemRow(label: 'notifications', value: 'all_messages', onClick: () {},),*/
-                        CategoryLabel(label: 'feed_back'),
-                        SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
-                        /*SettingSwitchRow(label: 'share_app_analytics', value: shareAnalytics, onChange: (val) {
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      /*CategoryLabel(label: 'message_setting'),*/
+                      /*SettingItemRow(label: 'filtered_inbox', value: 'by_location', onClick: () {},),*/
+                      /*SettingItemRow(label: 'notifications', value: 'all_messages', onClick: () {},),*/
+                      CategoryLabel(label: 'feed_back'),
+                      SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
+                      /*SettingSwitchRow(label: 'share_app_analytics', value: shareAnalytics, onChange: (val) {
                           setState(() {
                             shareAnalytics = val;
                           });
                         },),*/
-                        CategoryLabel(label: 'lang'),
-                        SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
-                        Platform.isIOS ? CategoryLabel(label: 'update_phone_settings', fontSize: 12, color: Colors.grey, marginTop: 8, fontWeight: FontWeight.w400,) : Container(),
-                      ],
-                    ),
+                      CategoryLabel(label: 'lang'),
+                      SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
+                      Platform.isIOS ? CategoryLabel(label: 'update_phone_settings', fontSize: 12, color: Colors.grey, marginTop: 8, fontWeight: FontWeight.w400,) : Container(),
+                      CategoryLabel(label: 'about_us'),
+                      SettingItemRow(label: 'end_user_agreement', onClick: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => WebviewScreen(
+                              title: 'end_user_agreement',
+                              url: 'url_end_user_agreement',
+                            ),
+                          )),),
+                      Spacer(),
+                      Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                        child: Text(AppLocalization.of(context).trans('app_title_home')),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: FutureBuilder(
+                            future: rootBundle.loadString("pubspec.yaml"),
+                            builder: (context, snapshot) {
+                              String version = "";
+                              if (snapshot.hasData) {
+                                var yaml = loadYaml(snapshot.data);
+                                version = yaml["version"];
+                              }
+
+                              return Container(
+                                child: Text(
+                                    'Version: $version'
+                                ),
+                              );
+                            }),
+                      ),
+                      SizedBox(height: 10,),
+                    ],
                   ),
                 )
             )

@@ -41,14 +41,16 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
   Widget build(BuildContext context) {
     Duration duration = DateTime.parse(widget.message.expiredDate).difference(DateTime.now());
     String strExpDuration = "";
-    if (duration.inDays > 0) {
-      strExpDuration = duration.inDays.toString() + " " + AppLocalization.of(context).trans("days");
-    } else if (duration.inHours > 0) {
-      strExpDuration = duration.inHours.toString() + " " + AppLocalization.of(context).trans("hours");
+    if (duration.inHours < 0) {
+      strExpDuration = AppLocalization.of(context).trans("today");
     } else {
-      strExpDuration = duration.inMinutes.toString() + " " + AppLocalization.of(context).trans("minutes");
+      int days = ((duration.inHours + DateTime.now().hour) / 24).floor();
+      if (days > 0) {
+        strExpDuration = AppLocalization.of(context).trans("in") + days.toString() + " " + AppLocalization.of(context).trans("days");
+      } else {
+        strExpDuration = AppLocalization.of(context).trans("today");
+      }
     }
-    print(widget.message.expiredDate);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -114,21 +116,11 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  AppLocalization.of(context).trans('more_actions'),
-                  style: TextStyle(
-                      color: Styles.darkerBlue,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
                   AppLocalization.of(context).trans('customize_actions_for_message'),
                   style: TextStyle(
                       color: Styles.darkerBlue,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 10,

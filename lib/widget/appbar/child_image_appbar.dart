@@ -11,8 +11,9 @@ class ChildImageAppbar extends StatelessWidget {
   final String title, icon;
   final Widget action;
   final bool isMessage;
+  final double iconSize, fontSize;
 
-  ChildImageAppbar({this.title, this.icon, this.action, this.isMessage = false});
+  ChildImageAppbar({this.title, this.icon, this.iconSize = 40, this.fontSize = 28, this.action, this.isMessage = false});
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +54,12 @@ class ChildImageAppbar extends StatelessWidget {
               SvgPicture.asset(
                 icon,
                 allowDrawingOutsideViewBox: true,
-                height: 40,
+                height: iconSize,
               ),
               SizedBox(width: 16,),
              Flexible(child:  Text(
                isMessage ? title : AppLocalization.of(context).trans(title),
-               style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold, height: 1),
+               style: TextStyle(color: Colors.white, fontSize: fontSize, fontWeight: FontWeight.bold, height: 1),
                maxLines: 2,
                overflow: TextOverflow.ellipsis,
              ))

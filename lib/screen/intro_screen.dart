@@ -37,7 +37,7 @@ class _IntroScreenState extends State<IntroScreen> {
             width: double.infinity,
             height: 300,
             color: Styles.darkBlue,
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
             child: Center(
               child: Stack(
                 children: [
@@ -45,7 +45,9 @@ class _IntroScreenState extends State<IntroScreen> {
                     'asset/image/onboard-artwork-map.svg',
                     allowDrawingOutsideViewBox: true,
                     width: double.infinity,
-                    height: double.infinity,
+                    height: 280,
+                    fit: BoxFit.fitHeight,
+                    semanticsLabel: 'Map of ESDC',
                   ),
                   Positioned(
                       left: 0,
@@ -58,6 +60,7 @@ class _IntroScreenState extends State<IntroScreen> {
                             allowDrawingOutsideViewBox: true,
                             width: 45,
                             height: 45,
+                            semanticsLabel: 'Logo of ESDC',
                           ),
                           SizedBox(
                             width: 10,
@@ -65,12 +68,27 @@ class _IntroScreenState extends State<IntroScreen> {
                           Text(
                             AppLocalization.of(context).trans('app_title_home'),
                             style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
+                            semanticsLabel: 'MyESDC',
                           )
                         ],
                       ))
                 ],
               ),
             ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Text(AppLocalization.of(context).trans('made_for_esdc'), style: TextStyle(fontSize: 24, color: Styles.darkerBlue, fontWeight: FontWeight.w800, height: 1), semanticsLabel: 'Made for ESDC',),
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Text(AppLocalization.of(context).trans('by_people_in_esdc'), style: TextStyle(fontSize: 24, color: Styles.darkerBlue, fontWeight: FontWeight.w800), semanticsLabel: 'By People in ESDC',),
+          ),
+          SizedBox(
+            height: 20,
           ),
           Expanded(
               child: SingleChildScrollView(
@@ -79,17 +97,10 @@ class _IntroScreenState extends State<IntroScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Text(AppLocalization.of(context).trans('made_for_esdc'), style: TextStyle(fontSize: 28, color: Styles.darkerBlue, fontWeight: FontWeight.w800, height: 1)),
-                      Text(AppLocalization.of(context).trans('by_people_in_esdc'), style: TextStyle(fontSize: 28, color: Styles.darkerBlue, fontWeight: FontWeight.w800)),
-                      SizedBox(
-                        height: 20,
-                      ),
                       IntroRow(
                         title: 'intro_text_1',
                         icon: 'asset/image/onboard-icon-1.svg',
+                        semanticLabel: 'connection',
                       ),
                       SizedBox(
                         height: 20,
@@ -97,6 +108,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       IntroRow(
                         title: 'intro_text_2',
                         icon: 'asset/image/onboard-icon-2.svg',
+                        semanticLabel: 'resources',
                       ),
                       SizedBox(
                         height: 20,
@@ -104,6 +116,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       IntroRow(
                         title: 'intro_text_3',
                         icon: 'asset/image/tab-messages-active.svg',
+                        semanticLabel: 'preferences',
                       ),
                       SizedBox(
                         height: 30,
@@ -140,7 +153,7 @@ class _IntroScreenState extends State<IntroScreen> {
                             width: double.infinity,
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             decoration: BoxDecoration(
-                              color: Styles.darkBlue,
+                              color: Styles.bgGrey,
                               borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 1, blurRadius: 2, offset: Offset(3, 3)),
@@ -149,7 +162,7 @@ class _IntroScreenState extends State<IntroScreen> {
                             child: Center(
                               child: Text(
                                 AppLocalization.of(context).trans('donot_show_intro'),
-                                style: TextStyle(color: Colors.white, fontSize: 12),
+                                style: TextStyle(color: Styles.darkerBlue, fontSize: 12),
                               ),
                             ),
                           ),

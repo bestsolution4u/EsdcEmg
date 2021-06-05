@@ -1,8 +1,10 @@
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/screen/main/webview_screen.dart';
 import 'package:esdc_emg/widget/appbar/child_image_appbar.dart';
 import 'package:esdc_emg/widget/button/border_item_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class WellnessScreen extends StatefulWidget {
   @override
@@ -40,9 +42,12 @@ class _WellnessScreenState extends State<WellnessScreen> {
                 title: 'life_speak',
                 icon: 'asset/image/icon-nav-lifespeak.svg',
                 description: 'life_speak_desc',
-                onClick: () => gotoWebviewScreen(
-                    title: "life_speak",
-                    url: 'url_life_speak'),
+                onClick: () {
+                  launch(AppLocalization.of(context).trans('url_life_speak'));
+                  /*gotoWebviewScreen(
+                      title: "life_speak",
+                      url: 'url_life_speak');*/
+                },
               ),
             ),
           ],

@@ -3,7 +3,7 @@ description: ESDC Emg Application
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -34,6 +34,7 @@ dependencies:
   instant: ^0.4.1
   carousel_slider: ^3.0.0
   youtube_player_flutter: ^8.0.0
+  yaml: ^3.1.0
   flutter_localizations:
     sdk: flutter
 
@@ -51,6 +52,7 @@ flutter:
     - asset/image/
     - asset/pdf/
     - asset/lang/
+    - pubspec.yaml
 
   fonts:
     - family: PopBlack

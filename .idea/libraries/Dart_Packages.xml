@@ -632,6 +632,13 @@
             </list>
           </value>
         </entry>
+        <entry key="yaml">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/yaml-3.1.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="youtube_player_flutter">
           <value>
             <list>
@@ -727,6 +734,7 @@
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.0.5/lib" />
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/xdg_directories-0.2.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/xml-5.1.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/yaml-3.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/.pub-cache/hosted/pub.dartlang.org/youtube_player_flutter-8.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/bin/cache/pkg/sky_engine/lib" />
       <root url="file://$PROJECT_DIR$/../../../Tools/SDK/flutter/packages/flutter/lib" />

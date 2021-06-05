@@ -46,8 +46,9 @@ class _MainTabItemState extends State<MainTabItem> {
                   AppLocalization.of(context).trans(widget.title),
                   style: TextStyle(
                       color: widget.selected
-                          ? Styles.blue
+                          ? Color(0xFF3378C6)
                           : Styles.darkerBlue,
+                      fontWeight: FontWeight.w600,
                       fontSize: 10
                   ),
                 )

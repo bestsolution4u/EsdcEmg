@@ -52,6 +52,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   ChildImageAppbar(
                     title: "send_us_feedback",
                     icon: 'asset/image/icon-feedback.svg',
+                    iconSize: 30,
+                    fontSize: 22,
                   ),
                   SizedBox(height: 20,),
                   Expanded(

@@ -2,12 +2,23 @@ import 'dart:convert';
 
 import 'package:esdc_emg/api/http_manager.dart';
 import 'package:esdc_emg/config/global.dart';
+import 'package:esdc_emg/model/vpn_status_model.dart';
 import 'package:esdc_emg/model/youtube_video_model.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
   static Future<dynamic> getMessageList() async {
     return await httpManager.get(url: "message");
+  }
+
+  static Future<List<VPNStatusModel>> getVPNStatus() async {
+    try {
+      List<dynamic> result = await httpManager.get(url: "vpn");
+      List<VPNStatusModel> vpns = result.map((e) => VPNStatusModel.fromJson(e)).toList();
+      return vpns;
+    } catch (e) {
+      return [];
+    }
   }
 
   static Future<dynamic> submitFeedback({String name, String category, String feedback, String source}) async {
@@ -20,8 +31,6 @@ class Api {
   }
 
   static Future<List<YoutubeVideoModel>> fetchYoutubeVideos(String channelID) async {
-    print('----------- Channel ID ---------');
-    print(channelID);
     List<YoutubeVideoModel> videos = [];
     final responseIDs = await http.get(Uri.parse('https://www.googleapis.com/youtube/v3/search?part=id&channelId=$channelID&maxResults=4&order=date&type=video&key=${Globals.YOUTUBE_API_KEY}'));
     if (responseIDs.statusCode == 200) {

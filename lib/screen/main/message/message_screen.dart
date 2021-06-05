@@ -189,7 +189,7 @@ class _MessageScreenState extends State<MessageScreen> {
                       borderPadding: 0,
                       paddingHorizontal: 0,
                     ),
-                    SettingItemRow(
+                    /*SettingItemRow(
                       label: 'sorting',
                       value: 'new_old',
                       isSorting: true,
@@ -199,7 +199,7 @@ class _MessageScreenState extends State<MessageScreen> {
                       backgroundColor: Colors.transparent,
                       borderPadding: 0,
                       paddingHorizontal: 0,
-                    ),
+                    ),*/
                   ],
                 ),
               );
