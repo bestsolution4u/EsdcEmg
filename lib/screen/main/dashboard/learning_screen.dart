@@ -49,6 +49,7 @@ class _LearningScreenState extends State<LearningScreen> {
                       child: BorderItemSelector(
                         title: 'canada_school_service',
                         icon: 'asset/image/icon-nav-canadaschool.svg',
+                        fontSize: 12,
                         onClick: () => gotoWebviewScreen(
                             title: "canada_school_service",
                             url: 'url_canada_school_service'),

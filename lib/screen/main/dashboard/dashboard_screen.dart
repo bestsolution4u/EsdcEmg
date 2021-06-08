@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:esdc_emg/api/api.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
-import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
@@ -23,9 +22,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:instant/instant.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'learning_screen.dart';
 
@@ -39,7 +36,7 @@ class DashboardScreen extends StatefulWidget {
   _DashboardScreenState createState() => _DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAliveClientMixin{
 
   List<VPNStatusModel> vpnStatusList = [];
   MessageBloc _messageBloc;
@@ -64,6 +61,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   void getVPNStatus() async {
+    print('---------------- getting VPN Status -------------');
     Api.getVPNStatus().then((value) {
       if (mounted) {
         print('======== Updating VPN Status ======');
@@ -114,6 +112,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             context: context
         ),
         body: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
           child: Column(
             children: [
               buildUrgentMessage(),
@@ -357,4 +356,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

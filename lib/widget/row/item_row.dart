@@ -23,13 +23,13 @@ class ItemRow extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(isFirst ? 8 : 0), topRight: Radius.circular(isFirst ? 8 : 0), bottomLeft: Radius.circular(isLast ? 8 : 0), bottomRight: Radius.circular(isLast ? 8 : 0)), color: Colors.white),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
             SizedBox(width: 8,),
             icon != null
                 ? Padding(
-                    padding: const EdgeInsets.only(right: 20),
+                    padding: const EdgeInsets.only(right: 20, top: 3),
                     child: SvgPicture.asset(
                       icon,
                       height: iconSize,
@@ -46,8 +46,6 @@ class ItemRow extends StatelessWidget {
                     child: Text(
                       AppLocalization.of(context).trans(title),
                       style: TextStyle(color: Styles.darkBlue, fontSize: 16, fontWeight: FontWeight.w600),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],

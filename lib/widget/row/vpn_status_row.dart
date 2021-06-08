@@ -18,13 +18,18 @@ class VpnStatusRow extends StatelessWidget {
     }
     String status = "bad";
     Color color = Styles.red;
-    if (vpnStatus.description == 'GOOD') {
-      color = Color(0xFF1FAB10);
-      status = "good";
-    } else if (vpnStatus.description == 'MODERATE') {
-      color = Color(0xFFAC920E);
-      status = "moderate";
+    if (vpnStatus.status == 'down') {
+
+    } else {
+      if (vpnStatus.description == 'GOOD') {
+        color = Color(0xFF1FAB10);
+        status = "good";
+      } else if (vpnStatus.description == 'MODERATE') {
+        color = Color(0xFFAC920E);
+        status = "moderate";
+      }
     }
+
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -44,7 +49,7 @@ class VpnStatusRow extends StatelessWidget {
         SizedBox(
           width: 110,
           child: Text(
-            '${vpnStatus.usage}% ' + AppLocalization.of(context).trans('used'),
+            vpnStatus.status == 'down' ? AppLocalization.of(context).trans('down') : '${vpnStatus.usage}% ' + AppLocalization.of(context).trans('used'),
             style: TextStyle(color: Styles.primaryColor, fontSize: 16),
           ),
         ),

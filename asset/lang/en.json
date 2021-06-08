@@ -231,8 +231,8 @@
   "site_contact_psmip": "https://www.canada.ca/en/treasury-board-secretariat/topics/benefit-plans/plans/management-insurance-plan.html",
   "last_updated": "Updated 2 minutes ago",
   "used": "used",
-  "made_for_esdc": "Made for ESDC",
-  "by_people_in_esdc": "By people in ESDC",
+  "made_for_esdc": "Made for ESDC Employees,",
+  "by_people_in_esdc": "by ESDC Employees",
   "intro_text_1": "ESDC’s app to connect to employees off-network.",
   "intro_text_2": "Gateway to ESDC employee resources and tools.",
   "intro_text_3": "Receive messages based on  individual preferences.",
@@ -269,5 +269,6 @@
   "end_user_agreement": "End-User Licence Agreement",
   "url_end_user_agreement": "https://www.canada.ca/en/transparency/terms.html",
   "connection": "Connection",
-  "preferences": "Preferences"
+  "preferences": "Preferences",
+  "down": "Down"
 }

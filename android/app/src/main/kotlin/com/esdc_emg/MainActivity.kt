@@ -13,7 +13,9 @@ import android.os.Build
 import android.view.ViewTreeObserver
 import android.view.WindowManager
 
+
 class MainActivity: FlutterActivity() {
+    
     override fun provideSplashScreen(): SplashScreen? {
         val manifestSplashDrawable = getSplashScreenFromManifest();
         return DrawableSplashScreen(
