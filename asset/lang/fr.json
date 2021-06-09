@@ -66,14 +66,14 @@
   "employ_assistance_program": "Programme d'aide aux employés",
   "employ_assistance_program_2": "Programme\nd'aide aux employés",
   "life_speak": "LifeSpeak",
-  "life_speak_desc": "voir la page iService de MonEDSC pour mot de passe",
+  "life_speak_desc": "mot de passe se trouve sur la page iService de MonEDSC",
   "like_esdc": "Comment aimez-vous MonEDSC?",
   "feed_back_description": "Nous cherchons constamment à améliorer l'application MonEDSC pour mieux vous servir. Dites-nous ce que vous en pensez et les fonctionnalités que vous aimeriez voir à l’avenir.",
   "name_optional": "Nom (optionnel)",
   "which_are_you_from": "Je suis",
   "category": "Catégorie",
   "feed_back": "Commentaires",
-  "disclaimer": "AVERTISSEMENT: ",
+  "disclaimer": "Note importante: ",
   "disclaimer_desc": "Dans vos réponses, veuillez ne pas inclure d'informations personnelles sur vous-même ou sur quelqu'un d'autre; cela inclut le nom, les adresses postales ou courriels, ou toute autre information par laquelle vous pouvez ou ils pourraient être identifiés par vos commentaires ou opinions.",
   "error_empty_feedback": "Veuillez entrer vos commentaires dans la boîte appropriée.",
   "send_feedback": "Soumettre",
@@ -211,7 +211,7 @@
   "contact_sun_life": "Sun Life",
   "phone_contact_sun_life": "1-800-361-6212",
   "site_contact_sun_life": "https://www.sunlife.ca/fr/support/sign-in-help/my-sun-life/",
-  "contact_sunlife_health_care_plan": "Régime de soins de santé de la FP",
+  "contact_sunlife_health_care_plan": "Régime de soins de santé de Fonction Publique",
   "phone_contact_sunlife_health_care_plan_toll": "1-888-757-7427",
   "phone_contact_sunlife_health_care_plan_toll_desc": "Sans frais en Amérique du Nord",
   "phone_contact_sunlife_health_care_plan_region": "(613) 247-5100",
@@ -270,5 +270,5 @@
   "url_end_user_agreement": "https://www.canada.ca/fr/transparence/avis.html",
   "connection": "Connection",
   "preferences": "Preferences",
-  "down": "Fermé"
+  "down": "VPN Fermé"
 }

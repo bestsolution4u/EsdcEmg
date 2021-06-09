@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/api/http_manager.dart';
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/model/vpn_status_model.dart';
@@ -31,6 +32,28 @@ class Api {
   }
 
   static Future<List<YoutubeVideoModel>> fetchYoutubeVideos(String channelID) async {
+    List<YoutubeVideoModel> videos = [];
+    DateTime timestamp = DateTime.now();
+    String dateTime = "${timestamp.year}-${timestamp.month}-${timestamp.day}";
+    var firestore = FirebaseFirestore.instance;
+    Map<String, dynamic> playlistJson = (await firestore.collection("playlist").doc("$channelID").get()).data() ?? {};
+    if (playlistJson.isNotEmpty && playlistJson['updatedAt'] != null && playlistJson['updatedAt'] == dateTime) {
+      List<dynamic> playlist = playlistJson['videos'];
+      videos = playlist.map((e) => YoutubeVideoModel.fromFirebase(e)).toList();
+      return videos;
+    } else {
+      List<YoutubeVideoModel> videos = await getYoutubePlaylist(channelID);
+      List<Map<String, dynamic>> playlist = videos.map((e) => e.toJson()).toList();
+      Map<String, dynamic> json = {
+        'videos': playlist,
+        'updatedAt': dateTime
+      };
+      await firestore.collection("playlist").doc("$channelID").set(json);
+      return videos;
+    }
+  }
+
+  static Future<List<YoutubeVideoModel>> getYoutubePlaylist(String channelID) async {
     List<YoutubeVideoModel> videos = [];
     final responseIDs = await http.get(Uri.parse('https://www.googleapis.com/youtube/v3/search?part=id&channelId=$channelID&maxResults=4&order=date&type=video&key=${Globals.YOUTUBE_API_KEY}'));
     if (responseIDs.statusCode == 200) {

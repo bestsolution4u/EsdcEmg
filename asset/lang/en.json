@@ -66,14 +66,14 @@
   "employ_assistance_program": "Employee Assistance Program",
   "employ_assistance_program_2": "Employee\nAssistance Program",
   "life_speak": "LifeSpeak",
-  "life_speak_desc": "see iService MyESDC page for group password",
+  "life_speak_desc": "password can be located on iService MyESDC page",
   "like_esdc": "How are you liking MyESDC?",
   "feed_back_description": "We are constantly looking to improve the MyESDC app to serve you better. Let us know what you think and what features you'd like to see in the future.",
   "name_optional": "Name (Optional)",
   "which_are_you_from": "I am",
   "category": "Category",
   "feed_back": "Feedback",
-  "disclaimer": "DISCLAIMER: ",
+  "disclaimer": "Important Note: ",
   "disclaimer_desc": "In your responses, please do not include any personal information about yourself or anyone else; this includes name, mail or email addresses, or any other information by which you can or they could be identified by your comments or views.",
   "error_empty_feedback": "Please enter your feedback in the textbox.",
   "send_feedback": "Submit",
@@ -270,5 +270,5 @@
   "url_end_user_agreement": "https://www.canada.ca/en/transparency/terms.html",
   "connection": "Connection",
   "preferences": "Preferences",
-  "down": "Down"
+  "down": "VPN Down"
 }

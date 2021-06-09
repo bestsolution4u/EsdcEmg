@@ -32,6 +32,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
           children: [
             ChildAppbar(
               title: widget.title,
+              titleSize: 20,
             ),
             Expanded(
                 child: Container(

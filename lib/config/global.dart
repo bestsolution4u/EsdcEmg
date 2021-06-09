@@ -110,6 +110,5 @@ class Globals {
     "top_banner_4",
   ];
 
-  //static final String YOUTUBE_API_KEY = "AIzaSyAoh-r7oytnRnnHa06X5OOVqw5IpUa2GGA";
-  static final String YOUTUBE_API_KEY = "AIzaSyDP3Ol_j6PF84ODhqobTo5v4AtSXU5AXM8";
+  static final String YOUTUBE_API_KEY = "AIzaSyDC-nQneSJLqHoF-GaDgL7uBj9yTqg6Pos";
 }

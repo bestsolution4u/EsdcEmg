@@ -61,10 +61,8 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
   }
 
   void getVPNStatus() async {
-    print('---------------- getting VPN Status -------------');
     Api.getVPNStatus().then((value) {
       if (mounted) {
-        print('======== Updating VPN Status ======');
         setState(() {
           vpnStatusList = value;
         });
