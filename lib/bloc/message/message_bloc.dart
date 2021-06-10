@@ -38,8 +38,6 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
     try {
       List<dynamic> list = response;
       list.forEach((element) {
-        print("--------------- Message Item ------------");
-        print(element);
         MessageModel message = MessageModel.fromJson(element);
         if (!deletedMessages.contains(message.id)) {
           messages.add(message);
@@ -139,8 +137,6 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
     try {
       List<dynamic> list = response;
       list.forEach((element) {
-        print("--------------- Message Item ------------");
-        print(element);
         MessageModel message = MessageModel.fromJson(element);
         if (!deletedMessages.contains(message.id)) {
           messages.add(message);

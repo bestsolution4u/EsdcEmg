@@ -46,10 +46,22 @@ class MessageUtils {
     value = value.replaceAll('PT', '');
     List<String> mins = value.split('M');
     if (mins.length > 1) {
-      if (mins[0].length == 1) {
+      List<String> hours = mins[0].split('H');
+      String minutes = '';
+      if (hours.length > 1) {
+        if (hours[0].length == 1) {
+          result += '0';
+        }
+        result += hours[0];
+        result += ':';
+        minutes = hours[1];
+      } else {
+        minutes = hours[0];
+      }
+      if (minutes.length == 1) {
         result += '0';
       }
-      result += mins[0];
+      result += minutes;
       result += ':';
       List<String> secs = mins[1].split('S');
       if (secs[0].length == 1) {

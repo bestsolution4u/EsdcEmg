@@ -18,10 +18,13 @@ import 'package:esdc_emg/widget/button/icon_button.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:esdc_emg/widget/row/banner_item.dart';
 import 'package:esdc_emg/widget/row/vpn_status_row.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instant/instant.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'learning_screen.dart';
@@ -44,14 +47,23 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
   int _bannerIndex = 0;
   List<YoutubeVideoModel> youtubeVideos;
   Timer timer;
+  DateTime vpnUpdatedAt;
 
   @override
   void initState() {
     super.initState();
+    vpnUpdatedAt = DateTime.now();
     getVPNStatus();
     fetchYoutubeVideos(channelID: AppLocalization.currentLanguage != 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
     _messageBloc = BlocProvider.of<MessageBloc>(context);
     timer = Timer.periodic(Duration(minutes: 2), (Timer t) => getVPNStatus());
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      RemoteNotification notification = message.notification;
+      AndroidNotification android = message.notification?.android;
+      if (notification != null && notification.title == 'VPN Status Alert') {
+        getVPNStatus();
+      }
+    });
   }
 
   @override
@@ -64,6 +76,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
     Api.getVPNStatus().then((value) {
       if (mounted) {
         setState(() {
+          vpnUpdatedAt = DateTime.now();
           vpnStatusList = value;
         });
       }
@@ -262,7 +275,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                vpnStatusList.isEmpty ? Container() : Text(AppLocalization.of(context).trans('last_updated')/* + " " + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(curDateTimeByZone(zone: "EST")) + " EST"*/, style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
+                vpnStatusList.isEmpty ? Container() : Text(AppLocalization.of(context).trans('last_updated') + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(dateTimeToZone(zone: "EDT", datetime: vpnUpdatedAt)) + " EST", style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
                 SizedBox(height: 10,),
                 ListView.separated(
                     primary: false,

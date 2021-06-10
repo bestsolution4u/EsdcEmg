@@ -54,14 +54,14 @@ class MessageItemRow extends StatelessWidget {
                     child: Text(
                       AppLocalization.currentLanguage == 'fr' ? message.titleFr : message.title,
                       style: TextStyle(color: Styles.darkerBlue, fontSize: 16),
-                      maxLines: 1,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     )),
                 Text(DateFormat(AppLocalization.currentLanguage == 'fr' ? 'dd MMMM yyyy' : 'MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(message.effectiveDate)), style: TextStyle(color: Styles.darkerBlue, fontSize: 12, fontWeight: FontWeight.w400),),
               ],
             )),
             message.urgentInd == 'Urgent' ? Container(
-              margin: const EdgeInsets.only(top: 10, left: 10),
+              margin: const EdgeInsets.only(top: 4, left: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32),
                 color: Styles.red,
@@ -71,7 +71,7 @@ class MessageItemRow extends StatelessWidget {
                 child: Text(AppLocalization.of(context).trans('urgent'), style: TextStyle(color: Colors.white, fontSize: 10),),
               ),
             ) : Container(),
-            Padding(padding: const EdgeInsets.only(top: 10, left: 10), child: Icon(Icons.keyboard_arrow_right, size: 24, color: Colors.grey,),)
+            Padding(padding: const EdgeInsets.only(top: 4, left: 10), child: Icon(Icons.keyboard_arrow_right, size: 24, color: Colors.grey,),)
           ],
         ),
       ),

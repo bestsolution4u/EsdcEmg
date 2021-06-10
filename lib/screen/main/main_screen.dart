@@ -240,8 +240,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       AppBloc.messageBloc.add(MessageRefreshEvent());
-      print("----------------- onMessage ----------------");
-      print("topic: " + message.from);
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
       if (notification != null) {

@@ -104,7 +104,7 @@ class MessageAppBar extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20, right: 15, bottom: 4),
           child: Text(
             AppLocalization.currentLanguage == 'fr' ? message.titleFr : message.title,
-            style: TextStyle(color: Styles.textBlack, fontSize: 24, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Styles.textBlack, fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
         Divider(
