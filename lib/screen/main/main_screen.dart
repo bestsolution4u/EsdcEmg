@@ -209,6 +209,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   Future<void> setupFCM() async {
     FirebaseMessaging fcmMessaging = FirebaseMessaging.instance;
     fcmMessaging.getToken().then((token) => print("FCM Token: " + token));
+
+    await fcmMessaging.requestPermission(sound: true);
     await fcmMessaging.setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
@@ -231,7 +233,9 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     );
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     var initializationSettingsAndroid = AndroidInitializationSettings('notification_icon');
-    var initializationSettingsIOs = IOSInitializationSettings();
+    var initializationSettingsIOs = IOSInitializationSettings(requestSoundPermission: true, defaultPresentSound: true, onDidReceiveLocalNotification: (id, title, body, payload) {
+      ToastUtils.showSuccessToast(context, '---- onDidReceiveLocalNotification -----');
+    },);
     var initSetttings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOs);
 
     flutterLocalNotificationsPlugin.initialize(initSetttings, onSelectNotification: onSelectNotification);
@@ -257,6 +261,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                 iOS: IOSNotificationDetails(
                   presentAlert: true,
                   presentSound: true,
+                  sound: 'default'
                 )
             ));
       }
