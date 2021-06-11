@@ -9,9 +9,9 @@ class VPNStatusModel {
     usage = json['bandwidth'].toString();
     try {
       int bandwidth = json['bandwidth'];
-      if (bandwidth > 90) {
+      if (bandwidth > 95) {
         description = 'BAD';
-      } else if (bandwidth > 30) {
+      } else if (bandwidth > 75) {
         description = 'MODERATE';
       } else {
         description = 'GOOD';

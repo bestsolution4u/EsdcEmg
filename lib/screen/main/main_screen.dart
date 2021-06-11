@@ -210,7 +210,14 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     FirebaseMessaging fcmMessaging = FirebaseMessaging.instance;
     fcmMessaging.getToken().then((token) => print("FCM Token: " + token));
 
-    await fcmMessaging.requestPermission(sound: true);
+    await fcmMessaging.requestPermission(
+        sound: true,
+        alert: true,
+        announcement: true,
+        carPlay: true,
+        criticalAlert: true,
+        provisional: false,
+        badge: true);
     await fcmMessaging.setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
@@ -233,7 +240,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     );
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     var initializationSettingsAndroid = AndroidInitializationSettings('notification_icon');
-    var initializationSettingsIOs = IOSInitializationSettings(requestSoundPermission: true, defaultPresentSound: true, onDidReceiveLocalNotification: (id, title, body, payload) {
+    var initializationSettingsIOs = IOSInitializationSettings(
+      requestSoundPermission: true,
+      defaultPresentSound: true,
+      onDidReceiveLocalNotification: (id, title, body, payload) {
       ToastUtils.showSuccessToast(context, '---- onDidReceiveLocalNotification -----');
     },);
     var initSetttings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOs);
