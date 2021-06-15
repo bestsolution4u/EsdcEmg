@@ -99,14 +99,6 @@ class _IntroScreenState extends State<IntroScreen> {
                     children: [
                       IntroRow(
                         title: 'intro_text_1',
-                        icon: 'asset/image/onboard-icon-1.svg',
-                        semanticLabel: 'connection',
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      IntroRow(
-                        title: 'intro_text_2',
                         icon: 'asset/image/onboard-icon-2.svg',
                         semanticLabel: 'resources',
                       ),
@@ -114,9 +106,25 @@ class _IntroScreenState extends State<IntroScreen> {
                         height: 20,
                       ),
                       IntroRow(
-                        title: 'intro_text_3',
+                        title: 'intro_text_2',
                         icon: 'asset/image/tab-messages-active.svg',
+                        semanticLabel: 'messages',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      IntroRow(
+                        title: 'intro_text_3',
+                        icon: 'asset/image/tab-social-active.svg',
                         semanticLabel: 'preferences',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      IntroRow(
+                        title: 'intro_text_4',
+                        icon: 'asset/image/onboard-icon-1.svg',
+                        semanticLabel: 'connection',
                       ),
                       SizedBox(
                         height: 30,

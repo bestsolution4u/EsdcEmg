@@ -30,7 +30,6 @@ class VpnStatusRow extends StatelessWidget {
       }
     }
 
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,

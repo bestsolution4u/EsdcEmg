@@ -49,8 +49,10 @@ class _MainTabItemState extends State<MainTabItem> {
                           ? Color(0xFF3378C6)
                           : Styles.darkerBlue,
                       fontWeight: FontWeight.w600,
-                      fontSize: 10
+                      fontSize: 10,
+                    height: 0.75
                   ),
+                  textAlign: TextAlign.center,
                 )
               ],
             ),
