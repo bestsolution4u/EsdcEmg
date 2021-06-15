@@ -152,15 +152,14 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                   child: Row(
                     children: [
                       CategoryButton(
-                        title: 'active_screening',
+                        title: 'covid_19',
                         icon: 'asset/image/icon-covid.svg',
-                        iconSize: 54,
                         backgroundColor: Styles.darkerBlue,
                         onClick: () => launch(AppLocalization.of(context).trans('url_covid_active_screening')),
                       ),
                       SizedBox(width: 20,),
                       CategoryButton(
-                        title: 'employ_wellness',
+                        title: 'wellness',
                         icon: 'asset/image/icon-wellness.svg',
                         backgroundColor: Styles.blue,
                         onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),

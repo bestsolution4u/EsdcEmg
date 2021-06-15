@@ -1,7 +1,7 @@
 {
   "app_title_home": "MonEDSC",
   "title_msg": "Messages",
-  "title_emply": "Employés",
+  "title_emply": "Ressources",
   "title_soci_medi": "Médias sociaux",
   "my_preferences": "Mes préférences",
   "customize_inbox_looks": "Personnalisez l'apparence de votre boîte de réception",
@@ -231,11 +231,11 @@
   "site_contact_psmip": "https://www.canada.ca/fr/secretariat-conseil-tresor/sujets/regimes-assurance/regimes/regime-assurance-gestion.html",
   "last_updated": "Mise à jour à ",
   "used": "utilisé",
-  "made_for_esdc": "Conçu pour les employés d'EDSC,",
-  "by_people_in_esdc": "par les employés d'EDSC",
-  "intro_text_1": "Application d'EDSC qui permet de se connecter aux employés hors réseau.",
-  "intro_text_2": "Passerelle vers les ressources et les outils des employés d’EDSC.",
-  "intro_text_3": "Recevez des messages en fonction de vos préférences individuelles.",
+  "made_for_esdc": "Conçu par les gens d’EDSC.",
+  "by_people_in_esdc": "Pour vous.",
+  "intro_text_1": "Trouvez des opportunités d’emploi à EDSC.",
+  "intro_text_2": "Passerelle vers des ressources et outils d’EDSC.",
+  "intro_text_3": "Recevez des messages basés sur vos préférences.",
   "got_it": "j'ai compris",
   "donot_show_intro": "Ne plus afficher cet écran",
   "resources": "Ressources",
@@ -270,5 +270,6 @@
   "url_end_user_agreement": "https://www.canada.ca/fr/transparence/avis.html",
   "connection": "Connection",
   "preferences": "Preferences",
-  "down": "VPN Fermé"
+  "down": "VPN Fermé",
+  "covid_19": "COVID-19"
 }

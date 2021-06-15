@@ -45,11 +45,11 @@ class CategoryButton extends StatelessWidget {
                 height: iconSize,
               ),
               SizedBox(
-                height: 10,
+                height: 15,
               ),
               Text(
                 AppLocalization.of(context).trans(title),
-                style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500, height: 1.3),
+                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500, height: 1.3),
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,

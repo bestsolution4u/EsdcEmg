@@ -1,7 +1,7 @@
 {
   "app_title_home": "MyESDC",
   "title_msg": "Messages",
-  "title_emply": "Employees",
+  "title_emply": "Resources",
   "title_soci_medi": "Social media",
   "my_preferences": "My preferences",
   "customize_inbox_looks": "Customize which messages you receive",
@@ -270,5 +270,6 @@
   "url_end_user_agreement": "https://www.canada.ca/en/transparency/terms.html",
   "connection": "Connection",
   "preferences": "Preferences",
-  "down": "VPN Down"
+  "down": "VPN Down",
+  "covid_19": "COVID-19"
 }
