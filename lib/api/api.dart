@@ -55,7 +55,7 @@ class Api {
 
   static Future<List<YoutubeVideoModel>> getYoutubePlaylist(String channelID) async {
     List<YoutubeVideoModel> videos = [];
-    final responseIDs = await http.get(Uri.parse('https://www.googleapis.com/youtube/v3/search?part=id&channelId=$channelID&maxResults=4&order=date&type=video&key=${Globals.YOUTUBE_API_KEY}'));
+    final responseIDs = await http.get(Uri.parse('https://www.googleapis.com/youtube/v3/search?part=id&channelId=$channelID&maxResults=${Globals.YOUTUBE_VIDEO_COUNT}&order=date&type=video&key=${Globals.YOUTUBE_API_KEY}'));
     if (responseIDs.statusCode == 200) {
       Map<String, dynamic> resultJson = jsonDecode(responseIDs.body);
       List<String> itemIDs = [];

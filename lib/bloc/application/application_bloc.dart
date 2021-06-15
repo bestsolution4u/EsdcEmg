@@ -36,6 +36,7 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
 
     AppBloc.settingBloc.add(SettingLoadEvent());
     AppBloc.messageBloc.add(MessageLoadEvent());
+    AppBloc.vpnBloc.add(VPNLoadEvent());
 
     await Future.delayed(const Duration(seconds: 3));
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class VPNStatusModel {
   String sitename, status, usage, description;
 
@@ -19,5 +21,23 @@ class VPNStatusModel {
     } catch (e) {
       description = 'GOOD';
     }
+  }
+
+  String toString() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['sitename'] = this.sitename;
+    data['status'] = this.status;
+    data['usage'] = this.usage;
+    data['description'] = this.description;
+    return jsonEncode(data);
+  }
+
+  VPNStatusModel.fromString(String values) {
+    Map<String, dynamic> json = jsonDecode(values);
+    if (json == null) return;
+    sitename = json['sitename'];
+    status = json['status'];
+    usage = json['usage'];
+    description = json['description'];
   }
 }

@@ -111,4 +111,6 @@ class Globals {
   ];
 
   static final String YOUTUBE_API_KEY = "AIzaSyDC-nQneSJLqHoF-GaDgL7uBj9yTqg6Pos";
+  static final int YOUTUBE_VIDEO_COUNT = 6;
+  static final int VPN_STATUS_UPDATE_INTERVAL = 5;
 }

@@ -68,7 +68,7 @@ class PreferenceHelper {
   }
 
   static List<String> getStringList(String key) {
-    return Globals.preferences.getStringList(key);
+    return Globals.preferences.getStringList(key) ?? [];
   }
   ///Singleton factory
   static final PreferenceHelper _instance = PreferenceHelper._internal();

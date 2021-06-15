@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:esdc_emg/api/api.dart';
+import 'package:esdc_emg/bloc/app_bloc.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
+import 'package:esdc_emg/config/global.dart';
+import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
@@ -12,6 +15,7 @@ import 'package:esdc_emg/screen/main/dashboard/feedback_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/setting_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/wellness_screen.dart';
 import 'package:esdc_emg/util/message_util.dart';
+import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/category_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
@@ -52,11 +56,9 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
   @override
   void initState() {
     super.initState();
-    vpnUpdatedAt = DateTime.now();
-    getVPNStatus();
     fetchYoutubeVideos(channelID: AppLocalization.currentLanguage != 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
     _messageBloc = BlocProvider.of<MessageBloc>(context);
-    timer = Timer.periodic(Duration(minutes: 2), (Timer t) => getVPNStatus());
+    timer = Timer.periodic(Duration(minutes: Globals.VPN_STATUS_UPDATE_INTERVAL), (Timer t) => getVPNStatus());
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
@@ -64,6 +66,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
         getVPNStatus();
       }
     });
+    updateVPNStatus();
   }
 
   @override
@@ -72,15 +75,21 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
     super.dispose();
   }
 
-  void getVPNStatus() async {
-    Api.getVPNStatus().then((value) {
-      if (mounted) {
+  void getVPNStatus() {
+    AppBloc.vpnBloc.add(VPNLoadEvent());
+  }
+
+  void updateVPNStatus() {
+    if (mounted) {
+      DateTime updatedTime = PreferenceHelper.getDate(PrefParams.VPN_UPDATED_AT);
+      List<String> values = PreferenceHelper.getStringList(PrefParams.VPN_STATUS);
+      if (values != null) {
         setState(() {
-          vpnUpdatedAt = DateTime.now();
-          vpnStatusList = value;
+          vpnUpdatedAt = updatedTime;
+          vpnStatusList = values.map((e) => VPNStatusModel.fromString(e)).toList();
         });
       }
-    });
+    }
   }
 
   void fetchYoutubeVideos({channelID}) {
@@ -96,90 +105,100 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SettingBloc, SettingState>(
-        listener: (context, state) {
-          if (state is SettingLoadSuccessState) {
-            if (AppLocalization.currentLanguage != state.settings.language) {
-              fetchYoutubeVideos(channelID: state.settings.language != 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
-            }
-          }
-        },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: ESDCAppbar.renderMainAppbar(
-            title: 'app_title_home',
-            icon: 'asset/image/nav-icon-home.svg',
-            action: AppIconButton(
-              icon: SvgPicture.asset(
-                'asset/image/settings.svg',
-                color: Styles.darkerBlue,
-                allowDrawingOutsideViewBox: true,
-                height: 24,
-              ),
-              onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingScreen(),)),
-              rippleRadius: 40,
-              padding: 16,
-            ),
-            context: context
-        ),
-        body: SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          child: Column(
-            children: [
-              buildUrgentMessage(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  children: [
-                    CategoryButton(
-                      title: 'active_screening',
-                      icon: 'asset/image/icon-covid.svg',
-                      iconSize: 54,
-                      backgroundColor: Styles.darkerBlue,
-                      onClick: () => launch(AppLocalization.of(context).trans('url_covid_active_screening')),
-                    ),
-                    SizedBox(width: 20,),
-                    CategoryButton(
-                      title: 'employ_wellness',
-                      icon: 'asset/image/icon-wellness.svg',
-                      backgroundColor: Styles.blue,
-                      onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  children: [
-                    CategoryButton(
-                      title: 'learning',
-                      icon: 'asset/image/icon-learning.svg',
-                      iconSize: 80,
-                      onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),
-                    ),
-                    SizedBox(width: 20,),
-                    CategoryButton(
-                      title: 'feed_back',
-                      icon: 'asset/image/icon-feedback.svg',
-                      onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20,),
-              Divider(height: 1,),
-              SizedBox(height: 10,),
-              buildVPN(),
-              Divider(height: 40,),
-              buildYoutubeVideos(),
-              SizedBox(height: 20,),
-            ],
+    return MultiBlocListener(
+        listeners: [
+          BlocListener<SettingBloc, SettingState>(
+            listener: (context, state) {
+              if (state is SettingLoadSuccessState) {
+                if (AppLocalization.currentLanguage != state.settings.language) {
+                  fetchYoutubeVideos(channelID: state.settings.language != 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
+                }
+              }
+            },
           ),
-        ),
-      ),
-    );
+          BlocListener<VPNBloc, VPNState>(
+              listener: (context, state) {
+                if (state is VPNLoadedState) {
+                  updateVPNStatus();
+                }
+              },
+          )
+        ],
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: ESDCAppbar.renderMainAppbar(
+              title: 'app_title_home',
+              icon: 'asset/image/nav-icon-home.svg',
+              action: AppIconButton(
+                icon: SvgPicture.asset(
+                  'asset/image/settings.svg',
+                  color: Styles.darkerBlue,
+                  allowDrawingOutsideViewBox: true,
+                  height: 24,
+                ),
+                onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingScreen(),)),
+                rippleRadius: 40,
+                padding: 16,
+              ),
+              context: context
+          ),
+          body: SingleChildScrollView(
+            physics: ClampingScrollPhysics(),
+            child: Column(
+              children: [
+                buildUrgentMessage(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      CategoryButton(
+                        title: 'active_screening',
+                        icon: 'asset/image/icon-covid.svg',
+                        iconSize: 54,
+                        backgroundColor: Styles.darkerBlue,
+                        onClick: () => launch(AppLocalization.of(context).trans('url_covid_active_screening')),
+                      ),
+                      SizedBox(width: 20,),
+                      CategoryButton(
+                        title: 'employ_wellness',
+                        icon: 'asset/image/icon-wellness.svg',
+                        backgroundColor: Styles.blue,
+                        onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      CategoryButton(
+                        title: 'learning',
+                        icon: 'asset/image/icon-learning.svg',
+                        iconSize: 80,
+                        onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),
+                      ),
+                      SizedBox(width: 20,),
+                      CategoryButton(
+                        title: 'feed_back',
+                        icon: 'asset/image/icon-feedback.svg',
+                        onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Divider(height: 1,),
+                SizedBox(height: 10,),
+                buildVPN(),
+                Divider(height: 40,),
+                buildYoutubeVideos(),
+                SizedBox(height: 20,),
+              ],
+            ),
+          ),
+        ));
   }
 
   Widget buildUrgentMessage() {
@@ -275,7 +294,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                vpnStatusList.isEmpty ? Container() : Text(AppLocalization.of(context).trans('last_updated') + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(dateTimeToZone(zone: "EDT", datetime: vpnUpdatedAt)) + " EST", style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
+                vpnUpdatedAt == null ? Container() : Text(AppLocalization.of(context).trans('last_updated') + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(dateTimeToZone(zone: "EDT", datetime: vpnUpdatedAt)) + " EST", style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
                 SizedBox(height: 10,),
                 ListView.separated(
                     primary: false,

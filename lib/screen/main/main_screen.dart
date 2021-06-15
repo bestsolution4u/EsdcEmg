@@ -239,7 +239,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       importance: Importance.high,
     );
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    var initializationSettingsAndroid = AndroidInitializationSettings('notification_icon');
+    var initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializationSettingsIOs = IOSInitializationSettings(
       requestSoundPermission: true,
       defaultPresentSound: true,
@@ -266,7 +266,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                   channel.id,
                   channel.name,
                   channel.description,
-                  icon: 'notification_icon',
+                  icon: '@mipmap/ic_launcher',
                 ),
                 iOS: IOSNotificationDetails(
                   presentAlert: true,
