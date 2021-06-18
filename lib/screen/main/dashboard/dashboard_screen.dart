@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:esdc_emg/api/api.dart';
@@ -152,9 +153,9 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                   child: Row(
                     children: [
                       CategoryButton(
-                        title: 'active_screening',
+                        title: Platform.isIOS ? 'covid_19' : 'active_screening',
                         icon: 'asset/image/icon-covid.svg',
-                        iconSize: 54,
+                        iconSize: Platform.isIOS ? 70 : 54,
                         backgroundColor: Styles.darkerBlue,
                         onClick: () => launch(AppLocalization.of(context).trans('url_covid_active_screening')),
                       ),
