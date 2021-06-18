@@ -19,7 +19,7 @@ Map<String, dynamic> dioErrorHandle(DioError error) {
 
 class HTTPManager {
   BaseOptions baseOptions = BaseOptions(
-    baseUrl: Globals.BASE_URL,
+    baseUrl: Globals.IS_PRODUCTION ? Globals.BASE_URL_PROD : Globals.BASE_URL_DEV,
   );
 
   ///Post method

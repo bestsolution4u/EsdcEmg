@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 typedef void LocaleChangeCallback(Locale locale);
 
 class Globals {
+  static const bool IS_PRODUCTION = false;
   static SharedPreferences preferences;
 
   /// Supported languages
@@ -22,7 +23,8 @@ class Globals {
   static LocaleChangeCallback onLocaleChanged;
 
   /// API base url
-  static const String BASE_URL = "https://emgadmin.azurewebsites.net/api/";
+  static const String BASE_URL_PROD = "https://emgadmin.azurewebsites.net/api/";
+  static const String BASE_URL_DEV = "https://emgapp.azurewebsites.net/api/";
 
   /// Push Notification Topics
   static const String FCM_TOPIC_MESSAGE_CREATED = "messageCreated";

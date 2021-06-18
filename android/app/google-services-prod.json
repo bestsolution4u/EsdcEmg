@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1032371996927",
+    "project_id": "myesdc-bdc5e",
+    "storage_bucket": "myesdc-bdc5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032371996927:android:a576e3e0154e72cf2224ca",
+        "android_client_info": {
+          "package_name": "com.esdc_emg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032371996927-mamgoarlb794pb2ic9ji7botk9sc2paj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBVoplB-1fDFIn2AfBDoDP609qfhtgctU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032371996927-mamgoarlb794pb2ic9ji7botk9sc2paj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "1032371996927",
-    "project_id": "myesdc-bdc5e",
-    "storage_bucket": "myesdc-bdc5e.appspot.com"
+    "project_number": "520585459116",
+    "project_id": "myesdc-dev",
+    "storage_bucket": "myesdc-dev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1032371996927:android:a576e3e0154e72cf2224ca",
+        "mobilesdk_app_id": "1:520585459116:android:1cff72f9f114aa9d5eb609",
         "android_client_info": {
           "package_name": "com.esdc_emg"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1032371996927-mamgoarlb794pb2ic9ji7botk9sc2paj.apps.googleusercontent.com",
+          "client_id": "520585459116-0ikkitkgf0cothj6vjs6g9f9p404k85u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBBVoplB-1fDFIn2AfBDoDP609qfhtgctU"
+          "current_key": "AIzaSyBMpu_ttbKapmx8hI5Zhoo-44H3SP3KdLI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1032371996927-mamgoarlb794pb2ic9ji7botk9sc2paj.apps.googleusercontent.com",
+              "client_id": "520585459116-0ikkitkgf0cothj6vjs6g9f9p404k85u.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "520585459116-7s57vlu706lbfrbj3imm7p0u9n8iqsak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.esdcEmg"
+              }
             }
           ]
         }
