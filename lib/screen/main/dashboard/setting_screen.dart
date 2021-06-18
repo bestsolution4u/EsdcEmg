@@ -63,7 +63,7 @@ class _SettingScreenState extends State<SettingScreen> {
                               url: 'url_end_user_agreement',
                             ),
                           )),),
-                      SettingItemRow(label: 'terms_conditions', onClick: () => Navigator.push(
+                      Platform.isIOS ? Container() : SettingItemRow(label: 'terms_conditions', onClick: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => TermsScreen(),
