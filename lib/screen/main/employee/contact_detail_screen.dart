@@ -14,8 +14,9 @@ class ContactDetailScreen extends StatefulWidget {
   final String phone1, phone2;
   final String phoneDesc1, phoneDesc2;
   final String website;
+  final String description;
 
-  ContactDetailScreen({this.title = "", this.phone1 = "", this.phone2 = "", this.phoneDesc1 = "", this.phoneDesc2 = "", this.website = ""});
+  ContactDetailScreen({this.title = "", this.phone1 = "", this.phone2 = "", this.phoneDesc1 = "", this.phoneDesc2 = "", this.website = "", this.description});
 
   @override
   _ContactDetailScreenState createState() => _ContactDetailScreenState();
@@ -129,6 +130,25 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                             ],
                           ),
                         ),
+                        SizedBox(height: 20,),
+                        widget.description != null && widget.description.isNotEmpty ? Container(
+                            width: double.infinity,
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.white),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                AppLocalization.of(context).trans('description'),
+                                style: TextStyle(color: Styles.blue, fontSize: 12),
+                              ),
+                              SizedBox(height: 10,),
+                              Text(AppLocalization.of(context).trans(widget.description), style: TextStyle(fontSize: 12, color: Colors.black),)
+                            ],
+                          ),
+                        ) : Container(),
+                        SizedBox(height: 20,)
                       ],
                     ),
                   ),

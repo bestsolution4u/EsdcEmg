@@ -3,6 +3,7 @@ import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/screen/main/dashboard/feedback_screen.dart';
+import 'package:esdc_emg/screen/main/dashboard/terms_screen.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:esdc_emg/widget/row/category_label.dart';
@@ -61,6 +62,11 @@ class _SettingScreenState extends State<SettingScreen> {
                               title: 'end_user_agreement',
                               url: 'url_end_user_agreement',
                             ),
+                          )),),
+                      SettingItemRow(label: 'terms_conditions', onClick: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TermsScreen(),
                           )),),
                       Spacer(),
                       Padding(

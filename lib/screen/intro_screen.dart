@@ -80,11 +80,11 @@ class _IntroScreenState extends State<IntroScreen> {
             height: 30,
           ),
           Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Text(AppLocalization.of(context).trans('made_for_esdc'), style: TextStyle(fontSize: 20, color: Styles.darkerBlue, fontWeight: FontWeight.w800, height: 1), semanticsLabel: 'Made for ESDC',),
           ),
           Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Text(AppLocalization.of(context).trans('by_people_in_esdc'), style: TextStyle(fontSize: 20, color: Styles.darkerBlue, fontWeight: FontWeight.w800), semanticsLabel: 'By People in ESDC',),
           ),
           SizedBox(
@@ -161,8 +161,8 @@ class _IntroScreenState extends State<IntroScreen> {
                             width: double.infinity,
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             decoration: BoxDecoration(
-                              color: Styles.bgGrey,
-                              borderRadius: BorderRadius.circular(8),
+                                color: Styles.bgGrey,
+                                borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 1, blurRadius: 2, offset: Offset(3, 3)),
                                 ]
