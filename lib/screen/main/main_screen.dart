@@ -286,12 +286,15 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       }
     });
 
-    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+    FirebaseMessaging.onMessageOpenedApp.listen((event) async {
       tabController.animateTo(1);
       ToastUtils.showSuccessToast(context, "OnMessageOpenedApp");
       int badges = PreferenceHelper.getInt(PrefParams.APP_BADGE_NUMBER);
       if (badges > 0) {
-        PreferenceHelper.setInt(PrefParams.APP_BADGE_NUMBER, badges - 1);
+        PreferenceHelper.setInt(PrefParams.APP_BADGE_NUMBER, --badges);
+      }
+      if (await FlutterAppBadger.isAppBadgeSupported()) {
+      FlutterAppBadger.updateBadgeCount(badges);
       }
     });
   }
@@ -299,7 +302,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   Future<dynamic> onSelectNotification(String notification) async {
     int badges = PreferenceHelper.getInt(PrefParams.APP_BADGE_NUMBER);
     if (badges > 0) {
-      PreferenceHelper.setInt(PrefParams.APP_BADGE_NUMBER, badges - 1);
+      PreferenceHelper.setInt(PrefParams.APP_BADGE_NUMBER, --badges);
+    }
+    if (await FlutterAppBadger.isAppBadgeSupported()) {
+      FlutterAppBadger.updateBadgeCount(badges);
     }
     tabController.animateTo(1);
     Navigator.popUntil(context, (route) {
