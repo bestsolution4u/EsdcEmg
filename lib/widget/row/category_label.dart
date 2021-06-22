@@ -18,16 +18,20 @@ class CategoryLabel extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: marginTop, left: 15, right: 12),
       width: double.infinity,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          icon != null ? Padding(padding: const EdgeInsets.only(right: 10), child: SvgPicture.asset(
-            icon,
-            height: 20,
-            width: 20,
-          ),) : Container(),
-          Flexible(child: Text(AppLocalization.of(context).trans(label), style: TextStyle(color: color, fontSize: fontSize, fontWeight: fontWeight),))
-        ],
+      child: Semantics(
+        label: AppLocalization.of(context).trans(label),
+        excludeSemantics: true,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            icon != null ? Padding(padding: const EdgeInsets.only(right: 10), child: SvgPicture.asset(
+              icon,
+              height: 20,
+              width: 20,
+            ),) : Container(),
+            Flexible(child: Text(AppLocalization.of(context).trans(label), style: TextStyle(color: color, fontSize: fontSize, fontWeight: fontWeight),))
+          ],
+        ),
       ),
     );
   }

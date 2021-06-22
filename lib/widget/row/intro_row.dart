@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class IntroRow extends StatelessWidget {
-
   final String icon, title, semanticLabel;
   final double iconSize;
 
@@ -12,18 +11,30 @@ class IntroRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(padding: const EdgeInsets.only(top: 5), child: SvgPicture.asset(
-          icon,
-          allowDrawingOutsideViewBox: true,
-          width: iconSize,
-          semanticsLabel: AppLocalization.of(context).trans(semanticLabel),
-        ),),
-        SizedBox(width: 20,),
-        Flexible(child: Text(AppLocalization.of(context).trans(title), style: TextStyle(color: Styles.darkerBlue, fontSize: 14), semanticsLabel: AppLocalization.of(context).trans(semanticLabel),))
-      ],
+    return Semantics(
+      label: AppLocalization.of(context).trans(semanticLabel),
+      excludeSemantics: true,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: SvgPicture.asset(
+              icon,
+              allowDrawingOutsideViewBox: true,
+              width: iconSize,
+            ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Flexible(
+              child: Text(
+            AppLocalization.of(context).trans(title),
+            style: TextStyle(color: Styles.darkerBlue, fontSize: 14),
+          ))
+        ],
+      ),
     );
   }
 }

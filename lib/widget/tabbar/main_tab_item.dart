@@ -26,35 +26,40 @@ class _MainTabItemState extends State<MainTabItem> {
       child: Column(
         children: [
           Expanded(child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Stack(
-                  children: [
-                    SvgPicture.asset(
-                      widget.selected ? widget.image : widget.imageInactive,
-                      allowDrawingOutsideViewBox: true,
-                      width: 25,
-                      height: 25,
-                    ),
-                    widget.badge?? SizedBox(width: 0, height: 0,)
-                  ],
-                ),
-                SizedBox(height: 2,),
-                Text(
-                  AppLocalization.of(context).trans(widget.title),
-                  style: TextStyle(
-                      color: widget.selected
-                          ? Color(0xFF3378C6)
-                          : Styles.darkerBlue,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 10,
-                    height: 0.75
+            child: Semantics(
+              label: AppLocalization.of(context).trans(widget.title),
+              button: true,
+              excludeSemantics: true,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Stack(
+                    children: [
+                      SvgPicture.asset(
+                        widget.selected ? widget.image : widget.imageInactive,
+                        allowDrawingOutsideViewBox: true,
+                        width: 25,
+                        height: 25,
+                      ),
+                      widget.badge?? SizedBox(width: 0, height: 0,)
+                    ],
                   ),
-                  textAlign: TextAlign.center,
-                )
-              ],
+                  SizedBox(height: 2,),
+                  Text(
+                    AppLocalization.of(context).trans(widget.title),
+                    style: TextStyle(
+                        color: widget.selected
+                            ? Color(0xFF3378C6)
+                            : Styles.darkerBlue,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 10,
+                        height: 0.75
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              ),
             ),
           )),
           SizedBox(height: Platform.isIOS ? 20 : 0,)

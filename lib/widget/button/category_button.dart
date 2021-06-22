@@ -16,48 +16,53 @@ class CategoryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: RippleComponent(
-      onClick: onClick,
-      child: Container(
-        width: double.infinity,
-        height: 165,
-        padding: const EdgeInsets.all(0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: backgroundColor,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.6),
-              offset: Offset(1, 1),
-              spreadRadius: 2,
-              blurRadius: 2,
+        child: Semantics(
+          label: AppLocalization.of(context).trans(title),
+          button: true,
+          excludeSemantics: true,
+          child: RippleComponent(
+            onClick: onClick,
+            child: Container(
+              width: double.infinity,
+              height: 165,
+              padding: const EdgeInsets.all(0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: backgroundColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.6),
+                    offset: Offset(1, 1),
+                    spreadRadius: 2,
+                    blurRadius: 2,
+                  ),
+                ],
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      icon,
+                      allowDrawingOutsideViewBox: true,
+                      height: iconSize,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      AppLocalization.of(context).trans(title),
+                      style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500, height: 1.3),
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                    )
+                  ],
+                ),
+              ),
             ),
-          ],
-        ),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                icon,
-                allowDrawingOutsideViewBox: true,
-                height: iconSize,
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                AppLocalization.of(context).trans(title),
-                style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500, height: 1.3),
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 3,
-              )
-            ],
           ),
-        ),
-      ),
-    ));
+        ));
   }
 }

@@ -24,22 +24,31 @@ class ChildImageAppbar extends StatelessWidget {
           padding: const EdgeInsets.all(4),
           child: Row(
             children: [
-              AppIconButton(
-                icon: Icon(
-                  Icons.keyboard_arrow_left,
-                  size: 36,
-                  color: Colors.white,
+              Semantics(
+                label: AppLocalization.of(context).trans('navigation_back'),
+                button: true,
+                excludeSemantics: true,
+                child: Row(
+                  children: [
+                    AppIconButton(
+                    icon: Icon(
+                      Icons.keyboard_arrow_left,
+                      size: 36,
+                      color: Colors.white,
+                    ),
+                    rippleRadius: 36,
+                    padding: 4,
+                    onClick: () => Navigator.pop(context),
+                  ),
+                    RippleComponent(
+                      child: Text(
+                        AppLocalization.of(context).trans('navigation_back'),
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                      onClick: () => Navigator.pop(context),
+                    )
+                  ],
                 ),
-                rippleRadius: 36,
-                padding: 4,
-                onClick: () => Navigator.pop(context),
-              ),
-              RippleComponent(
-                child: Text(
-                  AppLocalization.of(context).trans('navigation_back'),
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                onClick: () => Navigator.pop(context),
               ),
               Spacer(),
               action != null ? action : Container()
@@ -48,22 +57,26 @@ class ChildImageAppbar extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 15, bottom: 4),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              SvgPicture.asset(
-                icon,
-                allowDrawingOutsideViewBox: true,
-                height: iconSize,
-              ),
-              SizedBox(width: 16,),
-             Flexible(child:  Text(
-               isMessage ? title : AppLocalization.of(context).trans(title),
-               style: TextStyle(color: Colors.white, fontSize: fontSize, fontWeight: FontWeight.bold, height: 1),
-               maxLines: 2,
-               overflow: TextOverflow.ellipsis,
-             ))
-            ],
+          child: Semantics(
+            label: isMessage ? title : AppLocalization.of(context).trans(title),
+            excludeSemantics: true,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                SvgPicture.asset(
+                  icon,
+                  allowDrawingOutsideViewBox: true,
+                  height: iconSize,
+                ),
+                SizedBox(width: 16,),
+                Flexible(child:  Text(
+                  isMessage ? title : AppLocalization.of(context).trans(title),
+                  style: TextStyle(color: Colors.white, fontSize: fontSize, fontWeight: FontWeight.bold, height: 1),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ))
+              ],
+            ),
           ),
         )
       ],

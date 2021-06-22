@@ -13,13 +13,18 @@ class ContactItemRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RippleComponent(
-      onClick: onClick,
-      child: Container(
-        width: double.infinity,
+    return Semantics(
+      label: AppLocalization.of(context).trans(title),
+      button: true,
+      excludeSemantics: true,
+      child: RippleComponent(
+        onClick: onClick,
+        child: Container(
+          width: double.infinity,
           color: Colors.white,
-        padding: const EdgeInsets.all(20),
-        child: Text(AppLocalization.of(context).trans(title), style: TextStyle(color: Styles.darkBlue, fontSize: 16, fontWeight: FontWeight.w600)),
+          padding: const EdgeInsets.all(20),
+          child: Text(AppLocalization.of(context).trans(title), style: TextStyle(color: Styles.darkBlue, fontSize: 16, fontWeight: FontWeight.w600)),
+        ),
       ),
     );
   }

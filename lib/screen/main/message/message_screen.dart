@@ -35,6 +35,7 @@ class _MessageScreenState extends State<MessageScreen> {
             child: Stack(
               children: [
                 AppIconButton(
+                  sematicLabel: AppLocalization.of(context).trans('filtered_inbox'),
                   icon: SvgPicture.asset(
                     'asset/image/setting.svg',
                     color: Styles.darkerBlue,

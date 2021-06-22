@@ -16,47 +16,52 @@ class ItemRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RippleComponent(
-      onClick: onClick,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(isFirst ? 8 : 0), topRight: Radius.circular(isFirst ? 8 : 0), bottomLeft: Radius.circular(isLast ? 8 : 0), bottomRight: Radius.circular(isLast ? 8 : 0)), color: Colors.white),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            SizedBox(width: 8,),
-            icon != null
-                ? Padding(
-                    padding: const EdgeInsets.only(right: 20, top: 3),
-                    child: SvgPicture.asset(
-                      icon,
-                      height: iconSize,
-                      width: iconSize,
+    return Semantics(
+      label: AppLocalization.of(context).trans(title),
+      button: true,
+      excludeSemantics: true,
+      child: RippleComponent(
+        onClick: onClick,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(isFirst ? 8 : 0), topRight: Radius.circular(isFirst ? 8 : 0), bottomLeft: Radius.circular(isLast ? 8 : 0), bottomRight: Radius.circular(isLast ? 8 : 0)), color: Colors.white),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              SizedBox(width: 8,),
+              icon != null
+                  ? Padding(
+                padding: const EdgeInsets.only(right: 20, top: 3),
+                child: SvgPicture.asset(
+                  icon,
+                  height: iconSize,
+                  width: iconSize,
+                ),
+              )
+                  : Container(),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        AppLocalization.of(context).trans(title),
+                        style: TextStyle(color: Styles.darkBlue, fontSize: 16, fontWeight: FontWeight.w600),
+                      ),
                     ),
-                  )
-                : Container(),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
-                    child: Text(
-                      AppLocalization.of(context).trans(title),
-                      style: TextStyle(color: Styles.darkBlue, fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Icon(
-              Icons.keyboard_arrow_right,
-              color: Colors.grey,
-              size: 24,
-            )
-          ],
+              Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.grey,
+                size: 24,
+              )
+            ],
+          ),
         ),
       ),
     );

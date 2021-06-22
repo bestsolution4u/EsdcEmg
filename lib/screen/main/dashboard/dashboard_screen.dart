@@ -131,6 +131,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
               title: 'app_title_home',
               icon: 'asset/image/nav-icon-home.svg',
               action: AppIconButton(
+                sematicLabel: AppLocalization.of(context).trans('title_settings'),
                 icon: SvgPicture.asset(
                   'asset/image/settings.svg',
                   color: Styles.darkerBlue,
@@ -216,40 +217,45 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
           } else {
             return Padding(
                 padding: const EdgeInsets.only(bottom: 20),
-              child: RippleComponent(
-                  onClick: () {
-                    widget.onUrgentClick();
-                    _messageBloc.add(MessageLastUrgentEvent(messageID: lastID));
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    color: Styles.pink,
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Icon(
-                          Icons.warning_outlined,
-                          color: Styles.red,
-                          size: 28,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          AppLocalization.of(context).trans('urgent_message'),
-                          style: TextStyle(color: Styles.red, fontSize: 18, fontWeight: FontWeight.w500),
-                        ),
-                        Spacer(),
-                        Icon(
-                          Icons.chevron_right,
-                          size: 36,
-                          color: Styles.red,
-                        )
-                      ],
-                    ),
-                  )),
+              child: Semantics(
+                label: AppLocalization.of(context).trans('urgent_message'),
+                button: true,
+                excludeSemantics: true,
+                child: RippleComponent(
+                    onClick: () {
+                      widget.onUrgentClick();
+                      _messageBloc.add(MessageLastUrgentEvent(messageID: lastID));
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      color: Styles.pink,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Icon(
+                            Icons.warning_outlined,
+                            color: Styles.red,
+                            size: 28,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            AppLocalization.of(context).trans('urgent_message'),
+                            style: TextStyle(color: Styles.red, fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.chevron_right,
+                            size: 36,
+                            color: Styles.red,
+                          )
+                        ],
+                      ),
+                    )),
+              ),
             );
           }
         }
@@ -264,28 +270,32 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SvgPicture.asset(
-                'asset/image/wifi.svg',
-                color: Styles.primaryColor,
-                allowDrawingOutsideViewBox: true,
-                height: 28,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                AppLocalization.of(context).trans('vpn_status'),
-                maxLines: 2,
-                style: TextStyle(
-                    color: Styles.primaryColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600),
-              )
-            ],
+          Semantics(
+            label: AppLocalization.of(context).trans('vpn_status'),
+            excludeSemantics: true,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SvgPicture.asset(
+                  'asset/image/wifi.svg',
+                  color: Styles.primaryColor,
+                  allowDrawingOutsideViewBox: true,
+                  height: 28,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  AppLocalization.of(context).trans('vpn_status'),
+                  maxLines: 2,
+                  style: TextStyle(
+                      color: Styles.primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600),
+                )
+              ],
+            ),
           ),
           SizedBox(
             height: 2,
@@ -317,22 +327,26 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          children: [
-            SizedBox(width: 20,),
-            Icon(CupertinoIcons.play_circle, size: 28, color: Styles.primaryColor,),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              AppLocalization.of(context).trans('esdc_watch'),
-              maxLines: 2,
-              style: TextStyle(
-                  color: Styles.primaryColor,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w600),
-            )
-          ],
+        Semantics(
+          label: AppLocalization.of(context).trans('esdc_watch'),
+          excludeSemantics: true,
+          child: Row(
+            children: [
+              SizedBox(width: 20,),
+              Icon(CupertinoIcons.play_circle, size: 28, color: Styles.primaryColor,),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                AppLocalization.of(context).trans('esdc_watch'),
+                maxLines: 2,
+                style: TextStyle(
+                    color: Styles.primaryColor,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600),
+              )
+            ],
+          ),
         ),
         SizedBox(
           height: 2,

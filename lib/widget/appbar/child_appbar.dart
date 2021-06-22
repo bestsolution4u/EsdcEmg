@@ -22,34 +22,43 @@ class ChildAppbar extends StatelessWidget {
           padding: const EdgeInsets.all(4),
           child: Row(
             children: [
-              AppIconButton(
-                icon: Icon(
-                  Icons.keyboard_arrow_left,
-                  size: 28,
-                  color: Styles.darkerBlue,
+              Semantics(
+                label: AppLocalization.of(context).trans('navigation_back'),
+                button: true,
+                excludeSemantics: true,
+                child: Row(
+                  children: [
+                    AppIconButton(
+                      icon: Icon(
+                        Icons.keyboard_arrow_left,
+                        size: 28,
+                        color: Styles.darkerBlue,
+                      ),
+                      rippleRadius: 36,
+                      padding: 4,
+                      onClick: () {
+                        if (this.onBack != null) {
+                          this.onBack();
+                        } else {
+                          Navigator.pop(context);
+                        }
+                      },
+                    ),
+                    RippleComponent(
+                      child: Text(
+                        AppLocalization.of(context).trans('navigation_back'),
+                        style: TextStyle(color: Styles.darkerBlue, fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                      onClick: () {
+                        if (this.onBack != null) {
+                          this.onBack();
+                        } else {
+                          Navigator.pop(context);
+                        }
+                      },
+                    )
+                  ],
                 ),
-                rippleRadius: 36,
-                padding: 4,
-                onClick: () {
-                  if (this.onBack != null) {
-                    this.onBack();
-                  } else {
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-              RippleComponent(
-                child: Text(
-                  AppLocalization.of(context).trans('navigation_back'),
-                  style: TextStyle(color: Styles.darkerBlue, fontSize: 18, fontWeight: FontWeight.w500),
-                ),
-                onClick: () {
-                  if (this.onBack != null) {
-                    this.onBack();
-                  } else {
-                    Navigator.pop(context);
-                  }
-                },
               ),
               Spacer(),
               action != null ? action : Container()
