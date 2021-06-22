@@ -4,15 +4,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/bloc/app_bloc.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
 import 'package:esdc_emg/config/global.dart';
+import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/model/setting_model.dart';
 import 'package:esdc_emg/screen/main/socialmedia/social_media_screen.dart';
+import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:esdc_emg/util/toasts.dart';
 import 'package:esdc_emg/widget/tabbar/esdc_tabbar.dart';
 import 'package:esdc_emg/widget/tabbar/main_tab_item.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -243,6 +246,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     var initializationSettingsIOs = IOSInitializationSettings(
       requestSoundPermission: true,
       defaultPresentSound: true,
+      defaultPresentBadge: true,
+      requestBadgePermission: true,
       onDidReceiveLocalNotification: (id, title, body, payload) {
       ToastUtils.showSuccessToast(context, '---- onDidReceiveLocalNotification -----');
     },);
@@ -256,6 +261,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       AppBloc.messageBloc.add(MessageRefreshEvent());
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
+      int badges = PreferenceHelper.getInt(PrefParams.APP_BADGE_NUMBER);
+      PreferenceHelper.setInt(PrefParams.APP_BADGE_NUMBER, ++badges);
       if (notification != null) {
         await flutterLocalNotificationsPlugin.show(
             notification.hashCode,
@@ -271,7 +278,9 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                 iOS: IOSNotificationDetails(
                   presentAlert: true,
                   presentSound: true,
-                  sound: 'default'
+                  sound: 'default',
+                  presentBadge: true,
+                  badgeNumber: badges
                 )
             ));
       }
@@ -280,10 +289,18 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     FirebaseMessaging.onMessageOpenedApp.listen((event) {
       tabController.animateTo(1);
       ToastUtils.showSuccessToast(context, "OnMessageOpenedApp");
+      int badges = PreferenceHelper.getInt(PrefParams.APP_BADGE_NUMBER);
+      if (badges > 0) {
+        PreferenceHelper.setInt(PrefParams.APP_BADGE_NUMBER, badges - 1);
+      }
     });
   }
 
   Future<dynamic> onSelectNotification(String notification) async {
+    int badges = PreferenceHelper.getInt(PrefParams.APP_BADGE_NUMBER);
+    if (badges > 0) {
+      PreferenceHelper.setInt(PrefParams.APP_BADGE_NUMBER, badges - 1);
+    }
     tabController.animateTo(1);
     Navigator.popUntil(context, (route) {
       return route.isFirst;
@@ -293,5 +310,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     print("++++ MESSAGE RECEIVED IN BACKGROUND  +++");
     tabController.animateTo(1);
+    int badges = PreferenceHelper.getInt(PrefParams.APP_BADGE_NUMBER);
+    if (await FlutterAppBadger.isAppBadgeSupported()) {
+      FlutterAppBadger.updateBadgeCount(++badges);
+    }
+    PreferenceHelper.setInt(PrefParams.APP_BADGE_NUMBER, badges);
   }
 }

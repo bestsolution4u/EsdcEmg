@@ -5,4 +5,5 @@ class PrefParams {
   static final String DONOT_SHOW_INTRO = "DONOT_SHOW_INTRO";
   static final String VPN_STATUS = "VPN_STATUS";
   static final String VPN_UPDATED_AT = "VPN_UPDATED_AT";
+  static final String APP_BADGE_NUMBER = "APP_BADGE_NUMBER";
 }

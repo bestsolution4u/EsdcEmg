@@ -21,13 +21,19 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   String category, from;
   TextEditingController nameController, feedbackController;
   bool isLoading;
+  bool isEmpty;
 
   @override
   void initState() {
     super.initState();
     isLoading = false;
+    isEmpty = false;
     nameController = TextEditingController();
-    feedbackController = TextEditingController();
+    feedbackController = TextEditingController()..addListener(() {
+      setState(() {
+        isEmpty = feedbackController.text.isEmpty;
+      });
+    });
   }
 
   @override
@@ -195,6 +201,14 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       controller: feedbackController,
                                     ),
                                   ),
+                                  if (isEmpty) Padding(
+                                    padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
+                                    child: Semantics(
+                                      label: AppLocalization.of(context).trans('error_empty_feedback'),
+                                      excludeSemantics: true,
+                                      child: Text(AppLocalization.of(context).trans('error_empty_feedback'), style: TextStyle(fontSize: 12, color: Styles.red),),
+                                    ),
+                                  ),
                                   SizedBox(height: 20,),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -261,11 +275,15 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
   void submitFeedback() async {
     if (feedbackController.text.isEmpty) {
+      setState(() {
+        isEmpty = true;
+      });
       ToastUtils.showErrorToast(context, AppLocalization.of(context).trans('error_empty_feedback'));
       return;
     }
     setState(() {
       isLoading = true;
+      isEmpty = false;
     });
     final response = await Api.submitFeedback(name: nameController.text, category: category, feedback: feedbackController.text, source: from);
     setState(() {

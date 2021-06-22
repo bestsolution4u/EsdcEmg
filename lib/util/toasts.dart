@@ -21,23 +21,27 @@ class ToastUtils {
   }
 
   static Widget _getToastWidget(String msg, ToastType type) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25.0),
-        color: Colors.white,
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(type == ToastType.SUCCESS ? Icons.check : type == ToastType.ERROR ? Icons.error_outline : Icons.info, color: type == ToastType.ERROR ? Colors.red : Colors.blue, size: 32,),
-          SizedBox(
-            width: 12.0,
-          ),
-          Flexible(
-            child: Text(msg, style: TextStyle(color: type == ToastType.ERROR ? Colors.red : Colors.blue, fontSize: 16)),
-          ),
-        ],
+    return Semantics(
+      label: msg,
+      excludeSemantics: true,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25.0),
+          color: Colors.white,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(type == ToastType.SUCCESS ? Icons.check : type == ToastType.ERROR ? Icons.error_outline : Icons.info, color: type == ToastType.ERROR ? Colors.red : Colors.blue, size: 32,),
+            SizedBox(
+              width: 12.0,
+            ),
+            Flexible(
+              child: Text(msg, style: TextStyle(color: type == ToastType.ERROR ? Colors.red : Colors.blue, fontSize: 16)),
+            ),
+          ],
+        ),
       ),
     );
   }
