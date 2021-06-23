@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLSchemes</key>
@@ -37,6 +37,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>https</string>
@@ -72,7 +74,5 @@
 	<false/>
 	<key>io.flutter.embedded_views_preview</key>
 	<string></string>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<false/>
 </dict>
 </plist>
