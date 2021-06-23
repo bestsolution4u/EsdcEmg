@@ -50,7 +50,27 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               progressColors: ProgressBarColors(
                 playedColor: Colors.white,
                 handleColor: Styles.bgGrey,
-              ),),
+              ),
+              bottomActions: [
+                const SizedBox(width: 14.0),
+                CurrentPosition(),
+                const SizedBox(width: 8.0),
+                ProgressBar(
+                  isExpanded: true,
+                ),
+                RemainingDuration(),
+                const PlaybackSpeedButton(),
+                FullScreenButton(),
+                IconButton(icon: Icon(_controller.flags.mute ? Icons.volume_mute : Icons.volume_off, color: Colors.white,), onPressed: () {
+                  if (_controller.flags.mute) {
+                    _controller.unMute();
+                  } else {
+                    _controller.mute();
+                  }
+                  setState(() {});
+                })
+              ],
+            ),
           ),
           Positioned(
             right: 10,
