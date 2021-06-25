@@ -48,15 +48,16 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
 
   List<VPNStatusModel> vpnStatusList = [];
   MessageBloc _messageBloc;
-  YoutubePlayerController _controller;
   int _bannerIndex = 0;
   List<YoutubeVideoModel> youtubeVideos;
   Timer timer;
   DateTime vpnUpdatedAt;
+  CarouselController _videoCarouselController;
 
   @override
   void initState() {
     super.initState();
+    _videoCarouselController = CarouselController();
     fetchYoutubeVideos(channelID: AppLocalization.currentLanguage != 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
     _messageBloc = BlocProvider.of<MessageBloc>(context);
     timer = Timer.periodic(Duration(minutes: Globals.VPN_STATUS_UPDATE_INTERVAL), (Timer t) => getVPNStatus());
@@ -359,6 +360,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
         youtubeVideos == null
             ? SizedBox(height: 200, width: double.infinity, child: Center(child: CircularProgressIndicator(),),)
             : CarouselSlider(
+          carouselController: _videoCarouselController,
             items: youtubeVideos.map((video) => BannerItem(video: video,)).toList(),
             options: CarouselOptions(
               height: 250,
@@ -367,7 +369,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
               initialPage: 0,
               enableInfiniteScroll: true,
               reverse: false,
-              autoPlay: true,
+              autoPlay: false,
               autoPlayInterval: Duration(seconds: 10),
               autoPlayAnimationDuration: Duration(milliseconds: 800),
               autoPlayCurve: Curves.fastOutSlowIn,
@@ -384,19 +386,53 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
         youtubeVideos != null && youtubeVideos.isNotEmpty
         ? Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: youtubeVideos.map((video) {
-            int index = youtubeVideos.indexOf(video);
-            return Container(
-              width: 20.0,
-              height: 4.0,
-              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-              decoration: BoxDecoration(
-                color: _bannerIndex == index
-                    ? Styles.blue
-                    : Colors.grey,
+          children: [
+            Semantics(
+              label: 'Previous',
+              button: true,
+              excludeSemantics: true,
+              child: IconButton(
+                icon: Icon(Icons.navigate_before, color: Styles.blue,),
+                onPressed: () {
+                  _videoCarouselController.previousPage();
+                },
               ),
-            );
-          }).toList(),
+            ),
+            ...youtubeVideos.map((video) {
+              int index = youtubeVideos.indexOf(video);
+              return Semantics(
+                label: 'Video ${index + 1}',
+                button: true,
+                excludeSemantics: true,
+                child: RippleComponent(
+                  onClick: () {
+                    _videoCarouselController.jumpToPage(index);
+                  },
+                  child: Container(
+                    width: 20.0,
+                    height: 4.0,
+                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                    decoration: BoxDecoration(
+                      color: _bannerIndex == index
+                          ? Styles.blue
+                          : Colors.grey,
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
+            Semantics(
+              label: 'Next',
+              button: true,
+              excludeSemantics: true,
+              child: IconButton(
+                icon: Icon(Icons.navigate_next, color: Styles.blue,),
+                onPressed: () {
+                  _videoCarouselController.nextPage();
+                },
+              ),
+            ),
+          ],
         ) : Container(),
       ],
     );
