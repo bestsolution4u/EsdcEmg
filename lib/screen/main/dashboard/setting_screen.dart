@@ -47,51 +47,55 @@ class _SettingScreenState extends State<SettingScreen> {
                   width: double.infinity,
                   height: double.infinity,
                   color: Styles.lightGray,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CategoryLabel(label: 'feed_back'),
-                      SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
-                      CategoryLabel(label: 'lang'),
-                      SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
-                      CategoryLabel(label: 'terms_conditions'),
-                      SettingItemRow(label: 'end_user_agreement', onClick: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => WebviewScreen(
-                              title: 'end_user_agreement',
-                              url: 'url_end_user_agreement',
-                            ),
-                          )),),
-                      Platform.isIOS ? Container() : SettingItemRow(label: 'terms_conditions', onClick: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => TermsScreen(),
-                          )),),
-                      Spacer(),
-                      Padding(
+                  child: SingleChildScrollView(
+                    physics: ClampingScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CategoryLabel(label: 'feed_back'),
+                        SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
+                        CategoryLabel(label: 'lang'),
+                        SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
+                        CategoryLabel(label: 'terms_conditions'),
+                        SettingItemRow(label: 'end_user_agreement', onClick: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => WebviewScreen(
+                                title: 'end_user_agreement',
+                                url: 'url_end_user_agreement',
+                              ),
+                            )),),
+                        /*Platform.isIOS ? Container() : SettingItemRow(label: 'terms_conditions', onClick: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TermsScreen(),
+                            )),),*/
+                        /*Spacer(),*/
+                        SizedBox(height: 30,),
+                        Padding(
                           padding: const EdgeInsets.only(left: 20),
-                        child: Text(AppLocalization.of(context).trans('app_title_home')),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: FutureBuilder(
-                            future: rootBundle.loadString("pubspec.yaml"),
-                            builder: (context, snapshot) {
-                              String version = "";
-                              if (snapshot.hasData) {
-                                var yaml = loadYaml(snapshot.data);
-                                version = yaml["version"];
-                              }
-                              return Container(
-                                child: Text(
-                                    'Version: $version'
-                                ),
-                              );
-                            }),
-                      ),
-                      SizedBox(height: 10,),
-                    ],
+                          child: Text(AppLocalization.of(context).trans('app_title_home')),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: FutureBuilder(
+                              future: rootBundle.loadString("pubspec.yaml"),
+                              builder: (context, snapshot) {
+                                String version = "";
+                                if (snapshot.hasData) {
+                                  var yaml = loadYaml(snapshot.data);
+                                  version = yaml["version"];
+                                }
+                                return Container(
+                                  child: Text(
+                                      'Version: $version'
+                                  ),
+                                );
+                              }),
+                        ),
+                        SizedBox(height: 10,),
+                      ],
+                    ),
                   ),
                 )
             )

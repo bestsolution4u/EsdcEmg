@@ -9,7 +9,9 @@ void main() async {
   Bloc.observer = BlocInspector();
   SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight
   ]).then((value) => runApp(EsdcEmgApp()));
 }
 

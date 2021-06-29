@@ -16,10 +16,12 @@ class VideoPlayerScreen extends StatefulWidget {
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   YoutubePlayerController _controller;
+  bool muted;
 
   @override
   void initState() {
     super.initState();
+    muted = false;
     _controller = YoutubePlayerController(
       initialVideoId: widget.video.id,
       flags: YoutubePlayerFlags(
@@ -61,13 +63,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 RemainingDuration(),
                 const PlaybackSpeedButton(),
                 FullScreenButton(),
-                IconButton(icon: Icon(_controller.flags.mute ? Icons.volume_mute : Icons.volume_off, color: Colors.white,), onPressed: () {
-                  if (_controller.flags.mute) {
+                IconButton(icon: Icon(muted ? Icons.volume_mute : Icons.volume_off, color: Colors.white,), onPressed: () {
+                  if (muted) {
                     _controller.unMute();
                   } else {
                     _controller.mute();
                   }
-                  setState(() {});
+                  setState(() {
+                    muted = !muted;
+                  });
                 })
               ],
             ),

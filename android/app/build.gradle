@@ -43,7 +43,7 @@ android {
         applicationId "com.esdc_emg"
         minSdkVersion 22
         targetSdkVersion 30
-        versionCode 6
+        versionCode 7
         versionName "1.0.1"
         multiDexEnabled true
         ndk {

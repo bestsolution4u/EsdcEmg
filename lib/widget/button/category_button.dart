@@ -25,7 +25,7 @@ class CategoryButton extends StatelessWidget {
             child: Container(
               width: double.infinity,
               height: 165,
-              padding: const EdgeInsets.all(0),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 color: backgroundColor,
