@@ -1,4 +1,5 @@
 import 'package:esdc_emg/config/global.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/style.dart';
@@ -25,8 +26,9 @@ class ContactItemRow extends StatelessWidget {
           color: Colors.white,
           padding: const EdgeInsets.all(20),
           child: Text(
-              AppLocalization.of(context).trans(title), style: TextStyle(color: Styles.darkBlue, fontSize: 16, fontWeight: FontWeight.w600),
-            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+              AppLocalization.of(context).trans(title),
+            style: TextStyle(color: Styles.darkBlue, fontSize: 16, fontWeight: FontWeight.w600),
+            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,13 +32,13 @@ class BorderItemSelector extends StatelessWidget {
           SizedBox(height: 10,),
           Flexible(child: Text(AppLocalization.of(context).trans(title),
               style: TextStyle(color: color, fontSize: fontSize), textAlign: TextAlign.center,
-            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),),
+            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),),
           description.isNotEmpty ? SizedBox(height: 5,) : Container(),
           description.isNotEmpty ? Flexible(child: Text(
             AppLocalization.of(context).trans(description),
             style: TextStyle(color: color, fontSize: 12),
             textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis,
-            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,)) : Container()
+            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)) : Container()
         ],
       ),
       textColor: color,

@@ -1,6 +1,7 @@
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/cupertino.dart';
@@ -45,7 +46,7 @@ class ChildImageAppbar extends StatelessWidget {
                       child: Text(
                         AppLocalization.of(context).trans('navigation_back'),
                         style: TextStyle(color: Colors.white, fontSize: 16),
-                        textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                       ),
                       onClick: () => Navigator.pop(context),
                     )
@@ -76,7 +77,7 @@ class ChildImageAppbar extends StatelessWidget {
                   style: TextStyle(color: Colors.white, fontSize: fontSize, fontWeight: FontWeight.bold, height: 1),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                 ))
               ],
             ),

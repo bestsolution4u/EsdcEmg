@@ -3,6 +3,7 @@ import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/youtube_video_model.dart';
 import 'package:esdc_emg/screen/main/video/video_player_screen.dart';
 import 'package:esdc_emg/util/message_util.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +58,7 @@ class _BannerItemState extends State<BannerItem> {
                                 fontSize: 14.0,
                                 height: 1
                             ),
-                            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                           ),
                         ),
                       ),
@@ -75,7 +76,7 @@ class _BannerItemState extends State<BannerItem> {
                     fontSize: 16,
                     height: 1,
                     fontWeight: FontWeight.w600),
-                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
               ),
               SizedBox(height: 5,),
               Text(
@@ -86,7 +87,7 @@ class _BannerItemState extends State<BannerItem> {
                     color: Styles.primaryColor,
                     fontSize: 12,
                     height: 1),
-                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
               ),
             ],
           ),

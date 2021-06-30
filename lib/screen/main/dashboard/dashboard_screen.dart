@@ -17,6 +17,7 @@ import 'package:esdc_emg/screen/main/dashboard/setting_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/wellness_screen.dart';
 import 'package:esdc_emg/util/message_util.dart';
 import 'package:esdc_emg/util/preference_helper.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/category_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
@@ -246,7 +247,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                           Text(
                             AppLocalization.of(context).trans('urgent_message'),
                             style: TextStyle(color: Styles.red, fontSize: 18, fontWeight: FontWeight.w500),
-                            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                           ),
                           Spacer(),
                           Icon(
@@ -295,7 +296,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                       color: Styles.primaryColor,
                       fontSize: 22,
                       fontWeight: FontWeight.w600),
-                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                 )
               ],
             ),
@@ -311,7 +312,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                 vpnUpdatedAt == null ? Container() : Text(
                   AppLocalization.of(context).trans('last_updated') + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(dateTimeToZone(zone: "EDT", datetime: vpnUpdatedAt)) + " EST",
                   style: TextStyle(color: Styles.primaryColor, fontSize: 14),
-                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR),
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context)),
                 SizedBox(height: 10,),
                 ListView.separated(
                     primary: false,
@@ -350,7 +351,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                     color: Styles.primaryColor,
                     fontSize: 22,
                     fontWeight: FontWeight.w600),
-                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
               )
             ],
           ),
@@ -363,7 +364,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
           child: Text(
             AppLocalization.of(context).trans('videos_sourced_from_esdc_channel'),
             style: TextStyle(color: Styles.primaryColor, fontSize: 14),
-            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
           ),
         ),
         SizedBox(height: 8,),
@@ -373,7 +374,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
           carouselController: _videoCarouselController,
             items: youtubeVideos.map((video) => BannerItem(video: video,)).toList(),
             options: CarouselOptions(
-              height: 270,
+              height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 270 : 250,
               aspectRatio: 16/9,
               viewportFraction: 0.8,
               initialPage: 0,

@@ -2,6 +2,7 @@ import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/cupertino.dart';
@@ -60,7 +61,7 @@ class MessageAppBar extends StatelessWidget {
                 child: Text(
                   AppLocalization.of(context).trans('navigation_back'),
                   style: TextStyle(color: Styles.darkerBlue, fontSize: 18, fontWeight: FontWeight.w500),
-                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                 ),
                 onClick: () => Navigator.pop(context),
               ),
@@ -85,14 +86,14 @@ class MessageAppBar extends StatelessWidget {
                   child: Text(
                     AppLocalization.of(context).trans('urgent'),
                     style: TextStyle(color: Colors.white, fontSize: 14),
-                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                 ),
               ) : Container(),
               Text(
                 DateFormat(AppLocalization.currentLanguage == 'fr' ? 'dd MMMM yyyy' : 'MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(message.effectiveDate)),
                 style: TextStyle(color: Styles.textBlack, fontSize: 14),
                 textAlign: TextAlign.start,
-                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
               )
             ],
           ),
@@ -103,7 +104,7 @@ class MessageAppBar extends StatelessWidget {
             categoryLine,
             style: TextStyle(color: Styles.textBlack, fontSize: 16),
             textAlign: TextAlign.start,
-            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
           )
         ),
         Padding(
@@ -111,7 +112,7 @@ class MessageAppBar extends StatelessWidget {
           child: Text(
             AppLocalization.currentLanguage == 'fr' ? message.titleFr : message.title,
             style: TextStyle(color: Styles.textBlack, fontSize: 20, fontWeight: FontWeight.bold),
-            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
           ),
         ),
         Divider(

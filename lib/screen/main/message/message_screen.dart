@@ -6,6 +6,7 @@ import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/model/setting_model.dart';
 import 'package:esdc_emg/screen/main/message/filter_location_screen.dart';
 import 'package:esdc_emg/screen/main/message/filter_topic_screen.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
@@ -78,7 +79,7 @@ class _MessageScreenState extends State<MessageScreen> {
             );
           } else if (state is MessageLoadFailureState) {
             return Center(
-              child: Text('Error', textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+              child: Text('Error', textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
             );
           } else {
             List<MessageModel> messages = (state as MessageLoadSuccessState).messages;
@@ -118,7 +119,7 @@ class _MessageScreenState extends State<MessageScreen> {
                   Text(
                     AppLocalization.of(context).trans('you_have') + count.toString() + AppLocalization.of(context).trans('message_filters_applied'),
                     style: TextStyle(fontSize: 12, color: Styles.blue),
-                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                   SizedBox(height: 10,),
                   Divider(height: 1, color: Styles.bgGrey,),
                 ],
@@ -157,7 +158,7 @@ class _MessageScreenState extends State<MessageScreen> {
                           color: Styles.darkerBlue,
                           fontSize: 22,
                           fontWeight: FontWeight.bold),
-                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                     ),
                     SizedBox(
                       height: 10,
@@ -168,7 +169,7 @@ class _MessageScreenState extends State<MessageScreen> {
                           color: Styles.darkerBlue,
                           fontSize: 14,
                           fontWeight: FontWeight.w400),
-                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                     ),
                     SizedBox(height: 20,),
                     SettingItemRow(

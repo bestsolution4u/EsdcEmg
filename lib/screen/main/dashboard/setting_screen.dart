@@ -4,6 +4,7 @@ import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/screen/main/dashboard/feedback_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/terms_screen.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:esdc_emg/widget/row/category_label.dart';
@@ -76,7 +77,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           padding: const EdgeInsets.only(left: 20),
                           child: Text(
                               AppLocalization.of(context).trans('app_title_home'),
-                            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
@@ -91,7 +92,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                 return Container(
                                   child: Text(
                                       'Version: $version',
-                                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                                   ),
                                 );
                               }),
@@ -131,7 +132,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     color: Styles.textBlack,
                     fontSize: 22,
                     fontWeight: FontWeight.bold),
-                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
               ),
               SizedBox(
                 height: 20,
@@ -150,7 +151,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           Expanded(child: Text(
                             AppLocalization.of(context).trans(Globals.SupportedLanguageCodes[0]),
                             style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),
-                            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,)),
+                            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)),
                           Icon(Icons.keyboard_arrow_right, size: 28, color: Colors.grey),
                         ],
                       ),
@@ -175,7 +176,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           Expanded(child: Text(
                             AppLocalization.of(context).trans(Globals.SupportedLanguageCodes[1]),
                             style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),
-                            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,)),
+                            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)),
                           Icon(Icons.keyboard_arrow_right, size: 28, color: Colors.grey),
                         ],
                       ),

@@ -1,6 +1,7 @@
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,7 @@ class CategoryButton extends StatelessWidget {
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
-                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                     )
                   ],
                 ),

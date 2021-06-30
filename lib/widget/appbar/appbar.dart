@@ -1,6 +1,7 @@
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -28,7 +29,7 @@ class ESDCAppbar {
             child: Text(
                 AppLocalization.of(context).trans(title),
                 style: TextStyle(color: Styles.darkBlue, fontSize: 22, fontWeight: FontWeight.w700),
-              textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+              textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
           )
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:esdc_emg/config/global.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -51,7 +52,7 @@ class ItemRow extends StatelessWidget {
                       child: Text(
                         AppLocalization.of(context).trans(title),
                         style: TextStyle(color: Styles.darkBlue, fontSize: 16, fontWeight: FontWeight.w600),
-                        textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                       ),
                     ),
                   ],

@@ -1,6 +1,7 @@
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class ChildAppbar extends StatelessWidget {
                       child: Text(
                         AppLocalization.of(context).trans('navigation_back'),
                         style: TextStyle(color: Styles.darkerBlue, fontSize: 18, fontWeight: FontWeight.w500),
-                        textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                       ),
                       onClick: () {
                         if (this.onBack != null) {
@@ -72,7 +73,7 @@ class ChildAppbar extends StatelessWidget {
           child: Text(
             isMessage ? title : AppLocalization.of(context).trans(title),
             style: TextStyle(color: Styles.darkerBlue, fontSize: titleSize, fontWeight: FontWeight.bold),
-            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
           ),
         ) : Container(),
         SizedBox(height: 10,),

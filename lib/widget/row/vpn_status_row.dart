@@ -2,6 +2,7 @@ import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/vpn_status_model.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:flutter/material.dart';
 
 class VpnStatusRow extends StatelessWidget {
@@ -41,7 +42,7 @@ class VpnStatusRow extends StatelessWidget {
           child: Text(
             vpnStatus.sitename,
             style: TextStyle(color: Styles.primaryColor, fontSize: 16, fontWeight: FontWeight.w600),
-            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
           ),
         ),
         SizedBox(
@@ -52,7 +53,7 @@ class VpnStatusRow extends StatelessWidget {
           child: Text(
             vpnStatus.status == 'down' ? AppLocalization.of(context).trans('down') : '${vpnStatus.usage}% ' + AppLocalization.of(context).trans('used'),
             style: TextStyle(color: Styles.primaryColor, fontSize: 16),
-            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
           ),
         ),
         SizedBox(

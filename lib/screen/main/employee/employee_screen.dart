@@ -6,6 +6,7 @@ import 'package:esdc_emg/screen/main/dashboard/wellness_screen.dart';
 import 'package:esdc_emg/screen/main/employee/covid_screen.dart';
 import 'package:esdc_emg/screen/main/employee/pay_benefit_screen.dart';
 import 'package:esdc_emg/screen/main/pdfviewer_screen.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/appbar/appbar.dart';
 import 'package:esdc_emg/widget/row/category_label.dart';
 import 'package:esdc_emg/widget/row/contact_item_row.dart';
@@ -47,10 +48,10 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                   0: Text(
                     AppLocalization.of(context).trans('resources'),
                     style: TextStyle(color: Styles.darkerBlue, fontSize: 15),
-                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                   1: Text(AppLocalization.of(context).trans('contacts'),
                     style: TextStyle(color: Styles.darkerBlue, fontSize: 15),
-                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                 },
                 groupValue: _sliding,
                 onValueChanged: (newValue) {

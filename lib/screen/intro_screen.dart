@@ -5,6 +5,7 @@ import 'package:esdc_emg/config/pref_params.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/util/preference_helper.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:esdc_emg/widget/row/intro_row.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +82,7 @@ class _IntroScreenState extends State<IntroScreen> {
                                 Text(
                                   AppLocalization.of(context).trans('app_title_home'),
                                   style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
-                                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                                 )
                               ],
                             ),
@@ -105,12 +106,12 @@ class _IntroScreenState extends State<IntroScreen> {
                       Text(
                           AppLocalization.of(context).trans('made_for_esdc'),
                           style: TextStyle(fontSize: 20, color: Styles.darkerBlue, fontWeight: FontWeight.w800, height: 1),
-                        textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                       ),
                       Text(
                           AppLocalization.of(context).trans('by_people_in_esdc'),
                           style: TextStyle(fontSize: 20, color: Styles.darkerBlue, fontWeight: FontWeight.w800),
-                        textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                       ),
                     ],
                   ),
@@ -173,7 +174,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           child: Text(
                             AppLocalization.of(context).trans('got_it'),
                             style: TextStyle(color: Colors.white, fontSize: 18),
-                            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                           ),
                         ),
                       ),
@@ -211,7 +212,7 @@ class _IntroScreenState extends State<IntroScreen> {
                             child: Text(
                               AppLocalization.of(context).trans('donot_show_intro'),
                               style: TextStyle(color: Styles.darkerBlue, fontSize: 12),
-                              textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                              textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                             ),
                           ),
                         ),

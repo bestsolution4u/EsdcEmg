@@ -1,5 +1,6 @@
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class BorderedButton extends StatelessWidget {
         minWidth: MediaQuery.of(context).size.width,
         color: buttonColor,
         onPressed: onClick,
-        child: Text(title, style: TextStyle(color: color), textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+        child: Text(title, style: TextStyle(color: color), textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
         textColor: color,
         shape: RoundedRectangleBorder(
             side: BorderSide(

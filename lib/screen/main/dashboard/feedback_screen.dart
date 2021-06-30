@@ -2,6 +2,7 @@ import 'package:esdc_emg/api/api.dart';
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/util/toasts.dart';
 import 'package:esdc_emg/widget/appbar/child_image_appbar.dart';
 import 'package:esdc_emg/widget/input/app_commentbox.dart';
@@ -79,7 +80,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     child: Text(
                                       AppLocalization.of(context).trans('feed_back_description'),
                                       style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),
-                                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                                     ),
                                   ),
                                   SizedBox(height: 5,),
@@ -88,7 +89,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     child: Text(
                                       AppLocalization.of(context).trans('which_are_you_from'),
                                       style: TextStyle(color: Styles.darkerBlue, fontSize: 15, fontWeight: FontWeight.bold),
-                                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                                     ),
                                   ),
                                   Padding(
@@ -123,7 +124,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                               return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(
                                                 AppLocalization.of(context).trans(item),
                                                 style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),
-                                                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR),);
+                                                textScaleFactor: ScreenUtil.calcTextScaleFactor(context)),);
                                             }).toList();
                                           },
                                           items: Globals.WHICH_FROM.map<DropdownMenuItem<String>>((String value) {
@@ -134,7 +135,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                                 child: Text(
                                                   AppLocalization.of(context).trans(value),
                                                   style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),
-                                                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                                                 ),
                                               ),
                                             );
@@ -149,7 +150,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     child: Text(
                                       AppLocalization.of(context).trans('category'),
                                       style: TextStyle(color: Styles.darkerBlue, fontSize: 15, fontWeight: FontWeight.bold),
-                                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                                     ),
                                   ),
                                   Padding(
@@ -184,7 +185,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                               return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(
                                                 AppLocalization.of(context).trans(item),
                                                 style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),
-                                                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR),);
+                                                textScaleFactor: ScreenUtil.calcTextScaleFactor(context)),);
                                             }).toList();
                                           },
                                           items: Globals.CATEGORIES.map<DropdownMenuItem<String>>((String value) {
@@ -195,7 +196,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                                 child: Text(
                                                   AppLocalization.of(context).trans(value),
                                                   style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),
-                                                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                                               ),
                                             );
                                           }).toList(),
@@ -209,7 +210,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     child: Text(
                                       AppLocalization.of(context).trans('feed_back'),
                                       style: TextStyle(color: Styles.darkerBlue, fontSize: 15, fontWeight: FontWeight.bold),
-                                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                                     ),
                                   ),
                                   Padding(
@@ -226,7 +227,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       child: Text(
                                         AppLocalization.of(context).trans('error_empty_feedback'),
                                         style: TextStyle(fontSize: 12, color: Styles.red),
-                                        textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                                       ),
                                     ),
                                   ),
@@ -234,7 +235,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 20),
                                     child: RichText(
-                                        textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                                         text: TextSpan(
                                           children: [
                                             TextSpan(
@@ -266,7 +267,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       onPressed: () => submitFeedback(),
                                       child: Text(
                                         AppLocalization.of(context).trans('send_feedback'),
-                                          style: TextStyle(color: Colors.white, fontSize: 16), textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR, maxLines: 2, textAlign: TextAlign.center,),
+                                          style: TextStyle(color: Colors.white, fontSize: 16), textScaleFactor: ScreenUtil.calcTextScaleFactor(context), maxLines: 2, textAlign: TextAlign.center,),
                                       textColor: Styles.textBlack,
                                       shape: RoundedRectangleBorder(
                                           side: BorderSide(
@@ -315,10 +316,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     showDialog(
         context: context,
         builder: (BuildContext context) => CupertinoAlertDialog(
-          title: new Text(AppLocalization.of(context).trans('thank_you'), textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR),
+          title: new Text(AppLocalization.of(context).trans('thank_you'), textScaleFactor: ScreenUtil.calcTextScaleFactor(context)),
           content: new Text(
               AppLocalization.of(context).trans('we_received_feedback'),
-            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
           actions: <Widget>[
             CupertinoDialogAction(
               isDefaultAction: true,

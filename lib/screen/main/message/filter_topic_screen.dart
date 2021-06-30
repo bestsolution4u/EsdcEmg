@@ -1,6 +1,7 @@
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
 import 'package:esdc_emg/widget/row/item_divider.dart';
 import 'package:esdc_emg/widget/row/message_filter_topic_row.dart';
@@ -35,7 +36,7 @@ class _FilterTopicScreenState extends State<FilterTopicScreen> {
               child: Text(
                 AppLocalization.of(context).trans('filter_message_desc'),
                 style: TextStyle(color: Styles.darkerBlue, fontSize: 16),
-                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),),
+                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),),
             ItemDivider(paddingLeft: 0,),
             Expanded(
                 child: SingleChildScrollView(

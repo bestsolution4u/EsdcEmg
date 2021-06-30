@@ -4,6 +4,7 @@ import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/appbar/message_appbar.dart';
 import 'package:esdc_emg/widget/button/bordered_button.dart';
 import 'package:esdc_emg/widget/button/icon_button.dart';
@@ -81,7 +82,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                       AppLocalization.currentLanguage == 'fr' ? widget.message.messageFr : widget.message.message,
                       style: TextStyle(color: Styles.textBlack, fontSize: 16),
                       textAlign: TextAlign.start,
-                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                     ),
                   ),
                   Padding(
@@ -90,7 +91,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                       AppLocalization.of(context).trans('note_expiration_date') + strExpDuration,
                       style: TextStyle(color: Styles.darkGray, fontSize: 12),
                       textAlign: TextAlign.start,
-                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                     ),
                   ),
                 ],
@@ -123,7 +124,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                       color: Styles.darkerBlue,
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
-                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                 ),
                 SizedBox(
                   height: 10,
@@ -146,16 +147,16 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                       builder: (BuildContext context) => CupertinoAlertDialog(
                         title: new Text(
                             AppLocalization.of(context).trans('delete_message'),
-                          textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                          textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                         content: new Text(
                             AppLocalization.of(context).trans('confirm_delete_message'),
-                          textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                          textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                         actions: <Widget>[
                           CupertinoDialogAction(
                             isDefaultAction: true,
                             child: Text(
                                 AppLocalization.of(context).trans('delete'),
-                              textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                              textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                             onPressed: () {
                               _messageBloc.add(MessageDeleteEvent(messageID: widget.message.id));
                               Navigator.pop(context);
@@ -165,7 +166,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                           ),
                           CupertinoDialogAction(
                             child: Text(AppLocalization.of(context).trans('cancel'),
-                              textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                              textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                             onPressed: () {
                               Navigator.pop(context);
                             },

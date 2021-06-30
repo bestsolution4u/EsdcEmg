@@ -7,6 +7,7 @@ import 'dart:ffi';
 import 'dart:ui' show lerpDouble;
 
 import 'package:esdc_emg/config/global.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -73,13 +74,13 @@ class MyCustomTab extends StatelessWidget {
   /// An icon to display as the tab's label.
   final Widget icon;
 
-  Widget _buildLabelText() {
+  Widget _buildLabelText(BuildContext context) {
     return child ??
         new Text(
           text,
           softWrap: false,
           overflow: TextOverflow.fade,
-          textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,);
+          textScaleFactor: ScreenUtil.calcTextScaleFactor(context),);
   }
 
   @override
@@ -90,7 +91,7 @@ class MyCustomTab extends StatelessWidget {
     Widget label;
     if (icon == null) {
       height = _kTabHeight;
-      label = _buildLabelText();
+      label = _buildLabelText(context);
     } else if (text == null) {
       height = _kTabHeight;
       label = icon;
@@ -104,7 +105,7 @@ class MyCustomTab extends StatelessWidget {
               child: icon,
               margin: const EdgeInsets.only(bottom: 10.0),
             ),
-            _buildLabelText()
+            _buildLabelText(context)
           ]);
     }
 

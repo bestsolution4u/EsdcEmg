@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:esdc_emg/model/video_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,7 +8,7 @@ typedef void LocaleChangeCallback(Locale locale);
 
 class Globals {
   static const bool IS_PRODUCTION = false;
-  static const double MAX_TEXT_SCALE_FACTOR = 1.5;
+  static double MAX_TEXT_SCALE_FACTOR = 1.5;
   static SharedPreferences preferences;
 
   /// Supported languages

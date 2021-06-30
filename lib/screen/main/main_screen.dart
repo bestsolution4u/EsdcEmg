@@ -10,6 +10,7 @@ import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/model/setting_model.dart';
 import 'package:esdc_emg/screen/main/socialmedia/social_media_screen.dart';
 import 'package:esdc_emg/util/preference_helper.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/util/toasts.dart';
 import 'package:esdc_emg/widget/tabbar/esdc_tabbar.dart';
 import 'package:esdc_emg/widget/tabbar/main_tab_item.dart';
@@ -174,7 +175,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                                     child: Text(
                                       unreadMessages.length.toString(),
                                       style: TextStyle(color: Colors.white, fontSize: 10),
-                                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                                     ),
                                   ),
                                 ),

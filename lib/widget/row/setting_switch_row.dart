@@ -1,6 +1,7 @@
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class _SettingSwitchRowState extends State<SettingSwitchRow> {
                   style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,)),
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)),
                 SizedBox(width: 10,),
                 Transform.scale(
                     scale: 0.8,
