@@ -1,3 +1,4 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +30,12 @@ class _MessageFilterRowState extends State<MessageFilterRow> {
       child: Row(
         children: [
           Expanded(
-              child: Text(AppLocalization.of(context).trans(widget.value), style: TextStyle(fontSize: 16, color: Styles.darkerBlue), maxLines: 1, overflow: TextOverflow.ellipsis,)
+              child: Text(
+                AppLocalization.of(context).trans(widget.value),
+                style: TextStyle(fontSize: 16, color: Styles.darkerBlue),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,)
           ),
           SizedBox(width: 20,),
           CupertinoSwitch(

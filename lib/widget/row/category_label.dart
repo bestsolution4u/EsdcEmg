@@ -1,3 +1,4 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,10 @@ class CategoryLabel extends StatelessWidget {
               height: 20,
               width: 20,
             ),) : Container(),
-            Flexible(child: Text(AppLocalization.of(context).trans(label), style: TextStyle(color: color, fontSize: fontSize, fontWeight: fontWeight),))
+            Flexible(child: Text(
+              AppLocalization.of(context).trans(label),
+              style: TextStyle(color: color, fontSize: fontSize, fontWeight: fontWeight),
+              textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,))
           ],
         ),
       ),

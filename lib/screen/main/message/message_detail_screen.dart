@@ -81,6 +81,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                       AppLocalization.currentLanguage == 'fr' ? widget.message.messageFr : widget.message.message,
                       style: TextStyle(color: Styles.textBlack, fontSize: 16),
                       textAlign: TextAlign.start,
+                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                     ),
                   ),
                   Padding(
@@ -89,6 +90,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                       AppLocalization.of(context).trans('note_expiration_date') + strExpDuration,
                       style: TextStyle(color: Styles.darkGray, fontSize: 12),
                       textAlign: TextAlign.start,
+                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                     ),
                   ),
                 ],
@@ -121,6 +123,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                       color: Styles.darkerBlue,
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
+                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                 ),
                 SizedBox(
                   height: 10,
@@ -141,12 +144,18 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                   showDialog(
                       context: context,
                       builder: (BuildContext context) => CupertinoAlertDialog(
-                        title: new Text(AppLocalization.of(context).trans('delete_message')),
-                        content: new Text(AppLocalization.of(context).trans('confirm_delete_message')),
+                        title: new Text(
+                            AppLocalization.of(context).trans('delete_message'),
+                          textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                        content: new Text(
+                            AppLocalization.of(context).trans('confirm_delete_message'),
+                          textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
                         actions: <Widget>[
                           CupertinoDialogAction(
                             isDefaultAction: true,
-                            child: Text(AppLocalization.of(context).trans('delete')),
+                            child: Text(
+                                AppLocalization.of(context).trans('delete'),
+                              textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
                             onPressed: () {
                               _messageBloc.add(MessageDeleteEvent(messageID: widget.message.id));
                               Navigator.pop(context);
@@ -155,7 +164,8 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                             },
                           ),
                           CupertinoDialogAction(
-                            child: Text(AppLocalization.of(context).trans('cancel')),
+                            child: Text(AppLocalization.of(context).trans('cancel'),
+                              textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
                             onPressed: () {
                               Navigator.pop(context);
                             },

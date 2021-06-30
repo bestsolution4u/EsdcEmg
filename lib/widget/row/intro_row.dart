@@ -1,3 +1,4 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,7 @@ class IntroRow extends StatelessWidget {
               child: Text(
             AppLocalization.of(context).trans(title),
             style: TextStyle(color: Styles.darkerBlue, fontSize: 14),
+                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
           ))
         ],
       ),

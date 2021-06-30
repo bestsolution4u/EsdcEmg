@@ -1,3 +1,4 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/widget/appbar/child_image_appbar.dart';
@@ -32,7 +33,9 @@ class TermsScreen extends StatelessWidget {
                         SizedBox(height: 30,),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(AppLocalization.of(context).trans('terms_content')),
+                          child: Text(
+                              AppLocalization.of(context).trans('terms_content'),
+                            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
                         ),
                         SizedBox(height: 30,),
                       ],

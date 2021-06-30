@@ -1,3 +1,4 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/screen/main/dashboard/learning_screen.dart';
@@ -43,8 +44,13 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: CupertinoSlidingSegmentedControl(
                 children: {
-                  0: Text(AppLocalization.of(context).trans('resources'), style: TextStyle(color: Styles.darkerBlue, fontSize: 15),),
-                  1: Text(AppLocalization.of(context).trans('contacts'), style: TextStyle(color: Styles.darkerBlue, fontSize: 15),),
+                  0: Text(
+                    AppLocalization.of(context).trans('resources'),
+                    style: TextStyle(color: Styles.darkerBlue, fontSize: 15),
+                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                  1: Text(AppLocalization.of(context).trans('contacts'),
+                    style: TextStyle(color: Styles.darkerBlue, fontSize: 15),
+                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
                 },
                 groupValue: _sliding,
                 onValueChanged: (newValue) {

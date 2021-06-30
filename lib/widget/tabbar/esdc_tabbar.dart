@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:ffi';
 import 'dart:ui' show lerpDouble;
 
+import 'package:esdc_emg/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -74,7 +75,11 @@ class MyCustomTab extends StatelessWidget {
 
   Widget _buildLabelText() {
     return child ??
-        new Text(text, softWrap: false, overflow: TextOverflow.fade);
+        new Text(
+          text,
+          softWrap: false,
+          overflow: TextOverflow.fade,
+          textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,);
   }
 
   @override

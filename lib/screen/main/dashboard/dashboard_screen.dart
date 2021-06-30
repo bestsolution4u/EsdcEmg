@@ -246,6 +246,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                           Text(
                             AppLocalization.of(context).trans('urgent_message'),
                             style: TextStyle(color: Styles.red, fontSize: 18, fontWeight: FontWeight.w500),
+                            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                           ),
                           Spacer(),
                           Icon(
@@ -294,6 +295,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                       color: Styles.primaryColor,
                       fontSize: 22,
                       fontWeight: FontWeight.w600),
+                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                 )
               ],
             ),
@@ -306,7 +308,10 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                vpnUpdatedAt == null ? Container() : Text(AppLocalization.of(context).trans('last_updated') + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(dateTimeToZone(zone: "EDT", datetime: vpnUpdatedAt)) + " EST", style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
+                vpnUpdatedAt == null ? Container() : Text(
+                  AppLocalization.of(context).trans('last_updated') + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(dateTimeToZone(zone: "EDT", datetime: vpnUpdatedAt)) + " EST",
+                  style: TextStyle(color: Styles.primaryColor, fontSize: 14),
+                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR),
                 SizedBox(height: 10,),
                 ListView.separated(
                     primary: false,
@@ -345,6 +350,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                     color: Styles.primaryColor,
                     fontSize: 22,
                     fontWeight: FontWeight.w600),
+                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
               )
             ],
           ),
@@ -354,7 +360,11 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
         ),
         Padding(
             padding: const EdgeInsets.only(left: 40),
-          child: Text(AppLocalization.of(context).trans('videos_sourced_from_esdc_channel'), style: TextStyle(color: Styles.primaryColor, fontSize: 14),),
+          child: Text(
+            AppLocalization.of(context).trans('videos_sourced_from_esdc_channel'),
+            style: TextStyle(color: Styles.primaryColor, fontSize: 14),
+            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+          ),
         ),
         SizedBox(height: 8,),
         youtubeVideos == null

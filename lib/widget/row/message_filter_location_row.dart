@@ -54,7 +54,11 @@ class _MessageFilterLocationRowState extends State<MessageFilterLocationRow> {
         child: Row(
           children: [
             Expanded(
-                child: Text(AppLocalization.of(context).trans(widget.location), style: TextStyle(fontSize: 16, color: Styles.darkerBlue), maxLines: 1, overflow: TextOverflow.ellipsis,)
+                child: Text(
+                  AppLocalization.of(context).trans(widget.location),
+                  style: TextStyle(fontSize: 16, color: Styles.darkerBlue),
+                  maxLines: 1, overflow: TextOverflow.ellipsis,
+                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,)
             ),
             SizedBox(width: 20,),
             CupertinoSwitch(

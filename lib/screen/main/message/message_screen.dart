@@ -78,7 +78,7 @@ class _MessageScreenState extends State<MessageScreen> {
             );
           } else if (state is MessageLoadFailureState) {
             return Center(
-              child: Text('Error'),
+              child: Text('Error', textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
             );
           } else {
             List<MessageModel> messages = (state as MessageLoadSuccessState).messages;
@@ -115,7 +115,10 @@ class _MessageScreenState extends State<MessageScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 10,),
-                  Text(AppLocalization.of(context).trans('you_have') + count.toString() + AppLocalization.of(context).trans('message_filters_applied'), style: TextStyle(fontSize: 12, color: Styles.blue),),
+                  Text(
+                    AppLocalization.of(context).trans('you_have') + count.toString() + AppLocalization.of(context).trans('message_filters_applied'),
+                    style: TextStyle(fontSize: 12, color: Styles.blue),
+                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
                   SizedBox(height: 10,),
                   Divider(height: 1, color: Styles.bgGrey,),
                 ],
@@ -154,6 +157,7 @@ class _MessageScreenState extends State<MessageScreen> {
                           color: Styles.darkerBlue,
                           fontSize: 22,
                           fontWeight: FontWeight.bold),
+                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                     ),
                     SizedBox(
                       height: 10,
@@ -164,6 +168,7 @@ class _MessageScreenState extends State<MessageScreen> {
                           color: Styles.darkerBlue,
                           fontSize: 14,
                           fontWeight: FontWeight.w400),
+                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                     ),
                     SizedBox(height: 20,),
                     SettingItemRow(

@@ -1,3 +1,4 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
@@ -46,6 +47,7 @@ class ItemSelectorRow extends StatelessWidget {
                         color: Styles.textBlack,
                         fontSize: 14,
                         fontWeight: FontWeight.w500),
+                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                   )),
                   SizedBox(width: 10,),
                   Icon(Icons.keyboard_arrow_right, size: 24, color: Styles.textBlack,),

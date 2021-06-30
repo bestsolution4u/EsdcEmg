@@ -32,7 +32,10 @@ class _FilterTopicScreenState extends State<FilterTopicScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-              child: Text(AppLocalization.of(context).trans('filter_message_desc'), style: TextStyle(color: Styles.darkerBlue, fontSize: 16),),),
+              child: Text(
+                AppLocalization.of(context).trans('filter_message_desc'),
+                style: TextStyle(color: Styles.darkerBlue, fontSize: 16),
+                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),),
             ItemDivider(paddingLeft: 0,),
             Expanded(
                 child: SingleChildScrollView(

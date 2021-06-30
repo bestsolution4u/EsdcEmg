@@ -1,3 +1,4 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/model/video_model.dart';
 import 'package:esdc_emg/screen/main/video/video_player_screen.dart';
@@ -78,8 +79,15 @@ class _VideoHubItemState extends State<VideoHubItem> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(widget.video.title, style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold), maxLines: 2, overflow: TextOverflow.ellipsis,),
-                    Text(widget.video.publisher + ", " + widget.video.time, style: TextStyle(color: Colors.grey, fontSize: 10),)
+                    Text(
+                      widget.video.title, style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
+                    Text(
+                      widget.video.publisher + ", " + widget.video.time,
+                      style: TextStyle(color: Colors.grey, fontSize: 10),
+                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,)
                   ],
                 )
             ),

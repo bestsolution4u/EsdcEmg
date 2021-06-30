@@ -54,7 +54,12 @@ class _MessageFilterTopicRowState extends State<MessageFilterTopicRow> {
         child: Row(
           children: [
             Expanded(
-                child: Text(AppLocalization.of(context).trans(widget.topic), style: TextStyle(fontSize: 16, color: Styles.darkerBlue), maxLines: 1, overflow: TextOverflow.ellipsis,)
+                child: Text(
+                  AppLocalization.of(context).trans(widget.topic),
+                  style: TextStyle(fontSize: 16, color: Styles.darkerBlue),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,)
             ),
             SizedBox(width: 20,),
             CupertinoSwitch(

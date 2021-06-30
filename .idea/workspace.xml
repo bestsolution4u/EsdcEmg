@@ -35,14 +35,44 @@
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/config/global.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config/global.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screen/intro_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/intro_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/dashboard/dashboard_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/dashboard/dashboard_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/dashboard/feedback_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/dashboard/feedback_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screen/main/dashboard/setting_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/dashboard/setting_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screen/main/dashboard/wellness_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/dashboard/wellness_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screen/main/employee/covid_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/employee/covid_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screen/main/video/video_player_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/video/video_player_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/dashboard/terms_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/dashboard/terms_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/employee/contact_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/employee/contact_detail_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/employee/employee_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/employee/employee_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/main_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/main_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/message/filter_location_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/message/filter_location_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/message/filter_topic_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/message/filter_topic_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/message/message_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/message/message_detail_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/message/message_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/message/message_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/main/pdfviewer_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/pdfviewer_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/appbar/appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/appbar/appbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/appbar/child_appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/appbar/child_appbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/appbar/child_image_appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/appbar/child_image_appbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/appbar/message_appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/appbar/message_appbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/button/border_item_selector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/button/border_item_selector.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/button/bordered_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/button/bordered_button.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widget/button/category_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/button/category_button.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/button/dashboard_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/button/dashboard_button.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widget/row/banner_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/banner_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/category_label.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/category_label.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/contact_item_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/contact_item_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/intro_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/intro_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/item_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/item_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/item_selector_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/item_selector_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/message_filter_location_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/message_filter_location_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/message_filter_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/message_filter_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/message_filter_topic_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/message_filter_topic_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/message_item_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/message_item_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/setting_item_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/setting_item_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/setting_switch_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/setting_switch_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/video_hub_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/video_hub_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/row/vpn_status_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/row/vpn_status_row.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/tabbar/esdc_tabbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/tabbar/esdc_tabbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/tabbar/main_tab_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/tabbar/main_tab_item.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,13 +147,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619035586162</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Initial">
-      <created>1619200137328</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1619200137328</updated>
     </task>
     <task id="LOCAL-00003" summary="Initial">
       <created>1619200359510</created>
@@ -461,7 +484,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624647095486</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="v1.0.1 release">
+      <created>1624975319183</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1624975319183</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -529,11 +559,11 @@
     </state>
     <state x="2422" y="110" key="AndroidProcessChooserDialog/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1620195923799" />
     <state x="800" y="157" key="AndroidProcessChooserDialog/2070.0.1216.728/150.0.1770.1040@150.0.1770.1040" timestamp="1623203992634" />
-    <state x="280" y="0" key="CommitChangelistDialog2" timestamp="1624647093822">
+    <state x="280" y="0" key="CommitChangelistDialog2" timestamp="1624975317658">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
     <state x="214" y="0" key="CommitChangelistDialog2/150.0.874.728@150.0.874.728" timestamp="1622451343819" />
-    <state x="280" y="0" key="CommitChangelistDialog2/2070.0.1216.728/150.0.1770.1040@150.0.1770.1040" timestamp="1624647093822" />
+    <state x="280" y="0" key="CommitChangelistDialog2/2070.0.1216.728/150.0.1770.1040@150.0.1770.1040" timestamp="1624975317658" />
     <state x="2159" y="0" key="CommitChangelistDialog2/2070.0.1216.728/150.0.1770.1040@2070.0.1216.728" timestamp="1623725317015" />
     <state x="242" y="92" width="1586" height="856" key="DiffContextDialog" timestamp="1619661305268">
       <screen x="150" y="0" width="1770" height="1040" />
@@ -593,13 +623,13 @@
     <state x="575" y="172" key="SettingsEditor/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621887648772" />
     <state x="150" y="17" key="SettingsEditor/150.0.874.728@150.0.874.728" timestamp="1622451492426" />
     <state x="150" y="24" key="SettingsEditor/2070.0.1216.728/150.0.1770.1040@150.0.1770.1040" timestamp="1624366070933" />
-    <state x="267" y="253" key="Vcs.Push.Dialog.v2" timestamp="1624647099866">
+    <state x="267" y="253" key="Vcs.Push.Dialog.v2" timestamp="1624975325573">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
     <state x="627" y="253" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1622226514931" />
     <state x="2288" y="177" key="Vcs.Push.Dialog.v2/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621975592085" />
     <state x="208" y="177" key="Vcs.Push.Dialog.v2/150.0.874.728@150.0.874.728" timestamp="1622451359424" />
-    <state x="267" y="253" key="Vcs.Push.Dialog.v2/2070.0.1216.728/150.0.1770.1040@150.0.1770.1040" timestamp="1624647099866" />
+    <state x="267" y="253" key="Vcs.Push.Dialog.v2/2070.0.1216.728/150.0.1770.1040@150.0.1770.1040" timestamp="1624975325573" />
     <state x="2150" y="177" key="Vcs.Push.Dialog.v2/2070.0.1216.728/150.0.1770.1040@2070.0.1216.728" timestamp="1623725322148" />
     <state x="242" y="92" width="1586" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1622742320691">
       <screen x="150" y="0" width="1770" height="1040" />
@@ -631,12 +661,12 @@
     </state>
     <state x="1920" y="0" width="1382" height="815" key="dock-window-3/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1622230749769" />
     <state x="1920" y="0" width="1382" height="815" key="dock-window-3/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1622335133423" />
-    <state x="1084" y="201" width="703" height="596" key="find.popup" timestamp="1624644119229">
+    <state x="1084" y="201" width="703" height="596" key="find.popup" timestamp="1625047687911">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>
     <state x="1084" y="203" width="703" height="596" key="find.popup/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1622218579405" />
     <state x="2377" y="177" width="555" height="534" key="find.popup/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1622207181354" />
-    <state x="1084" y="201" width="703" height="596" key="find.popup/2070.0.1216.728/150.0.1770.1040@150.0.1770.1040" timestamp="1624644119229" />
+    <state x="1084" y="201" width="703" height="596" key="find.popup/2070.0.1216.728/150.0.1770.1040@150.0.1770.1040" timestamp="1625047687911" />
     <state x="755" y="308" key="git4idea.merge.GitPullDialog" timestamp="1621460193157">
       <screen x="150" y="0" width="1770" height="1040" />
     </state>

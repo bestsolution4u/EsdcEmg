@@ -79,6 +79,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     child: Text(
                                       AppLocalization.of(context).trans('feed_back_description'),
                                       style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),
+                                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                                     ),
                                   ),
                                   SizedBox(height: 5,),
@@ -87,6 +88,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     child: Text(
                                       AppLocalization.of(context).trans('which_are_you_from'),
                                       style: TextStyle(color: Styles.darkerBlue, fontSize: 15, fontWeight: FontWeight.bold),
+                                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                                     ),
                                   ),
                                   Padding(
@@ -118,7 +120,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                           underline: Container(),
                                           selectedItemBuilder: (BuildContext context) {
                                             return Globals.WHICH_FROM.map<Widget>((String item) {
-                                              return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(AppLocalization.of(context).trans(item), style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),),);
+                                              return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(
+                                                AppLocalization.of(context).trans(item),
+                                                style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),
+                                                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR),);
                                             }).toList();
                                           },
                                           items: Globals.WHICH_FROM.map<DropdownMenuItem<String>>((String value) {
@@ -126,7 +131,11 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                               value: AppLocalization.of(context).trans(value),
                                               child: Container(
                                                 padding: const EdgeInsets.symmetric(vertical: 16),
-                                                child: Text(AppLocalization.of(context).trans(value), style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),
+                                                child: Text(
+                                                  AppLocalization.of(context).trans(value),
+                                                  style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),
+                                                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                                ),
                                               ),
                                             );
                                           }).toList(),
@@ -140,6 +149,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     child: Text(
                                       AppLocalization.of(context).trans('category'),
                                       style: TextStyle(color: Styles.darkerBlue, fontSize: 15, fontWeight: FontWeight.bold),
+                                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                                     ),
                                   ),
                                   Padding(
@@ -171,7 +181,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                           underline: Container(),
                                           selectedItemBuilder: (BuildContext context) {
                                             return Globals.CATEGORIES.map<Widget>((String item) {
-                                              return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(AppLocalization.of(context).trans(item), style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),),);
+                                              return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child:Text(
+                                                AppLocalization.of(context).trans(item),
+                                                style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),
+                                                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR),);
                                             }).toList();
                                           },
                                           items: Globals.CATEGORIES.map<DropdownMenuItem<String>>((String value) {
@@ -179,7 +192,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                               value: AppLocalization.of(context).trans(value),
                                               child: Container(
                                                 padding: const EdgeInsets.symmetric(vertical: 16),
-                                                child: Text(AppLocalization.of(context).trans(value), style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),),
+                                                child: Text(
+                                                  AppLocalization.of(context).trans(value),
+                                                  style: TextStyle(color: Styles.textBlack, fontSize: 14, fontWeight: FontWeight.w500),
+                                                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
                                               ),
                                             );
                                           }).toList(),
@@ -193,6 +209,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     child: Text(
                                       AppLocalization.of(context).trans('feed_back'),
                                       style: TextStyle(color: Styles.darkerBlue, fontSize: 15, fontWeight: FontWeight.bold),
+                                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                                     ),
                                   ),
                                   Padding(
@@ -206,13 +223,18 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     child: Semantics(
                                       label: AppLocalization.of(context).trans('error_empty_feedback'),
                                       excludeSemantics: true,
-                                      child: Text(AppLocalization.of(context).trans('error_empty_feedback'), style: TextStyle(fontSize: 12, color: Styles.red),),
+                                      child: Text(
+                                        AppLocalization.of(context).trans('error_empty_feedback'),
+                                        style: TextStyle(fontSize: 12, color: Styles.red),
+                                        textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
+                                      ),
                                     ),
                                   ),
                                   SizedBox(height: 20,),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 20),
                                     child: RichText(
+                                        textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                                         text: TextSpan(
                                           children: [
                                             TextSpan(
@@ -242,8 +264,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       color: Styles.darkBlue,
                                       padding: const EdgeInsets.all(16.0),
                                       onPressed: () => submitFeedback(),
-                                      child: Text(AppLocalization.of(context).trans('send_feedback'),
-                                          style: TextStyle(color: Colors.white, fontSize: 16), maxLines: 2, textAlign: TextAlign.center,),
+                                      child: Text(
+                                        AppLocalization.of(context).trans('send_feedback'),
+                                          style: TextStyle(color: Colors.white, fontSize: 16), textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR, maxLines: 2, textAlign: TextAlign.center,),
                                       textColor: Styles.textBlack,
                                       shape: RoundedRectangleBorder(
                                           side: BorderSide(
@@ -292,8 +315,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     showDialog(
         context: context,
         builder: (BuildContext context) => CupertinoAlertDialog(
-          title: new Text(AppLocalization.of(context).trans('thank_you')),
-          content: new Text(AppLocalization.of(context).trans('we_received_feedback')),
+          title: new Text(AppLocalization.of(context).trans('thank_you'), textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR),
+          content: new Text(
+              AppLocalization.of(context).trans('we_received_feedback'),
+            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
           actions: <Widget>[
             CupertinoDialogAction(
               isDefaultAction: true,

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -57,6 +58,7 @@ class _MainTabItemState extends State<MainTabItem> {
                         height: 0.75
                     ),
                     textAlign: TextAlign.center,
+                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                   )
                 ],
               ),

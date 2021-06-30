@@ -1,3 +1,4 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,7 @@ class DashboardButton extends StatelessWidget {
                       color: Styles.textBlack,
                       fontSize: 14,
                       fontWeight: FontWeight.w600),
+                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                 ),
               ],
             ),

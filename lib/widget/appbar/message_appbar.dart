@@ -60,6 +60,7 @@ class MessageAppBar extends StatelessWidget {
                 child: Text(
                   AppLocalization.of(context).trans('navigation_back'),
                   style: TextStyle(color: Styles.darkerBlue, fontSize: 18, fontWeight: FontWeight.w500),
+                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                 ),
                 onClick: () => Navigator.pop(context),
               ),
@@ -81,13 +82,17 @@ class MessageAppBar extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  child: Text(AppLocalization.of(context).trans('urgent'), style: TextStyle(color: Colors.white, fontSize: 14),),
+                  child: Text(
+                    AppLocalization.of(context).trans('urgent'),
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
                 ),
               ) : Container(),
               Text(
                 DateFormat(AppLocalization.currentLanguage == 'fr' ? 'dd MMMM yyyy' : 'MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(message.effectiveDate)),
                 style: TextStyle(color: Styles.textBlack, fontSize: 14),
                 textAlign: TextAlign.start,
+                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
               )
             ],
           ),
@@ -98,6 +103,7 @@ class MessageAppBar extends StatelessWidget {
             categoryLine,
             style: TextStyle(color: Styles.textBlack, fontSize: 16),
             textAlign: TextAlign.start,
+            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
           )
         ),
         Padding(
@@ -105,6 +111,7 @@ class MessageAppBar extends StatelessWidget {
           child: Text(
             AppLocalization.currentLanguage == 'fr' ? message.titleFr : message.title,
             style: TextStyle(color: Styles.textBlack, fontSize: 20, fontWeight: FontWeight.bold),
+            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
           ),
         ),
         Divider(

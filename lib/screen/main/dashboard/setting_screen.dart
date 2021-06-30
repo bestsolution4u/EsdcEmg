@@ -74,7 +74,9 @@ class _SettingScreenState extends State<SettingScreen> {
                         SizedBox(height: 30,),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: Text(AppLocalization.of(context).trans('app_title_home')),
+                          child: Text(
+                              AppLocalization.of(context).trans('app_title_home'),
+                            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
@@ -88,7 +90,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                 }
                                 return Container(
                                   child: Text(
-                                      'Version: $version'
+                                      'Version: $version',
+                                    textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                                   ),
                                 );
                               }),
@@ -128,6 +131,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     color: Styles.textBlack,
                     fontSize: 22,
                     fontWeight: FontWeight.bold),
+                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
               ),
               SizedBox(
                 height: 20,
@@ -143,7 +147,10 @@ class _SettingScreenState extends State<SettingScreen> {
                       SizedBox(height: 10,),
                       Row(
                         children: [
-                          Expanded(child: Text(AppLocalization.of(context).trans(Globals.SupportedLanguageCodes[0]), style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),)),
+                          Expanded(child: Text(
+                            AppLocalization.of(context).trans(Globals.SupportedLanguageCodes[0]),
+                            style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),
+                            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,)),
                           Icon(Icons.keyboard_arrow_right, size: 28, color: Colors.grey),
                         ],
                       ),
@@ -165,7 +172,10 @@ class _SettingScreenState extends State<SettingScreen> {
                       SizedBox(height: 10,),
                       Row(
                         children: [
-                          Expanded(child: Text(AppLocalization.of(context).trans(Globals.SupportedLanguageCodes[1]), style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),)),
+                          Expanded(child: Text(
+                            AppLocalization.of(context).trans(Globals.SupportedLanguageCodes[1]),
+                            style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),
+                            textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,)),
                           Icon(Icons.keyboard_arrow_right, size: 28, color: Colors.grey),
                         ],
                       ),

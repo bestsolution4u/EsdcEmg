@@ -1,3 +1,4 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -56,8 +57,12 @@ class MessageItemRow extends StatelessWidget {
                       style: TextStyle(color: Styles.darkerBlue, fontSize: 16),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
+                      textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                     )),
-                Text(DateFormat(AppLocalization.currentLanguage == 'fr' ? 'dd MMMM yyyy' : 'MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(message.effectiveDate)), style: TextStyle(color: Styles.darkerBlue, fontSize: 12, fontWeight: FontWeight.w400),),
+                Text(
+                  DateFormat(AppLocalization.currentLanguage == 'fr' ? 'dd MMMM yyyy' : 'MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(message.effectiveDate)),
+                  style: TextStyle(color: Styles.darkerBlue, fontSize: 12, fontWeight: FontWeight.w400),
+                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
               ],
             )),
             message.urgentInd == 'Urgent' ? Container(
@@ -68,7 +73,10 @@ class MessageItemRow extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                child: Text(AppLocalization.of(context).trans('urgent'), style: TextStyle(color: Colors.white, fontSize: 10),),
+                child: Text(
+                  AppLocalization.of(context).trans('urgent'),
+                  style: TextStyle(color: Colors.white, fontSize: 10),
+                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
               ),
             ) : Container(),
             Padding(padding: const EdgeInsets.only(top: 4, left: 10), child: Icon(Icons.keyboard_arrow_right, size: 24, color: Colors.grey,),)

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:esdc_emg/config/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
@@ -33,7 +34,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title, textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
       ),
       body: pdfData == null ? Center(child: CircularProgressIndicator(),) : PDFView(
         pdfData: pdfData,

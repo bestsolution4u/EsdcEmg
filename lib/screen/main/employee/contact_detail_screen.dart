@@ -1,3 +1,4 @@
+import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/widget/appbar/child_appbar.dart';
@@ -58,6 +59,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                               Text(
                                 AppLocalization.of(context).trans('telephone'),
                                 style: TextStyle(color: Colors.black, fontSize: 12),
+                                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                               ),
                               SizedBox(
                                 height: 10,
@@ -69,6 +71,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                 child: Text(
                                   AppLocalization.of(context).trans(widget.phoneDesc1),
                                   style: TextStyle(color: Colors.black, fontSize: 14),
+                                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                                 ),
                               ),
                               RippleComponent(
@@ -80,6 +83,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                 child: Text(
                                   AppLocalization.of(context).trans(widget.phone1),
                                   style: TextStyle(color: Styles.blue, fontSize: 16),
+                                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                                 ),
                               ),
                               widget.phone2.isEmpty ? Container() : SizedBox(height: 10,),
@@ -90,6 +94,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                 child: Text(
                                   AppLocalization.of(context).trans(widget.phoneDesc2),
                                   style: TextStyle(color: Colors.black, fontSize: 14),
+                                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                                 ),
                               ),
                               widget.phone2.isEmpty
@@ -103,6 +108,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                 child: Text(
                                   AppLocalization.of(context).trans(widget.phone2),
                                   style: TextStyle(color: Styles.blue, fontSize: 16),
+                                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                                 ),
                               ),
                             ],
@@ -125,7 +131,10 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                     Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(title: widget.title, url: widget.website,)));
                                   }
                                 },
-                                child: Text(AppLocalization.of(context).trans('website'), style: TextStyle(color: Styles.blue, fontSize: 16)),
+                                child: Text(
+                                    AppLocalization.of(context).trans('website'),
+                                    style: TextStyle(color: Styles.blue, fontSize: 16),
+                                  textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,),
                               )
                             ],
                           ),
@@ -142,9 +151,13 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                               Text(
                                 AppLocalization.of(context).trans('description'),
                                 style: TextStyle(color: Styles.blue, fontSize: 12),
+                                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,
                               ),
                               SizedBox(height: 10,),
-                              Text(AppLocalization.of(context).trans(widget.description), style: TextStyle(fontSize: 12, color: Colors.black),)
+                              Text(
+                                AppLocalization.of(context).trans(widget.description),
+                                style: TextStyle(fontSize: 12, color: Colors.black),
+                                textScaleFactor: Globals.MAX_TEXT_SCALE_FACTOR,)
                             ],
                           ),
                         ) : Container(),
