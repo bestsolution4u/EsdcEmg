@@ -37,7 +37,7 @@ class VpnStatusRow extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         SizedBox(
-          width: 50,
+          width: 70,
           child: Text(
             vpnStatus.sitename,
             style: TextStyle(color: Styles.primaryColor, fontSize: 16, fontWeight: FontWeight.w600),

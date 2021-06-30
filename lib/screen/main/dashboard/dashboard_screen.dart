@@ -373,7 +373,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
           carouselController: _videoCarouselController,
             items: youtubeVideos.map((video) => BannerItem(video: video,)).toList(),
             options: CarouselOptions(
-              height: 250,
+              height: 270,
               aspectRatio: 16/9,
               viewportFraction: 0.8,
               initialPage: 0,
