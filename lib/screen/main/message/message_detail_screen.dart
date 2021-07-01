@@ -89,7 +89,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
                       AppLocalization.of(context).trans('note_expiration_date') + strExpDuration,
-                      style: TextStyle(color: Styles.darkGray, fontSize: 12),
+                      style: TextStyle(color: Styles.textBlack, fontSize: 12),
                       textAlign: TextAlign.start,
                       textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                     ),
