@@ -38,7 +38,7 @@ class VpnStatusRow extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         SizedBox(
-          width: 70,
+          width: ScreenUtil.calcTextScaleFactor(context) > 1 ? 80 : 60,
           child: Text(
             vpnStatus.sitename,
             style: TextStyle(color: Styles.primaryColor, fontSize: 16, fontWeight: FontWeight.w600),
@@ -49,7 +49,7 @@ class VpnStatusRow extends StatelessWidget {
           width: 10,
         ),
         SizedBox(
-          width: 110,
+          width: ScreenUtil.calcTextScaleFactor(context) > 1 ? 150 : 110,
           child: Text(
             vpnStatus.status == 'down' ? AppLocalization.of(context).trans('down') : '${vpnStatus.usage}% ' + AppLocalization.of(context).trans('used'),
             style: TextStyle(color: Styles.primaryColor, fontSize: 16),

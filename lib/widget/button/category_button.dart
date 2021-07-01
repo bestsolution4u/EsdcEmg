@@ -10,10 +10,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CategoryButton extends StatelessWidget {
   final Color backgroundColor;
   final String icon, title;
-  final double iconSize;
+  final double iconSize, fontSize;
   final VoidCallback onClick;
 
-  CategoryButton({this.backgroundColor = Styles.darkBlue, this.icon, this.title, this.iconSize = 70, this.onClick});
+  CategoryButton({this.backgroundColor = Styles.darkBlue, this.icon, this.title, this.iconSize = 70, this.fontSize = 13, this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class CategoryButton extends StatelessWidget {
             onClick: onClick,
             child: Container(
               width: double.infinity,
-              height: 165,
+              height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 185 : 165,
               padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -55,7 +55,7 @@ class CategoryButton extends StatelessWidget {
                     ),
                     Text(
                       AppLocalization.of(context).trans(title),
-                      style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500, height: 1.3),
+                      style: TextStyle(color: Colors.white, fontSize: fontSize, fontWeight: FontWeight.w500, height: 1.3),
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,

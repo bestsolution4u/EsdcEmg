@@ -81,7 +81,7 @@ class _BannerItemState extends State<BannerItem> {
               SizedBox(height: 5,),
               Text(
                 widget.video.description,
-                maxLines: 2,
+                maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Styles.primaryColor,

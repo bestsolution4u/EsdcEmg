@@ -159,6 +159,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                         title: Platform.isIOS ? 'covid_19' : 'active_screening',
                         icon: 'asset/image/icon-covid.svg',
                         iconSize: Platform.isIOS ? 70 : 54,
+                        fontSize: ScreenUtil.calcTextScaleFactor(context) > 1 ? 10 : 13,
                         backgroundColor: Styles.darkerBlue,
                         onClick: () => launch(AppLocalization.of(context).trans('url_covid_active_screening')),
                       ),
@@ -374,7 +375,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
           carouselController: _videoCarouselController,
             items: youtubeVideos.map((video) => BannerItem(video: video,)).toList(),
             options: CarouselOptions(
-              height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 270 : 250,
+              height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 300 : 270,
               aspectRatio: 16/9,
               viewportFraction: 0.8,
               initialPage: 0,
