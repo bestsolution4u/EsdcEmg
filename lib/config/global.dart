@@ -8,7 +8,7 @@ typedef void LocaleChangeCallback(Locale locale);
 
 class Globals {
   static const bool IS_PRODUCTION = false;
-  static double MAX_TEXT_SCALE_FACTOR = 1.5;
+  static const double MAX_TEXT_SCALE_FACTOR = 1.5;
   static SharedPreferences preferences;
 
   /// Supported languages
