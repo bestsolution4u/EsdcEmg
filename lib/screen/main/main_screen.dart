@@ -166,10 +166,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                               top: 0,
                               right: 0,
                               child: Transform.translate(
-                                offset: Offset(2.0, -3.0),
+                                offset: ScreenUtil.calcTextScaleFactor(context) > 1 ? Offset(8, -8) : Offset(2, -3),
                                 child: Container(
-                                  width: 16,
-                                  height: 16,
+                                  width: ScreenUtil.calcTextScaleFactor(context) > 1 ? 24 : 16,
+                                  height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 24 : 16,
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(24), color: Styles.red),
                                   child: Center(
                                     child: Text(
