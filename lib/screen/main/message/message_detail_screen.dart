@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esdc_emg/bloc/bloc.dart';
-import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
@@ -155,7 +154,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                           CupertinoDialogAction(
                             isDefaultAction: true,
                             child: Text(
-                                AppLocalization.of(context).trans('delete'),
+                                AppLocalization.of(context).trans('continue'),
                               textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                             onPressed: () {
                               _messageBloc.add(MessageDeleteEvent(messageID: widget.message.id));

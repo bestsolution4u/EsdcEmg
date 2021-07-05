@@ -161,7 +161,37 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                         iconSize: Platform.isIOS ? 70 : 54,
                         fontSize: ScreenUtil.calcTextScaleFactor(context) > 1 ? 10 : 13,
                         backgroundColor: Styles.darkerBlue,
-                        onClick: () => launch(AppLocalization.of(context).trans('url_covid_active_screening')),
+                        onClick: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) => CupertinoAlertDialog(
+                                title: new Text(
+                                  AppLocalization.of(context).trans('active_screening'),
+                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                                content: new Text(
+                                  AppLocalization.of(context).trans('covid_screen_redirect'),
+                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                                actions: <Widget>[
+                                  CupertinoDialogAction(
+                                    isDefaultAction: true,
+                                    child: Text(
+                                      AppLocalization.of(context).trans('continue'),
+                                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                                    onPressed: () {
+                                      launch(AppLocalization.of(context).trans('url_covid_active_screening'));
+                                    },
+                                  ),
+                                  CupertinoDialogAction(
+                                    child: Text(AppLocalization.of(context).trans('cancel'),
+                                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  )
+                                ],
+                              )
+                          );
+                        },
                       ),
                       SizedBox(width: 20,),
                       CategoryButton(
