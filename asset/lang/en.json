@@ -141,6 +141,7 @@
   "esdc_twitter": "ESDC Twitter",
   "esdc_youtube": "ESDC Youtube",
   "esdc_instagram": "ESDC Instagram",
+  "esdc_linkedin": "ESDC Linkedin",
   "url_covid_active_screening": "https://www.canada.ca/en/employment-social-development/screening-tool.html",
   "url_employ_assistance_program": "https://www.canada.ca/en/health-canada/services/environmental-workplace-health/occupational-health-safety/employee-assistance-services/employee-assistance-program.html",
   "url_life_speak": "https://canada.lifespeak.com/Account/Login?ReturnUrl=%2fwelcome",
@@ -179,12 +180,12 @@
   "url_esdc_youtube": "https://www.youtube.com/user/HRSDCanada",
   "url_service_canada_youtube": "https://www.youtube.com/user/ServiceCanadaE/videos",
   "url_esdc_instagram": "https://www.instagram.com/esdc.edsc/",
+  "url_esdc_linkedin": "https://linkedin.com/company/hrsdc",
   "more_actions": "This message",
   "customize_actions_for_message": "What would you like to do?",
   "mark_as_unread": "Mark as unread",
   "cancel": "Cancel",
   "delete_message": "Delete message",
-  "continue": "Continue",
   "confirm_delete_message": "Are you sure to delete this message?",
   "All": "All",
   "National – Canada wide": "National-Canada Wide",
@@ -266,7 +267,7 @@
   "videos_sourced_from_esdc_channel": "Videos sourced from the ESDC YouTube channel",
   "you_have": "You have ",
   "message_filters_applied": " messge filters applied.",
-  "today": "Today",
+  "today": "today",
   "terms_conditions": "Terms and Conditions",
   "end_user_agreement": "End-User Licence Agreement",
   "url_end_user_agreement": "https://www.canada.ca/en/transparency/terms.html",
@@ -277,5 +278,5 @@
   "description": "Description: ",
   "eap_desc": "The EAP is a bilingual, voluntary and confidential psychological support service, to help ESDC employees and their immediate family members with concerns that affect their personal well-being and/or work performance. Mental health professionals at the 24-hour Crisis and Referral Center can provide immediate crisis support, or refer you to one of EAP’s 900 practitioners in private practice. Sessions are free and available in person, by phone, e-counselling or video counselling.\n\nContact EAP at 1-800-268-7708 (Telecommunication Device for the Deaf (TDD): 1-800-567-5803).\n\nYou can also access LifeSpeak for expert-led and bilingual resources on physical and mental health and well-being, including wellness videos, blogs, and monthly chat sessions",
   "terms_content": "For ESDC Employees: This App is made available to you ‘as is’, ‘as available’ and at your own risk. This App is not intended to supplement all other available sources of information available to ESDC employees. Please also note that the terms and conditions of use including all notices that apply to the various sources of information accessed via this App continue to apply and we encourage you to read them including as it respects your privacy.\n\nFor all Other People: If you are not an ESDC employee but have download the app anyway, you acknowledge and understand that this app was not designed or intended for your use and that this App is made available ‘as is’, ‘as available’ and at your own risk. This App is not intended to supplement all other available sources of information and the terms and conditions of use including all notices that apply to the various sources of information accessed via this App continue to apply and we encourage you to read them including as it respects your privacy.",
-  "covid_screen_redirect": "You are getting redirected to ESDC COVID-19 Employee Active Screening Tool.\nFor more info on COVID-19, please visit https://www.canada.ca/en/government/publicservice/covid-19.html."
+  "linkedin": "LinkedIn"
 }

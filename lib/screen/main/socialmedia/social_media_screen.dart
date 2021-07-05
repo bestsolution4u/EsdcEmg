@@ -77,6 +77,15 @@ class _SocialMediaScreenState extends State<SocialMediaScreen> {
                 ],
               ),
             ),
+            CategoryLabel(label: 'linkedin', icon: 'asset/image/icon-linkedin.svg'),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                children: [
+                  ItemRow(title: 'esdc', isFirst: true, isLast: true, onClick: () => openLinkedinLink(title: 'esdc_linkedin', url: 'url_esdc_linkedin')),
+                ],
+              ),
+            ),
             SizedBox(height: 20,)
           ],
         ),
@@ -116,6 +125,14 @@ class _SocialMediaScreenState extends State<SocialMediaScreen> {
   }
 
   Future<void> openInstagramLink({String title, String url}) async {
+    if (await canLaunch(AppLocalization.of(context).trans(url))) {
+      await launch(AppLocalization.of(context).trans(url));
+    } else {
+      gotoWebviewScreen(title: title, url: url);
+    }
+  }
+
+  Future<void> openLinkedinLink({String title, String url}) async {
     if (await canLaunch(AppLocalization.of(context).trans(url))) {
       await launch(AppLocalization.of(context).trans(url));
     } else {
