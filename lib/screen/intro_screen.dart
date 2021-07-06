@@ -50,7 +50,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   child: Stack(
                     children: [
                       Semantics(
-                        label: 'Map of ESDC',
+                        label: 'My E S D C Logo',
                         image: true,
                         excludeSemantics: true,
                         child: SvgPicture.asset(
