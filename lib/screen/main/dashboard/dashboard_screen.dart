@@ -166,7 +166,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                               context: context,
                               builder: (BuildContext context) => CupertinoAlertDialog(
                                 title: new Text(
-                                  AppLocalization.of(context).trans('active_screening'),
+                                  AppLocalization.of(context).trans('important_note'),
                                   textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                                 content: new Text(
                                   AppLocalization.of(context).trans('covid_screen_redirect'),
@@ -178,6 +178,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                                       AppLocalization.of(context).trans('continue'),
                                       textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
                                     onPressed: () {
+                                      Navigator.pop(context);
                                       launch(AppLocalization.of(context).trans('url_covid_active_screening'));
                                     },
                                   ),
