@@ -39,8 +39,6 @@ class _SettingItemRowState extends State<SettingItemRow> {
     } else if (widget.isLocation) {
       List<String> locations = widget.value.split(",");
       locations.removeWhere((element) => element.isEmpty);
-      print("-----------------");
-      print(locations);
       if (locations.isEmpty) {
         value = widget.isValueTranslated ? AppLocalization.of(context).trans("none") : "none";
       } else if (locations.length == 1) {
@@ -51,6 +49,7 @@ class _SettingItemRowState extends State<SettingItemRow> {
     } else {
       value = widget.isValueTranslated ? AppLocalization.of(context).trans(widget.value) : widget.value;
     }
+    double textScaleFactor = ScreenUtil.calcTextScaleFactor(context);
     return RippleComponent(
       child: Container(
         color: widget.backgroundColor,
@@ -58,7 +57,31 @@ class _SettingItemRowState extends State<SettingItemRow> {
           children: [
             Container(
               padding: EdgeInsets.symmetric(horizontal: widget.paddingHorizontal, vertical: 10),
-              child: Row(
+              child: textScaleFactor > 1
+                  ? Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppLocalization.of(context).trans(widget.label),
+                    style: TextStyle(color: Styles.darkerBlue, fontSize: 14, fontWeight: FontWeight.w500),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                  Row(
+                    children: [
+                      Spacer(),
+                      widget.value == null ? Container() : Text(
+                        value,
+                        style: TextStyle(color: Styles.blue, fontSize: 14, fontWeight: FontWeight.w500),
+                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                      SizedBox(width: 5,),
+                      Icon(Icons.keyboard_arrow_right, size: 28, color: Colors.grey)
+                    ],
+                  )
+                ],
+              )
+                  : Row(
                 children: [
                   Expanded(child: Text(
                     AppLocalization.of(context).trans(widget.label),
