@@ -152,7 +152,7 @@ class _MessageScreenState extends State<MessageScreen> {
               if (state is !SettingLoadSuccessState) return Container();
               SettingModel settingModel = (state as SettingLoadSuccessState).settings;
               return Container(
-                height: 350,
+                height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 400 : 350,
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
