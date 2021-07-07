@@ -59,7 +59,7 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
         providers: AppBloc.blocProviders,
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          showSemanticsDebugger: false,
+          showSemanticsDebugger: true,
           onGenerateRoute: routes.generateRoute,
           localizationsDelegates: [
             _localizationsDelegate,

@@ -82,7 +82,9 @@ class _SocialMediaScreenState extends State<SocialMediaScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
-                  ItemRow(title: 'esdc', isFirst: true, isLast: true, onClick: () => openLinkedinLink(title: 'esdc_linkedin', url: 'url_esdc_linkedin')),
+                  ItemRow(title: 'esdc', isFirst: true, onClick: () => openLinkedinLink(title: 'esdc_linkedin', url: 'url_esdc_linkedin')),
+                  ItemDivider(paddingLeft: 15),
+                  ItemRow(title: 'service_canada', isLast: true, onClick: () => openLinkedinLink(title: 'service_canada', url: 'url_service_canada_linkedin')),
                 ],
               ),
             ),

@@ -18,71 +18,77 @@ class PayBenefitScreen extends StatefulWidget {
 class _PayBenefitScreenState extends State<PayBenefitScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ChildAppbar(
-              title: 'pay_benefit_leave',
-            ),
-            Expanded(
-                child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  color: Styles.lightGray,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CategoryLabel(label: 'collective_agreement_and_pay'),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Column(
-                            children: [
-                              ItemRow(title: 'collective_agreement', icon: 'asset/image/icon-row-collective.svg', isFirst: true, onClick: () => gotoWebviewScreen(title: 'collective_agreement', url: "url_collective_agreement")),
-                              ItemDivider(paddingLeft: 15),
-                              ItemRow(title: 'public_service_pay_center', icon: 'asset/image/icon-row-pspc.svg', onClick: () => gotoWebviewScreen(title: 'public_service_pay_center', url: "url_public_service_pay_center")),
-                              ItemDivider(paddingLeft: 15),
-                              ItemRow(title: 'how_your_pay', icon: 'asset/image/icon-row-how-pay.svg', onClick: () => gotoWebviewScreen(title: 'how_your_pay', url: "url_how_your_pay")),
-                              ItemDivider(paddingLeft: 15),
-                              ItemRow(title: 'tbs_pay', icon: 'asset/image/icon-row-tbs-pay-rates.svg', onClick: () => gotoWebviewScreen(title: 'tbs_pay', url: "url_tbs_pay")),
-                              ItemDivider(paddingLeft: 15),
-                              ItemRow(title: 'occupational_group', icon: 'asset/image/icon-row-occupational.svg', isLast: true, onClick: () => gotoWebviewScreen(title: 'occupational_group', url: "url_occupational_group")),
-                            ],
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      label: "Pay benefit screen loaded",
+      value: "Pay benefit screen loaded",
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ChildAppbar(
+                title: 'pay_benefit_leave',
+              ),
+              Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    color: Styles.lightGray,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CategoryLabel(label: 'collective_agreement_and_pay'),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Column(
+                              children: [
+                                ItemRow(title: 'collective_agreement', icon: 'asset/image/icon-row-collective.svg', isFirst: true, onClick: () => gotoWebviewScreen(title: 'collective_agreement', url: "url_collective_agreement")),
+                                ItemDivider(paddingLeft: 15),
+                                ItemRow(title: 'public_service_pay_center', icon: 'asset/image/icon-row-pspc.svg', onClick: () => gotoWebviewScreen(title: 'public_service_pay_center', url: "url_public_service_pay_center")),
+                                ItemDivider(paddingLeft: 15),
+                                ItemRow(title: 'how_your_pay', icon: 'asset/image/icon-row-how-pay.svg', onClick: () => gotoWebviewScreen(title: 'how_your_pay', url: "url_how_your_pay")),
+                                ItemDivider(paddingLeft: 15),
+                                ItemRow(title: 'tbs_pay', icon: 'asset/image/icon-row-tbs-pay-rates.svg', onClick: () => gotoWebviewScreen(title: 'tbs_pay', url: "url_tbs_pay")),
+                                ItemDivider(paddingLeft: 15),
+                                ItemRow(title: 'occupational_group', icon: 'asset/image/icon-row-occupational.svg', isLast: true, onClick: () => gotoWebviewScreen(title: 'occupational_group', url: "url_occupational_group")),
+                              ],
+                            ),
                           ),
-                        ),
-                        CategoryLabel(label: 'benefits_and_pension'),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Column(
-                            children: [
-                              ItemRow(title: 'sun_life_web', icon: 'asset/image/icon-row-sunlife.svg', isFirst: true, onClick: () => gotoWebviewScreen(title: 'sun_life_web', url: "url_sun_life_web")),
-                              ItemDivider(paddingLeft: 15),
-                              ItemRow(title: 'psimp', icon: 'asset/image/icon-row-psimp.svg', onClick: () => gotoWebviewScreen(title: 'psimp', url: "url_psimp")),
-                              ItemDivider(paddingLeft: 15),
-                              ItemRow(title: 'public_pensions', icon: 'asset/image/icon-row-pensions.svg', isLast: true, onClick: () => gotoWebviewScreen(title: 'public_pensions', url: "url_public_pensions")),
-                            ],
+                          CategoryLabel(label: 'benefits_and_pension'),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Column(
+                              children: [
+                                ItemRow(title: 'sun_life_web', icon: 'asset/image/icon-row-sunlife.svg', isFirst: true, onClick: () => gotoWebviewScreen(title: 'sun_life_web', url: "url_sun_life_web")),
+                                ItemDivider(paddingLeft: 15),
+                                ItemRow(title: 'psimp', icon: 'asset/image/icon-row-psimp.svg', onClick: () => gotoWebviewScreen(title: 'psimp', url: "url_psimp")),
+                                ItemDivider(paddingLeft: 15),
+                                ItemRow(title: 'public_pensions', icon: 'asset/image/icon-row-pensions.svg', isLast: true, onClick: () => gotoWebviewScreen(title: 'public_pensions', url: "url_public_pensions")),
+                              ],
+                            ),
                           ),
-                        ),
-                        CategoryLabel(label: 'leave_and_vacation'),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Column(
-                            children: [
-                              ItemRow(title: 'leave_requirement', icon: 'asset/image/icon-row-leave.svg', isFirst: true, isLast: true, onClick: () => gotoWebviewScreen(title: 'leave_requirement', url: "url_leave_requirement")),
-                            ],
+                          CategoryLabel(label: 'leave_and_vacation'),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Column(
+                              children: [
+                                ItemRow(title: 'leave_requirement', icon: 'asset/image/icon-row-leave.svg', isFirst: true, isLast: true, onClick: () => gotoWebviewScreen(title: 'leave_requirement', url: "url_leave_requirement")),
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        )
-                      ],
+                          SizedBox(
+                            height: 20,
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                )),
-          ],
+                  )),
+            ],
+          ),
         ),
       ),
     );

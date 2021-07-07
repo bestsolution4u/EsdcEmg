@@ -41,51 +41,57 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          Center(
-            child: YoutubePlayer(
-              controller: _controller,
-              showVideoProgressIndicator: true,
-              progressColors: ProgressBarColors(
-                playedColor: Colors.white,
-                handleColor: Styles.bgGrey,
-              ),
-              bottomActions: [
-                const SizedBox(width: 14.0),
-                CurrentPosition(),
-                const SizedBox(width: 8.0),
-                ProgressBar(
-                  isExpanded: true,
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      label: "Video player screen loaded",
+      value: "Video player screen loaded",
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Stack(
+          children: [
+            Center(
+              child: YoutubePlayer(
+                controller: _controller,
+                showVideoProgressIndicator: true,
+                progressColors: ProgressBarColors(
+                  playedColor: Colors.white,
+                  handleColor: Styles.bgGrey,
                 ),
-                RemainingDuration(),
-                const PlaybackSpeedButton(),
-                FullScreenButton(),
-                IconButton(icon: Icon(muted ? Icons.volume_mute : Icons.volume_off, color: Colors.white,), onPressed: () {
-                  if (muted) {
-                    _controller.unMute();
-                  } else {
-                    _controller.mute();
-                  }
-                  setState(() {
-                    muted = !muted;
-                  });
-                })
-              ],
+                bottomActions: [
+                  const SizedBox(width: 14.0),
+                  CurrentPosition(),
+                  const SizedBox(width: 8.0),
+                  ProgressBar(
+                    isExpanded: true,
+                  ),
+                  RemainingDuration(),
+                  const PlaybackSpeedButton(),
+                  FullScreenButton(),
+                  IconButton(icon: Icon(muted ? Icons.volume_mute : Icons.volume_off, color: Colors.white,), onPressed: () {
+                    if (muted) {
+                      _controller.unMute();
+                    } else {
+                      _controller.mute();
+                    }
+                    setState(() {
+                      muted = !muted;
+                    });
+                  })
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            right: 10,
-              top: 50,
-              child: IconButton(
-                icon: Icon(Icons.close, size: 24, color: Colors.white,),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ))
-        ],
+            Positioned(
+                right: 10,
+                top: 50,
+                child: IconButton(
+                  icon: Icon(Icons.close, size: 24, color: Colors.white,),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ))
+          ],
+        ),
       ),
     );
   }

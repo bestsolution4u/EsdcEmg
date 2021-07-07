@@ -33,34 +33,39 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title, textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-      ),
-      body: pdfData == null ? Center(child: CircularProgressIndicator(),) : PDFView(
-        pdfData: pdfData,
-        enableSwipe: true,
-        swipeHorizontal: true,
-        autoSpacing: true,
-        pageFling: true,
-        onRender: (_pages) {
-          setState(() {
-            pages = _pages;
-            isReady = true;
-          });
-        },
-        onError: (error) {
-          print(error.toString());
-        },
-        onPageError: (page, error) {
-          print('$page: ${error.toString()}');
-        },
-        onViewCreated: (PDFViewController pdfViewController) {
-          _controller.complete(pdfViewController);
-        },
-        onPageChanged: (int page, int total) {
-          print('page change: $page/$total');
-        },
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      label: "PDFViewer screen loaded",
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title, textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+        ),
+        body: pdfData == null ? Center(child: CircularProgressIndicator(),) : PDFView(
+          pdfData: pdfData,
+          enableSwipe: true,
+          swipeHorizontal: true,
+          autoSpacing: true,
+          pageFling: true,
+          onRender: (_pages) {
+            setState(() {
+              pages = _pages;
+              isReady = true;
+            });
+          },
+          onError: (error) {
+            print(error.toString());
+          },
+          onPageError: (page, error) {
+            print('$page: ${error.toString()}');
+          },
+          onViewCreated: (PDFViewController pdfViewController) {
+            _controller.complete(pdfViewController);
+          },
+          onPageChanged: (int page, int total) {
+            print('page change: $page/$total');
+          },
+        ),
       ),
     );
   }

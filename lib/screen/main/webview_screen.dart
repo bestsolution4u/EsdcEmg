@@ -18,45 +18,53 @@ class _WebviewScreenState extends State<WebviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(child: Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ChildAppbar(
-              title: widget.title,
-              showTitle: false,
-              onBack: () async {
-                bool result = await onBack();
-                if (result) Navigator.pop(context);
-              },),
-            Expanded(
-                child: Stack(
-                  children: [
-                    WebView(
-                      initialUrl: AppLocalization.of(context).trans(widget.url),
-                      onWebViewCreated: (controller) {
-                        webViewController = controller;
-                      },
-                      javascriptMode: JavascriptMode.unrestricted,
-                      onPageFinished: (url) {
-                        setState(() {
-                          isLoading = false;
-                        });
-                      },
-                      navigationDelegate: (NavigationRequest request) {
-                        return NavigationDecision.navigate;
-                      },
-                    ),
-                    isLoading ? Center(child: CircularProgressIndicator(),) : Container()
-                  ],
-                )
-            )
-          ],
+    return WillPopScope(
+        child: Semantics(
+          container: true,
+          explicitChildNodes: true,
+          label: "Webview screen loaded",
+          value: "Webview screen loaded",
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ChildAppbar(
+                    title: widget.title,
+                    showTitle: false,
+                    onBack: () async {
+                      bool result = await onBack();
+                      if (result) Navigator.pop(context);
+                    },),
+                  Expanded(
+                      child: Stack(
+                        children: [
+                          WebView(
+                            initialUrl: AppLocalization.of(context).trans(widget.url),
+                            onWebViewCreated: (controller) {
+                              webViewController = controller;
+                            },
+                            javascriptMode: JavascriptMode.unrestricted,
+                            onPageFinished: (url) {
+                              setState(() {
+                                isLoading = false;
+                              });
+                            },
+                            navigationDelegate: (NavigationRequest request) {
+                              return NavigationDecision.navigate;
+                            },
+                          ),
+                          isLoading ? Center(child: CircularProgressIndicator(),) : Container()
+                        ],
+                      )
+                  )
+                ],
+              ),
+            ),
+          ),
         ),
-      ),
-    ), onWillPop: onBack);
+        onWillPop: onBack);
   }
 
   Future<bool> onBack() async {

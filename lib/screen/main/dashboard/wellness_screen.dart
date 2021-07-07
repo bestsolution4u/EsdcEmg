@@ -14,44 +14,50 @@ class WellnessScreen extends StatefulWidget {
 class _WellnessScreenState extends State<WellnessScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Styles.blue,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ChildImageAppbar(
-                title: "wellness",
-                icon: 'asset/image/icon-wellness.svg',
-              ),
-              SizedBox(height: 40,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: BorderItemSelector(
-                  title: 'employ_assistance_program_2',
-                  icon: 'asset/image/icon-nav-eap.svg',
-                  onClick: () => gotoWebviewScreen(
-                      title: "employ_assistance_program",
-                      url: 'url_employ_assistance_program'),
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      label: "Wellness screen loaded",
+      value: "Wellness screen loaded",
+      child: Scaffold(
+        backgroundColor: Styles.blue,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ChildImageAppbar(
+                  title: "wellness",
+                  icon: 'asset/image/icon-wellness.svg',
                 ),
-              ),
-              SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: BorderItemSelector(
-                  title: 'life_speak',
-                  icon: 'asset/image/icon-nav-lifespeak.svg',
-                  description: 'life_speak_desc',
-                  onClick: () {
-                    launch(AppLocalization.of(context).trans('url_life_speak'));
-                    /*gotoWebviewScreen(
+                SizedBox(height: 40,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: BorderItemSelector(
+                    title: 'employ_assistance_program_2',
+                    icon: 'asset/image/icon-nav-eap.svg',
+                    onClick: () => gotoWebviewScreen(
+                        title: "employ_assistance_program",
+                        url: 'url_employ_assistance_program'),
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: BorderItemSelector(
+                    title: 'life_speak',
+                    icon: 'asset/image/icon-nav-lifespeak.svg',
+                    description: 'life_speak_desc',
+                    onClick: () {
+                      launch(AppLocalization.of(context).trans('url_life_speak'));
+                      /*gotoWebviewScreen(
                       title: "life_speak",
                       url: 'url_life_speak');*/
-                  },
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

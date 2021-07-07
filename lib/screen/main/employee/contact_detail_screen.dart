@@ -27,147 +27,153 @@ class ContactDetailScreen extends StatefulWidget {
 class _ContactDetailScreenState extends State<ContactDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ChildAppbar(
-              title: widget.title,
-              titleSize: 20,
-            ),
-            Expanded(
-                child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  color: Styles.lightGray,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.white),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                AppLocalization.of(context).trans('telephone'),
-                                style: TextStyle(color: Colors.black, fontSize: 12),
-                                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              widget.phoneDesc1.isEmpty
-                                  ? Container()
-                                  : Padding(
-                                padding: const EdgeInsets.only(bottom: 5),
-                                child: Text(
-                                  AppLocalization.of(context).trans(widget.phoneDesc1),
-                                  style: TextStyle(color: Colors.black, fontSize: 14),
-                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
-                                ),
-                              ),
-                              RippleComponent(
-                                onClick: () {
-                                  String phone = AppLocalization.of(context).trans(widget.phone1);
-                                  if (phone.startsWith("(")) phone = "1-" + phone.replaceAll("(", "").replaceAll(")", "");
-                                  launch("tel://" + phone.replaceAll("(", "").replaceAll(")", "").replaceAll("-", ""));
-                                },
-                                child: Text(
-                                  AppLocalization.of(context).trans(widget.phone1),
-                                  style: TextStyle(color: Styles.blue, fontSize: 16),
-                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
-                                ),
-                              ),
-                              widget.phone2.isEmpty ? Container() : SizedBox(height: 10,),
-                              widget.phoneDesc2.isEmpty
-                                  ? Container()
-                                  : Padding(
-                                padding: const EdgeInsets.only(bottom: 5),
-                                child: Text(
-                                  AppLocalization.of(context).trans(widget.phoneDesc2),
-                                  style: TextStyle(color: Colors.black, fontSize: 14),
-                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
-                                ),
-                              ),
-                              widget.phone2.isEmpty
-                                  ? Container()
-                                  : RippleComponent(
-                                onClick: () {
-                                  String phone = AppLocalization.of(context).trans(widget.phone2);
-                                  if (phone.startsWith("(")) phone = "1-" + phone.replaceAll("(", "").replaceAll(")", "");
-                                  launch("tel://" + phone.replaceAll("(", "").replaceAll(")", "").replaceAll("-", ""));
-                                },
-                                child: Text(
-                                  AppLocalization.of(context).trans(widget.phone2),
-                                  style: TextStyle(color: Styles.blue, fontSize: 16),
-                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
-                                ),
-                              ),
-                            ],
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      label: "Contact detail screen loaded",
+      value: "Contact detail screen loaded",
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ChildAppbar(
+                title: widget.title,
+                titleSize: 20,
+              ),
+              Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    color: Styles.lightGray,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 20,
                           ),
-                        ),
-                        SizedBox(height: 20,),
-                        Container(
-                          width: double.infinity,
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.white),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              RippleComponent(
-                                onClick: () {
-                                  if (widget.website == 'site_contact_sunlife_health_care_plan') {
-                                    launch(AppLocalization.of(context).trans(widget.website));
-                                  } else {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(title: widget.title, url: widget.website,)));
-                                  }
-                                },
-                                child: Text(
-                                    AppLocalization.of(context).trans('website'),
-                                    style: TextStyle(color: Styles.blue, fontSize: 16),
-                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 20,),
-                        widget.description != null && widget.description.isNotEmpty ? Container(
+                          Container(
                             width: double.infinity,
                             margin: const EdgeInsets.symmetric(horizontal: 20),
                             padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.white),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                AppLocalization.of(context).trans('description'),
-                                style: TextStyle(color: Styles.blue, fontSize: 12),
-                                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
-                              ),
-                              SizedBox(height: 10,),
-                              Text(
-                                AppLocalization.of(context).trans(widget.description),
-                                style: TextStyle(fontSize: 12, color: Colors.black),
-                                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)
-                            ],
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  AppLocalization.of(context).trans('telephone'),
+                                  style: TextStyle(color: Colors.black, fontSize: 12),
+                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                widget.phoneDesc1.isEmpty
+                                    ? Container()
+                                    : Padding(
+                                  padding: const EdgeInsets.only(bottom: 5),
+                                  child: Text(
+                                    AppLocalization.of(context).trans(widget.phoneDesc1),
+                                    style: TextStyle(color: Colors.black, fontSize: 14),
+                                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                                  ),
+                                ),
+                                RippleComponent(
+                                  onClick: () {
+                                    String phone = AppLocalization.of(context).trans(widget.phone1);
+                                    if (phone.startsWith("(")) phone = "1-" + phone.replaceAll("(", "").replaceAll(")", "");
+                                    launch("tel://" + phone.replaceAll("(", "").replaceAll(")", "").replaceAll("-", ""));
+                                  },
+                                  child: Text(
+                                    AppLocalization.of(context).trans(widget.phone1),
+                                    style: TextStyle(color: Styles.blue, fontSize: 16),
+                                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                                  ),
+                                ),
+                                widget.phone2.isEmpty ? Container() : SizedBox(height: 10,),
+                                widget.phoneDesc2.isEmpty
+                                    ? Container()
+                                    : Padding(
+                                  padding: const EdgeInsets.only(bottom: 5),
+                                  child: Text(
+                                    AppLocalization.of(context).trans(widget.phoneDesc2),
+                                    style: TextStyle(color: Colors.black, fontSize: 14),
+                                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                                  ),
+                                ),
+                                widget.phone2.isEmpty
+                                    ? Container()
+                                    : RippleComponent(
+                                  onClick: () {
+                                    String phone = AppLocalization.of(context).trans(widget.phone2);
+                                    if (phone.startsWith("(")) phone = "1-" + phone.replaceAll("(", "").replaceAll(")", "");
+                                    launch("tel://" + phone.replaceAll("(", "").replaceAll(")", "").replaceAll("-", ""));
+                                  },
+                                  child: Text(
+                                    AppLocalization.of(context).trans(widget.phone2),
+                                    style: TextStyle(color: Styles.blue, fontSize: 16),
+                                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ) : Container(),
-                        SizedBox(height: 20,)
-                      ],
+                          SizedBox(height: 20,),
+                          Container(
+                            width: double.infinity,
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.white),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                RippleComponent(
+                                  onClick: () {
+                                    if (widget.website == 'site_contact_sunlife_health_care_plan') {
+                                      launch(AppLocalization.of(context).trans(widget.website));
+                                    } else {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(title: widget.title, url: widget.website,)));
+                                    }
+                                  },
+                                  child: Text(
+                                    AppLocalization.of(context).trans('website'),
+                                    style: TextStyle(color: Styles.blue, fontSize: 16),
+                                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+                          widget.description != null && widget.description.isNotEmpty ? Container(
+                            width: double.infinity,
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.white),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  AppLocalization.of(context).trans('description'),
+                                  style: TextStyle(color: Styles.blue, fontSize: 12),
+                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                                ),
+                                SizedBox(height: 10,),
+                                Text(
+                                  AppLocalization.of(context).trans(widget.description),
+                                  style: TextStyle(fontSize: 12, color: Colors.black),
+                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)
+                              ],
+                            ),
+                          ) : Container(),
+                          SizedBox(height: 20,)
+                        ],
+                      ),
                     ),
-                  ),
-                ))
-          ],
+                  ))
+            ],
+          ),
         ),
       ),
     );

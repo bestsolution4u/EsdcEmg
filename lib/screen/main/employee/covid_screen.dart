@@ -12,41 +12,47 @@ class CovidScreen extends StatefulWidget {
 class _CovidScreenState extends State<CovidScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Styles.darkerBlue,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ChildImageAppbar(
-                title: "title_covid",
-                icon: 'asset/image/icon-nav-covid.svg',
-              ),
-              SizedBox(height: 40,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: BorderItemSelector(
-                  title: 'active_screening_2',
-                  icon: 'asset/image/icon-covid.svg',
-                  iconSize: 60,
-                  onClick: () => gotoWebviewScreen(
-                      title: "active_screening",
-                      url: 'url_covid_active_screening'),
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      label: "Covid screen loaded",
+      value: "Covid screen loaded",
+      child: Scaffold(
+        backgroundColor: Styles.darkerBlue,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ChildImageAppbar(
+                  title: "title_covid",
+                  icon: 'asset/image/icon-nav-covid.svg',
                 ),
-              ),
-              SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: BorderItemSelector(
-                  title: 'info_about_covid_2',
-                  icon: 'asset/image/icon-tile-active-screening.svg',
-                  onClick: () => gotoWebviewScreen(
-                      title: "info_about_covid",
-                      url: 'url_info_about_covid'),
+                SizedBox(height: 40,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: BorderItemSelector(
+                    title: 'active_screening_2',
+                    icon: 'asset/image/icon-covid.svg',
+                    iconSize: 60,
+                    onClick: () => gotoWebviewScreen(
+                        title: "active_screening",
+                        url: 'url_covid_active_screening'),
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(height: 20,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: BorderItemSelector(
+                    title: 'info_about_covid_2',
+                    icon: 'asset/image/icon-tile-active-screening.svg',
+                    onClick: () => gotoWebviewScreen(
+                        title: "info_about_covid",
+                        url: 'url_info_about_covid'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

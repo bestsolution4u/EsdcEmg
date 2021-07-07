@@ -108,133 +108,139 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocListener(
-        listeners: [
-          BlocListener<SettingBloc, SettingState>(
-            listener: (context, state) {
-              if (state is SettingLoadSuccessState) {
-                if (AppLocalization.currentLanguage != state.settings.language) {
-                  fetchYoutubeVideos(channelID: state.settings.language != 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      label: "Home screen loaded",
+      value: "Home screen loaded",
+      child: MultiBlocListener(
+          listeners: [
+            BlocListener<SettingBloc, SettingState>(
+              listener: (context, state) {
+                if (state is SettingLoadSuccessState) {
+                  if (AppLocalization.currentLanguage != state.settings.language) {
+                    fetchYoutubeVideos(channelID: state.settings.language != 'fr' ? 'UCCccXdsqVOHjUym8m19FBig' : 'UCRQ4WaflypnRlPzi96WeBWw');
+                  }
                 }
-              }
-            },
-          ),
-          BlocListener<VPNBloc, VPNState>(
+              },
+            ),
+            BlocListener<VPNBloc, VPNState>(
               listener: (context, state) {
                 if (state is VPNLoadedState) {
                   updateVPNStatus();
                 }
               },
-          )
-        ],
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: ESDCAppbar.renderMainAppbar(
-              title: 'app_title_home',
-              icon: 'asset/image/nav-icon-home.svg',
-              action: AppIconButton(
-                sematicLabel: AppLocalization.of(context).trans('title_settings'),
-                icon: SvgPicture.asset(
-                  'asset/image/settings.svg',
-                  color: Styles.darkerBlue,
-                  allowDrawingOutsideViewBox: true,
-                  height: 24,
-                ),
-                onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingScreen(),)),
-                rippleRadius: 40,
-                padding: 16,
-              ),
-              context: context
-          ),
-          body: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
-            child: Column(
-              children: [
-                buildUrgentMessage(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    children: [
-                      CategoryButton(
-                        title: Platform.isIOS ? 'covid_19' : 'active_screening',
-                        icon: 'asset/image/icon-covid.svg',
-                        iconSize: Platform.isIOS ? 70 : 54,
-                        fontSize: ScreenUtil.calcTextScaleFactor(context) > 1 ? 10 : 13,
-                        backgroundColor: Styles.darkerBlue,
-                        onClick: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) => CupertinoAlertDialog(
-                                title: new Text(
-                                  AppLocalization.of(context).trans('important_note'),
-                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                                content: new Text(
-                                  AppLocalization.of(context).trans('covid_screen_redirect'),
-                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                                actions: <Widget>[
-                                  CupertinoDialogAction(
-                                    isDefaultAction: true,
-                                    child: Text(
-                                      AppLocalization.of(context).trans('continue'),
-                                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      launch(AppLocalization.of(context).trans('url_covid_active_screening'));
-                                    },
-                                  ),
-                                  CupertinoDialogAction(
-                                    child: Text(AppLocalization.of(context).trans('cancel'),
-                                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  )
-                                ],
-                              )
-                          );
-                        },
-                      ),
-                      SizedBox(width: 20,),
-                      CategoryButton(
-                        title: 'wellness',
-                        icon: 'asset/image/icon-wellness.svg',
-                        backgroundColor: Styles.blue,
-                        onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),
-                      ),
-                    ],
+            )
+          ],
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            appBar: ESDCAppbar.renderMainAppbar(
+                title: 'app_title_home',
+                icon: 'asset/image/nav-icon-home.svg',
+                action: AppIconButton(
+                  sematicLabel: AppLocalization.of(context).trans('title_settings'),
+                  icon: SvgPicture.asset(
+                    'asset/image/settings.svg',
+                    color: Styles.darkerBlue,
+                    allowDrawingOutsideViewBox: true,
+                    height: 24,
                   ),
+                  onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingScreen(),)),
+                  rippleRadius: 40,
+                  padding: 16,
                 ),
-                SizedBox(height: 20,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    children: [
-                      CategoryButton(
-                        title: 'learning',
-                        icon: 'asset/image/icon-learning.svg',
-                        iconSize: 80,
-                        onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),
-                      ),
-                      SizedBox(width: 20,),
-                      CategoryButton(
-                        title: 'feed_back',
-                        icon: 'asset/image/icon-feedback.svg',
-                        onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20,),
-                Divider(height: 1,),
-                SizedBox(height: 10,),
-                buildVPN(),
-                Divider(height: 40,),
-                buildYoutubeVideos(),
-                SizedBox(height: 20,),
-              ],
+                context: context
             ),
-          ),
-        ));
+            body: SingleChildScrollView(
+              physics: ClampingScrollPhysics(),
+              child: Column(
+                children: [
+                  buildUrgentMessage(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        CategoryButton(
+                          title: Platform.isIOS ? 'covid_19' : 'active_screening',
+                          icon: 'asset/image/icon-covid.svg',
+                          iconSize: Platform.isIOS ? 70 : 54,
+                          fontSize: ScreenUtil.calcTextScaleFactor(context) > 1 ? 10 : 13,
+                          backgroundColor: Styles.darkerBlue,
+                          onClick: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) => CupertinoAlertDialog(
+                                  title: new Text(
+                                    AppLocalization.of(context).trans('important_note'),
+                                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                                  content: new Text(
+                                    AppLocalization.of(context).trans('covid_screen_redirect'),
+                                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                                  actions: <Widget>[
+                                    CupertinoDialogAction(
+                                      isDefaultAction: true,
+                                      child: Text(
+                                        AppLocalization.of(context).trans('continue'),
+                                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        launch(AppLocalization.of(context).trans('url_covid_active_screening'));
+                                      },
+                                    ),
+                                    CupertinoDialogAction(
+                                      child: Text(AppLocalization.of(context).trans('cancel'),
+                                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    )
+                                  ],
+                                )
+                            );
+                          },
+                        ),
+                        SizedBox(width: 20,),
+                        CategoryButton(
+                          title: 'wellness',
+                          icon: 'asset/image/icon-wellness.svg',
+                          backgroundColor: Styles.blue,
+                          onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20,),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        CategoryButton(
+                          title: 'learning',
+                          icon: 'asset/image/icon-learning.svg',
+                          iconSize: 80,
+                          onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),
+                        ),
+                        SizedBox(width: 20,),
+                        CategoryButton(
+                          title: 'feed_back',
+                          icon: 'asset/image/icon-feedback.svg',
+                          onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20,),
+                  Divider(height: 1,),
+                  SizedBox(height: 10,),
+                  buildVPN(),
+                  Divider(height: 40,),
+                  buildYoutubeVideos(),
+                  SizedBox(height: 20,),
+                ],
+              ),
+            ),
+          )),
+    );
   }
 
   Widget buildUrgentMessage() {

@@ -51,52 +51,58 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
         strExpDuration = AppLocalization.of(context).trans("today");
       }
     }
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            MessageAppBar(
-              message: widget.message,
-              action: AppIconButton(
-                icon: SvgPicture.asset(
-                  'asset/image/more.svg',
-                  color: Styles.darkerBlue,
-                  allowDrawingOutsideViewBox: true,
-                  height: 24,
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      label: "Message detail screen loaded",
+      value: "Message detail screen loaded",
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MessageAppBar(
+                message: widget.message,
+                action: AppIconButton(
+                  icon: SvgPicture.asset(
+                    'asset/image/more.svg',
+                    color: Styles.darkerBlue,
+                    allowDrawingOutsideViewBox: true,
+                    height: 24,
+                  ),
+                  padding: 12,
+                  rippleRadius: 24,
+                  onClick: () => openMore(),
                 ),
-                padding: 12,
-                rippleRadius: 24,
-                onClick: () => openMore(),
               ),
-            ),
-            Expanded(child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Text(
-                      AppLocalization.currentLanguage == 'fr' ? widget.message.messageFr : widget.message.message,
-                      style: TextStyle(color: Styles.textBlack, fontSize: 16),
-                      textAlign: TextAlign.start,
-                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+              Expanded(child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Text(
+                        AppLocalization.currentLanguage == 'fr' ? widget.message.messageFr : widget.message.message,
+                        style: TextStyle(color: Styles.textBlack, fontSize: 16),
+                        textAlign: TextAlign.start,
+                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      AppLocalization.of(context).trans('note_expiration_date') + strExpDuration,
-                      style: TextStyle(color: Styles.textBlack, fontSize: 12),
-                      textAlign: TextAlign.start,
-                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        AppLocalization.of(context).trans('note_expiration_date') + strExpDuration,
+                        style: TextStyle(color: Styles.textBlack, fontSize: 12),
+                        textAlign: TextAlign.start,
+                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            )),
-          ],
+                  ],
+                ),
+              )),
+            ],
+          ),
         ),
       ),
     );

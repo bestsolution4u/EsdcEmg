@@ -26,29 +26,34 @@ class _MessageScreenState extends State<MessageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ESDCAppbar.renderMainAppbar(
-          title: 'title_msg',
-          icon: 'asset/image/tab-messages-active.svg',
-          context: context,
-          action: Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: Stack(
-              children: [
-                AppIconButton(
-                  sematicLabel: AppLocalization.of(context).trans('filtered_inbox'),
-                  icon: SvgPicture.asset(
-                    'asset/image/setting.svg',
-                    color: Styles.darkerBlue,
-                    allowDrawingOutsideViewBox: true,
-                    height: 24,
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      label: "Message list screen loaded",
+      value: "Message list screen loaded",
+      child: Scaffold(
+        appBar: ESDCAppbar.renderMainAppbar(
+            title: 'title_msg',
+            icon: 'asset/image/tab-messages-active.svg',
+            context: context,
+            action: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Stack(
+                children: [
+                  AppIconButton(
+                    sematicLabel: AppLocalization.of(context).trans('filtered_inbox'),
+                    icon: SvgPicture.asset(
+                      'asset/image/setting.svg',
+                      color: Styles.darkerBlue,
+                      allowDrawingOutsideViewBox: true,
+                      height: 24,
+                    ),
+                    onClick: () => openFilter(),
+                    rippleRadius: 36,
+                    padding: 12,
                   ),
-                  onClick: () => openFilter(),
-                  rippleRadius: 36,
-                  padding: 12,
-                ),
-                Positioned(
-                  top: 0,
+                  Positioned(
+                    top: 0,
                     right: 8,
                     child: BlocBuilder<SettingBloc, SettingState>(
                       builder: (context, state) {
@@ -67,34 +72,35 @@ class _MessageScreenState extends State<MessageScreen> {
                         return Container();
                       },
                     ),)
-              ],
-            ),
-          )
-      ),
-      body: BlocBuilder<MessageBloc, MessageState>(
-        builder: (context, state) {
-          if (state is MessageLoadingState) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is MessageLoadFailureState) {
-            return Center(
-              child: Text('Error', textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-            );
-          } else {
-            List<MessageModel> messages = (state as MessageLoadSuccessState).messages;
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Divider(height: 1, color: Styles.bgGrey,),
-                  buildFilterCount(),
-                  buildMessages(messages),
                 ],
               ),
-            );
-          }
-        },
+            )
+        ),
+        body: BlocBuilder<MessageBloc, MessageState>(
+          builder: (context, state) {
+            if (state is MessageLoadingState) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is MessageLoadFailureState) {
+              return Center(
+                child: Text('Error', textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+              );
+            } else {
+              List<MessageModel> messages = (state as MessageLoadSuccessState).messages;
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Divider(height: 1, color: Styles.bgGrey,),
+                    buildFilterCount(),
+                    buildMessages(messages),
+                  ],
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }
