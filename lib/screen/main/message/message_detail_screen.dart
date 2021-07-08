@@ -143,8 +143,8 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                 },),*/
                 BorderedButton(
                   title: AppLocalization.of(context).trans('delete'),
-                  buttonColor: Styles.pink,
-                  borderColor: Styles.pink,
+                  buttonColor: Styles.bgRed,
+                  borderColor: Styles.bgRed,
                   color: Styles.red,
                   onClick: () {
                   showDialog(

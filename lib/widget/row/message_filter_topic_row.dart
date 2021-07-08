@@ -66,6 +66,7 @@ class _MessageFilterTopicRowState extends State<MessageFilterTopicRow> {
             CupertinoSwitch(
                 value: _isEnabled,
                 activeColor: Styles.blue,
+                trackColor: Styles.bgSwitchOff,
                 onChanged: (value) {
                   _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: widget.topic, enabled: value));
                 })

@@ -15,6 +15,8 @@ class Styles {
   static const darkerBlue = Color(0xff014C7F);
   static const pink = Color(0xffFEF2F2);
   static const bgGrey = Color(0xFFECECEC);
+  static const bgRed = Color(0xFFCB3C3C);
+  static const bgSwitchOff = Color(0xFF949496);
 
   static const primaryColor = Color(0xff02537e);
 }

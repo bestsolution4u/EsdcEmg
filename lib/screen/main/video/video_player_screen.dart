@@ -30,7 +30,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         disableDragSeek: false,
         loop: false,
         isLive: false,
-        forceHD: true,
+        forceHD: false,
         enableCaption: false,
       ),
     )..addListener(listener);
