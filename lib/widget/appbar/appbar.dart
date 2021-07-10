@@ -15,6 +15,7 @@ class ESDCAppbar {
         children: [
           Semantics(
             label: AppLocalization.of(context).trans(title),
+            value: AppLocalization.of(context).trans(title),
             excludeSemantics: true,
             child: SvgPicture.asset(
               icon,
@@ -25,6 +26,7 @@ class ESDCAppbar {
           SizedBox(width: 10,),
           Semantics(
             label: AppLocalization.of(context).trans(title),
+            value: AppLocalization.of(context).trans(title),
             excludeSemantics: true,
             child: Text(
                 AppLocalization.of(context).trans(title),

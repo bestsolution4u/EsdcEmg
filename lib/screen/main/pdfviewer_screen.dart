@@ -37,6 +37,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
       container: true,
       explicitChildNodes: true,
       label: "PDFViewer screen loaded",
+      value: "PDFViewer screen loaded",
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title, textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),

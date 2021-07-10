@@ -166,6 +166,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                           iconSize: Platform.isIOS ? 70 : 54,
                           fontSize: ScreenUtil.calcTextScaleFactor(context) > 1 ? 10 : 13,
                           backgroundColor: Styles.darkerBlue,
+                          sortKey: 1,
                           onClick: () {
                             showDialog(
                                 context: context,
@@ -204,6 +205,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                           title: 'wellness',
                           icon: 'asset/image/icon-wellness.svg',
                           backgroundColor: Styles.blue,
+                          sortKey: 2,
                           onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),
                         ),
                       ],
@@ -218,12 +220,14 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                           title: 'learning',
                           icon: 'asset/image/icon-learning.svg',
                           iconSize: 80,
+                          sortKey: 3,
                           onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningScreen(),)),
                         ),
                         SizedBox(width: 20,),
                         CategoryButton(
                           title: 'feed_back',
                           icon: 'asset/image/icon-feedback.svg',
+                          sortKey: 4,
                           onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),
                         ),
                       ],
@@ -259,6 +263,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                 padding: const EdgeInsets.only(bottom: 20),
               child: Semantics(
                 label: AppLocalization.of(context).trans('urgent_message'),
+                value: AppLocalization.of(context).trans('urgent_message'),
                 button: true,
                 excludeSemantics: true,
                 child: RippleComponent(
@@ -313,6 +318,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
         children: [
           Semantics(
             label: AppLocalization.of(context).trans('vpn_status'),
+            value: AppLocalization.of(context).trans('vpn_status'),
             excludeSemantics: true,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -374,6 +380,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
       children: [
         Semantics(
           label: AppLocalization.of(context).trans('esdc_watch'),
+          value: AppLocalization.of(context).trans('esdc_watch'),
           excludeSemantics: true,
           child: Row(
             children: [
@@ -410,7 +417,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
             ? SizedBox(height: 200, width: double.infinity, child: Center(child: CircularProgressIndicator(),),)
             : CarouselSlider(
           carouselController: _videoCarouselController,
-            items: youtubeVideos.map((video) => BannerItem(video: video,)).toList(),
+            items: youtubeVideos.asMap().map((index, video) => MapEntry(index, BannerItem(video: video, sortKey: (5.0 + index),))).values.toList(),
             options: CarouselOptions(
               height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 300 : 270,
               aspectRatio: 16/9,
@@ -438,6 +445,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
           children: [
             Semantics(
               label: 'Previous',
+              value: 'Previous',
               button: true,
               excludeSemantics: true,
               child: IconButton(
@@ -451,6 +459,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
               int index = youtubeVideos.indexOf(video);
               return Semantics(
                 label: 'Video ${index + 1}',
+                value: 'Video ${index + 1}',
                 button: true,
                 excludeSemantics: true,
                 child: RippleComponent(
@@ -472,6 +481,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
             }).toList(),
             Semantics(
               label: 'Next',
+              value: 'Next',
               button: true,
               excludeSemantics: true,
               child: IconButton(

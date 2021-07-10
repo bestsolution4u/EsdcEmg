@@ -42,6 +42,7 @@ class _LearningScreenState extends State<LearningScreen> {
                           child: BorderItemSelector(
                             title: 'saba_cloud',
                             icon: 'asset/image/icon-nav-saba.svg',
+                            sortKey: 1,
                             onClick: () {
                               /*gotoWebviewScreen(
                           title: "saba_cloud",
@@ -56,6 +57,7 @@ class _LearningScreenState extends State<LearningScreen> {
                             title: 'canada_school_service',
                             icon: 'asset/image/icon-nav-canadaschool.svg',
                             fontSize: 12,
+                            sortKey: 2,
                             onClick: () => gotoWebviewScreen(
                                 title: "canada_school_service",
                                 url: 'url_canada_school_service'),
@@ -74,6 +76,7 @@ class _LearningScreenState extends State<LearningScreen> {
                           child: BorderItemSelector(
                             title: 'gc_campus',
                             icon: 'asset/image/icon-nav-gccampus.svg',
+                            sortKey: 3,
                             onClick: () {
                               /*gotoWebviewScreen(
                               title: "gc_campus",
@@ -87,6 +90,7 @@ class _LearningScreenState extends State<LearningScreen> {
                           child: BorderItemSelector(
                             title: 'gc_infobase',
                             icon: 'asset/image/icon-nav-gcinfobase.svg',
+                            sortKey: 4,
                             onClick: () {
                               /*gotoWebviewScreen(
                               title: "gc_infobase",
@@ -108,6 +112,7 @@ class _LearningScreenState extends State<LearningScreen> {
                           child: BorderItemSelector(
                             title: 'open_learning',
                             icon: 'asset/image/icon-nav-online-learning-platform.svg',
+                            sortKey: 5,
                             onClick: () {
                               /*gotoWebviewScreen(
                               title: "open_learning",
@@ -121,6 +126,7 @@ class _LearningScreenState extends State<LearningScreen> {
                           child: BorderItemSelector(
                             title: 'bus_rides',
                             icon: 'asset/image/icon-nav-bus-ride-learning.svg',
+                            sortKey: 6,
                             onClick: () => gotoWebviewScreen(
                                 title: "bus_rides",
                                 url: 'url_bus_rides'),

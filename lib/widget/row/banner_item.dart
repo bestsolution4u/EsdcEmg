@@ -6,12 +6,14 @@ import 'package:esdc_emg/util/message_util.dart';
 import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 
 class BannerItem extends StatefulWidget {
 
   final YoutubeVideoModel video;
+  final double sortKey;
 
-  BannerItem({this.video});
+  BannerItem({this.video, this.sortKey});
 
   @override
   _BannerItemState createState() => _BannerItemState();
@@ -24,8 +26,10 @@ class _BannerItemState extends State<BannerItem> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Semantics(
         label: widget.video.title,
+        value: widget.video.title,
         excludeSemantics: true,
         button: true,
+        sortKey: OrdinalSortKey(widget.sortKey),
         child: RippleComponent(
           onClick: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPlayerScreen(video: widget.video,),));

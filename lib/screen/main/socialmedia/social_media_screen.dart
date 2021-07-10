@@ -24,71 +24,141 @@ class _SocialMediaScreenState extends State<SocialMediaScreen> {
       appBar: ESDCAppbar.renderMainAppbar(
           title: 'title_soci_medi',
           icon: 'asset/image/tab-social-active.svg',
-          context: context
-      ),
+          context: context),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CategoryLabel(label: 'facebook', icon: 'asset/image/icon-facebook.svg'),
+            CategoryLabel(
+                label: 'facebook', icon: 'asset/image/icon-facebook.svg'),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
-                  ItemRow(title: 'esdc', isFirst: true, onClick: () => openFacebookLink(title: 'esdc_facebook', linkName: 'url_esdc_facebook')),
+                  ItemRow(
+                      title: 'esdc',
+                      isFirst: true,
+                      sortKey: 1,
+                      onClick: () => openFacebookLink(
+                          title: 'esdc_facebook',
+                          linkName: 'url_esdc_facebook')),
                   ItemDivider(paddingLeft: 15),
-                  ItemRow(title: 'access_canada', onClick: () => openFacebookLink(title: 'access_canada', linkName: 'url_access_canada')),
+                  ItemRow(
+                      title: 'access_canada',
+                      sortKey: 2,
+                      onClick: () => openFacebookLink(
+                          title: 'access_canada',
+                          linkName: 'url_access_canada')),
                   ItemDivider(paddingLeft: 15),
-                  ItemRow(title: 'leader_today', onClick: () => openFacebookLink(title: 'leader_today', linkName: 'url_leader_today')),
+                  ItemRow(
+                      title: 'leader_today',
+                      sortKey: 3,
+                      onClick: () => openFacebookLink(
+                          title: 'leader_today', linkName: 'url_leader_today')),
                   ItemDivider(paddingLeft: 15),
-                  ItemRow(title: 'senior_canada', isLast: true, onClick: () => openFacebookLink(title: 'senior_canada', linkName: 'url_senior_canada')),
+                  ItemRow(
+                      title: 'senior_canada',
+                      isLast: true,
+                      sortKey: 4,
+                      onClick: () => openFacebookLink(
+                          title: 'senior_canada',
+                          linkName: 'url_senior_canada')),
                 ],
               ),
             ),
-            CategoryLabel(label: 'twitter', icon: 'asset/image/icon-twitter.svg'),
+            CategoryLabel(
+                label: 'twitter', icon: 'asset/image/icon-twitter.svg'),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
-                  ItemRow(title: 'esdc', isFirst: true, onClick: () => openTwitterLink(title: 'esdc_twitter', url: 'url_esdc_twitter')),
+                  ItemRow(
+                      title: 'esdc',
+                      isFirst: true,
+                      sortKey: 5,
+                      onClick: () => openTwitterLink(
+                          title: 'esdc_twitter', url: 'url_esdc_twitter')),
                   ItemDivider(paddingLeft: 15),
-                  ItemRow(title: 'service_canada', onClick: () => openTwitterLink(title: 'service_canada', url: 'url_service_canada')),
+                  ItemRow(
+                      title: 'service_canada',
+                      sortKey: 6,
+                      onClick: () => openTwitterLink(
+                          title: 'service_canada', url: 'url_service_canada')),
                   ItemDivider(paddingLeft: 15),
-                  ItemRow(title: 'access_canada', isLast: true, onClick: () => openTwitterLink(title: 'access_canada', url: 'url_access_canada_twitter')),
+                  ItemRow(
+                      title: 'access_canada',
+                      isLast: true,
+                      sortKey: 7,
+                      onClick: () => openTwitterLink(
+                          title: 'access_canada',
+                          url: 'url_access_canada_twitter')),
                 ],
               ),
             ),
-            CategoryLabel(label: 'you_tube', icon: 'asset/image/icon-youtube.svg'),
+            CategoryLabel(
+                label: 'you_tube', icon: 'asset/image/icon-youtube.svg'),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
-                  ItemRow(title: 'esdc', isFirst: true, onClick: () => openYoutubeLink(title: 'esdc_youtube', url: 'url_esdc_youtube')),
+                  ItemRow(
+                      title: 'esdc',
+                      isFirst: true,
+                      sortKey: 8,
+                      onClick: () => openYoutubeLink(
+                          title: 'esdc_youtube', url: 'url_esdc_youtube')),
                   ItemDivider(paddingLeft: 15),
-                  ItemRow(title: 'service_canada', isLast: true, onClick: () => openYoutubeLink(title: 'service_canada', url: 'url_service_canada_youtube')),
+                  ItemRow(
+                      title: 'service_canada',
+                      isLast: true,
+                      sortKey: 9,
+                      onClick: () => openYoutubeLink(
+                          title: 'service_canada',
+                          url: 'url_service_canada_youtube')),
                 ],
               ),
             ),
-            CategoryLabel(label: 'instagram', icon: 'asset/image/icon-instagram.svg'),
+            CategoryLabel(
+                label: 'instagram', icon: 'asset/image/icon-instagram.svg'),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
-                  ItemRow(title: 'esdc', isFirst: true, isLast: true, onClick: () => openInstagramLink(title: 'esdc_instagram', url: 'url_esdc_instagram')),
+                  ItemRow(
+                      title: 'esdc',
+                      isFirst: true,
+                      isLast: true,
+                      sortKey: 10,
+                      onClick: () => openInstagramLink(
+                          title: 'esdc_instagram', url: 'url_esdc_instagram')),
                 ],
               ),
             ),
-            CategoryLabel(label: 'linkedin', icon: 'asset/image/icon-linkedin.svg'),
+            CategoryLabel(
+                label: 'linkedin', icon: 'asset/image/icon-linkedin.svg'),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
-                  ItemRow(title: 'esdc', isFirst: true, onClick: () => openLinkedinLink(title: 'esdc_linkedin', url: 'url_esdc_linkedin')),
+                  ItemRow(
+                      title: 'esdc',
+                      isFirst: true,
+                      sortKey: 11,
+                      onClick: () => openLinkedinLink(
+                          title: 'esdc_linkedin', url: 'url_esdc_linkedin')),
                   ItemDivider(paddingLeft: 15),
-                  ItemRow(title: 'service_canada', isLast: true, onClick: () => openLinkedinLink(title: 'service_canada', url: 'url_service_canada_linkedin')),
+                  ItemRow(
+                      title: 'service_canada',
+                      isLast: true,
+                      sortKey: 12,
+                      onClick: () => openLinkedinLink(
+                          title: 'service_canada',
+                          url: 'url_service_canada_linkedin')),
                 ],
               ),
             ),
-            SizedBox(height: 20,)
+            SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
@@ -98,12 +168,15 @@ class _SocialMediaScreenState extends State<SocialMediaScreen> {
   Future<void> openFacebookLink({String title, String linkName}) async {
     String facebookProtocolUrl = "";
     if (Platform.isIOS) {
-      facebookProtocolUrl = 'fb://profile/' + AppLocalization.of(context).trans('facebook_page_id_' + linkName);
+      facebookProtocolUrl = 'fb://profile/' +
+          AppLocalization.of(context).trans('facebook_page_id_' + linkName);
     } else {
-      facebookProtocolUrl = 'fb://page/' + AppLocalization.of(context).trans('facebook_page_id_' + linkName);
+      facebookProtocolUrl = 'fb://page/' +
+          AppLocalization.of(context).trans('facebook_page_id_' + linkName);
     }
     try {
-      bool launched = await launch(facebookProtocolUrl, forceSafariVC: false, forceWebView: false);
+      bool launched = await launch(facebookProtocolUrl,
+          forceSafariVC: false, forceWebView: false);
       if (!launched) gotoWebviewScreen(title: title, url: linkName);
     } catch (e) {
       gotoWebviewScreen(title: title, url: linkName);
@@ -143,6 +216,13 @@ class _SocialMediaScreenState extends State<SocialMediaScreen> {
   }
 
   void gotoWebviewScreen({String title, String url}) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(title: title, url: url,),));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => WebviewScreen(
+            title: title,
+            url: url,
+          ),
+        ));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:esdc_emg/config/global.dart';
 import 'package:esdc_emg/util/screen_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,15 +14,18 @@ class ItemRow extends StatelessWidget {
   final bool isFirst, isLast;
   final VoidCallback onClick;
   final double iconSize;
+  final double sortKey;
 
-  ItemRow({this.title, this.icon, this.iconSize = 20, this.onClick, this.isFirst = false, this.isLast = false});
+  ItemRow({this.title, this.icon, this.iconSize = 20, this.onClick, this.isFirst = false, this.isLast = false, this.sortKey});
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
       label: AppLocalization.of(context).trans(title),
+      value: AppLocalization.of(context).trans(title),
       button: true,
       excludeSemantics: true,
+      sortKey: OrdinalSortKey(sortKey),
       child: RippleComponent(
         onClick: onClick,
         child: Container(

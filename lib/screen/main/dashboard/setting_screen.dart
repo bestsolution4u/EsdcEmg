@@ -23,7 +23,6 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-
   bool shareAnalytics = false;
 
   SettingBloc _settingBloc;
@@ -47,67 +46,92 @@ class _SettingScreenState extends State<SettingScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ChildAppbar(title: "title_settings",),
+              ChildAppbar(
+                title: "title_settings",
+              ),
               Expanded(
                   child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    color: Styles.lightGray,
-                    child: SingleChildScrollView(
-                      physics: ClampingScrollPhysics(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CategoryLabel(label: 'feed_back'),
-                          SettingItemRow(label: 'give_us_feedback', onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),),
-                          CategoryLabel(label: 'lang'),
-                          SettingItemRow(label: 'lang', value: AppLocalization.currentLanguage ?? 'en', onClick: () => openLanguageSetting(),),
-                          CategoryLabel(label: 'terms_conditions'),
-                          SettingItemRow(label: 'end_user_agreement', onClick: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => WebviewScreen(
-                                  title: 'end_user_agreement',
-                                  url: 'url_end_user_agreement',
-                                ),
-                              )),),
-                          /*Platform.isIOS ? Container() : SettingItemRow(label: 'terms_conditions', onClick: () => Navigator.push(
+                width: double.infinity,
+                height: double.infinity,
+                color: Styles.lightGray,
+                child: SingleChildScrollView(
+                  physics: ClampingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CategoryLabel(label: 'feed_back'),
+                      SettingItemRow(
+                        label: 'give_us_feedback',
+                        sortKey: 1,
+                        onClick: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FeedbackScreen(),
+                            )),
+                      ),
+                      CategoryLabel(label: 'lang'),
+                      SettingItemRow(
+                        label: 'lang',
+                        sortKey: 1,
+                        value: AppLocalization.currentLanguage ?? 'en',
+                        onClick: () => openLanguageSetting(),
+                      ),
+                      CategoryLabel(label: 'terms_conditions'),
+                      SettingItemRow(
+                        label: 'end_user_agreement',
+                        sortKey: 1,
+                        onClick: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => WebviewScreen(
+                                title: 'end_user_agreement',
+                                url: 'url_end_user_agreement',
+                              ),
+                            )),
+                      ),
+                      /*Platform.isIOS ? Container() : SettingItemRow(label: 'terms_conditions', onClick: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => TermsScreen(),
                             )),),*/
-                          /*Spacer(),*/
-                          SizedBox(height: 30,),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Text(
-                              AppLocalization.of(context).trans('app_title_home'),
-                              textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: FutureBuilder(
-                                future: rootBundle.loadString("pubspec.yaml"),
-                                builder: (context, snapshot) {
-                                  String version = "";
-                                  if (snapshot.hasData) {
-                                    var yaml = loadYaml(snapshot.data);
-                                    version = yaml["version"];
-                                  }
-                                  return Container(
-                                    child: Text(
-                                      'Version: $version',
-                                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
-                                    ),
-                                  );
-                                }),
-                          ),
-                          SizedBox(height: 10,),
-                        ],
+                      /*Spacer(),*/
+                      SizedBox(
+                        height: 30,
                       ),
-                    ),
-                  )
-              )
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          AppLocalization.of(context).trans('app_title_home'),
+                          textScaleFactor:
+                              ScreenUtil.calcTextScaleFactor(context),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: FutureBuilder(
+                            future: rootBundle.loadString("pubspec.yaml"),
+                            builder: (context, snapshot) {
+                              String version = "";
+                              if (snapshot.hasData) {
+                                var yaml = loadYaml(snapshot.data);
+                                version = yaml["version"];
+                              }
+                              return Container(
+                                child: Text(
+                                  'Version: $version',
+                                  textScaleFactor:
+                                      ScreenUtil.calcTextScaleFactor(context),
+                                ),
+                              );
+                            }),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                ),
+              ))
             ],
           ),
         ),
@@ -124,77 +148,110 @@ class _SettingScreenState extends State<SettingScreen> {
         ),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      builder: (context) => Wrap(children: [
-        Container(
-          height: 250,
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 20,),
-              Text(
-                AppLocalization.of(context).trans("select_language"),
-                style: TextStyle(
-                    color: Styles.textBlack,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold),
-                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              RippleComponent(
-                onClick: () async {
-                  _settingBloc.add(SettingUpdateLanguageEvent(language: Globals.SupportedLanguageCodes[0]));
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 10,),
-                      Row(
-                        children: [
-                          Expanded(child: Text(
-                            AppLocalization.of(context).trans(Globals.SupportedLanguageCodes[0]),
-                            style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),
-                            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)),
-                          Icon(Icons.keyboard_arrow_right, size: 28, color: Colors.grey),
-                        ],
-                      ),
-                      SizedBox(height: 10,),
-                      Divider(height: 1),
-                    ],
+      builder: (context) => Wrap(
+        children: [
+          Container(
+            height: 250,
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  AppLocalization.of(context).trans("select_language"),
+                  style: TextStyle(
+                      color: Styles.textBlack,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                RippleComponent(
+                  onClick: () async {
+                    _settingBloc.add(SettingUpdateLanguageEvent(
+                        language: Globals.SupportedLanguageCodes[0]));
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Text(
+                              AppLocalization.of(context)
+                                  .trans(Globals.SupportedLanguageCodes[0]),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Styles.textBlack,
+                                  fontWeight: FontWeight.w400),
+                              textScaleFactor:
+                                  ScreenUtil.calcTextScaleFactor(context),
+                            )),
+                            Icon(Icons.keyboard_arrow_right,
+                                size: 28, color: Colors.grey),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Divider(height: 1),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 10,),
-              RippleComponent(
-                onClick: () async {
-                  _settingBloc.add(SettingUpdateLanguageEvent(language: Globals.SupportedLanguageCodes[1]));
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 10,),
-                      Row(
-                        children: [
-                          Expanded(child: Text(
-                            AppLocalization.of(context).trans(Globals.SupportedLanguageCodes[1]),
-                            style: TextStyle(fontSize: 14, color: Styles.textBlack, fontWeight: FontWeight.w400),
-                            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)),
-                          Icon(Icons.keyboard_arrow_right, size: 28, color: Colors.grey),
-                        ],
-                      ),
-                      SizedBox(height: 10,),
-                      Divider(height: 1),
-                    ],
-                  ),
+                SizedBox(
+                  height: 10,
                 ),
-              )
-            ],
-          ),
-        )
-      ],),);
+                RippleComponent(
+                  onClick: () async {
+                    _settingBloc.add(SettingUpdateLanguageEvent(
+                        language: Globals.SupportedLanguageCodes[1]));
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Text(
+                              AppLocalization.of(context)
+                                  .trans(Globals.SupportedLanguageCodes[1]),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Styles.textBlack,
+                                  fontWeight: FontWeight.w400),
+                              textScaleFactor:
+                                  ScreenUtil.calcTextScaleFactor(context),
+                            )),
+                            Icon(Icons.keyboard_arrow_right,
+                                size: 28, color: Colors.grey),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Divider(height: 1),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

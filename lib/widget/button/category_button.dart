@@ -5,6 +5,7 @@ import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CategoryButton extends StatelessWidget {
@@ -12,16 +13,19 @@ class CategoryButton extends StatelessWidget {
   final String icon, title;
   final double iconSize, fontSize;
   final VoidCallback onClick;
+  final double sortKey;
 
-  CategoryButton({this.backgroundColor = Styles.darkBlue, this.icon, this.title, this.iconSize = 70, this.fontSize = 13, this.onClick});
+  CategoryButton({this.backgroundColor = Styles.darkBlue, this.icon, this.title, this.iconSize = 70, this.fontSize = 13, this.onClick, this.sortKey});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
         child: Semantics(
           label: AppLocalization.of(context).trans(title),
+          value: AppLocalization.of(context).trans(title),
           button: true,
           excludeSemantics: true,
+          sortKey: OrdinalSortKey(sortKey),
           child: RippleComponent(
             onClick: onClick,
             child: Container(

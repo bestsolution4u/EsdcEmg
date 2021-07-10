@@ -34,6 +34,7 @@ class _CovidScreenState extends State<CovidScreen> {
                   child: BorderItemSelector(
                     title: 'active_screening_2',
                     icon: 'asset/image/icon-covid.svg',
+                    sortKey: 1,
                     iconSize: 60,
                     onClick: () => gotoWebviewScreen(
                         title: "active_screening",
@@ -46,6 +47,7 @@ class _CovidScreenState extends State<CovidScreen> {
                   child: BorderItemSelector(
                     title: 'info_about_covid_2',
                     icon: 'asset/image/icon-tile-active-screening.svg',
+                    sortKey: 2,
                     onClick: () => gotoWebviewScreen(
                         title: "info_about_covid",
                         url: 'url_info_about_covid'),

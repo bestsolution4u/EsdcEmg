@@ -36,6 +36,7 @@ class _WellnessScreenState extends State<WellnessScreen> {
                   child: BorderItemSelector(
                     title: 'employ_assistance_program_2',
                     icon: 'asset/image/icon-nav-eap.svg',
+                    sortKey: 1,
                     onClick: () => gotoWebviewScreen(
                         title: "employ_assistance_program",
                         url: 'url_employ_assistance_program'),
@@ -47,6 +48,7 @@ class _WellnessScreenState extends State<WellnessScreen> {
                   child: BorderItemSelector(
                     title: 'life_speak',
                     icon: 'asset/image/icon-nav-lifespeak.svg',
+                    sortKey: 2,
                     description: 'life_speak_desc',
                     onClick: () {
                       launch(AppLocalization.of(context).trans('url_life_speak'));
