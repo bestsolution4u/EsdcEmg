@@ -1,5 +1,6 @@
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
+import 'package:esdc_emg/screen/main/employee/contact_detail_screen.dart';
 import 'package:esdc_emg/screen/main/webview_screen.dart';
 import 'package:esdc_emg/widget/appbar/child_image_appbar.dart';
 import 'package:esdc_emg/widget/button/border_item_selector.dart';
@@ -37,9 +38,19 @@ class _WellnessScreenState extends State<WellnessScreen> {
                     title: 'employ_assistance_program_2',
                     icon: 'asset/image/icon-nav-eap.svg',
                     sortKey: 1,
-                    onClick: () => gotoWebviewScreen(
-                        title: "employ_assistance_program",
-                        url: 'url_employ_assistance_program'),
+                    onClick: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ContactDetailScreen(
+                            title:
+                            'contact_employee_assistance_program',
+                            phone1:
+                            'phone_contact_employee_assistance_program',
+                            website:
+                            'site_contact_employee_assistance_program',
+                            description: 'eap_desc',
+                          ),
+                        )),
                   ),
                 ),
                 SizedBox(height: 20,),

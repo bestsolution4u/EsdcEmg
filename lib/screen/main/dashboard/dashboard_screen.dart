@@ -15,7 +15,6 @@ import 'package:esdc_emg/model/youtube_video_model.dart';
 import 'package:esdc_emg/screen/main/dashboard/feedback_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/setting_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/wellness_screen.dart';
-import 'package:esdc_emg/screen/main/employee/contact_detail_screen.dart';
 import 'package:esdc_emg/util/message_util.dart';
 import 'package:esdc_emg/util/preference_helper.dart';
 import 'package:esdc_emg/util/screen_util.dart';
@@ -207,19 +206,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                           icon: 'asset/image/icon-wellness.svg',
                           backgroundColor: Styles.blue,
                           sortKey: 2,
-                          onClick: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ContactDetailScreen(
-                                  title:
-                                  'contact_employee_assistance_program',
-                                  phone1:
-                                  'phone_contact_employee_assistance_program',
-                                  website:
-                                  'site_contact_employee_assistance_program',
-                                  description: 'eap_desc',
-                                ),
-                              )),
+                          onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WellnessScreen(),)),
                         ),
                       ],
                     ),
