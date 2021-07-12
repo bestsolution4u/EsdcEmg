@@ -95,8 +95,15 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                     onClick: () => Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              WellnessScreen(),
+                                          builder: (context) => ContactDetailScreen(
+                                            title:
+                                            'contact_employee_assistance_program',
+                                            phone1:
+                                            'phone_contact_employee_assistance_program',
+                                            website:
+                                            'site_contact_employee_assistance_program',
+                                            description: 'eap_desc',
+                                          ),
                                         ))),
                               ],
                             ),
