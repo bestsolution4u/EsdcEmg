@@ -15,7 +15,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 class MessageDetailScreen extends StatefulWidget {
-
   final MessageModel message;
 
   MessageDetailScreen({this.message});
@@ -25,7 +24,6 @@ class MessageDetailScreen extends StatefulWidget {
 }
 
 class _MessageDetailScreenState extends State<MessageDetailScreen> {
-
   final firestore = FirebaseFirestore.instance;
   MessageBloc _messageBloc;
 
@@ -33,20 +31,25 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
   void initState() {
     super.initState();
     _messageBloc = BlocProvider.of<MessageBloc>(context);
-    _messageBloc.add(MessageStatusUpdateEvent(messageID: widget.message.id, read: true));
+    _messageBloc.add(
+        MessageStatusUpdateEvent(messageID: widget.message.id, read: true));
     initializeDateFormatting();
   }
 
   @override
   Widget build(BuildContext context) {
-    Duration duration = DateTime.parse(widget.message.expiredDate).difference(DateTime.now());
+    Duration duration =
+        DateTime.parse(widget.message.expiredDate).difference(DateTime.now());
     String strExpDuration = "";
     if (duration.inHours < 0) {
       strExpDuration = AppLocalization.of(context).trans("today");
     } else {
       int days = ((duration.inHours + DateTime.now().hour) / 24).floor();
       if (days > 0) {
-        strExpDuration = AppLocalization.of(context).trans("in") + days.toString() + " " + AppLocalization.of(context).trans("days");
+        strExpDuration = AppLocalization.of(context).trans("in") +
+            days.toString() +
+            " " +
+            AppLocalization.of(context).trans("days");
       } else {
         strExpDuration = AppLocalization.of(context).trans("today");
       }
@@ -76,26 +79,33 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                   onClick: () => openMore(),
                 ),
               ),
-              Expanded(child: SingleChildScrollView(
+              Expanded(
+                  child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(20),
                       child: Text(
-                        AppLocalization.currentLanguage == 'fr' ? widget.message.messageFr : widget.message.message,
+                        AppLocalization.currentLanguage == 'fr'
+                            ? widget.message.messageFr
+                            : widget.message.message,
                         style: TextStyle(color: Styles.textBlack, fontSize: 16),
                         textAlign: TextAlign.start,
-                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                        textScaleFactor:
+                            ScreenUtil.calcTextScaleFactor(context),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
-                        AppLocalization.of(context).trans('note_expiration_date') + strExpDuration,
+                        AppLocalization.of(context)
+                                .trans('note_expiration_date') +
+                            strExpDuration,
                         style: TextStyle(color: Styles.textBlack, fontSize: 12),
                         textAlign: TextAlign.start,
-                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                        textScaleFactor:
+                            ScreenUtil.calcTextScaleFactor(context),
                       ),
                     ),
                   ],
@@ -110,21 +120,23 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
 
   void openMore() {
     showModalBottomSheet(
-        context: context,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(25),
-          ),
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25),
         ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        builder: (context) => Wrap(children: [
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: (context) => Wrap(
+        children: [
           Container(
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  AppLocalization.of(context).trans('customize_actions_for_message'),
+                  AppLocalization.of(context)
+                      .trans('customize_actions_for_message'),
                   style: TextStyle(
                       color: Styles.darkerBlue,
                       fontSize: 18,
@@ -134,55 +146,74 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                BorderedButton(title: AppLocalization.of(context).trans('mark_as_unread'), onClick: () {
-                  _messageBloc.add(MessageStatusUpdateEvent(messageID: widget.message.id, read: false));
-                  Navigator.pop(context);
-                },),
+                BorderedButton(
+                  title: AppLocalization.of(context).trans('mark_as_unread'),
+                  onClick: () {
+                    _messageBloc.add(MessageStatusUpdateEvent(
+                        messageID: widget.message.id, read: false));
+                    Navigator.pop(context);
+                  },
+                ),
                 /*BorderedButton(title: 'Share this page', onClick: () {
                   Navigator.pop(context);
                 },),*/
                 BorderedButton(
                   title: AppLocalization.of(context).trans('delete'),
-                  buttonColor: Styles.bgRed,
-                  borderColor: Styles.bgRed,
-                  color: Styles.red,
+                  buttonColor: Styles.red,
+                  borderColor: Styles.red,
+                  color: Colors.white,
                   onClick: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) => CupertinoAlertDialog(
-                        title: new Text(
-                            AppLocalization.of(context).trans('delete_message'),
-                          textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                        content: new Text(
-                            AppLocalization.of(context).trans('confirm_delete_message'),
-                          textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                        actions: <Widget>[
-                          CupertinoDialogAction(
-                            isDefaultAction: true,
-                            child: Text(
-                                AppLocalization.of(context).trans('continue'),
-                              textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                            onPressed: () {
-                              _messageBloc.add(MessageDeleteEvent(messageID: widget.message.id));
-                              Navigator.pop(context);
-                              Navigator.pop(context);
-                              Navigator.pop(context);
-                            },
-                          ),
-                          CupertinoDialogAction(
-                            child: Text(AppLocalization.of(context).trans('cancel'),
-                              textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          )
-                        ],
-                      )
-                  );
-                },),
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) => CupertinoAlertDialog(
+                              title: new Text(
+                                AppLocalization.of(context)
+                                    .trans('delete_message'),
+                                textScaleFactor:
+                                    ScreenUtil.calcTextScaleFactor(context),
+                              ),
+                              content: new Text(
+                                AppLocalization.of(context)
+                                    .trans('confirm_delete_message'),
+                                textScaleFactor:
+                                    ScreenUtil.calcTextScaleFactor(context),
+                              ),
+                              actions: <Widget>[
+                                CupertinoDialogAction(
+                                  isDefaultAction: true,
+                                  child: Text(
+                                    AppLocalization.of(context)
+                                        .trans('continue'),
+                                    textScaleFactor:
+                                        ScreenUtil.calcTextScaleFactor(context),
+                                  ),
+                                  onPressed: () {
+                                    _messageBloc.add(MessageDeleteEvent(
+                                        messageID: widget.message.id));
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                                CupertinoDialogAction(
+                                  child: Text(
+                                    AppLocalization.of(context).trans('cancel'),
+                                    textScaleFactor:
+                                        ScreenUtil.calcTextScaleFactor(context),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                )
+                              ],
+                            ));
+                  },
+                ),
               ],
             ),
           )
-        ],),);
+        ],
+      ),
+    );
   }
 }
