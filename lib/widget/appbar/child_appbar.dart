@@ -12,8 +12,9 @@ class ChildAppbar extends StatelessWidget {
   final bool isMessage, showDivider, showTitle;
   final VoidCallback onBack;
   final double titleSize;
+  final Color titleColor;
 
-  ChildAppbar({this.title, this.action, this.onBack, this.showTitle = true, this.titleSize = 26, this.isMessage = false, this.showDivider = true});
+  ChildAppbar({this.title, this.action, this.onBack, this.titleColor = Styles.darkerBlue, this.showTitle = true, this.titleSize = 26, this.isMessage = false, this.showDivider = true});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class ChildAppbar extends StatelessWidget {
                       icon: Icon(
                         Icons.keyboard_arrow_left,
                         size: 28,
-                        color: Styles.darkerBlue,
+                        color: titleColor,
                       ),
                       rippleRadius: 36,
                       padding: 4,
@@ -50,7 +51,7 @@ class ChildAppbar extends StatelessWidget {
                     RippleComponent(
                       child: Text(
                         AppLocalization.of(context).trans('navigation_back'),
-                        style: TextStyle(color: Styles.darkerBlue, fontSize: 18, fontWeight: FontWeight.w500),
+                        style: TextStyle(color: titleColor, fontSize: 18, fontWeight: FontWeight.w500),
                         textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                       ),
                       onClick: () {
@@ -73,7 +74,7 @@ class ChildAppbar extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20, right: 15, bottom: 4),
           child: Text(
             isMessage ? title : AppLocalization.of(context).trans(title),
-            style: TextStyle(color: Styles.darkerBlue, fontSize: titleSize, fontWeight: FontWeight.bold),
+            style: TextStyle(color: titleColor, fontSize: titleSize, fontWeight: FontWeight.bold),
             textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
           ),
         ) : Container(),

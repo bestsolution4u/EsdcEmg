@@ -3,6 +3,8 @@ import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/screen/main/dashboard/learning_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/wellness_screen.dart';
+import 'package:esdc_emg/screen/main/employee/calendar_screen.dart';
+import 'package:esdc_emg/screen/main/employee/cell_calendar_screen.dart';
 import 'package:esdc_emg/screen/main/employee/covid_screen.dart';
 import 'package:esdc_emg/screen/main/employee/pay_benefit_screen.dart';
 import 'package:esdc_emg/screen/main/pdfviewer_screen.dart';
@@ -122,7 +124,6 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                     title: 'holiday_pay_dates',
                                     icon: 'asset/image/icon-row-holidays.svg',
                                     sortKey: 4,
-                                    isLast: true,
                                     onClick: () => Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -132,6 +133,25 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                             pdfPath: 'asset/pdf/calendar.pdf',
                                           ),
                                         ))),
+                                ItemDivider(paddingLeft: 15),
+                                ItemRow(
+                                    title: 'holiday_pay_dates',
+                                    icon: 'asset/image/icon-row-holidays.svg',
+                                    sortKey: 4,
+                                    onClick: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => CalendarScreen()))),
+                                ItemDivider(paddingLeft: 15),
+                                ItemRow(
+                                    title: 'holiday_pay_dates',
+                                    icon: 'asset/image/icon-row-holidays.svg',
+                                    sortKey: 4,
+                                    isLast: true,
+                                    onClick: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => CellCalendarScreen()))),
                               ],
                             ),
                           ),

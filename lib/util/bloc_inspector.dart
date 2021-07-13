@@ -9,13 +9,13 @@ class BlocInspector extends BlocObserver {
     super.onEvent(bloc, event);
   }
 
-  @override
+  /*@override
   void onError(Bloc bloc, Object error, StackTrace stackTrace) {
     print("---------- Bloc Inspector -> onError ----------");
     print(error);
     print("-----------------------------------------------");
     super.onError(bloc, error, stackTrace);
-  }
+  }*/
 
   @override
   void onTransition(Bloc bloc, Transition transition) {
