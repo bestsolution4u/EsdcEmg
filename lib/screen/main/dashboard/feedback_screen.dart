@@ -23,6 +23,14 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   bool isLoading;
   bool isEmpty;
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  void _showScaffold(String message) {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text(message),
+    ));
+  }
+
   @override
   void initState() {
     super.initState();
@@ -55,6 +63,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
       explicitChildNodes: true,
       label: "Feedback screen loaded",
       child: Scaffold(
+          key: _scaffoldKey,
           backgroundColor: Styles.darkBlue,
           body: SafeArea(
             child: Stack(
@@ -448,11 +457,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
   void submitFeedback() async {
     if (feedbackController.text.isEmpty) {
-      setState(() {
+      /*setState(() {
         isEmpty = true;
       });
       ToastUtils.showErrorToast(
-          context, AppLocalization.of(context).trans('error_empty_feedback'));
+          context, AppLocalization.of(context).trans('error_empty_feedback'));*/
+      _showScaffold(AppLocalization.of(context).trans('error_empty_feedback'));
       return;
     }
     setState(() {
