@@ -133,7 +133,6 @@ class _IntroScreenState extends State<IntroScreen> {
                   IntroRow(
                     title: 'intro_text_1',
                     icon: 'asset/image/onboard-icon-2.svg',
-                    semanticLabel: 'resources',
                     sortKey: 3,
                   ),
                   SizedBox(
@@ -142,7 +141,6 @@ class _IntroScreenState extends State<IntroScreen> {
                   IntroRow(
                     title: 'intro_text_2',
                     icon: 'asset/image/tab-messages-active.svg',
-                    semanticLabel: 'title_msg',
                     sortKey: 4,
                   ),
                   SizedBox(
@@ -151,7 +149,6 @@ class _IntroScreenState extends State<IntroScreen> {
                   IntroRow(
                     title: 'intro_text_3',
                     icon: 'asset/image/tab-social-active.svg',
-                    semanticLabel: 'preferences',
                     sortKey: 5,
                   ),
                   SizedBox(
@@ -160,7 +157,6 @@ class _IntroScreenState extends State<IntroScreen> {
                   IntroRow(
                     title: 'intro_text_4',
                     icon: 'asset/image/onboard-icon-1.svg',
-                    semanticLabel: 'connection',
                     sortKey: 6,
                   ),
                   SizedBox(

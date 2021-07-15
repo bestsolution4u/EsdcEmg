@@ -1,4 +1,9 @@
-import 'package:esdc_emg/config/global.dart';
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:flutter/services.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path/path.dart';
 import 'package:esdc_emg/config/style.dart';
 import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/screen/main/dashboard/learning_screen.dart';
@@ -16,6 +21,7 @@ import 'package:esdc_emg/widget/row/item_divider.dart';
 import 'package:esdc_emg/widget/row/item_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../webview_screen.dart';
@@ -123,15 +129,25 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                     title: 'holiday_pay_dates',
                                     icon: 'asset/image/icon-row-holidays.svg',
                                     sortKey: 4,
-                                    onClick: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => PdfViewerScreen(
-                                            title: AppLocalization.of(context)
-                                                .trans('holiday_pay_dates'),
-                                            pdfPath: 'asset/pdf/calendar.pdf',
-                                          ),
-                                        ))),
+                                    onClick: () async {
+                                      Directory directory = await getApplicationDocumentsDirectory();
+                                      var tempPath = join(directory.path, "calendar.pdf");
+                                      if (!(await File(tempPath).exists())) {
+                                        ByteData data = await rootBundle.load("asset/pdf/calendar.pdf");
+                                        List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+                                        await File(tempPath).writeAsBytes(bytes);
+                                      }
+                                      OpenFile.open(tempPath);
+                                      /*Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => PdfViewerScreen(
+                                              title: AppLocalization.of(context)
+                                                  .trans('holiday_pay_dates'),
+                                              pdfPath: 'asset/pdf/calendar.pdf',
+                                            ),
+                                          ))*/
+                                    }),
                                 ItemDivider(paddingLeft: 15),
                                 ItemRow(
                                     title: 'holiday_pay_dates',
@@ -187,6 +203,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                     isLast: true,
                                     sortKey: 7,
                                     onClick: () => gotoWebviewScreen(
+                                      context: context,
                                         title: 'award_recognition',
                                         url: 'url_award_recognition')),
                               ],
@@ -215,6 +232,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                         'asset/image/icon-row-esdcwebsite.svg',
                                     isLast: true,
                                     onClick: () => gotoWebviewScreen(
+                                      context: context,
                                         title: 'esdc_web',
                                         url: 'url_esdc_web')),
                               ],
@@ -368,7 +386,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
     );
   }
 
-  void gotoWebviewScreen({String title, String url}) {
+  void gotoWebviewScreen({BuildContext context, String title, String url}) {
     Navigator.push(
         context,
         MaterialPageRoute(

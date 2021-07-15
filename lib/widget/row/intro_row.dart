@@ -7,16 +7,16 @@ import 'package:flutter/semantics.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class IntroRow extends StatelessWidget {
-  final String icon, title, semanticLabel;
+  final String icon, title;
   final double iconSize;
   final double sortKey;
 
-  IntroRow({this.icon, this.title, this.iconSize = 36, this.semanticLabel, this.sortKey});
+  IntroRow({this.icon, this.title, this.iconSize = 36, this.sortKey});
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: AppLocalization.of(context).trans(semanticLabel),
+      label: AppLocalization.of(context).trans(title),
       excludeSemantics: true,
       sortKey: OrdinalSortKey(sortKey),
       child: Row(
