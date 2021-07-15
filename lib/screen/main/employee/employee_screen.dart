@@ -138,35 +138,17 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                         await File(tempPath).writeAsBytes(bytes);
                                       }
                                       OpenFile.open(tempPath);
-                                      /*Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => PdfViewerScreen(
-                                              title: AppLocalization.of(context)
-                                                  .trans('holiday_pay_dates'),
-                                              pdfPath: 'asset/pdf/calendar.pdf',
-                                            ),
-                                          ))*/
                                     }),
                                 ItemDivider(paddingLeft: 15),
                                 ItemRow(
                                     title: 'holiday_pay_dates',
                                     icon: 'asset/image/icon-row-holidays.svg',
+                                    isLast: true,
                                     sortKey: 4,
                                     onClick: () => Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => CalendarScreen()))),
-                                ItemDivider(paddingLeft: 15),
-                                ItemRow(
-                                    title: 'holiday_pay_dates',
-                                    icon: 'asset/image/icon-row-holidays.svg',
-                                    sortKey: 4,
-                                    isLast: true,
-                                    onClick: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => CellCalendarScreen()))),
                               ],
                             ),
                           ),

@@ -188,6 +188,7 @@ class _MessageScreenState extends State<MessageScreen> {
                       backgroundColor: Colors.transparent,
                       borderPadding: 0,
                       paddingHorizontal: 0,
+                      sortKey: 10,
                     ),
                     SettingItemRow(
                       label: 'location_specific',
@@ -200,6 +201,7 @@ class _MessageScreenState extends State<MessageScreen> {
                       backgroundColor: Colors.transparent,
                       borderPadding: 0,
                       paddingHorizontal: 0,
+                      sortKey: 11,
                     ),
                     /*SettingItemRow(
                       label: 'sorting',

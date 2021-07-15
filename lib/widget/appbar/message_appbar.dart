@@ -70,49 +70,61 @@ class MessageAppBar extends StatelessWidget {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              message.urgentInd == 'Urgent' ? Container(
-                margin: const EdgeInsets.only(right: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(32),
-                  color: Styles.red,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  child: Text(
-                    AppLocalization.of(context).trans('urgent'),
-                    style: TextStyle(color: Colors.white, fontSize: 14),
-                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                ),
-              ) : Container(),
-              Text(
-                DateFormat(AppLocalization.currentLanguage == 'fr' ? 'dd MMMM yyyy' : 'MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(message.effectiveDate)),
-                style: TextStyle(color: Styles.textBlack, fontSize: 14),
+        Semantics(
+          label: DateFormat(AppLocalization.currentLanguage == 'fr' ? 'dd MMMM yyyy' : 'MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(message.effectiveDate)),
+          excludeSemantics: true,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                message.urgentInd == 'Urgent' ? Container(
+                  margin: const EdgeInsets.only(right: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(32),
+                    color: Styles.red,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    child: Text(
+                      AppLocalization.of(context).trans('urgent'),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                  ),
+                ) : Container(),
+                Text(
+                  DateFormat(AppLocalization.currentLanguage == 'fr' ? 'dd MMMM yyyy' : 'MMMM dd, yyyy', AppLocalization.currentLanguage).format(DateTime.parse(message.effectiveDate)),
+                  style: TextStyle(color: Styles.textBlack, fontSize: 14),
+                  textAlign: TextAlign.start,
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                )
+              ],
+            ),
+          ),
+        ),
+        Semantics(
+          label: categoryLine,
+          excludeSemantics: true,
+          child: Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+              child: Text(
+                categoryLine,
+                style: TextStyle(color: Styles.textBlack, fontSize: 16),
                 textAlign: TextAlign.start,
                 textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
               )
-            ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-          child: Text(
-            categoryLine,
-            style: TextStyle(color: Styles.textBlack, fontSize: 16),
-            textAlign: TextAlign.start,
-            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
-          )
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 15, bottom: 4),
-          child: Text(
-            AppLocalization.currentLanguage == 'fr' ? message.titleFr : message.title,
-            style: TextStyle(color: Styles.textBlack, fontSize: 20, fontWeight: FontWeight.bold),
-            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+        Semantics(
+          label: AppLocalization.currentLanguage == 'fr' ? message.titleFr : message.title,
+          excludeSemantics: true,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 15, bottom: 4),
+            child: Text(
+              AppLocalization.currentLanguage == 'fr' ? message.titleFr : message.title,
+              style: TextStyle(color: Styles.textBlack, fontSize: 20, fontWeight: FontWeight.bold),
+              textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+            ),
           ),
         ),
         Divider(
