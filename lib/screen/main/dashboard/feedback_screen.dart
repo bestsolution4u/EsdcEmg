@@ -480,16 +480,41 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     showDialog(
         context: context,
         builder: (BuildContext context) => CupertinoAlertDialog(
-              title: new Text(AppLocalization.of(context).trans('thank_you'),
-                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context)),
-              content: new Text(
-                AppLocalization.of(context).trans('we_received_feedback'),
-                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+              title: Semantics(
+                label: AppLocalization.of(context).trans('thank_you'),
+                excludeSemantics: true,
+                child: Text(AppLocalization.of(context).trans('thank_you'),
+                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context)),
+              ),
+              content: Semantics(
+                label: AppLocalization.of(context).trans('we_received_feedback'),
+                excludeSemantics: true,
+                child: Text(
+                  AppLocalization.of(context).trans('we_received_feedback'),
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                ),
               ),
               actions: <Widget>[
                 CupertinoDialogAction(
                   isDefaultAction: true,
-                  child: Text(AppLocalization.of(context).trans('close')),
+                  child: Semantics(
+                    label: AppLocalization.of(context).trans('close'),
+                    child: Text(AppLocalization.of(context).trans('close')),
+                    button: true,
+                    excludeSemantics: true,
+                    onTap: () {
+                      setState(() {
+                        nameController.text = "";
+                        category = AppLocalization.of(context)
+                            .trans(Globals.CATEGORIES[0]);
+                        from = AppLocalization.of(context)
+                            .trans(Globals.WHICH_FROM[0]);
+                        feedbackController.text = "";
+                      });
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    },
+                  ),
                   onPressed: () {
                     setState(() {
                       nameController.text = "";
