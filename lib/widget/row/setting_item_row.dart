@@ -85,7 +85,6 @@ class _SettingItemRowState extends State<SettingItemRow> {
       button: true,
       excludeSemantics: true,
       label: AppLocalization.of(context).trans(widget.label),
-      value: AppLocalization.of(context).trans(widget.label),
       child: RippleComponent(
         child: Container(
           color: widget.backgroundColor,

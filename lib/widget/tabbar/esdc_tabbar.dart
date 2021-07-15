@@ -992,8 +992,6 @@ class _AppMainTabBarState extends State<AppMainTabBar> {
               selected: index == _currentIndex,
               label: localizations.tabLabel(
                   tabIndex: index + 1, tabCount: tabCount),
-              value: localizations.tabLabel(
-                  tabIndex: index + 1, tabCount: tabCount),
             ),
           ]),
         ),

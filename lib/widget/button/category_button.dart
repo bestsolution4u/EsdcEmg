@@ -22,7 +22,6 @@ class CategoryButton extends StatelessWidget {
     return Expanded(
         child: Semantics(
           label: AppLocalization.of(context).trans(title),
-          value: AppLocalization.of(context).trans(title),
           button: true,
           excludeSemantics: true,
           sortKey: OrdinalSortKey(sortKey),

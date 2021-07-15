@@ -27,7 +27,6 @@ class ChildAppbar extends StatelessWidget {
             children: [
               Semantics(
                 label: AppLocalization.of(context).trans('navigation_back'),
-                value: AppLocalization.of(context).trans('navigation_back'),
                 button: true,
                 excludeSemantics: true,
                 child: Row(

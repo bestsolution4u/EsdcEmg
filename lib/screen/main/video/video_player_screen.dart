@@ -45,7 +45,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Video player screen loaded",
-      value: "Video player screen loaded",
       child: Scaffold(
         backgroundColor: Colors.black,
         body: Stack(

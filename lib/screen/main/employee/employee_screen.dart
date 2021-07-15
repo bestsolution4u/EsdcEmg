@@ -35,7 +35,6 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Employee screen loaded",
-      value: "Employee screen loaded",
       child: Scaffold(
         backgroundColor: Styles.bgGrey,
         appBar: ESDCAppbar.renderMainAppbar(

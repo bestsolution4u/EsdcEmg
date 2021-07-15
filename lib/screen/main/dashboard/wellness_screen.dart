@@ -19,7 +19,6 @@ class _WellnessScreenState extends State<WellnessScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Wellness screen loaded",
-      value: "Wellness screen loaded",
       child: Scaffold(
         backgroundColor: Styles.blue,
         body: SafeArea(

@@ -19,7 +19,6 @@ class _LearningScreenState extends State<LearningScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Learning screen loaded",
-      value: "Learning screen loaded",
       child: Scaffold(
         backgroundColor: Styles.darkBlue,
         body: SafeArea(

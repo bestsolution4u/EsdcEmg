@@ -58,7 +58,6 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Message detail screen loaded",
-      value: "Message detail screen loaded",
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(

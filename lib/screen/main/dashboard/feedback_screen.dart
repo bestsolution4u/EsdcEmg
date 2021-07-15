@@ -54,7 +54,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Feedback screen loaded",
-      value: "Feedback screen loaded",
       child: Scaffold(
           backgroundColor: Styles.darkBlue,
           body: SafeArea(
@@ -346,8 +345,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                         left: 15, right: 15, top: 5),
                                     child: Semantics(
                                       label: AppLocalization.of(context)
-                                          .trans('error_empty_feedback'),
-                                      value: AppLocalization.of(context)
                                           .trans('error_empty_feedback'),
                                       excludeSemantics: true,
                                       child: Text(

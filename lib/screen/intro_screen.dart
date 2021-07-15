@@ -33,7 +33,6 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     return Semantics(
       label: AppLocalization.of(context).trans('app_title_home'),
-      value: AppLocalization.of(context).trans('app_title_home'),
       explicitChildNodes: true,
       onTap: () => _applicationBloc.add(ApplicationIntroFinishEvent()),
       child: Scaffold(
@@ -53,7 +52,6 @@ class _IntroScreenState extends State<IntroScreen> {
                     children: [
                       Semantics(
                         label: 'My E S D C Logo',
-                        value: 'My E S D C Logo',
                         image: true,
                         excludeSemantics: true,
                         child: SvgPicture.asset(
@@ -69,7 +67,6 @@ class _IntroScreenState extends State<IntroScreen> {
                           bottom: 0,
                           child: Semantics(
                             label: AppLocalization.of(context).trans('app_title_home'),
-                            value: AppLocalization.of(context).trans('app_title_home'),
                             container: true,
                             button: false,
                             sortKey: OrdinalSortKey(1),
@@ -105,7 +102,6 @@ class _IntroScreenState extends State<IntroScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Semantics(
                   label: AppLocalization.of(context).trans('made_for_esdc') + ' ' + AppLocalization.of(context).trans('by_people_in_esdc'),
-                  value: AppLocalization.of(context).trans('made_for_esdc') + ' ' + AppLocalization.of(context).trans('by_people_in_esdc'),
                   sortKey: OrdinalSortKey(2),
                   excludeSemantics: true,
                   child: Column(
@@ -172,7 +168,6 @@ class _IntroScreenState extends State<IntroScreen> {
                   ),
                   Semantics(
                     label: AppLocalization.of(context).trans('got_it'),
-                    value: AppLocalization.of(context).trans('got_it'),
                     button: true,
                     excludeSemantics: true,
                     sortKey: OrdinalSortKey(7),
@@ -202,7 +197,6 @@ class _IntroScreenState extends State<IntroScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Semantics(
                       label: AppLocalization.of(context).trans('donot_show_intro'),
-                      value: AppLocalization.of(context).trans('donot_show_intro'),
                       button: true,
                       excludeSemantics: true,
                       sortKey: OrdinalSortKey(8),

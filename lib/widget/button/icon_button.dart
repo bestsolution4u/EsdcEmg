@@ -14,7 +14,6 @@ class AppIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: sematicLabel,
-      value: sematicLabel,
       button: true,
       excludeSemantics: true,
       child: Material(

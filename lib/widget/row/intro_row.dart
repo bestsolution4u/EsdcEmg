@@ -17,7 +17,6 @@ class IntroRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: AppLocalization.of(context).trans(semanticLabel),
-      value: AppLocalization.of(context).trans(semanticLabel),
       excludeSemantics: true,
       sortKey: OrdinalSortKey(sortKey),
       child: Row(

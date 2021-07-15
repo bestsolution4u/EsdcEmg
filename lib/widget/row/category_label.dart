@@ -22,7 +22,6 @@ class CategoryLabel extends StatelessWidget {
       width: double.infinity,
       child: Semantics(
         label: AppLocalization.of(context).trans(label),
-        value: AppLocalization.of(context).trans(label),
         excludeSemantics: true,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,

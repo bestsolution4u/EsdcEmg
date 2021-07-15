@@ -22,7 +22,6 @@ class _PayBenefitScreenState extends State<PayBenefitScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Pay benefit screen loaded",
-      value: "Pay benefit screen loaded",
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(

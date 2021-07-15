@@ -19,7 +19,6 @@ class _CellCalendarScreenState extends State<CellCalendarScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Calendar screen loaded",
-      value: "Calendar screen loaded",
       child: Scaffold(
         backgroundColor: Styles.blue,
         body: SafeArea(

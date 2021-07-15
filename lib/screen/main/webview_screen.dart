@@ -23,7 +23,6 @@ class _WebviewScreenState extends State<WebviewScreen> {
           container: true,
           explicitChildNodes: true,
           label: "Webview screen loaded",
-          value: "Webview screen loaded",
           child: Scaffold(
             backgroundColor: Colors.white,
             body: SafeArea(

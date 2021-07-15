@@ -26,7 +26,6 @@ class _BannerItemState extends State<BannerItem> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Semantics(
         label: widget.video.title,
-        value: widget.video.title,
         excludeSemantics: true,
         button: true,
         sortKey: OrdinalSortKey(widget.sortKey),

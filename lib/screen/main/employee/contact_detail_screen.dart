@@ -31,7 +31,6 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Contact detail screen loaded",
-      value: "Contact detail screen loaded",
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(

@@ -39,7 +39,6 @@ class _SettingScreenState extends State<SettingScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Setting screen loaded",
-      value: "Setting screen loaded",
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(

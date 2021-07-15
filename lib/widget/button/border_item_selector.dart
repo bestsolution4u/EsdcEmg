@@ -20,7 +20,6 @@ class BorderItemSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: AppLocalization.of(context).trans(title),
-      value: AppLocalization.of(context).trans(title),
       sortKey: OrdinalSortKey(sortKey),
       button: true,
       container: true,

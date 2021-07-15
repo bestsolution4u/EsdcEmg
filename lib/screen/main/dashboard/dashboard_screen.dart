@@ -112,7 +112,6 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
       container: true,
       explicitChildNodes: true,
       label: "Home screen loaded",
-      value: "Home screen loaded",
       child: MultiBlocListener(
           listeners: [
             BlocListener<SettingBloc, SettingState>(
@@ -263,7 +262,6 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                 padding: const EdgeInsets.only(bottom: 20),
               child: Semantics(
                 label: AppLocalization.of(context).trans('urgent_message'),
-                value: AppLocalization.of(context).trans('urgent_message'),
                 button: true,
                 excludeSemantics: true,
                 child: RippleComponent(
@@ -318,7 +316,6 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
         children: [
           Semantics(
             label: AppLocalization.of(context).trans('vpn_status'),
-            value: AppLocalization.of(context).trans('vpn_status'),
             excludeSemantics: true,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -380,7 +377,6 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
       children: [
         Semantics(
           label: AppLocalization.of(context).trans('esdc_watch'),
-          value: AppLocalization.of(context).trans('esdc_watch'),
           excludeSemantics: true,
           child: Row(
             children: [
@@ -445,7 +441,6 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
           children: [
             Semantics(
               label: 'Previous',
-              value: 'Previous',
               button: true,
               excludeSemantics: true,
               child: IconButton(
@@ -459,7 +454,6 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
               int index = youtubeVideos.indexOf(video);
               return Semantics(
                 label: 'Video ${index + 1}',
-                value: 'Video ${index + 1}',
                 button: true,
                 excludeSemantics: true,
                 child: RippleComponent(
@@ -481,7 +475,6 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
             }).toList(),
             Semantics(
               label: 'Next',
-              value: 'Next',
               button: true,
               excludeSemantics: true,
               child: IconButton(

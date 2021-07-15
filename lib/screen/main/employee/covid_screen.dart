@@ -16,7 +16,6 @@ class _CovidScreenState extends State<CovidScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Covid screen loaded",
-      value: "Covid screen loaded",
       child: Scaffold(
         backgroundColor: Styles.darkerBlue,
         body: SafeArea(

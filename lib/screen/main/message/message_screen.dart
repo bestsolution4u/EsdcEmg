@@ -30,7 +30,6 @@ class _MessageScreenState extends State<MessageScreen> {
       container: true,
       explicitChildNodes: true,
       label: "Message list screen loaded",
-      value: "Message list screen loaded",
       child: Scaffold(
         appBar: ESDCAppbar.renderMainAppbar(
             title: 'title_msg',

@@ -28,7 +28,6 @@ class ChildImageAppbar extends StatelessWidget {
             children: [
               Semantics(
                 label: AppLocalization.of(context).trans('navigation_back'),
-                value: AppLocalization.of(context).trans('navigation_back'),
                 button: true,
                 excludeSemantics: true,
                 child: Row(
@@ -63,7 +62,6 @@ class ChildImageAppbar extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20, right: 15, bottom: 4),
           child: Semantics(
             label: isMessage ? title : AppLocalization.of(context).trans(title),
-            value: isMessage ? title : AppLocalization.of(context).trans(title),
             excludeSemantics: true,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,

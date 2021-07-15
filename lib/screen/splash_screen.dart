@@ -11,7 +11,6 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Semantics(
       label: 'Splash',
-      value: 'Splash',
       excludeSemantics: true,
       child: Scaffold(
         backgroundColor: Colors.white,

@@ -23,7 +23,6 @@ class ToastUtils {
   static Widget _getToastWidget(String msg, ToastType type) {
     return Semantics(
       label: msg,
-      value: msg,
       excludeSemantics: true,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
