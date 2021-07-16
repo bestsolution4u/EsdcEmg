@@ -6,15 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ESDCAppbar {
-  static AppBar renderMainAppbar({String icon, String title, Widget action, BuildContext context}) {
+  static AppBar renderMainAppbar({String icon, String title, String semanticLabel, Widget action, BuildContext context}) {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
       centerTitle: false,
       title: Semantics(
-        label: AppLocalization.of(context).trans(title),
+        label: semanticLabel != null ? AppLocalization.of(context).trans(semanticLabel) : AppLocalization.of(context).trans(title),
         excludeSemantics: true,
         container: true,
+        header: true,
         child: Row(
           children: [
             SvgPicture.asset(

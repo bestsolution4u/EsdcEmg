@@ -25,7 +25,7 @@ class _BannerItemState extends State<BannerItem> {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Semantics(
-        label: widget.video.title,
+        label: "(youtube video) " + widget.video.title,
         excludeSemantics: true,
         sortKey: OrdinalSortKey(widget.sortKey),
         child: RippleComponent(

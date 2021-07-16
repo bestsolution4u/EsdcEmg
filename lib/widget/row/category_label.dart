@@ -23,6 +23,7 @@ class CategoryLabel extends StatelessWidget {
       child: Semantics(
         label: AppLocalization.of(context).trans(label),
         excludeSemantics: true,
+        header: true,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

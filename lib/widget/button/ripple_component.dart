@@ -5,8 +5,9 @@ class RippleComponent extends StatefulWidget {
   final Widget child;
   final VoidCallback onClick;
   final double borderRadius;
+  final String semanticLabel;
 
-  RippleComponent({this.child, this.onClick, this.borderRadius = 0});
+  RippleComponent({this.child, this.onClick, this.borderRadius = 0, this.semanticLabel = ""});
 
   @override
   _RippleComponentState createState() => _RippleComponentState();
@@ -28,9 +29,12 @@ class _RippleComponentState extends State<RippleComponent> {
               child: InkWell(
                 onTap: widget.onClick,
                 borderRadius: BorderRadius.circular(widget.borderRadius),
-                child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
+                child: Semantics(
+                  label: widget.semanticLabel,
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
                 ),
               ),
             ))

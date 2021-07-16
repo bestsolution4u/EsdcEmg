@@ -50,27 +50,35 @@ class _MessageFilterTopicRowState extends State<MessageFilterTopicRow> {
             update(state.settings.messageCategory);
           }
         },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Row(
-          children: [
-            Expanded(
-                child: Text(
-                  AppLocalization.of(context).trans(widget.topic),
-                  style: TextStyle(fontSize: 16, color: Styles.darkerBlue),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)
-            ),
-            SizedBox(width: 20,),
-            CupertinoSwitch(
-                value: _isEnabled,
-                activeColor: Styles.blue,
-                trackColor: Styles.bgSwitchOff,
-                onChanged: (value) {
-                  _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: widget.topic, enabled: value));
-                })
-          ],
+      child: Semantics(
+        checked: _isEnabled,
+        label: AppLocalization.of(context).trans(widget.topic),
+        excludeSemantics: true,
+        onTap: () {
+          _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: widget.topic, enabled: !_isEnabled));
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Row(
+            children: [
+              Expanded(
+                  child: Text(
+                    AppLocalization.of(context).trans(widget.topic),
+                    style: TextStyle(fontSize: 16, color: Styles.darkerBlue),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)
+              ),
+              SizedBox(width: 20,),
+              CupertinoSwitch(
+                  value: _isEnabled,
+                  activeColor: Styles.blue,
+                  trackColor: Styles.bgSwitchOff,
+                  onChanged: (value) {
+                    _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: widget.topic, enabled: value));
+                  })
+            ],
+          ),
         ),
       ),
     );

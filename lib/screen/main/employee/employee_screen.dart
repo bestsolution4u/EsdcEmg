@@ -62,8 +62,8 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                         textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                       ),
                       excludeSemantics: true,
-                      button: true,
                       label: "Resources tab, 1 of 2",
+                      selected: _sliding == 0,
                     ),
                     1: Semantics(
                       child: Text(
@@ -72,7 +72,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                         textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                       ),
                       excludeSemantics: true,
-                      button: true,
+                      selected: _sliding == 1,
                       label: "Contacts tab, 2 of 2",
                     ),
                   },

@@ -113,6 +113,7 @@ class _MessageScreenState extends State<MessageScreen> {
           List<String> locationFilters = settingModel.messageLocation.split(",").where((element) => element != null && element.isNotEmpty && element != Globals.MESSAGE_LOCATIONS[0]).toList();
           int count = topicFilters.length + locationFilters.length;
           if (count > 0) return RippleComponent(
+            semanticLabel: AppLocalization.of(context).trans('you_have') + count.toString() + AppLocalization.of(context).trans('message_filters_applied'),
             onClick: () => openFilter(),
             child: Container(
               color: Colors.white,

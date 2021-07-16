@@ -136,6 +136,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
             appBar: ESDCAppbar.renderMainAppbar(
                 title: 'app_title_home',
                 icon: 'asset/image/nav-icon-home.svg',
+                semanticLabel: 'app_title_label',
                 action: AppIconButton(
                   sematicLabel: AppLocalization.of(context).trans('title_settings'),
                   icon: SvgPicture.asset(

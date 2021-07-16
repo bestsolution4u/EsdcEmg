@@ -32,9 +32,8 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: AppLocalization.of(context).trans('app_title_home'),
+      label: AppLocalization.of(context).trans('app_title_label'),
       explicitChildNodes: true,
-      onTap: () => _applicationBloc.add(ApplicationIntroFinishEvent()),
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -66,7 +65,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           left: 0,
                           bottom: 0,
                           child: Semantics(
-                            label: AppLocalization.of(context).trans('app_title_home'),
+                            label: AppLocalization.of(context).trans('app_title_label'),
                             container: true,
                             sortKey: OrdinalSortKey(1),
                             excludeSemantics: true,
