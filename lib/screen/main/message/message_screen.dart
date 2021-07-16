@@ -140,6 +140,7 @@ class _MessageScreenState extends State<MessageScreen> {
   void openFilter() {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(25),
@@ -152,78 +153,72 @@ class _MessageScreenState extends State<MessageScreen> {
               if (state is !SettingLoadSuccessState) return Container();
               SettingModel settingModel = (state as SettingLoadSuccessState).settings;
               return Container(
-                height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 400 : 350,
+                height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 350 : 250,
                 padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          AppLocalization.of(context).trans("my_preferences"),
-                          style: TextStyle(
-                              color: Styles.darkerBlue,
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold),
-                          textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
-                        ),
-                        Spacer(),
-                        AppIconButton(
-                          icon: Icon(Icons.close, color: Styles.blue, size: 24,),
-                          padding: 12,
-                          rippleRadius: 24,
-                          onClick: () => Navigator.pop(context),
-                          sematicLabel: "close",
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      AppLocalization.of(context).trans("customize_inbox_looks"),
-                      style: TextStyle(
-                          color: Styles.darkerBlue,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400),
-                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
-                    ),
-                    SizedBox(height: 10,),
-                    Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              SettingItemRow(
-                                label: 'topic',
-                                value: settingModel.messageCategory,
-                                isTopic: true,
-                                onClick: () {
-                                  Navigator.pop(context);
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => FilterTopicScreen(),));
-                                },
-                                backgroundColor: Colors.transparent,
-                                borderPadding: 0,
-                                paddingHorizontal: 0,
-                                sortKey: 10,
-                              ),
-                              SettingItemRow(
-                                label: 'location_specific',
-                                value: settingModel.messageLocation,
-                                isLocation: true,
-                                onClick: () {
-                                  Navigator.pop(context);
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => FilterLocationScreen(),));
-                                },
-                                backgroundColor: Colors.transparent,
-                                borderPadding: 0,
-                                paddingHorizontal: 0,
-                                sortKey: 11,
-                              ),
-                            ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalization.of(context).trans("my_preferences"),
+                            style: TextStyle(
+                                color: Styles.darkerBlue,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold),
+                            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                           ),
-                        )
-                    )
-                  ],
+                          Spacer(),
+                          AppIconButton(
+                            icon: Icon(Icons.close, color: Styles.blue, size: 24,),
+                            padding: 12,
+                            rippleRadius: 24,
+                            onClick: () => Navigator.pop(context),
+                            sematicLabel: "close",
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        AppLocalization.of(context).trans("customize_inbox_looks"),
+                        style: TextStyle(
+                            color: Styles.darkerBlue,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400),
+                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                      ),
+                      SizedBox(height: 10,),
+                      SettingItemRow(
+                        label: 'topic',
+                        value: settingModel.messageCategory,
+                        isTopic: true,
+                        onClick: () {
+                          Navigator.pop(context);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => FilterTopicScreen(),));
+                        },
+                        backgroundColor: Colors.transparent,
+                        borderPadding: 0,
+                        paddingHorizontal: 0,
+                        sortKey: 10,
+                      ),
+                      SettingItemRow(
+                        label: 'location_specific',
+                        value: settingModel.messageLocation,
+                        isLocation: true,
+                        onClick: () {
+                          Navigator.pop(context);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => FilterLocationScreen(),));
+                        },
+                        backgroundColor: Colors.transparent,
+                        borderPadding: 0,
+                        paddingHorizontal: 0,
+                        sortKey: 11,
+                      ),
+                    ],
+                  ),
                 ),
               );
             },
