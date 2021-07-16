@@ -457,12 +457,41 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
   void submitFeedback() async {
     if (feedbackController.text.isEmpty) {
-      /*setState(() {
-        isEmpty = true;
-      });
-      ToastUtils.showErrorToast(
-          context, AppLocalization.of(context).trans('error_empty_feedback'));*/
-      _showScaffold(AppLocalization.of(context).trans('error_empty_feedback'));
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => CupertinoAlertDialog(
+            title: Semantics(
+              label: AppLocalization.of(context).trans('alert'),
+              excludeSemantics: true,
+              child: Text(AppLocalization.of(context).trans('alert'),
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context)),
+            ),
+            content: Semantics(
+              label: AppLocalization.of(context).trans('error_empty_feedback'),
+              excludeSemantics: true,
+              child: Text(
+                AppLocalization.of(context).trans('error_empty_feedback'),
+                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+              ),
+            ),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                isDefaultAction: true,
+                child: Semantics(
+                  label: AppLocalization.of(context).trans('close'),
+                  child: Text(AppLocalization.of(context).trans('close')),
+                  button: true,
+                  excludeSemantics: true,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ));
       return;
     }
     setState(() {

@@ -21,7 +21,6 @@ class BorderItemSelector extends StatelessWidget {
     return Semantics(
       label: AppLocalization.of(context).trans(title),
       sortKey: OrdinalSortKey(sortKey),
-      button: true,
       container: true,
       child: FlatButton(
         minWidth: MediaQuery.of(context).size.width,

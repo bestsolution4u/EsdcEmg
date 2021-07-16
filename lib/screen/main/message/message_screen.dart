@@ -156,14 +156,25 @@ class _MessageScreenState extends State<MessageScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 10,),
-                    Text(
-                      AppLocalization.of(context).trans("my_preferences"),
-                      style: TextStyle(
-                          color: Styles.darkerBlue,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold),
-                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                    Row(
+                      children: [
+                        Text(
+                          AppLocalization.of(context).trans("my_preferences"),
+                          style: TextStyle(
+                              color: Styles.darkerBlue,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold),
+                          textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                        ),
+                        Spacer(),
+                        AppIconButton(
+                          icon: Icon(Icons.close, color: Styles.blue, size: 24,),
+                          padding: 12,
+                          rippleRadius: 24,
+                          onClick: () => Navigator.pop(context),
+                          sematicLabel: "close",
+                        )
+                      ],
                     ),
                     SizedBox(
                       height: 10,
@@ -176,44 +187,41 @@ class _MessageScreenState extends State<MessageScreen> {
                           fontWeight: FontWeight.w400),
                       textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
                     ),
-                    SizedBox(height: 20,),
-                    SettingItemRow(
-                      label: 'topic',
-                      value: settingModel.messageCategory,
-                      isTopic: true,
-                      onClick: () {
-                        Navigator.pop(context);
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => FilterTopicScreen(),));
-                      },
-                      backgroundColor: Colors.transparent,
-                      borderPadding: 0,
-                      paddingHorizontal: 0,
-                      sortKey: 10,
-                    ),
-                    SettingItemRow(
-                      label: 'location_specific',
-                      value: settingModel.messageLocation,
-                      isLocation: true,
-                      onClick: () {
-                        Navigator.pop(context);
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => FilterLocationScreen(),));
-                      },
-                      backgroundColor: Colors.transparent,
-                      borderPadding: 0,
-                      paddingHorizontal: 0,
-                      sortKey: 11,
-                    ),
-                    /*SettingItemRow(
-                      label: 'sorting',
-                      value: 'new_old',
-                      isSorting: true,
-                      onClick: () {
-
-                      },
-                      backgroundColor: Colors.transparent,
-                      borderPadding: 0,
-                      paddingHorizontal: 0,
-                    ),*/
+                    SizedBox(height: 10,),
+                    Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              SettingItemRow(
+                                label: 'topic',
+                                value: settingModel.messageCategory,
+                                isTopic: true,
+                                onClick: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => FilterTopicScreen(),));
+                                },
+                                backgroundColor: Colors.transparent,
+                                borderPadding: 0,
+                                paddingHorizontal: 0,
+                                sortKey: 10,
+                              ),
+                              SettingItemRow(
+                                label: 'location_specific',
+                                value: settingModel.messageLocation,
+                                isLocation: true,
+                                onClick: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => FilterLocationScreen(),));
+                                },
+                                backgroundColor: Colors.transparent,
+                                borderPadding: 0,
+                                paddingHorizontal: 0,
+                                sortKey: 11,
+                              ),
+                            ],
+                          ),
+                        )
+                    )
                   ],
                 ),
               );

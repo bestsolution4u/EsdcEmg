@@ -30,7 +30,6 @@ class _MainTabItemState extends State<MainTabItem> {
           Expanded(child: Center(
             child: Semantics(
               label: AppLocalization.of(context).trans(widget.title),
-              button: true,
               excludeSemantics: true,
               child: Column(
                 mainAxisSize: MainAxisSize.min,

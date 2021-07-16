@@ -68,7 +68,6 @@ class _IntroScreenState extends State<IntroScreen> {
                           child: Semantics(
                             label: AppLocalization.of(context).trans('app_title_home'),
                             container: true,
-                            button: false,
                             sortKey: OrdinalSortKey(1),
                             excludeSemantics: true,
                             child: Row(

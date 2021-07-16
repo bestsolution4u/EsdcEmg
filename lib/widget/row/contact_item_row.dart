@@ -19,7 +19,6 @@ class ContactItemRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: AppLocalization.of(context).trans(title),
-      button: true,
       sortKey: OrdinalSortKey(sortKey),
       excludeSemantics: true,
       child: RippleComponent(

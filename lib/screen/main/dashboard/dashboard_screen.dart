@@ -262,7 +262,6 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                 padding: const EdgeInsets.only(bottom: 20),
               child: Semantics(
                 label: AppLocalization.of(context).trans('urgent_message'),
-                button: true,
                 excludeSemantics: true,
                 child: RippleComponent(
                     onClick: () {
@@ -351,7 +350,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 vpnUpdatedAt == null ? Container() : Text(
-                  AppLocalization.of(context).trans('last_updated') + DateFormat('dd MMMM yyyy, hh:mm a', AppLocalization.currentLanguage).format(dateTimeToZone(zone: "EDT", datetime: vpnUpdatedAt)) + " EST",
+                  AppLocalization.of(context).trans('last_updated') + DateFormat(AppLocalization.currentLanguage == "en" ? 'MMMM dd yyyy, hh:mm a' : "dd MMMM yyyy, hh:mm a", AppLocalization.currentLanguage).format(dateTimeToZone(zone: "EDT", datetime: vpnUpdatedAt)) + " EST",
                   style: TextStyle(color: Styles.primaryColor, fontSize: 14),
                   textScaleFactor: ScreenUtil.calcTextScaleFactor(context)),
                 SizedBox(height: 10,),
@@ -441,7 +440,6 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
           children: [
             Semantics(
               label: 'Previous',
-              button: true,
               excludeSemantics: true,
               child: IconButton(
                 icon: Icon(Icons.navigate_before, color: Styles.blue,),
@@ -454,7 +452,6 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
               int index = youtubeVideos.indexOf(video);
               return Semantics(
                 label: 'Video ${index + 1}',
-                button: true,
                 excludeSemantics: true,
                 child: RippleComponent(
                   onClick: () {
@@ -475,7 +472,6 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
             }).toList(),
             Semantics(
               label: 'Next',
-              button: true,
               excludeSemantics: true,
               child: IconButton(
                 icon: Icon(Icons.navigate_next, color: Styles.blue,),

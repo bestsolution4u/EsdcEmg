@@ -60,155 +60,160 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: tabLength,
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          body: AppMainTabBarView(
-            controller: tabController,
-            physics: NeverScrollableScrollPhysics(),
-            children: [
-              DashboardScreen(
-                onUrgentClick: () {
-                  tabController.animateTo(1);
-                },
-              ),
-              MessageScreen(),
-              EmployeeScreen(),
-              SocialMediaScreen(),
-              /*VideoHubScreen()*/
-            ],
-          ),
-          bottomNavigationBar: Container(
-            height: Platform.isIOS ? 81 : 60,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  spreadRadius: 1,
-                  blurRadius: 1,
+    return Semantics(
+      label: "Main page loaded",
+      explicitChildNodes: true,
+      container: true,
+      child: DefaultTabController(
+          length: tabLength,
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: AppMainTabBarView(
+              controller: tabController,
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                DashboardScreen(
+                  onUrgentClick: () {
+                    tabController.animateTo(1);
+                  },
                 ),
+                MessageScreen(),
+                EmployeeScreen(),
+                SocialMediaScreen(),
+                /*VideoHubScreen()*/
               ],
             ),
-            child: AppMainTabBar(
-              indicatorColor: Colors.white,
-              controller: tabController,
-              activeBackgroundColor: Colors.white,
-              inactiveBackgroundColor: Colors.white,
-              indicatorWeight: 0.1,
-              tabs: [
-                MainTabItem(
-                  title: 'app_title_home',
-                  image: 'asset/image/nav-icon-home.svg',
-                  imageInactive: 'asset/image/tab-home.svg',
-                  selected: currentTabIndex == 0,
-                ),
-                MainTabItem(
-                  title: 'title_msg',
-                  image: 'asset/image/tab-messages-active.svg',
-                  imageInactive: 'asset/image/tab-messages.svg',
-                  selected: currentTabIndex == 1,
-                  badge: BlocBuilder<MessageBloc, MessageState>(
-                    builder: (context, msgState) {
-                      if (msgState is! MessageLoadSuccessState) {
-                        return Container(
-                          width: 0,
-                          height: 0,
-                        );
-                      } else {
-                        return BlocBuilder<SettingBloc, SettingState>(
-                          builder: (context, settingState) {
-                            if (settingState is! SettingLoadSuccessState)
-                              return Container(
-                                width: 0,
-                                height: 0,
-                              );
-                            List<MessageModel> messages = (msgState as MessageLoadSuccessState).messages;
-                            SettingModel settings = (settingState as SettingLoadSuccessState).settings;
-                            List<int> readMessages = (msgState as MessageLoadSuccessState).readMessages;
-                            List<MessageModel> unreadMessages = messages.where((element) {
-                              String filterTopic = settings.messageCategory;
-                              String filterLocation = settings.messageLocation;
-                              List<String> catElement = element.category.split(",");
-                              List<String> catFilter = filterTopic.split(",");
-                              bool matchedTopic = false;
-                              if (filterTopic == Globals.DEFAULT_MESSAGE_CATEGORY) {
-                                matchedTopic = true;
-                              } else {
-                                catElement.forEach((elementCat) {
-                                  catFilter.forEach((elementFilterCat) {
-                                    if (elementCat.toLowerCase().contains(elementFilterCat)) matchedTopic = true;
+            bottomNavigationBar: Container(
+              height: Platform.isIOS ? 81 : 60,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 1,
+                    blurRadius: 1,
+                  ),
+                ],
+              ),
+              child: AppMainTabBar(
+                indicatorColor: Colors.white,
+                controller: tabController,
+                activeBackgroundColor: Colors.white,
+                inactiveBackgroundColor: Colors.white,
+                indicatorWeight: 0.1,
+                tabs: [
+                  MainTabItem(
+                    title: 'app_title_home',
+                    image: 'asset/image/nav-icon-home.svg',
+                    imageInactive: 'asset/image/tab-home.svg',
+                    selected: currentTabIndex == 0,
+                  ),
+                  MainTabItem(
+                    title: 'title_msg',
+                    image: 'asset/image/tab-messages-active.svg',
+                    imageInactive: 'asset/image/tab-messages.svg',
+                    selected: currentTabIndex == 1,
+                    badge: BlocBuilder<MessageBloc, MessageState>(
+                      builder: (context, msgState) {
+                        if (msgState is! MessageLoadSuccessState) {
+                          return Container(
+                            width: 0,
+                            height: 0,
+                          );
+                        } else {
+                          return BlocBuilder<SettingBloc, SettingState>(
+                            builder: (context, settingState) {
+                              if (settingState is! SettingLoadSuccessState)
+                                return Container(
+                                  width: 0,
+                                  height: 0,
+                                );
+                              List<MessageModel> messages = (msgState as MessageLoadSuccessState).messages;
+                              SettingModel settings = (settingState as SettingLoadSuccessState).settings;
+                              List<int> readMessages = (msgState as MessageLoadSuccessState).readMessages;
+                              List<MessageModel> unreadMessages = messages.where((element) {
+                                String filterTopic = settings.messageCategory;
+                                String filterLocation = settings.messageLocation;
+                                List<String> catElement = element.category.split(",");
+                                List<String> catFilter = filterTopic.split(",");
+                                bool matchedTopic = false;
+                                if (filterTopic == Globals.DEFAULT_MESSAGE_CATEGORY) {
+                                  matchedTopic = true;
+                                } else {
+                                  catElement.forEach((elementCat) {
+                                    catFilter.forEach((elementFilterCat) {
+                                      if (elementCat.toLowerCase().contains(elementFilterCat)) matchedTopic = true;
+                                    });
                                   });
-                                });
-                              }
+                                }
 
-                              List<String> locationElement = element.audience.split(",");
-                              List<String> locationFilter = filterLocation.split(",");
-                              bool matchedLocation = false;
-                              if (locationFilter.contains(Globals.MESSAGE_LOCATIONS[0]) || locationElement.contains(Globals.MESSAGE_LOCATIONS[0])) {
-                                matchedLocation = true;
-                              } else {
-                                locationElement.forEach((elementLoc) {
-                                  locationFilter.forEach((elementFilterLoc) {
-                                    if (elementLoc == elementFilterLoc) matchedLocation = true;
+                                List<String> locationElement = element.audience.split(",");
+                                List<String> locationFilter = filterLocation.split(",");
+                                bool matchedLocation = false;
+                                if (locationFilter.contains(Globals.MESSAGE_LOCATIONS[0]) || locationElement.contains(Globals.MESSAGE_LOCATIONS[0])) {
+                                  matchedLocation = true;
+                                } else {
+                                  locationElement.forEach((elementLoc) {
+                                    locationFilter.forEach((elementFilterLoc) {
+                                      if (elementLoc == elementFilterLoc) matchedLocation = true;
+                                    });
                                   });
-                                });
-                              }
+                                }
 
-                              return !readMessages.contains(element.id) && matchedTopic && matchedLocation;
-                            }).toList();
-                            if (unreadMessages.length == 0)
-                              return Container(
-                                width: 0,
-                                height: 0,
-                              );
-                            return Positioned(
-                              top: 0,
-                              right: 0,
-                              child: Transform.translate(
-                                offset: ScreenUtil.calcTextScaleFactor(context) > 1 ? Offset(8, -8) : Offset(2, -3),
-                                child: Container(
-                                  width: ScreenUtil.calcTextScaleFactor(context) > 1 ? 24 : 16,
-                                  height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 24 : 16,
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(24), color: Styles.red),
-                                  child: Center(
-                                    child: Text(
-                                      unreadMessages.length.toString(),
-                                      style: TextStyle(color: Colors.white, fontSize: 10),
-                                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                                return !readMessages.contains(element.id) && matchedTopic && matchedLocation;
+                              }).toList();
+                              if (unreadMessages.length == 0)
+                                return Container(
+                                  width: 0,
+                                  height: 0,
+                                );
+                              return Positioned(
+                                top: 0,
+                                right: 0,
+                                child: Transform.translate(
+                                  offset: ScreenUtil.calcTextScaleFactor(context) > 1 ? Offset(8, -8) : Offset(2, -3),
+                                  child: Container(
+                                    width: ScreenUtil.calcTextScaleFactor(context) > 1 ? 24 : 16,
+                                    height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 24 : 16,
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(24), color: Styles.red),
+                                    child: Center(
+                                      child: Text(
+                                        unreadMessages.length.toString(),
+                                        style: TextStyle(color: Colors.white, fontSize: 10),
+                                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        );
-                      }
-                    },
+                              );
+                            },
+                          );
+                        }
+                      },
+                    ),
                   ),
-                ),
-                MainTabItem(
-                  title: 'title_emply',
-                  image: 'asset/image/tab-employees-active.svg',
-                  imageInactive: 'asset/image/tab-employees.svg',
-                  selected: currentTabIndex == 2,
-                ),
-                MainTabItem(
-                  title: 'title_soci_medi',
-                  image: 'asset/image/tab-social-active.svg',
-                  imageInactive: 'asset/image/tab-social.svg',
-                  selected: currentTabIndex == 3,
-                ),
-                /*MainTabItem(
+                  MainTabItem(
+                    title: 'title_emply',
+                    image: 'asset/image/tab-employees-active.svg',
+                    imageInactive: 'asset/image/tab-employees.svg',
+                    selected: currentTabIndex == 2,
+                  ),
+                  MainTabItem(
+                    title: 'title_soci_medi',
+                    image: 'asset/image/tab-social-active.svg',
+                    imageInactive: 'asset/image/tab-social.svg',
+                    selected: currentTabIndex == 3,
+                  ),
+                  /*MainTabItem(
                   title: 'video_hub',
                   image: 'asset/image/youtube-selected.svg',
                   imageInactive: 'asset/image/youtube-unselected.svg',
                   selected: currentTabIndex == 4,
                 ),*/
-              ],
+                ],
+              ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 
   Future<void> setupFCM() async {

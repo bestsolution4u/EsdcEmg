@@ -22,7 +22,6 @@ class ItemRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: AppLocalization.of(context).trans(title),
-      button: true,
       excludeSemantics: true,
       sortKey: OrdinalSortKey(sortKey),
       child: RippleComponent(

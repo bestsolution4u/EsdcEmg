@@ -44,7 +44,7 @@ android {
         minSdkVersion 22
         targetSdkVersion 30
         versionCode 15
-        versionName "1.0.3"
+        versionName "1.0.4"
         multiDexEnabled true
         /*ndk {
             abiFilters 'armeabi-v7a'

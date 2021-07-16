@@ -73,6 +73,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                     allowDrawingOutsideViewBox: true,
                     height: 24,
                   ),
+                  sematicLabel: "more",
                   padding: 12,
                   rippleRadius: 24,
                   onClick: () => openMore(),

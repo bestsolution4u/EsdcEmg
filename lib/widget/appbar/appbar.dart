@@ -14,6 +14,7 @@ class ESDCAppbar {
       title: Semantics(
         label: AppLocalization.of(context).trans(title),
         excludeSemantics: true,
+        container: true,
         child: Row(
           children: [
             SvgPicture.asset(

@@ -82,7 +82,6 @@ class _SettingItemRowState extends State<SettingItemRow> {
     double textScaleFactor = ScreenUtil.calcTextScaleFactor(context);
     return Semantics(
       sortKey: OrdinalSortKey(widget.sortKey),
-      button: true,
       excludeSemantics: true,
       label: AppLocalization.of(context).trans(widget.label),
       child: RippleComponent(

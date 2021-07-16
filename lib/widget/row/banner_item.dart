@@ -27,7 +27,6 @@ class _BannerItemState extends State<BannerItem> {
       child: Semantics(
         label: widget.video.title,
         excludeSemantics: true,
-        button: true,
         sortKey: OrdinalSortKey(widget.sortKey),
         child: RippleComponent(
           onClick: () {

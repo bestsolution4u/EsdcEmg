@@ -55,15 +55,25 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               child: CupertinoSlidingSegmentedControl(
                   children: {
-                    0: Text(
-                      AppLocalization.of(context).trans('resources'),
-                      style: TextStyle(color: Styles.darkerBlue, fontSize: 15),
-                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                    0: Semantics(
+                      child: Text(
+                        AppLocalization.of(context).trans('resources'),
+                        style: TextStyle(color: Styles.darkerBlue, fontSize: 15),
+                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                      ),
+                      excludeSemantics: true,
+                      button: true,
+                      label: "Resources tab, 1 of 2",
                     ),
-                    1: Text(
-                      AppLocalization.of(context).trans('contacts'),
-                      style: TextStyle(color: Styles.darkerBlue, fontSize: 15),
-                      textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                    1: Semantics(
+                      child: Text(
+                        AppLocalization.of(context).trans('contacts'),
+                        style: TextStyle(color: Styles.darkerBlue, fontSize: 15),
+                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                      ),
+                      excludeSemantics: true,
+                      button: true,
+                      label: "Contacts tab, 2 of 2",
                     ),
                   },
                   groupValue: _sliding,
@@ -126,9 +136,10 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                         ))),
                                 ItemDivider(paddingLeft: 15),
                                 ItemRow(
-                                    title: 'holiday_pay_dates',
+                                    title: 'holiday_pay_dates_pdf',
                                     icon: 'asset/image/icon-row-holidays.svg',
                                     sortKey: 4,
+                                    isLast: true,
                                     onClick: () async {
                                       Directory directory = await getApplicationDocumentsDirectory();
                                       var tempPath = join(directory.path, "calendar.pdf");
@@ -139,7 +150,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                       }
                                       OpenFile.open(tempPath);
                                     }),
-                                ItemDivider(paddingLeft: 15),
+                                /*ItemDivider(paddingLeft: 15),
                                 ItemRow(
                                     title: 'holiday_pay_dates',
                                     icon: 'asset/image/icon-row-holidays.svg',
@@ -148,7 +159,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                     onClick: () => Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => CalendarScreen()))),
+                                          builder: (context) => CalendarScreen()))),*/
                               ],
                             ),
                           ),
