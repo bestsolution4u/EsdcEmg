@@ -19,147 +19,154 @@ class SocialMediaScreen extends StatefulWidget {
 class _SocialMediaScreenState extends State<SocialMediaScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Styles.lightGray,
-      appBar: ESDCAppbar.renderMainAppbar(
-          title: 'title_soci_medi',
-          icon: 'asset/image/tab-social-active.svg',
-          context: context),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CategoryLabel(
-                label: 'facebook', icon: 'asset/image/icon-facebook.svg'),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                children: [
-                  ItemRow(
-                      title: 'esdc',
-                      isFirst: true,
-                      sortKey: 1,
-                      onClick: () => openFacebookLink(
-                          title: 'esdc_facebook',
-                          linkName: 'url_esdc_facebook')),
-                  ItemDivider(paddingLeft: 15),
-                  ItemRow(
-                      title: 'access_canada',
-                      sortKey: 2,
-                      onClick: () => openFacebookLink(
-                          title: 'access_canada',
-                          linkName: 'url_access_canada')),
-                  ItemDivider(paddingLeft: 15),
-                  ItemRow(
-                      title: 'leader_today',
-                      sortKey: 3,
-                      onClick: () => openFacebookLink(
-                          title: 'leader_today', linkName: 'url_leader_today')),
-                  ItemDivider(paddingLeft: 15),
-                  ItemRow(
-                      title: 'senior_canada',
-                      isLast: true,
-                      sortKey: 4,
-                      onClick: () => openFacebookLink(
-                          title: 'senior_canada',
-                          linkName: 'url_senior_canada')),
-                ],
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      focusable: true,
+      focused: true,
+      label: "Social media screen loaded",
+      child: Scaffold(
+        backgroundColor: Styles.lightGray,
+        appBar: ESDCAppbar.renderMainAppbar(
+            title: 'title_soci_medi',
+            icon: 'asset/image/tab-social-active.svg',
+            context: context),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              CategoryLabel(
+                  label: 'facebook', icon: 'asset/image/icon-facebook.svg'),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  children: [
+                    ItemRow(
+                        title: 'esdc',
+                        isFirst: true,
+                        sortKey: 1,
+                        onClick: () => openFacebookLink(
+                            title: 'esdc_facebook',
+                            linkName: 'url_esdc_facebook')),
+                    ItemDivider(paddingLeft: 15),
+                    ItemRow(
+                        title: 'access_canada',
+                        sortKey: 2,
+                        onClick: () => openFacebookLink(
+                            title: 'access_canada',
+                            linkName: 'url_access_canada')),
+                    ItemDivider(paddingLeft: 15),
+                    ItemRow(
+                        title: 'leader_today',
+                        sortKey: 3,
+                        onClick: () => openFacebookLink(
+                            title: 'leader_today', linkName: 'url_leader_today')),
+                    ItemDivider(paddingLeft: 15),
+                    ItemRow(
+                        title: 'senior_canada',
+                        isLast: true,
+                        sortKey: 4,
+                        onClick: () => openFacebookLink(
+                            title: 'senior_canada',
+                            linkName: 'url_senior_canada')),
+                  ],
+                ),
               ),
-            ),
-            CategoryLabel(
-                label: 'twitter', icon: 'asset/image/icon-twitter.svg'),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                children: [
-                  ItemRow(
-                      title: 'esdc',
-                      isFirst: true,
-                      sortKey: 5,
-                      onClick: () => openTwitterLink(
-                          title: 'esdc_twitter', url: 'url_esdc_twitter')),
-                  ItemDivider(paddingLeft: 15),
-                  ItemRow(
-                      title: 'service_canada',
-                      sortKey: 6,
-                      onClick: () => openTwitterLink(
-                          title: 'service_canada', url: 'url_service_canada')),
-                  ItemDivider(paddingLeft: 15),
-                  ItemRow(
-                      title: 'access_canada',
-                      isLast: true,
-                      sortKey: 7,
-                      onClick: () => openTwitterLink(
-                          title: 'access_canada',
-                          url: 'url_access_canada_twitter')),
-                ],
+              CategoryLabel(
+                  label: 'twitter', icon: 'asset/image/icon-twitter.svg'),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  children: [
+                    ItemRow(
+                        title: 'esdc',
+                        isFirst: true,
+                        sortKey: 5,
+                        onClick: () => openTwitterLink(
+                            title: 'esdc_twitter', url: 'url_esdc_twitter')),
+                    ItemDivider(paddingLeft: 15),
+                    ItemRow(
+                        title: 'service_canada',
+                        sortKey: 6,
+                        onClick: () => openTwitterLink(
+                            title: 'service_canada', url: 'url_service_canada')),
+                    ItemDivider(paddingLeft: 15),
+                    ItemRow(
+                        title: 'access_canada',
+                        isLast: true,
+                        sortKey: 7,
+                        onClick: () => openTwitterLink(
+                            title: 'access_canada',
+                            url: 'url_access_canada_twitter')),
+                  ],
+                ),
               ),
-            ),
-            CategoryLabel(
-                label: 'you_tube', icon: 'asset/image/icon-youtube.svg'),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                children: [
-                  ItemRow(
-                      title: 'esdc',
-                      isFirst: true,
-                      sortKey: 8,
-                      onClick: () => openYoutubeLink(
-                          title: 'esdc_youtube', url: 'url_esdc_youtube')),
-                  ItemDivider(paddingLeft: 15),
-                  ItemRow(
-                      title: 'service_canada',
-                      isLast: true,
-                      sortKey: 9,
-                      onClick: () => openYoutubeLink(
-                          title: 'service_canada',
-                          url: 'url_service_canada_youtube')),
-                ],
+              CategoryLabel(
+                  label: 'you_tube', icon: 'asset/image/icon-youtube.svg'),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  children: [
+                    ItemRow(
+                        title: 'esdc',
+                        isFirst: true,
+                        sortKey: 8,
+                        onClick: () => openYoutubeLink(
+                            title: 'esdc_youtube', url: 'url_esdc_youtube')),
+                    ItemDivider(paddingLeft: 15),
+                    ItemRow(
+                        title: 'service_canada',
+                        isLast: true,
+                        sortKey: 9,
+                        onClick: () => openYoutubeLink(
+                            title: 'service_canada',
+                            url: 'url_service_canada_youtube')),
+                  ],
+                ),
               ),
-            ),
-            CategoryLabel(
-                label: 'instagram', icon: 'asset/image/icon-instagram.svg'),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                children: [
-                  ItemRow(
-                      title: 'esdc',
-                      isFirst: true,
-                      isLast: true,
-                      sortKey: 10,
-                      onClick: () => openInstagramLink(
-                          title: 'esdc_instagram', url: 'url_esdc_instagram')),
-                ],
+              CategoryLabel(
+                  label: 'instagram', icon: 'asset/image/icon-instagram.svg'),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  children: [
+                    ItemRow(
+                        title: 'esdc',
+                        isFirst: true,
+                        isLast: true,
+                        sortKey: 10,
+                        onClick: () => openInstagramLink(
+                            title: 'esdc_instagram', url: 'url_esdc_instagram')),
+                  ],
+                ),
               ),
-            ),
-            CategoryLabel(
-                label: 'linkedin', icon: 'asset/image/icon-linkedin.svg'),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                children: [
-                  ItemRow(
-                      title: 'esdc',
-                      isFirst: true,
-                      sortKey: 11,
-                      onClick: () => openLinkedinLink(
-                          title: 'esdc_linkedin', url: 'url_esdc_linkedin')),
-                  ItemDivider(paddingLeft: 15),
-                  ItemRow(
-                      title: 'service_canada',
-                      isLast: true,
-                      sortKey: 12,
-                      onClick: () => openLinkedinLink(
-                          title: 'service_canada',
-                          url: 'url_service_canada_linkedin')),
-                ],
+              CategoryLabel(
+                  label: 'linkedin', icon: 'asset/image/icon-linkedin.svg'),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  children: [
+                    ItemRow(
+                        title: 'esdc',
+                        isFirst: true,
+                        sortKey: 11,
+                        onClick: () => openLinkedinLink(
+                            title: 'esdc_linkedin', url: 'url_esdc_linkedin')),
+                    ItemDivider(paddingLeft: 15),
+                    ItemRow(
+                        title: 'service_canada',
+                        isLast: true,
+                        sortKey: 12,
+                        onClick: () => openLinkedinLink(
+                            title: 'service_canada',
+                            url: 'url_service_canada_linkedin')),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            )
-          ],
+              SizedBox(
+                height: 20,
+              )
+            ],
+          ),
         ),
       ),
     );

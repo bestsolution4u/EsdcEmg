@@ -40,6 +40,8 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
     return Semantics(
       container: true,
       explicitChildNodes: true,
+      focusable: true,
+      focused: true,
       label: "Employee screen loaded",
       child: Scaffold(
         backgroundColor: Styles.bgGrey,

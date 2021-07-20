@@ -111,6 +111,8 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
     return Semantics(
       container: true,
       explicitChildNodes: true,
+      focusable: true,
+      focused: true,
       label: "Home screen loaded",
       child: MultiBlocListener(
           listeners: [

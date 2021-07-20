@@ -29,6 +29,8 @@ class _MessageScreenState extends State<MessageScreen> {
     return Semantics(
       container: true,
       explicitChildNodes: true,
+      focusable: true,
+      focused: true,
       label: "Message list screen loaded",
       child: Scaffold(
         appBar: ESDCAppbar.renderMainAppbar(

@@ -31,7 +31,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         loop: false,
         isLive: false,
         forceHD: false,
-        enableCaption: false,
+        enableCaption: true,
       ),
     )..addListener(listener);
   }
