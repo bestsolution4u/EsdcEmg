@@ -1,6 +1,9 @@
+import 'package:chewie/chewie.dart';
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/youtube_video_model.dart';
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
@@ -18,10 +21,26 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   YoutubePlayerController _controller;
   bool muted;
 
+  VideoPlayerController videoPlayerController;
+  ChewieController chewieController;
+
   @override
   void initState() {
     super.initState();
-    muted = false;
+    videoPlayerController = VideoPlayerController.network(
+        'http://www.youtube.com/watch?v=${widget.video.id}');
+    videoPlayerController.initialize().then((value) {
+      setState(() {
+        chewieController = ChewieController(
+          videoPlayerController: videoPlayerController,
+          autoPlay: true,
+          looping: true,
+        );
+      });
+    });
+
+
+    /*muted = false;
     _controller = YoutubePlayerController(
       initialVideoId: widget.video.id,
       flags: YoutubePlayerFlags(
@@ -32,11 +51,19 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         isLive: false,
         forceHD: false,
         enableCaption: true,
+        captionLanguage: AppLocalization.currentLanguage
       ),
-    )..addListener(listener);
+    )..addListener(listener);*/
   }
 
   void listener() {
+  }
+
+  @override
+  void dispose() {
+    videoPlayerController.dispose();
+    chewieController.dispose();
+    super.dispose();
   }
 
   @override
@@ -50,7 +77,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         body: Stack(
           children: [
             Center(
-              child: YoutubePlayer(
+              child: /*YoutubePlayer(
                 controller: _controller,
                 showVideoProgressIndicator: true,
                 progressColors: ProgressBarColors(
@@ -78,6 +105,19 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                     });
                   })
                 ],
+              )*/ AspectRatio(
+                aspectRatio: videoPlayerController.value.aspectRatio,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    Chewie(
+                      controller: chewieController,
+                    ),
+                    ClosedCaption(
+                      text: videoPlayerController.value.caption.text,
+                    ),
+                  ],
+                ),
               ),
             ),
             Positioned(
