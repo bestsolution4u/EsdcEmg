@@ -43,53 +43,36 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
       focusable: true,
       focused: true,
       label: "Resources screen loaded",
-      child: Scaffold(
-        backgroundColor: Styles.bgGrey,
-        appBar: ESDCAppbar.renderMainAppbar(
-            title: 'title_emply',
-            icon: 'asset/image/tab-employees-active.svg',
-            context: context),
-        body: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              color: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              child: CupertinoSlidingSegmentedControl(
-                  children: {
-                    0: Semantics(
-                      child: Text(
-                        AppLocalization.of(context).trans('resources'),
-                        style: TextStyle(color: Styles.darkerBlue, fontSize: 15),
-                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+      child: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            backgroundColor: Styles.bgGrey,
+            appBar: ESDCAppbar.renderMainAppbar(
+                title: 'title_emply',
+                icon: 'asset/image/tab-employees-active.svg',
+                context: context),
+            body: Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  color: Colors.white,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                  child: TabBar(
+                    tabs: [
+                      Tab(
+                        text: AppLocalization.of(context).trans('resources'),
                       ),
-                      excludeSemantics: true,
-                      label: "Resources tab, 1 of 2",
-                      selected: _sliding == 0,
-                      button: false,
-                    ),
-                    1: Semantics(
-                      child: Text(
-                        AppLocalization.of(context).trans('contacts'),
-                        style: TextStyle(color: Styles.darkerBlue, fontSize: 15),
-                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                      Tab(
+                        text: AppLocalization.of(context).trans('contacts'),
                       ),
-                      excludeSemantics: true,
-                      selected: _sliding == 1,
-                      label: "Contacts tab, 2 of 2",
-                      button: false
-                    ),
-                  },
-                  groupValue: _sliding,
-                  onValueChanged: (newValue) {
-                    setState(() {
-                      _sliding = newValue;
-                    });
-                  }),
-            ),
-            _sliding == 0
-                ? Expanded(
-                    child: SingleChildScrollView(
+                    ],
+                  ),
+                ),
+                Expanded(
+                    child: TabBarView(
+                  children: [
+                    SingleChildScrollView(
                       child: Column(
                         children: [
                           CategoryLabel(label: 'heath_and_wellness'),
@@ -145,12 +128,18 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                     sortKey: 4,
                                     isLast: true,
                                     onClick: () async {
-                                      Directory directory = await getApplicationDocumentsDirectory();
-                                      var tempPath = join(directory.path, "calendar.pdf");
+                                      Directory directory =
+                                          await getApplicationDocumentsDirectory();
+                                      var tempPath =
+                                          join(directory.path, "calendar.pdf");
                                       if (!(await File(tempPath).exists())) {
-                                        ByteData data = await rootBundle.load("asset/pdf/calendar.pdf");
-                                        List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-                                        await File(tempPath).writeAsBytes(bytes);
+                                        ByteData data = await rootBundle
+                                            .load("asset/pdf/calendar.pdf");
+                                        List<int> bytes = data.buffer
+                                            .asUint8List(data.offsetInBytes,
+                                                data.lengthInBytes);
+                                        await File(tempPath)
+                                            .writeAsBytes(bytes);
                                       }
                                       OpenFile.open(tempPath);
                                     }),
@@ -200,7 +189,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                     isLast: true,
                                     sortKey: 7,
                                     onClick: () => gotoWebviewScreen(
-                                      context: context,
+                                        context: context,
                                         title: 'award_recognition',
                                         url: 'url_award_recognition')),
                               ],
@@ -229,7 +218,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                         'asset/image/icon-row-esdcwebsite.svg',
                                     isLast: true,
                                     onClick: () => gotoWebviewScreen(
-                                      context: context,
+                                        context: context,
                                         title: 'esdc_web',
                                         url: 'url_esdc_web')),
                               ],
@@ -241,9 +230,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                         ],
                       ),
                     ),
-                  )
-                : Expanded(
-                    child: SingleChildScrollView(
+                    SingleChildScrollView(
                       child: Column(
                         children: [
                           ContactItemRow(
@@ -375,11 +362,12 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                           )
                         ],
                       ),
-                    ),
-                  ),
-          ],
-        ),
-      ),
+                    )
+                  ],
+                ))
+              ],
+            ),
+          )),
     );
   }
 

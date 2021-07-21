@@ -50,6 +50,7 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
             days.toString() +
             " " +
             AppLocalization.of(context).trans("days");
+        if (days == 1) strExpDuration = strExpDuration.substring(0, strExpDuration.length - 1);
       } else {
         strExpDuration = AppLocalization.of(context).trans("today");
       }
@@ -154,9 +155,6 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                     Navigator.pop(context);
                   },
                 ),
-                /*BorderedButton(title: 'Share this page', onClick: () {
-                  Navigator.pop(context);
-                },),*/
                 BorderedButton(
                   title: AppLocalization.of(context).trans('delete'),
                   buttonColor: Styles.red,
@@ -207,6 +205,12 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                                 )
                               ],
                             ));
+                  },
+                ),
+                BorderedButton(
+                  title: AppLocalization.of(context).trans('cancel'),
+                  onClick: () {
+                    Navigator.pop(context);
                   },
                 ),
               ],

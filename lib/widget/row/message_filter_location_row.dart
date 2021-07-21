@@ -77,6 +77,7 @@ class _MessageFilterLocationRowState extends State<MessageFilterLocationRow> {
                   activeColor: Styles.blue,
                   onChanged: (value) {
                     _settingBloc.add(SettingUpdateMessageLocationEvent(messageLocation: widget.location, enabled: value));
+                    SemanticsService.announce(AppLocalization.of(context).trans(widget.location) + " ${value ? "Checked" : "Unchecked"}", TextDirection.ltr);
                   })
             ],
           ),
