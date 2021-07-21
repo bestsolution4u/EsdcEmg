@@ -44,7 +44,7 @@ class _FilterLocationScreenState extends State<FilterLocationScreen> {
                       ListView.separated(
                           primary: false,
                           shrinkWrap: true,
-                          itemBuilder: (context, index) => MessageFilterLocationRow(location: Globals.MESSAGE_LOCATIONS[index],),
+                          itemBuilder: (context, index) => MessageFilterLocationRow(location: Globals.MESSAGE_LOCATIONS[index], order: index.toDouble(),),
                           separatorBuilder: (context, index) => ItemDivider(paddingLeft: 20),
                           itemCount: Globals.MESSAGE_LOCATIONS.length),
                       ItemDivider(paddingLeft: 0,),

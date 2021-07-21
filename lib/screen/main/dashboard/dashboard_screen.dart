@@ -86,7 +86,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
     if (mounted) {
       DateTime updatedTime = PreferenceHelper.getDate(PrefParams.VPN_UPDATED_AT);
       List<String> values = PreferenceHelper.getStringList(PrefParams.VPN_STATUS);
-      if (values != null) {
+      if (values != null && values.isNotEmpty) {
         setState(() {
           vpnUpdatedAt = updatedTime;
           vpnStatusList = values.map((e) => VPNStatusModel.fromString(e)).toList();

@@ -66,6 +66,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                       excludeSemantics: true,
                       label: "Resources tab, 1 of 2",
                       selected: _sliding == 0,
+                      button: false
                     ),
                     1: Semantics(
                       child: Text(
@@ -76,6 +77,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                       excludeSemantics: true,
                       selected: _sliding == 1,
                       label: "Contacts tab, 2 of 2",
+                      button: false
                     ),
                   },
                   groupValue: _sliding,

@@ -31,7 +31,13 @@ class VpnStatusRow extends StatelessWidget {
         status = "moderate";
       }
     }
-
+    String semanticLabel = "";
+    if (vpnStatus.sitename.isNotEmpty) {
+      vpnStatus.sitename.characters.forEach((element) {
+        semanticLabel += element;
+        semanticLabel += " ";
+      });
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,6 +47,7 @@ class VpnStatusRow extends StatelessWidget {
           width: ScreenUtil.calcTextScaleFactor(context) > 1 ? 80 : 60,
           child: Text(
             vpnStatus.sitename,
+            semanticsLabel: semanticLabel,
             style: TextStyle(color: Styles.primaryColor, fontSize: 16, fontWeight: FontWeight.w600),
             textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
           ),

@@ -47,7 +47,7 @@ class _FilterTopicScreenState extends State<FilterTopicScreen> {
                       ListView.separated(
                           primary: false,
                           shrinkWrap: true,
-                          itemBuilder: (context, index) => MessageFilterTopicRow(topic: Globals.MESSAGE_CATEGORIES[index]),
+                          itemBuilder: (context, index) => MessageFilterTopicRow(topic: Globals.MESSAGE_CATEGORIES[index], order: index.toDouble(),),
                           separatorBuilder: (context, index) => ItemDivider(paddingLeft: 20),
                           itemCount: Globals.MESSAGE_CATEGORIES.length),
                       ItemDivider(paddingLeft: 0,),

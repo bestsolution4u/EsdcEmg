@@ -5,13 +5,15 @@ import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/util/screen_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MessageFilterTopicRow extends StatefulWidget {
 
   final String topic;
+  final double order;
 
-  MessageFilterTopicRow({this.topic});
+  MessageFilterTopicRow({this.topic, this.order});
 
   @override
   _MessageFilterTopicRowState createState() => _MessageFilterTopicRowState();
@@ -51,6 +53,7 @@ class _MessageFilterTopicRowState extends State<MessageFilterTopicRow> {
           }
         },
       child: Semantics(
+        sortKey: OrdinalSortKey(widget.order),
         checked: _isEnabled,
         label: AppLocalization.of(context).trans(widget.topic),
         excludeSemantics: true,
