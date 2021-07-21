@@ -55,7 +55,7 @@ class _MessageFilterLocationRowState extends State<MessageFilterLocationRow> {
       child: Semantics(
         sortKey: OrdinalSortKey(widget.order),
         checked: _isEnabled,
-        label: AppLocalization.of(context).trans(widget.location),
+        label: AppLocalization.of(context).trans(widget.location) + " ${_isEnabled ? "Checked" : "Unchecked"}",
         excludeSemantics: true,
         onTap: () {
           _settingBloc.add(SettingUpdateMessageLocationEvent(messageLocation: widget.location, enabled: !_isEnabled));

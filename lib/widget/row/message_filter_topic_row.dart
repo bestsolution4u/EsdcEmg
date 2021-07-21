@@ -55,7 +55,7 @@ class _MessageFilterTopicRowState extends State<MessageFilterTopicRow> {
       child: Semantics(
         sortKey: OrdinalSortKey(widget.order),
         checked: _isEnabled,
-        label: AppLocalization.of(context).trans(widget.topic),
+        label: AppLocalization.of(context).trans(widget.topic) + " ${_isEnabled ? "Checked" : "Unchecked"}",
         excludeSemantics: true,
         onTap: () {
           _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: widget.topic, enabled: !_isEnabled));

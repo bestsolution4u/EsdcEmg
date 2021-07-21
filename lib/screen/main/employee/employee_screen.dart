@@ -42,7 +42,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
       explicitChildNodes: true,
       focusable: true,
       focused: true,
-      label: "Employee screen loaded",
+      label: "Resources screen loaded",
       child: Scaffold(
         backgroundColor: Styles.bgGrey,
         appBar: ESDCAppbar.renderMainAppbar(
@@ -66,7 +66,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                       excludeSemantics: true,
                       label: "Resources tab, 1 of 2",
                       selected: _sliding == 0,
-                      button: false
+                      button: false,
                     ),
                     1: Semantics(
                       child: Text(
