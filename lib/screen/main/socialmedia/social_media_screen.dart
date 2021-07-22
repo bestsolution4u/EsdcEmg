@@ -24,7 +24,7 @@ class _SocialMediaScreenState extends State<SocialMediaScreen> {
       explicitChildNodes: true,
       focusable: true,
       focused: true,
-      label: "Social media screen loaded",
+      label: AppLocalization.of(context).trans("social_page_loaded"),
       child: Scaffold(
         backgroundColor: Styles.lightGray,
         appBar: ESDCAppbar.renderMainAppbar(

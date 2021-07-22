@@ -113,7 +113,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
       explicitChildNodes: true,
       focusable: true,
       focused: true,
-      label: "Home screen loaded",
+      label: AppLocalization.of(context).trans("home_page_loaded"),
       child: MultiBlocListener(
           listeners: [
             BlocListener<SettingBloc, SettingState>(

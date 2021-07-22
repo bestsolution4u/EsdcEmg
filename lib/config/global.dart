@@ -10,6 +10,7 @@ class Globals {
   static const bool IS_PRODUCTION = false;
   static const double MAX_TEXT_SCALE_FACTOR = 1.8;
   static SharedPreferences preferences;
+  static String appLanguage;
 
   /// Supported languages
   static const List<String> SupportedLanguages = [

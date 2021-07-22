@@ -42,7 +42,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
       explicitChildNodes: true,
       focusable: true,
       focused: true,
-      label: "Resources screen loaded",
+      label: AppLocalization.of(context).trans("resource_page_loaded"),
       child: DefaultTabController(
           length: 2,
           child: Scaffold(
