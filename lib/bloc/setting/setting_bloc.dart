@@ -28,6 +28,10 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
       var firestore = FirebaseFirestore.instance;
       Map<String, dynamic> settingsJson = (await firestore.collection("setting").doc("${PreferenceHelper.getString(PrefParams.DEVICE_ID)}").get()).data() ?? {};
       SettingModel settingModel = SettingModel.fromJson(settingsJson);
+      if (Globals.appLanguage != null && Globals.appLanguage.isNotEmpty) {
+        settingModel.language = Globals.appLanguage;
+        Globals.appLanguage = null;
+      }
       yield SettingLoadSuccessState(settings: settingModel);
     } catch (e) {
       yield SettingLoadSuccessState(settings: SettingModel.fromJson(null));

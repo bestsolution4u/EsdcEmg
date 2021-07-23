@@ -31,7 +31,7 @@ class _MessageScreenState extends State<MessageScreen> {
       explicitChildNodes: true,
       focusable: true,
       focused: true,
-      label: "Message list screen loaded",
+      label: AppLocalization.of(context).trans("message_page_loaded"),
       child: Scaffold(
         appBar: ESDCAppbar.renderMainAppbar(
             title: 'title_msg',

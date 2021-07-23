@@ -61,30 +61,51 @@ class _EsdcEmgAppState extends State<EsdcEmgApp> {
           debugShowCheckedModeBanner: false,
           showSemanticsDebugger: false,
           onGenerateRoute: routes.generateRoute,
+          localeResolutionCallback: (deviceLocale, supportedLocales) {
+            print("------------------- Locale Resolution Callback ------------");
+            Locale myLocale = Locale("en", "");
+            if (supportedLocales.where((element) => element.languageCode == deviceLocale.languageCode).isNotEmpty) {
+              myLocale = deviceLocale;
+            }
+            if (AppBloc.settingBloc.state is SettingLoadSuccessState) {
+              AppBloc.settingBloc.add(SettingUpdateLanguageEvent(language: myLocale.languageCode));
+            } else {
+              Globals.appLanguage = myLocale.languageCode;
+            }
+
+            return myLocale;
+          },
           localizationsDelegates: [
             _localizationsDelegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
           ],
-          supportedLocales: Globals.SupportedLanguageCodes.map<Locale>((language) => Locale(language, "")),
+          supportedLocales: Globals.SupportedLanguageCodes.map<Locale>(
+              (language) => Locale(language, "")),
           theme: ThemeData(
-            primaryColor: Colors.white,
-            platform: TargetPlatform.iOS,
-            appBarTheme: AppBarTheme(color: Colors.white),
-            fontFamily: 'PopBlack',
-              bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.white)
-          ),
+              primaryColor: Colors.white,
+              platform: TargetPlatform.iOS,
+              appBarTheme: AppBarTheme(color: Colors.white),
+              fontFamily: 'PopBlack',
+              bottomSheetTheme:
+                  BottomSheetThemeData(backgroundColor: Colors.white)),
           home: BlocBuilder<ApplicationBloc, ApplicationState>(
             builder: (context, state) {
               return BlocListener<SettingBloc, SettingState>(
                 listener: (context, settingState) {
                   if (settingState is SettingLoadSuccessState) {
-                    if (AppLocalization.currentLanguage != settingState.settings.language) {
-                      Globals.onLocaleChanged(Locale(settingState.settings.language));
+                    if (AppLocalization.currentLanguage !=
+                        settingState.settings.language) {
+                      Globals.onLocaleChanged(
+                          Locale(settingState.settings.language));
                     }
                   }
                 },
-                child: state is ApplicationSetupState ? MainScreen() : state is ApplicationIntroState ? IntroScreen() : SplashScreen(),
+                child: state is ApplicationSetupState
+                    ? MainScreen()
+                    : state is ApplicationIntroState
+                        ? IntroScreen()
+                        : SplashScreen(),
               );
             },
           ),

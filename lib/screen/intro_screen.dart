@@ -32,7 +32,7 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: AppLocalization.of(context).trans('app_title_label'),
+      label: AppLocalization.of(context).trans('onboarding_page_loaded'),
       explicitChildNodes: true,
       child: Scaffold(
         backgroundColor: Colors.white,
