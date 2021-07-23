@@ -18,11 +18,13 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   YoutubePlayerController _controller;
   bool muted;
+  bool enableCC;
 
   @override
   void initState() {
     super.initState();
     muted = false;
+    enableCC = true;
     _controller = YoutubePlayerController(
       initialVideoId: widget.video.id,
       flags: YoutubePlayerFlags(
@@ -32,13 +34,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         loop: false,
         isLive: false,
         forceHD: false,
-        enableCaption: true,
+        enableCaption: enableCC,
         captionLanguage: AppLocalization.currentLanguage
       ),
-    )..addListener(listener);
-  }
-
-  void listener() {
+    );
   }
 
   @override
@@ -48,6 +47,56 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    var player = YoutubePlayer(
+      controller: _controller,
+      showVideoProgressIndicator: true,
+      progressColors: ProgressBarColors(
+        playedColor: Colors.white,
+        handleColor: Styles.bgGrey,
+      ),
+      bottomActions: [
+        SizedBox(width: 14.0),
+        CurrentPosition(),
+        SizedBox(width: 8.0),
+        ProgressBar(
+          isExpanded: true,
+        ),
+        RemainingDuration(),
+        PlaybackSpeedButton(),
+        FullScreenButton(),
+        IconButton(icon: Icon(enableCC ? Icons.closed_caption : Icons.closed_caption_disabled, color: Colors.white,), onPressed: () {
+          setState(() {
+            enableCC = !enableCC;
+            _controller = YoutubePlayerController(
+              initialVideoId: widget.video.id,
+              flags: YoutubePlayerFlags(
+                  mute: muted,
+                  autoPlay: true,
+                  disableDragSeek: false,
+                  loop: false,
+                  isLive: false,
+                  forceHD: false,
+                  enableCaption: enableCC,
+                  captionLanguage: AppLocalization.currentLanguage
+              ),
+            );
+          });
+        }),
+        IconButton(icon: Icon(muted ? Icons.volume_mute : Icons.volume_off, color: Colors.white,), onPressed: () {
+          if (muted) {
+            _controller.unMute();
+          } else {
+            _controller.mute();
+          }
+          setState(() {
+            muted = !muted;
+          });
+        })
+      ],
+    );
+    print('---------------------- build player -------------------');
+    print(enableCC);
     return Semantics(
       container: true,
       explicitChildNodes: true,
@@ -57,35 +106,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         body: Stack(
           children: [
             Center(
-              child: YoutubePlayer(
-                controller: _controller,
-                showVideoProgressIndicator: true,
-                progressColors: ProgressBarColors(
-                  playedColor: Colors.white,
-                  handleColor: Styles.bgGrey,
-                ),
-                bottomActions: [
-                  const SizedBox(width: 14.0),
-                  CurrentPosition(),
-                  const SizedBox(width: 8.0),
-                  ProgressBar(
-                    isExpanded: true,
-                  ),
-                  RemainingDuration(),
-                  const PlaybackSpeedButton(),
-                  FullScreenButton(),
-                  IconButton(icon: Icon(muted ? Icons.volume_mute : Icons.volume_off, color: Colors.white,), onPressed: () {
-                    if (muted) {
-                      _controller.unMute();
-                    } else {
-                      _controller.mute();
-                    }
-                    setState(() {
-                      muted = !muted;
-                    });
-                  })
-                ],
-              ),
+              child: player,
             ),
             Positioned(
                 right: 10,
