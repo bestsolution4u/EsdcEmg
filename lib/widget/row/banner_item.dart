@@ -7,6 +7,7 @@ import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/button/ripple_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BannerItem extends StatefulWidget {
 
@@ -29,8 +30,13 @@ class _BannerItemState extends State<BannerItem> {
         excludeSemantics: true,
         sortKey: OrdinalSortKey(widget.sortKey),
         child: RippleComponent(
-          onClick: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPlayerScreen(video: widget.video,),));
+          onClick: () async {
+            String url = "http://www.youtube.com/watch?v=" + widget.video.id;
+            if (await canLaunch(url)) {
+            await launch(url);
+            } else {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPlayerScreen(video: widget.video,),));
+            }
           },
           borderRadius: 6,
           child: Column(
