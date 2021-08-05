@@ -96,6 +96,7 @@
   "filtered_inbox": "Filtrer la boîte de réception",
   "notifications": "Alertes",
   "all_messages": "Tous les messages",
+  "no_message": "Aucun message",
   "archive": "Archiver",
   "by_location": "Par emplacement: Ottawa ON",
   "only_urgent_msg": "Seuls les messages urgents",

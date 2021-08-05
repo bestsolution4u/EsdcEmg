@@ -9,7 +9,6 @@ import 'package:flutter/semantics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MessageFilterTopicRow extends StatefulWidget {
-
   final String topic;
   final double order;
 
@@ -20,7 +19,6 @@ class MessageFilterTopicRow extends StatefulWidget {
 }
 
 class _MessageFilterTopicRowState extends State<MessageFilterTopicRow> {
-
   SettingBloc _settingBloc;
   bool _isEnabled = false;
 
@@ -29,14 +27,19 @@ class _MessageFilterTopicRowState extends State<MessageFilterTopicRow> {
     super.initState();
     _settingBloc = BlocProvider.of<SettingBloc>(context);
     if (_settingBloc.state is SettingLoadSuccessState) {
-      update((_settingBloc.state as SettingLoadSuccessState).settings.messageCategory);
+      update((_settingBloc.state as SettingLoadSuccessState)
+          .settings
+          .messageCategory);
     }
   }
 
   void update(String categories) {
     bool selected = false;
     List<String> catList = categories.split(',');
-    if ((catList != null && catList.isNotEmpty && catList.contains(widget.topic)) || catList.contains(Globals.DEFAULT_MESSAGE_CATEGORY)) {
+    if ((catList != null &&
+            catList.isNotEmpty &&
+            catList.contains(widget.topic)) ||
+        catList.contains(Globals.DEFAULT_MESSAGE_CATEGORY)) {
       selected = true;
     }
     setState(() {
@@ -47,43 +50,32 @@ class _MessageFilterTopicRowState extends State<MessageFilterTopicRow> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SettingBloc, SettingState>(
-        listener: (context, state) {
-          if (state is SettingLoadSuccessState) {
-            update(state.settings.messageCategory);
-          }
-        },
-      child: Semantics(
-        sortKey: OrdinalSortKey(widget.order),
-        checked: _isEnabled,
-        label: AppLocalization.of(context).trans(widget.topic) + " ${_isEnabled ? "Checked" : "Unchecked"}",
-        excludeSemantics: true,
-        onTap: () {
-          _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: widget.topic, enabled: !_isEnabled));
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Row(
-            children: [
-              Expanded(
-                  child: Text(
-                    AppLocalization.of(context).trans(widget.topic),
-                    style: TextStyle(fontSize: 16, color: Styles.darkerBlue),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)
+      listener: (context, state) {
+        if (state is SettingLoadSuccessState) {
+          update(state.settings.messageCategory);
+        }
+      },
+      child: MergeSemantics(
+          child: ListTile(
+              onTap: () {
+                _settingBloc.add(SettingUpdateMessageCategoryEvent(
+                    messageCategory: widget.topic, enabled: !_isEnabled));
+              },
+              title: Text(
+                AppLocalization.of(context).trans(widget.topic),
+                style: TextStyle(fontSize: 16, color: Styles.darkerBlue),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
               ),
-              SizedBox(width: 20,),
-              CupertinoSwitch(
+              trailing: CupertinoSwitch(
                   value: _isEnabled,
                   activeColor: Styles.blue,
                   trackColor: Styles.bgSwitchOff,
                   onChanged: (value) {
-                    _settingBloc.add(SettingUpdateMessageCategoryEvent(messageCategory: widget.topic, enabled: value));
-                  })
-            ],
-          ),
-        ),
-      ),
+                    _settingBloc.add(SettingUpdateMessageCategoryEvent(
+                        messageCategory: widget.topic, enabled: value));
+                  }))),
     );
   }
 }

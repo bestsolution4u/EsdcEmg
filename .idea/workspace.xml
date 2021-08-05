@@ -32,18 +32,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de040a4d-ce5b-445c-af48-5b5d85361f55" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/lang/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/asset/lang/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/asset/lang/fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generated_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated_plugin_registrant.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screen/main/socialmedia/social_media_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/main/socialmedia/social_media_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -510,10 +501,10 @@
     </state>
     <state x="765" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1621265977982" />
     <state x="2395" y="187" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1619531252297" />
-    <state x="78" y="177" width="1022" height="456" key="AVDManager" timestamp="1625242819586">
+    <state x="78" y="177" width="1022" height="456" key="AVDManager" timestamp="1625248499476">
       <screen x="0" y="0" width="1475" height="789" />
     </state>
-    <state x="78" y="177" width="1022" height="456" key="AVDManager/0.0.1475.789@0.0.1475.789" timestamp="1625242819586" />
+    <state x="78" y="177" width="1022" height="456" key="AVDManager/0.0.1475.789@0.0.1475.789" timestamp="1625248499476" />
     <state x="244" y="233" width="1224" height="600" key="AVDManager/150.0.1770.1040/1920.0.1366.728@150.0.1770.1040" timestamp="1622205629809" />
     <state x="1991" y="64" width="1224" height="600" key="AVDManager/150.0.1770.1040/1920.0.1366.728@1920.0.1366.728" timestamp="1621953195112" />
     <state x="196" y="163" width="605" height="420" key="AVDManager/150.0.874.728@150.0.874.728" timestamp="1622451492809" />

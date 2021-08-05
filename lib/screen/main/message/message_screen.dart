@@ -23,7 +23,6 @@ class MessageScreen extends StatefulWidget {
 }
 
 class _MessageScreenState extends State<MessageScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Semantics(
@@ -42,7 +41,8 @@ class _MessageScreenState extends State<MessageScreen> {
               child: Stack(
                 children: [
                   AppIconButton(
-                    sematicLabel: AppLocalization.of(context).trans('filtered_inbox'),
+                    sematicLabel:
+                        AppLocalization.of(context).trans('filtered_inbox'),
                     icon: SvgPicture.asset(
                       'asset/image/setting.svg',
                       color: Styles.darkerBlue,
@@ -51,32 +51,47 @@ class _MessageScreenState extends State<MessageScreen> {
                     ),
                     onClick: () => openFilter(),
                     rippleRadius: 36,
-                    padding: 4,
+                    padding: 12,
                   ),
                   Positioned(
                     top: 0,
                     right: 8,
                     child: BlocBuilder<SettingBloc, SettingState>(
                       builder: (context, state) {
-                        if (state is !SettingLoadSuccessState) return Container();
-                        SettingModel settingModel = (state as SettingLoadSuccessState).settings;
-                        List<String> topicFilters = settingModel.messageCategory.split(",").where((element) => element != null && element.isNotEmpty && element != Globals.DEFAULT_MESSAGE_CATEGORY).toList();
-                        List<String> locationFilters = settingModel.messageLocation.split(",").where((element) => element != null && element.isNotEmpty && element != Globals.MESSAGE_LOCATIONS[0]).toList();
-                        if (topicFilters.length + locationFilters.length > 0) return Container(
-                            width: 12,
-                            height: 12,
-                            margin: const EdgeInsets.only(top: 6),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: Styles.blue
-                            ));
+                        if (state is! SettingLoadSuccessState)
+                          return Container();
+                        SettingModel settingModel =
+                            (state as SettingLoadSuccessState).settings;
+                        List<String> topicFilters = settingModel.messageCategory
+                            .split(",")
+                            .where((element) =>
+                                element != null &&
+                                element.isNotEmpty &&
+                                element != Globals.DEFAULT_MESSAGE_CATEGORY)
+                            .toList();
+                        List<String> locationFilters = settingModel
+                            .messageLocation
+                            .split(",")
+                            .where((element) =>
+                                element != null &&
+                                element.isNotEmpty &&
+                                element != Globals.MESSAGE_LOCATIONS[0])
+                            .toList();
+                        if (topicFilters.length + locationFilters.length > 0)
+                          return Container(
+                              width: 12,
+                              height: 12,
+                              margin: const EdgeInsets.only(top: 6),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: Styles.blue));
                         return Container();
                       },
-                    ),)
+                    ),
+                  )
                 ],
               ),
-            )
-        ),
+            )),
         body: BlocBuilder<MessageBloc, MessageState>(
           builder: (context, state) {
             if (state is MessageLoadingState) {
@@ -85,15 +100,32 @@ class _MessageScreenState extends State<MessageScreen> {
               );
             } else if (state is MessageLoadFailureState) {
               return Center(
-                child: Text('Error', textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                child: Text(
+                  AppLocalization.of(context).trans('error'),
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                ),
               );
             } else {
-              List<MessageModel> messages = (state as MessageLoadSuccessState).messages;
+              List<MessageModel> messages =
+                  (state as MessageLoadSuccessState).messages;
+
+              if (messages.isEmpty) {
+                return Center(
+                  child: Text(
+                    AppLocalization.of(context).trans('no_message'),
+                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                  ),
+                );
+              }
+
               return SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Divider(height: 1, color: Styles.bgGrey,),
+                    Divider(
+                      height: 1,
+                      color: Styles.bgGrey,
+                    ),
                     buildFilterCount(),
                     buildMessages(messages),
                   ],
@@ -108,14 +140,29 @@ class _MessageScreenState extends State<MessageScreen> {
 
   Widget buildFilterCount() {
     return BlocBuilder<SettingBloc, SettingState>(
-        builder: (context, state) {
-          if (state is !SettingLoadSuccessState) return Container();
-          SettingModel settingModel = (state as SettingLoadSuccessState).settings;
-          List<String> topicFilters = settingModel.messageCategory.split(",").where((element) => element != null && element.isNotEmpty && element != Globals.DEFAULT_MESSAGE_CATEGORY).toList();
-          List<String> locationFilters = settingModel.messageLocation.split(",").where((element) => element != null && element.isNotEmpty && element != Globals.MESSAGE_LOCATIONS[0]).toList();
-          int count = topicFilters.length + locationFilters.length;
-          if (count > 0) return RippleComponent(
-            semanticLabel: AppLocalization.of(context).trans('you_have') + count.toString() + AppLocalization.of(context).trans('message_filters_applied'),
+      builder: (context, state) {
+        if (state is! SettingLoadSuccessState) return Container();
+        SettingModel settingModel = (state as SettingLoadSuccessState).settings;
+        List<String> topicFilters = settingModel.messageCategory
+            .split(",")
+            .where((element) =>
+                element != null &&
+                element.isNotEmpty &&
+                element != Globals.DEFAULT_MESSAGE_CATEGORY)
+            .toList();
+        List<String> locationFilters = settingModel.messageLocation
+            .split(",")
+            .where((element) =>
+                element != null &&
+                element.isNotEmpty &&
+                element != Globals.MESSAGE_LOCATIONS[0])
+            .toList();
+        int count = topicFilters.length + locationFilters.length;
+        if (count > 0)
+          return RippleComponent(
+            semanticLabel: AppLocalization.of(context).trans('you_have') +
+                count.toString() +
+                AppLocalization.of(context).trans('message_filters_applied'),
             onClick: () => openFilter(),
             child: Container(
               color: Colors.white,
@@ -123,19 +170,30 @@ class _MessageScreenState extends State<MessageScreen> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Text(
-                    AppLocalization.of(context).trans('you_have') + count.toString() + AppLocalization.of(context).trans('message_filters_applied'),
+                    AppLocalization.of(context).trans('you_have') +
+                        count.toString() +
+                        AppLocalization.of(context)
+                            .trans('message_filters_applied'),
                     style: TextStyle(fontSize: 12, color: Styles.blue),
-                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                  SizedBox(height: 10,),
-                  Divider(height: 1, color: Styles.bgGrey,),
+                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Styles.bgGrey,
+                  ),
                 ],
               ),
             ),
           );
-          return Container();
-        },
+        return Container();
+      },
     );
   }
 
@@ -149,11 +207,13 @@ class _MessageScreenState extends State<MessageScreen> {
         ),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      builder: (context) => Wrap(children: [
-        BlocBuilder<SettingBloc, SettingState>(
+      builder: (context) => Wrap(
+        children: [
+          BlocBuilder<SettingBloc, SettingState>(
             builder: (context, state) {
-              if (state is !SettingLoadSuccessState) return Container();
-              SettingModel settingModel = (state as SettingLoadSuccessState).settings;
+              if (state is! SettingLoadSuccessState) return Container();
+              SettingModel settingModel =
+                  (state as SettingLoadSuccessState).settings;
               return Container(
                 height: ScreenUtil.calcTextScaleFactor(context) > 1 ? 350 : 250,
                 padding: const EdgeInsets.all(20),
@@ -169,11 +229,16 @@ class _MessageScreenState extends State<MessageScreen> {
                                 color: Styles.darkerBlue,
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold),
-                            textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                            textScaleFactor:
+                                ScreenUtil.calcTextScaleFactor(context),
                           ),
                           Spacer(),
                           AppIconButton(
-                            icon: Icon(Icons.close, color: Styles.blue, size: 24,),
+                            icon: Icon(
+                              Icons.close,
+                              color: Styles.blue,
+                              size: 24,
+                            ),
                             padding: 12,
                             rippleRadius: 24,
                             onClick: () => Navigator.pop(context),
@@ -185,21 +250,29 @@ class _MessageScreenState extends State<MessageScreen> {
                         height: 10,
                       ),
                       Text(
-                        AppLocalization.of(context).trans("customize_inbox_looks"),
+                        AppLocalization.of(context)
+                            .trans("customize_inbox_looks"),
                         style: TextStyle(
                             color: Styles.darkerBlue,
                             fontSize: 14,
                             fontWeight: FontWeight.w400),
-                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),
+                        textScaleFactor:
+                            ScreenUtil.calcTextScaleFactor(context),
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       SettingItemRow(
                         label: 'topic',
                         value: settingModel.messageCategory,
                         isTopic: true,
                         onClick: () {
                           Navigator.pop(context);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => FilterTopicScreen(),));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FilterTopicScreen(),
+                              ));
                         },
                         backgroundColor: Colors.transparent,
                         borderPadding: 0,
@@ -212,7 +285,11 @@ class _MessageScreenState extends State<MessageScreen> {
                         isLocation: true,
                         onClick: () {
                           Navigator.pop(context);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => FilterLocationScreen(),));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FilterLocationScreen(),
+                              ));
                         },
                         backgroundColor: Colors.transparent,
                         borderPadding: 0,
@@ -224,32 +301,38 @@ class _MessageScreenState extends State<MessageScreen> {
                 ),
               );
             },
-        ),
-      ],),);
+          ),
+        ],
+      ),
+    );
   }
 
   Widget buildMessages(List<MessageModel> allMessages) {
     return BlocBuilder<SettingBloc, SettingState>(
-        builder: (context, state) {
-          List<MessageModel> messages = [];
-          if (state is !SettingLoadSuccessState) {
-            messages = allMessages;
-          } else {
-            SettingModel settings = (state as SettingLoadSuccessState).settings;
-            messages = filterMessages(allMessages, settings.messageCategory, settings.messageLocation);
-          }
-          return ListView.separated(
-            itemCount: messages.length,
-            physics: BouncingScrollPhysics(),
-            primary: false,
-            shrinkWrap: true,
-            itemBuilder: (context, index) => MessageItemRow(message: messages[index]),
-            separatorBuilder: (context, index) => ItemDivider(),
-          );
-        },);
+      builder: (context, state) {
+        List<MessageModel> messages = [];
+        if (state is! SettingLoadSuccessState) {
+          messages = allMessages;
+        } else {
+          SettingModel settings = (state as SettingLoadSuccessState).settings;
+          messages = filterMessages(
+              allMessages, settings.messageCategory, settings.messageLocation);
+        }
+        return ListView.separated(
+          itemCount: messages.length,
+          physics: BouncingScrollPhysics(),
+          primary: false,
+          shrinkWrap: true,
+          itemBuilder: (context, index) =>
+              MessageItemRow(message: messages[index]),
+          separatorBuilder: (context, index) => ItemDivider(),
+        );
+      },
+    );
   }
 
-  List<MessageModel> filterMessages(List<MessageModel> messages, String filterTopic, String filterLocation) {
+  List<MessageModel> filterMessages(
+      List<MessageModel> messages, String filterTopic, String filterLocation) {
     return messages.where((element) {
       List<String> catElement = element.category.split(",");
       List<String> catFilter = filterTopic.split(",");
@@ -259,7 +342,8 @@ class _MessageScreenState extends State<MessageScreen> {
       } else {
         catElement.forEach((elementCat) {
           catFilter.forEach((elementFilterCat) {
-            if (elementCat.toLowerCase().contains(elementFilterCat)) matchedTopic = true;
+            if (elementCat.toLowerCase().contains(elementFilterCat))
+              matchedTopic = true;
           });
         });
       }
@@ -267,7 +351,8 @@ class _MessageScreenState extends State<MessageScreen> {
       List<String> locationElement = element.audience.split(",");
       List<String> locationFilter = filterLocation.split(",");
       bool matchedLocation = false;
-      if (locationFilter.contains(Globals.MESSAGE_LOCATIONS[0]) || locationElement.contains(Globals.MESSAGE_LOCATIONS[0])) {
+      if (locationFilter.contains(Globals.MESSAGE_LOCATIONS[0]) ||
+          locationElement.contains(Globals.MESSAGE_LOCATIONS[0])) {
         matchedLocation = true;
       } else {
         locationElement.forEach((elementLoc) {

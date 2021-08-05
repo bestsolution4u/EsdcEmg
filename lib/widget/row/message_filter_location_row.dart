@@ -9,18 +9,17 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MessageFilterLocationRow extends StatefulWidget {
-
   final String location;
   final double order;
 
   MessageFilterLocationRow({this.location, this.order});
 
   @override
-  _MessageFilterLocationRowState createState() => _MessageFilterLocationRowState();
+  _MessageFilterLocationRowState createState() =>
+      _MessageFilterLocationRowState();
 }
 
 class _MessageFilterLocationRowState extends State<MessageFilterLocationRow> {
-
   SettingBloc _settingBloc;
   bool _isEnabled = false;
 
@@ -29,14 +28,19 @@ class _MessageFilterLocationRowState extends State<MessageFilterLocationRow> {
     super.initState();
     _settingBloc = BlocProvider.of<SettingBloc>(context);
     if (_settingBloc.state is SettingLoadSuccessState) {
-      update((_settingBloc.state as SettingLoadSuccessState).settings.messageLocation);
+      update((_settingBloc.state as SettingLoadSuccessState)
+          .settings
+          .messageLocation);
     }
   }
 
   void update(String locations) {
     bool selected = false;
     List<String> locList = locations.split(',');
-    if ((locList != null && locList.isNotEmpty && locList.contains(widget.location)) || locList.contains(Globals.MESSAGE_LOCATIONS[0])) {
+    if ((locList != null &&
+            locList.isNotEmpty &&
+            locList.contains(widget.location)) ||
+        locList.contains(Globals.MESSAGE_LOCATIONS[0])) {
       selected = true;
     }
     setState(() {
@@ -52,37 +56,25 @@ class _MessageFilterLocationRowState extends State<MessageFilterLocationRow> {
           update(state.settings.messageLocation);
         }
       },
-      child: Semantics(
-        sortKey: OrdinalSortKey(widget.order),
-        checked: _isEnabled,
-        label: AppLocalization.of(context).trans(widget.location) + " ${_isEnabled ? "Checked" : "Unchecked"}",
-        excludeSemantics: true,
-        onTap: () {
-          _settingBloc.add(SettingUpdateMessageLocationEvent(messageLocation: widget.location, enabled: !_isEnabled));
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Row(
-            children: [
-              Expanded(
-                  child: Text(
-                    AppLocalization.of(context).trans(widget.location),
-                    style: TextStyle(fontSize: 16, color: Styles.darkerBlue),
-                    maxLines: 1, overflow: TextOverflow.ellipsis,
-                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),)
-              ),
-              SizedBox(width: 20,),
-              CupertinoSwitch(
+      child: MergeSemantics(
+          child: ListTile(
+              onTap: () {
+                _settingBloc.add(SettingUpdateMessageLocationEvent(
+                    messageLocation: widget.location, enabled: !_isEnabled));
+              },
+              title: Text(AppLocalization.of(context).trans(widget.location),
+                  style: TextStyle(fontSize: 16, color: Styles.darkerBlue),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context)),
+              trailing: CupertinoSwitch(
                   value: _isEnabled,
                   activeColor: Styles.blue,
+                  trackColor: Styles.bgSwitchOff,
                   onChanged: (value) {
-                    _settingBloc.add(SettingUpdateMessageLocationEvent(messageLocation: widget.location, enabled: value));
-                    SemanticsService.announce(AppLocalization.of(context).trans(widget.location) + " ${value ? "Checked" : "Unchecked"}", TextDirection.ltr);
-                  })
-            ],
-          ),
-        ),
-      ),
+                    _settingBloc.add(SettingUpdateMessageLocationEvent(
+                        messageLocation: widget.location, enabled: value));
+                  }))),
     );
   }
 }

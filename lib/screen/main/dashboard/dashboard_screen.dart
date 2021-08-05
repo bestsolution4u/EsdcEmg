@@ -149,7 +149,7 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                   ),
                   onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingScreen(),)),
                   rippleRadius: 40,
-                  padding: 4,
+                  padding: 16,
                 ),
                 context: context
             ),
