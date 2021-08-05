@@ -11,29 +11,36 @@ class ESDCAppbar {
       backgroundColor: Colors.white,
       elevation: 0,
       centerTitle: false,
-      title: Semantics(
-        label: semanticLabel != null ? AppLocalization.of(context).trans(semanticLabel) : AppLocalization.of(context).trans(title),
-        excludeSemantics: true,
-        container: true,
-        header: true,
-        child: Row(
-          children: [
-            SvgPicture.asset(
-              icon,
-              allowDrawingOutsideViewBox: true,
-              height: 30,
+      primary: true,
+      excludeHeaderSemantics: true,
+      title: Row(
+        children: [
+          Expanded(
+            child: Semantics(
+            label: semanticLabel != null ? AppLocalization.of(context).trans(semanticLabel) : AppLocalization.of(context).trans(title),
+            excludeSemantics: true,
+            container: true,
+            header: true,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                SvgPicture.asset(
+                  icon,
+                  allowDrawingOutsideViewBox: true,
+                  height: 30,
+                ),
+                SizedBox(width: 10,),
+                Text(
+                  AppLocalization.of(context).trans(title),
+                  style: TextStyle(color: Styles.darkBlue, fontSize: 22, fontWeight: FontWeight.w700),
+                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                Spacer()
+              ],
             ),
-            SizedBox(width: 10,),
-            Text(
-              AppLocalization.of(context).trans(title),
-              style: TextStyle(color: Styles.darkBlue, fontSize: 22, fontWeight: FontWeight.w700),
-              textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-          ],
-        ),
+          ),),
+          if (action != null) action
+        ],
       ),
-      actions: [
-        action != null ? action : Container()
-      ],
     );
   }
 }

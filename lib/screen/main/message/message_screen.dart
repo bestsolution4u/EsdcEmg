@@ -51,7 +51,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     ),
                     onClick: () => openFilter(),
                     rippleRadius: 36,
-                    padding: 12,
+                    padding: 4,
                   ),
                   Positioned(
                     top: 0,

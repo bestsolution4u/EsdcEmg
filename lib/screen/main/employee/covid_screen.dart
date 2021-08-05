@@ -1,8 +1,12 @@
 import 'package:esdc_emg/config/style.dart';
+import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/screen/main/webview_screen.dart';
+import 'package:esdc_emg/util/screen_util.dart';
 import 'package:esdc_emg/widget/appbar/child_image_appbar.dart';
 import 'package:esdc_emg/widget/button/border_item_selector.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CovidScreen extends StatefulWidget {
   @override
@@ -35,9 +39,38 @@ class _CovidScreenState extends State<CovidScreen> {
                     icon: 'asset/image/icon-covid.svg',
                     sortKey: 1,
                     iconSize: 60,
-                    onClick: () => gotoWebviewScreen(
-                        title: "active_screening",
-                        url: 'url_covid_active_screening'),
+                    onClick: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => CupertinoAlertDialog(
+                            title: new Text(
+                              AppLocalization.of(context).trans('important_note'),
+                              textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                            content: new Text(
+                              AppLocalization.of(context).trans('covid_screen_redirect'),
+                              textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                            actions: <Widget>[
+                              CupertinoDialogAction(
+                                isDefaultAction: true,
+                                child: Text(
+                                  AppLocalization.of(context).trans('continue'),
+                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  launch(AppLocalization.of(context).trans('url_covid_active_screening'));
+                                },
+                              ),
+                              CupertinoDialogAction(
+                                child: Text(AppLocalization.of(context).trans('cancel'),
+                                  textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              )
+                            ],
+                          )
+                      );
+                    },
                   ),
                 ),
                 SizedBox(height: 20,),
