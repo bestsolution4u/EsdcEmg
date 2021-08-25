@@ -357,6 +357,21 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                   ),
                                 )),
                           ),
+                          ItemDivider(paddingLeft: 20),
+                          ContactItemRow(
+                            title: 'contact_psc',
+                            sortKey: 17,
+                            onClick: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ContactDetailScreen(
+                                    title: 'contact_psc',
+                                    phone1: 'phone_contact_psc',
+                                    website: 'site_contact_psc',
+                                    description: 'psc_desc',
+                                  ),
+                                )),
+                          ),
                           SizedBox(
                             height: 20,
                           )
