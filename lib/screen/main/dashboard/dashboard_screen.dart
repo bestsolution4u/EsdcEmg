@@ -170,36 +170,63 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                           backgroundColor: Styles.darkerBlue,
                           sortKey: 1,
                           onClick: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) => CupertinoAlertDialog(
-                                  title: new Text(
-                                    AppLocalization.of(context).trans('important_note'),
-                                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                                  content: new Text(
-                                    AppLocalization.of(context).trans('covid_screen_redirect'),
-                                    textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                                  actions: <Widget>[
-                                    CupertinoDialogAction(
-                                      isDefaultAction: true,
-                                      child: Text(
-                                        AppLocalization.of(context).trans('continue'),
-                                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                        launch(AppLocalization.of(context).trans('url_covid_active_screening'));
-                                      },
-                                    ),
-                                    CupertinoDialogAction(
-                                      child: Text(AppLocalization.of(context).trans('cancel'),
-                                        textScaleFactor: ScreenUtil.calcTextScaleFactor(context),),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    )
-                                  ],
-                                )
-                            );
+                            if (!Platform.isIOS) {
+                              launch(AppLocalization.of(context)
+                                  .trans('url_covid_active_screening'));
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                        title: new Text(
+                                          AppLocalization.of(context)
+                                              .trans('important_note'),
+                                          textScaleFactor:
+                                              ScreenUtil.calcTextScaleFactor(
+                                                  context),
+                                        ),
+                                        content: new Text(
+                                          AppLocalization.of(context)
+                                              .trans('covid_screen_redirect'),
+                                          textScaleFactor:
+                                              ScreenUtil.calcTextScaleFactor(
+                                                  context),
+                                        ),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: Text(
+                                              AppLocalization.of(context)
+                                                  .trans('cancel'),
+                                              textScaleFactor: ScreenUtil
+                                                  .calcTextScaleFactor(context),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(
+                                                  context,
+                                                  AppLocalization.of(context)
+                                                      .trans('cancel'));
+                                            },
+                                          ),
+                                          TextButton(
+                                            child: Text(
+                                              AppLocalization.of(context)
+                                                  .trans('continue'),
+                                              textScaleFactor: ScreenUtil
+                                                  .calcTextScaleFactor(context),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(
+                                                  context,
+                                                  AppLocalization.of(context)
+                                                      .trans('continue'));
+                                              launch(AppLocalization.of(context)
+                                                  .trans(
+                                                      'url_covid_active_screening'));
+                                            },
+                                          ),
+                                        ],
+                                      ));
+                            }
                           },
                         ),
                         SizedBox(width: 20,),
