@@ -12,6 +12,7 @@ import 'package:esdc_emg/localization/app_localization.dart';
 import 'package:esdc_emg/model/message_model.dart';
 import 'package:esdc_emg/model/vpn_status_model.dart';
 import 'package:esdc_emg/model/youtube_video_model.dart';
+import 'package:esdc_emg/screen/main/dashboard/chatbot_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/feedback_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/setting_screen.dart';
 import 'package:esdc_emg/screen/main/dashboard/wellness_screen.dart';
@@ -186,6 +187,24 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
                         icon: 'asset/image/icon-feedback.svg',
                         onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen(),)),
                       ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      CategoryButton(
+                        title: 'virtual_assistant',
+                        icon: 'asset/image/icon-learning.svg',
+                        iconSize: 80,
+                        onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ChatbotScreen(),)),
+                      ),
+                      SizedBox(width: 20,),
+                      Expanded(
+                        child: Container(),
+                      )
                     ],
                   ),
                 ),
